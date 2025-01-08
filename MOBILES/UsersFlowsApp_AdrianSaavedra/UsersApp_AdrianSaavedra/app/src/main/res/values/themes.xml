@@ -1,0 +1,19 @@
+<resources>
+    <style name="Base.Theme.UsersApp_AdrianSaavedra" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">?attr/colorPrimaryInverse</item>
+    </style>
+
+    <style name="BottomNavigationView.IconOnly" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemPaddingTop">6dp</item>
+        <item name="itemPaddingBottom">6dp</item>
+    </style>
+
+    <style name="Theme.UsersApp_AdrianSaavedra" parent="Base.Theme.UsersApp_AdrianSaavedra" />
+</resources>

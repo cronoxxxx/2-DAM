@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".ExamenApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ExamFirstMovilesAdrianSaavedra"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.pantallaDetalleJugador.InfoFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pantallaMomentosEquipo.MezcladoFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pantallaDetalleMomento.DetalleFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pantallaJugadoresEquipo.CombinadoFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pantallaMomentos.MomentosFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pantallaPrincipal.MainFragment"
+            android:exported="false" />
+        <activity
+            android:name=".ui.pantallaPrincipal.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

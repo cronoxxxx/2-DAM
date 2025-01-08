@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">SegundaApp_AdrianSaavedra</string>
+    <string name="nombre">nombre</string>
+    <string name="introduzca_un_valor">Introduzca un valor</string>
+    <string name="presione_aqui">Presione aqui</string>
+    <string name="email">email\n</string>
+    <string name="estatura">Estatura(cm)</string>
+    <string name="clave">clave\n</string>
+    <string name="form">Formulario Android\n</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento\n</string>
+    <string name="first_date">Seleccione la fecha</string>
+    <string name="genero">Género\n</string>
+    <string name="hombre">Masculino</string>
+    <string name="mujer">Femenino</string>
+    <string name="terms_and_conditions">He leido y acepto los términos y condiciones</string>
+    <string name="submit_data">ENVIAR DATOS</string>
+    <string name="update">Actualizar</string>
+    <string name="delete">Eliminar</string>
+    <string name="a_adir">Agregar</string>
+    <string name="rellenanombre">Rellena el nombre\n</string>
+    <string name="erroragregar">Error al agregar</string>
+    <string name="personaagregada">Persona agregada\n</string>
+    <string name="agregaprimero">Agrega una persona primero</string>
+    <string name="personaeliminada">Persona eliminada</string>
+    <string name="personaactualizada">Persona actualizada\n</string>
+    <string name="indice">Índice</string>
+    <string name="indice_format">%1$d/%2$d</string>
+</resources>

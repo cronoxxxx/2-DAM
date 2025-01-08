@@ -1,0 +1,4 @@
+package com.example.moviesapp_adriansaavedra.ui.common
+
+class UiEvent {
+}

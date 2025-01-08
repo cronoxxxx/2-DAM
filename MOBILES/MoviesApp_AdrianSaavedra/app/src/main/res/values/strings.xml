@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MoviesApp_AdrianSaavedra</string>
+    <string name="title">Movies App</string>
+
+    <string name="pelicula">Movie</string>
+    <string name="id">ID:</string>
+    <string name="value">value</string>
+    <string name="pantalla_pelicula">Pantalla pelicula</string>
+    <string name="rate">Rate</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_title_original">Original Title</string>
+    <string name="overview">Overview</string>
+    <string name="error_obteniendo_peliculas">Error al obtener API themovieDB</string>
+    <string name="error_obteniendo_pelicula">Error al obtener la pelicula</string>
+    <string name="release_date">Release Date</string>
+    <string name="cargando_pelicula">Cargando pelicula\n</string>
+    <string name="cargando_peliculas">Cargando peliculas</string>
+</resources>

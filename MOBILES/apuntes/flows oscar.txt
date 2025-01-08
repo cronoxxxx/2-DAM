@@ -1,0 +1,46 @@
+
+--MENUS--
+00:40 como colocar su app bar (lift scroll y scroll flags ver, height: actionbarsize y --menu--)
+
+01:50 menú appbar (ifroom, always, never y etc)
+
+06:27 widgets en menus (actionviewclass: searchview)
+
+07:12 colocación de menú
+- en activity solo declarar la barra de navegación
+
+
+
+--2 maneras de hacerlo--
+07:30 meter cosas en el topappbar desde fragment
+- añadir un addmenuprovider, y declarar el menuprovider al inicio de la clase, para añadir los override de menu
+
+08:50 meter acciones para aplicarlas a los menus (misma interfaz que hice en AppPersonas desde el adapter hasta el fragment) 
+--
+
+09:20 implementar el inflador del menú (como hice en apppersonas) con action view de search view (widget) y agregarles listeners para agregar acciones en el momento que escribe el usuario
+
+revisar 11- 14 min
+
+14:40 - 16  explica que cuando el código se hace mas grande mejor implementar una interfaz en vez del menú provider (la misma que app personas con adapter-fragment). No tiene sentido copiar el ovverride tantas veces
+
+
+--MUTABLESTATEFLOW & ASSTATEFLOW--
+
+18:30 Explicación de flows para manejo de datos (hasta minuto 20:30)
+
+25:30 explica métodos Flow: update, map, collect con repeatonlifecycle started(equivalente a observe en livedata)
+
+--ya no usar toasts para nada -2pts
+
+36:30 - 39:00 explica como filtrar usuarios con una lista de enteros y filtrados en el state
+
+
+oscar preguntas mañana :
+filtramos usuarios al presionar el buscador por nombre?
+pues si xd
+
+como solucionar lo de limpiar error diferente en cada pantalla?
+
+
+

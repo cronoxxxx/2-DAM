@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_persona"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/screen_padding"
+    tools:context=".ui.pantallaPersonas.PersonaFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/form"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tilNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNombre"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/tilEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvForm">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/email"
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/tilClave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilNombre">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvEstatura"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        android:text="@string/estatura"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilClave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/slEstatura"
+        />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slEstatura"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        android:stepSize="1.0"
+        android:valueFrom="0"
+        android:valueTo="300"
+        app:layout_constraintBottom_toTopOf="@id/tvFechaNacimiento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEstatura"
+        tools:ignore="SpeakableTextPresentCheck"
+        style="@style/Widget.App.Slider"
+
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilClave"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        android:hint="@string/clave"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilEmail"
+        app:layout_constraintBottom_toTopOf="@id/tvEstatura">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etClave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvFechaNacimiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fecha_nacimiento"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toTopOf="@id/btnDatePicker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/slEstatura" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDatePicker"
+        style="?android:spinnerStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/first_date"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/tvGender"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFechaNacimiento"
+        />
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/genero"
+        app:layout_constraintBottom_toTopOf="@id/tglGenero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnDatePicker" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/tglGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/cbTerms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGender"
+        app:singleSelection="true">
+
+        <Button
+            android:id="@+id/btnHombre"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hombre" />
+
+        <Button
+            android:id="@+id/btnMujer"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mujer" />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cbTerms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tglGenero"
+        android:text="@string/terms_and_conditions"
+        app:layout_constraintBottom_toTopOf="@+id/updateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:buttonTint="@color/primary"/>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/updateButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_end"
+        android:text="@string/update"
+        app:icon="@drawable/ic_update"
+
+        app:layout_constraintEnd_toStartOf="@id/deleteButton"
+        android:textColor="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:iconTint="@color/primary"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/deleteButton"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:textColor="@color/primary"
+
+        app:iconTint="@color/primary"
+        app:icon="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="@id/updateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/updateButton"
+        app:layout_constraintTop_toTopOf="@+id/updateButton" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

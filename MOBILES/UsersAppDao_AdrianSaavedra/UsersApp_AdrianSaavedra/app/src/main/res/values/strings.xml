@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">UsersApp_AdrianSaavedra</string>
+    <string name="title">Users App</string>
+    <string name="id">ID:</string>
+    <string name="value">value</string>
+    <string name="comments">Comments</string>
+    <string name="users">Users</string>
+    <string name="tasks">Tasks</string>
+    <string name="user">User</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="phone">phone</string>
+    <string name="usuario_eliminado_exitosamente">Usuario eliminado exitosamente</string>
+    <string name="usuario_actualizado_exitosamente">Usuario actualizado exitosamente</string>
+    <string name="user_details">User Screen</string>
+    <string name="id_user">User ID:</string>
+    <string name="id_post">Post ID:</string>
+    <string name="post">Post</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="login_exitoso">Login exitoso</string>
+    <string name="error_login">Error login</string>
+    <string name="exitosamente_registrado">Exitosamente registrado</string>
+    <string name="search">SEARCH</string>
+    <string name="des2">des2</string>
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/sumarFragment">
+
+    <fragment
+        android:id="@+id/sumarFragment"
+        android:name="com.example.primerxmlmvvm.ui.suma.SumaFragment"
+        android:label="Sumar"
+        tools:layout="@layout/fragment_suma">
+
+    </fragment>
+    <fragment
+        android:id="@+id/listadoCochesFragment"
+        android:name="com.example.primerxmlmvvm.ui.coches.listado.ListadoFragment"
+        android:label="Coches"
+        tools:layout="@layout/fragment_listado_coches">
+        <action
+            android:id="@+id/action_listadoFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment"
+
+            />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.example.primerxmlmvvm.ui.coches.detalle.DetalleFragment"
+        android:label="Detalle Coche"
+        tools:layout="@layout/fragment_detalle_coches">
+        <argument
+            android:name="matricula"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detalleFragment_to_listadoFragment"
+            app:popUpTo="@id/listadoCochesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listadoUsersFragment"
+        android:name="com.example.primerxmlmvvm.ui.users.listado.ListadoFragment"
+        android:label="Usuarios"
+        tools:layout="@layout/fragment_listado_users" >
+        <action
+            android:id="@+id/action_listadoUsersFragment_to_detalleUsersFragment"
+            app:destination="@id/detalleUsersFragment"
+
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleUsersFragment"
+        android:name="com.example.primerxmlmvvm.ui.users.detalle.DetalleUsersFragment"
+        android:label="Detalle Usuario"
+        tools:layout="@layout/fragment_detalle_users">
+        <argument
+            android:name="id"
+            app:argType="long" />
+
+    </fragment>
+</navigation>

@@ -1,0 +1,4 @@
+package com.example.apppersonas_adriansaavedra.ui.common
+
+class MarginItemDecoration {
+}

@@ -1,0 +1,196 @@
+package com.example.apppersonas_adriansaavedra.ui.pantallaMain
+
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import com.example.apppersonas_adriansaavedra.R
+
+import com.example.apppersonas_adriansaavedra.databinding.FragmentMainBinding
+import com.example.apppersonas_adriansaavedra.domain.modelo.Persona
+import com.example.apppersonas_adriansaavedra.ui.Constantes
+
+import com.example.apppersonas_adriansaavedra.ui.common.MarginItemDecoration
+
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+
+@AndroidEntryPoint
+class MainFragment : Fragment() {
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var personasAdapter: PersonasAdapter
+
+    private val viewModel: MainViewModel by viewModels()
+
+    private var actionMode: ActionMode? = null
+    private val callback by lazy { configContextBar() }
+
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Timber.d(Constantes.NAVEGANDO_AL_FRAGMENT_PRINCIPAL)
+        personasAdapter = PersonasAdapter(requireContext(), object : PersonasAdapter.PersonaActions {
+            override fun onDelete(persona: Persona) {
+                viewModel.handleEvent(MainEvent.DeletePersona(persona))
+            }
+
+            override fun onStartSelectMode(persona: Persona) {
+                viewModel.handleEvent(MainEvent.StartSelectMode)
+                viewModel.handleEvent(MainEvent.SeleccionaPersona(persona))
+                startActionMode()
+                updateActionModeTitle()
+            }
+
+            override fun itemHasClicked(persona: Persona) {
+                viewModel.handleEvent(MainEvent.SeleccionaPersona(persona))
+                updateActionModeTitle()
+            }
+
+            override fun onClickItem(personaId: Int) {
+                if (viewModel.uiState.value?.selectMode == true) {
+                    val persona = viewModel.uiState.value?.personas?.find { it.id == personaId }
+                    persona?.let {
+                        viewModel.handleEvent(MainEvent.SeleccionaPersona(it))
+                        updateActionModeTitle()
+                    }
+                }
+            }
+
+            override fun onClickAcceso(personaId: Int) {
+                if (viewModel.uiState.value?.selectMode != true) {
+                    click(personaId)
+                }
+            }
+
+            override fun onPersonaRemovedFromSelection(persona: Persona) {
+                viewModel.handleEvent(MainEvent.RemovePersonaFromSelection(persona))
+                updateActionModeTitle()
+            }
+
+            override fun showSelectedMessage() {
+                viewModel.handleEvent(MainEvent.AvisoSelected)
+            }
+        })
+        with(binding) {
+            rvPersonas.adapter = personasAdapter
+            rvPersonas.layoutManager = GridLayoutManager(requireContext(), 1)
+            rvPersonas.addItemDecoration(MarginItemDecoration(
+                resources.getDimensionPixelSize(R.dimen.margin)
+            ))
+            val touchHelper = ItemTouchHelper(personasAdapter.swipeGesture)
+            touchHelper.attachToRecyclerView(rvPersonas)
+        }
+
+        binding.fabAddPerson.setOnClickListener {
+            if (viewModel.uiState.value?.selectMode != true) {
+                Timber.d(Constantes.NAVEGANDO_AL_FRAGMENT_DE_AGREGAR_PERSONA)
+                val action = MainFragmentDirections.actionMainFragmentToAddPersonaFragment()
+                findNavController().navigate(action)
+            } else {
+                viewModel.handleEvent(MainEvent.AvisoSelected)
+            }
+        }
+
+        observarViewModel()
+        Timber.d(Constantes.PERSONAS_OBTENIDAS)
+        viewModel.handleEvent(MainEvent.GetPersonas)
+    }
+
+    private fun observarViewModel() {
+
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            state.aviso?.let { aviso ->
+                Toast.makeText(requireContext(), aviso, Toast.LENGTH_SHORT).show()
+                viewModel.handleEvent(MainEvent.AvisoVisto)
+            }
+            personasAdapter.submitList(state.personas)
+            if (!state.selectMode) {
+                personasAdapter.resetSelectMode()
+            }
+            updateSelectionUI(state)
+        }
+    }
+
+    private fun updateSelectionUI(state: MainState) {
+        if (state.selectMode) {
+            if (actionMode == null) {
+                startActionMode()
+            }
+            updateActionModeTitle()
+        } else {
+            actionMode?.finish()
+        }
+        personasAdapter.updateSelectedItems(state.personasSelected, state.selectMode)
+    }
+
+    private fun startActionMode() {
+        if (actionMode == null) {
+            actionMode = (activity as AppCompatActivity).startSupportActionMode(callback)
+        }
+    }
+
+    private fun updateActionModeTitle() {
+        actionMode?.let {
+            val count = viewModel.uiState.value?.personasSelected?.size ?: 0
+            it.title = getString(R.string.personas_seleccionadas) + " $count"
+        }
+    }
+
+    private fun click(id: Int) {
+        if (viewModel.uiState.value?.selectMode != true) {
+            Timber.d(Constantes.NAVEGANDO_AL_FRAGMENT_DE_PERSONA_CON_ID + id)
+            val action = MainFragmentDirections.actionMainFragmentToPersonaFragment(id)
+            findNavController().navigate(action)
+        }
+    }
+
+
+    private fun configContextBar() = object : ActionMode.Callback {
+        override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+            mode?.menuInflater?.inflate(R.menu.context_bar, menu)
+            return true
+        }
+
+        override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
+
+        override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+            return when (item?.itemId) {
+                R.id.delete -> {
+                    viewModel.handleEvent(MainEvent.DeletePersonasSeleccionadas)
+                    mode?.finish()
+                    true
+                }
+                else -> false
+            }
+        }
+
+        override fun onDestroyActionMode(mode: ActionMode?) {
+            viewModel.handleEvent(MainEvent.ResetSelectMode)
+            personasAdapter.resetSelectMode()
+            actionMode = null
+        }
+    }
+
+}

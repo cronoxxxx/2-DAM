@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_padding">3dp</dimen>
+    <dimen name="item_padding">10dp</dimen>
+    <dimen name="text_size_large">21sp</dimen>
+    <dimen name="screen_padding">18dp</dimen>
+    <dimen name="null_dimension">0dp</dimen>
+    <dimen name="common_label_text_size">15sp</dimen>
+    <dimen name="item_elevation">8dp</dimen>
+    <dimen name="text_size_mid">15sp</dimen>
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="margin_end">10dp</dimen>
+    <dimen name="margin_larger">35dp</dimen>
+    <dimen name="text_size_normal">17sp</dimen>
+    <dimen name="margin">16dp</dimen>
+</resources>

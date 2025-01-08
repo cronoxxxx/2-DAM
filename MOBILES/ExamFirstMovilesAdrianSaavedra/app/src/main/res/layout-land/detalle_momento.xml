@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+
+    <ImageView
+        android:id="@+id/ifvImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+
+        android:src="@drawable/btn_play"
+        app:layout_constraintTop_toTopOf="parent"
+
+
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="10:00"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toStartOf="@id/tv1"
+        app:layout_constraintStart_toEndOf="@+id/ifvImageView"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="1º"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvNombre"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAcceso"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:text="+1"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ifvImageView"
+        app:layout_constraintVertical_bias="0.097" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAcceso2"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:text="+2"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAcceso"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAcceso3"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:text="+3"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAcceso2"
+        app:layout_constraintVertical_bias="0.053" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/equipo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Equipo 1"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+
+        app:layout_constraintStart_toEndOf="@id/btnAcceso2"
+        app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/number1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="34"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+
+        app:layout_constraintStart_toEndOf="@id/btnAcceso2"
+        app:layout_constraintTop_toBottomOf="@id/equipo1"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="X"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+
+        app:layout_constraintStart_toEndOf="@id/number1"
+        app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/equipo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Equipo 2"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.366"
+
+        app:layout_constraintStart_toEndOf="@id/x"
+        app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/number2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="34"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+
+        app:layout_constraintStart_toEndOf="@id/x"
+        app:layout_constraintTop_toBottomOf="@id/equipo2"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAcceso4"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:text="+1"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toEndOf="@id/equipo2"
+        app:layout_constraintTop_toBottomOf="@id/ifvImageView"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAcceso5"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:text="+2"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toEndOf="@id/equipo2"
+        app:layout_constraintTop_toBottomOf="@id/btnAcceso4"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAcceso6"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+
+        android:text="+3"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toEndOf="@id/equipo2"
+        app:layout_constraintTop_toBottomOf="@id/btnAcceso5"
+        app:layout_constraintVertical_bias="0.094" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

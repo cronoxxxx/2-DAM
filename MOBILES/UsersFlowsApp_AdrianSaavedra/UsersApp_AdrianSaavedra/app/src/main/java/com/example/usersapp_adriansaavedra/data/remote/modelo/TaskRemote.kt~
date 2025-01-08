@@ -1,0 +1,21 @@
+package com.example.usersapp_adriansaavedra.data.remote.modelo
+
+import com.example.usersapp_adriansaavedra.data.remote.NetworkResult
+import com.example.usersapp_adriansaavedra.domain.modelo.Task
+
+class TaskRemote(
+    val userId: Int,
+    val id: Int,
+    val title: String,
+    val completed: Boolean
+)
+
+
+fun TaskRemote.toTask() = NetworkResult.Success(
+    Task(
+        userId = userId,
+        id = id,
+        title = title,
+        completed = completed
+    )
+)

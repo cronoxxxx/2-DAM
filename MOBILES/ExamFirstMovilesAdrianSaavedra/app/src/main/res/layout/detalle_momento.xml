@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Play/Pause"
+        android:src="@drawable/btn_play"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTimer"
+        app:layout_constraintBottom_toBottomOf="@id/tvTimer"/>
+
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/digital7"
+        android:text="10:00"
+        android:textColor="@color/led_red"
+        android:textSize="85sp"
+
+        app:layout_constraintEnd_toStartOf="@id/tvPeriod"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toEndOf="@id/btnPlay"
+        app:layout_constraintTop_toTopOf="@id/btnPlay" />
+
+    <TextView
+        android:id="@+id/tvPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:text="1.°"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTimer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTimer" />
+
+    <TextView
+        android:id="@+id/tvTeam1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Equipo 1"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTimer"
+        app:layout_constraintStart_toStartOf="@+id/tvTimer"
+        app:layout_constraintTop_toTopOf="@+id/btnPlus1Team1" />
+
+    <TextView
+        android:id="@+id/tvScore1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/digital7"
+        android:text="34"
+        android:textColor="@color/led_green"
+        android:textSize="120sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTeam1"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@id/tvTeam1"
+        app:layout_constraintTop_toBottomOf="@id/tvTeam1" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/mediumTextX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="x"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvScore1"
+        app:layout_constraintStart_toStartOf="@+id/tvScore1"
+        app:layout_constraintTop_toBottomOf="@id/tvScore1" />
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/tvTeam2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Equipo 2"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/mediumTextX"
+        app:layout_constraintStart_toStartOf="@+id/mediumTextX"
+        app:layout_constraintTop_toTopOf="@+id/btnPlus1Team2" />
+
+    <TextView
+        android:id="@+id/tvScore2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/digital7"
+        android:text="18"
+        android:textColor="@color/led_green"
+        android:textSize="120sp"
+        app:layout_constraintEnd_toEndOf="@+id/mediumTextX"
+        app:layout_constraintStart_toStartOf="@+id/mediumTextX"
+        app:layout_constraintTop_toBottomOf="@id/tvTeam2" />
+
+
+    <TextView
+        android:id="@+id/tvMiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Faltas"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlus3Team2" />
+
+    <Button
+        android:id="@+id/btnPlus1MissPuntuation"
+        style="@style/ScoreButton2"
+        android:text="+"
+        android:layout_marginEnd="16dp"
+
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@id/tvMissPuntuation1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvMissPuntuation1"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMissPuntuation1" />
+
+
+    <TextView
+        android:id="@+id/tvMissPuntuation1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="0"
+        android:textColor="@color/white"
+        android:fontFamily="@font/digital7"
+        android:textSize="55sp"
+        app:layout_constraintEnd_toStartOf="@id/mediumTextX2"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toEndOf="@id/btnPlus1MissPuntuation"
+        app:layout_constraintTop_toBottomOf="@id/tvMiss" />
+
+
+    <TextView
+        android:id="@+id/tvMissPuntuation2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="0"
+        android:textColor="@color/white"
+        android:fontFamily="@font/digital7"
+        android:textSize="55sp"
+        app:layout_constraintEnd_toStartOf="@id/btnPlus1MissPuntuation2"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toEndOf="@id/mediumTextX2"
+        app:layout_constraintTop_toBottomOf="@id/tvMiss" />
+
+
+    <Button
+        android:id="@+id/btnPlus1MissPuntuation2"
+        style="@style/ScoreButton2"
+        android:layout_marginStart="16dp"
+        android:text="+"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvMissPuntuation2"
+        app:layout_constraintTop_toTopOf="@+id/tvMissPuntuation2"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMissPuntuation2"
+        />
+
+
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/mediumTextX2"
+        android:layout_width="wrap_content"
+        android:layout_marginHorizontal="16dp"
+
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="x"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toStartOf="@id/tvMissPuntuation2"
+        app:layout_constraintStart_toEndOf="@id/tvMissPuntuation1"
+        app:layout_constraintTop_toBottomOf="@id/tvMiss" />
+
+    <Button
+        android:id="@+id/btnEdit"
+        style="@style/RectangleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="2dp"
+        android:text="EDITAR"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/btnDelete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mediumTextX2" />
+
+
+    <Button
+        android:id="@+id/btnDelete"
+        style="@style/RectangleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIMINAR"
+
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnEdit"
+        app:layout_constraintTop_toTopOf="@+id/btnEdit" />
+
+
+
+    <Button
+        android:id="@+id/btnPlus1Team1"
+        style="@style/ScoreButton"
+        android:textSize="25sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/white"
+        android:text="+1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlay" />
+
+    <Button
+        android:id="@+id/btnPlus2Team1"
+        style="@style/ScoreButton"
+        android:text="+2"
+        android:textSize="25sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlus1Team1" />
+
+    <Button
+        android:id="@+id/btnPlus3Team1"
+        style="@style/ScoreButton"
+        android:text="+3"
+        android:textSize="25sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlus2Team1" />
+
+
+    <Button
+        android:id="@+id/btnPlus1Team2"
+        android:textSize="25sp"
+        style="@style/ScoreButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="+1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlus3Team1" />
+
+    <Button
+        android:id="@+id/btnPlus2Team2"
+        android:textSize="25sp"
+        style="@style/ScoreButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="+2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlus1Team2" />
+
+    <Button
+        android:id="@+id/btnPlus3Team2"
+        style="@style/ScoreButton"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="25sp"
+        android:text="+3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPlus2Team2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/listadoCochesFragment"
+        android:icon="@drawable/car_convertible"
+        android:title="coches"
+        android:contentDescription="listado"
+        app:showAsAction="always"
+         />
+
+    <item
+        android:id="@+id/sumarFragment"
+        android:title="sumar"
+        android:icon="@drawable/baseline_add_24"
+        android:contentDescription="sumar"
+
+        app:showAsAction="always"
+         />
+
+
+    <item
+        android:id="@+id/listadoUsersFragment"
+        android:icon="@drawable/baseline_boy_24"
+        android:title="users"
+        android:contentDescription="listado"
+        app:showAsAction="always"
+        />
+</menu>

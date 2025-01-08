@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MoviesApp_AdrianSaavedra" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+
+    <style name="Theme.MoviesApp_AdrianSaavedra" parent="Base.Theme.MoviesApp_AdrianSaavedra">
+        <item name="actionModeStyle">@style/Theme.MoviesApp_AdrianSaavedra</item>
+    </style>
+
+    <style name="Widget.App.Slider" parent="Widget.MaterialComponents.Slider">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Slider</item>
+        <item name="labelStyle">@style/Widget.App.Tooltip</item>
+        <item name="thumbRadius">@dimen/thumb_radius</item>
+        <item name="haloRadius">@dimen/halo_radius</item>
+        <item name="thumbElevation">@dimen/thumb_elevation</item>
+        <item name="tickVisible">false</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Slider" parent="">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="sliderStyle">@style/Widget.App.Slider</item>
+    </style>
+
+    <style name="Widget.App.Tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

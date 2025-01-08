@@ -1,0 +1,14 @@
+package com.example.examfirstmoviles_adriansaavedra.domain.modelo
+
+data class Momento (
+    val id : Int,
+    val equipoCasa : String,
+    val equipoFuera : String,
+    val cuarto : Int,
+    val tiempo : Double,
+    val marcadorEquipoCasa : Int,
+    
+
+
+
+)

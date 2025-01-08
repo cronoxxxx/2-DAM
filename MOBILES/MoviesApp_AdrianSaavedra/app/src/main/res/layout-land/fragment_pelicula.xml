@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_persona"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/screen_padding"
+    android:background="@color/white_variant"
+    tools:context=".ui.pantallaPeliculas.PeliculaFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+
+        android:id="@+id/glLine5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="@dimen/screen_padding"
+        android:id="@+id/tvForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pelicula"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvMovieTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/glLine5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvMovieTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie_title"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvForm"
+        app:layout_constraintEnd_toEndOf="@id/glLine5"
+        app:layout_constraintBottom_toTopOf="@id/tilNombre"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNombre"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:layout_marginStart="@dimen/screen_padding"
+        app:layout_constraintBottom_toTopOf="@+id/tvMovieOriginalTitle"
+        app:layout_constraintEnd_toEndOf="@id/glLine5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMovieTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvMovieOriginalTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/movie_title_original"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilNombre"
+        app:layout_constraintEnd_toEndOf="@id/glLine5"
+        app:layout_constraintBottom_toTopOf="@id/tilOriginalTitle"
+        />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOriginalTitle"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:layout_marginStart="@dimen/screen_padding"
+
+        app:endIconMode="clear_text"
+        app:layout_constraintBottom_toTopOf="@+id/tvOverviewTitle"
+        app:layout_constraintEnd_toEndOf="@id/glLine5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMovieOriginalTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOriginalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvOverviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overview"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilOriginalTitle"
+        app:layout_constraintEnd_toEndOf="@id/glLine5"
+        app:layout_constraintBottom_toTopOf="@id/tilOverview"
+        />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginBottom="@dimen/screen_padding"
+            android:id="@+id/tilOverview"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+            android:layout_width="@dimen/null_dimension"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/glLine5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvOverviewTitle"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:scrollHorizontally="false"
+                android:textSize="@dimen/text_size_mid"
+                android:minLines="1"
+                android:maxLines="2"
+                android:scrollbars="vertical"
+                android:scrollbarStyle="insideOverlay"
+                android:overScrollMode="always"
+                android:fadeScrollbars="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvReleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/release_date"
+
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toStartOf="@id/glLine5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tilReleaseDate"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilReleaseDate"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        android:layout_marginEnd="@dimen/screen_padding"
+        android:layout_marginStart="@dimen/screen_padding"
+        app:layout_constraintBottom_toTopOf="@id/glLine1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/glLine5"
+        app:layout_constraintTop_toBottomOf="@id/tvReleaseDate">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etReleaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false"
+            android:textSize="@dimen/text_size_mid" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rate"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/glLine5"
+        app:layout_constraintTop_toBottomOf="@id/glLine2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/slRate"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slRate"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="wrap_content"
+        android:valueFrom="0.0"
+        android:valueTo="10.0"
+        android:stepSize="0.1"
+        app:layout_constraintTop_toBottomOf="@id/tvRate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/glLine5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="SpeakableTextPresentCheck"
+        style="@style/Widget.App.Slider"
+
+        />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLine1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLine2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLine3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.68" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLine4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.83" />
+
+    <ImageView
+        android:id="@+id/ifvImageView"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="@dimen/null_dimension"
+        android:contentDescription="@string/pelicula"
+        android:scaleType="centerCrop"
+
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="@id/glLine2"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="@id/glLine4"
+        app:layout_constraintStart_toStartOf="@id/glLine3"
+        app:layout_constraintTop_toBottomOf="@id/glLine1"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_padding">3dp</dimen>
+    <dimen name="item_padding">10dp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+    <dimen name="screen_padding">18dp</dimen>
+    <dimen name="null_dimension">0dp</dimen>
+    <dimen name="common_label_text_size">15sp</dimen>
+    <dimen name="margin_end">35dp</dimen>
+    <item name="default_guide" type="dimen" format="float">0.5</item>
+    <dimen name="thumb_radius">12dp</dimen>
+    <dimen name="halo_radius">24dp</dimen>
+    <dimen name="thumb_elevation">2dp</dimen>
+    <dimen name="item_elevation">8dp</dimen>
+    <dimen name="margin">16dp</dimen>
+</resources>

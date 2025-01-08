@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/playersFragment">
+    <fragment
+        android:id="@+id/playersFragment"
+        android:name="com.example.examfirstmoviles_adriansaavedra.ui.pantallaPrincipal.MainFragment"
+        android:label="@string/equipos"
+        tools:layout="@layout/activity_main_fragment">
+
+
+        <action
+            android:id="@+id/action_playersFragment_to_combinadoFragment"
+            app:destination="@id/combinadoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/momentsFragment"
+        android:name="com.example.examfirstmoviles_adriansaavedra.ui.pantallaMomentos.MomentosFragment"
+        android:label="activity_momento_fragment"
+        tools:layout="@layout/activity_momento_fragment" />
+    <fragment
+        android:id="@+id/combinadoFragment"
+        android:name="com.example.examfirstmoviles_adriansaavedra.ui.pantallaJugadoresEquipo.CombinadoFragment"
+        android:label="activity_combinado_fragment"
+        tools:layout="@layout/activity_combinado_fragment" >
+        <argument
+            android:name="grupoId"
+            app:argType="integer" />
+    </fragment>
+
+
+</navigation>

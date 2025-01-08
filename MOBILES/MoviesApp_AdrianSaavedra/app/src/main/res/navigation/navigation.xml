@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragment_main">
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.example.moviesapp_adriansaavedra.ui.pantallaMain.MainFragment"
+        android:label="@string/title"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_peliculaFragment"
+            app:destination="@id/fragment_persona" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_persona"
+        android:label="@string/pantalla_pelicula"
+        android:name="com.example.moviesapp_adriansaavedra.ui.pantallaPeliculas.PeliculaFragment"
+        tools:layout="@layout/fragment_pelicula">
+        <argument
+            android:name="peliculaId"
+            app:argType="integer" />
+    </fragment>
+
+
+
+</navigation>

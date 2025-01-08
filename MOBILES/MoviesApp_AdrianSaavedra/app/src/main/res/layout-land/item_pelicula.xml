@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_redondo"
+    android:layout_margin="@dimen/item_padding"
+    android:elevation="@dimen/item_elevation"
+    >
+
+    <ImageView
+        android:id="@+id/ifvImageView"
+        android:layout_width="@dimen/null_dimension"
+        android:layout_height="@dimen/null_dimension"
+        android:contentDescription="@string/pelicula"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintTop_toTopOf="@id/guidelineStartTop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStartTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStart2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvNombre"
+        android:layout_width="0dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_large"
+        android:text="@string/pelicula"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@+id/guidelineEnd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineStart2"
+        app:layout_constraintBottom_toTopOf="@+id/tvValue"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_label_text_size"
+        android:text="@string/value"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:ellipsize="end"
+        app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        app:layout_constraintStart_toEndOf="@id/tvEquals"
+        app:layout_constraintEnd_toEndOf="@id/guidelineStart2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvEquals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_label_text_size"
+        android:text="@string/id"
+        android:maxLines="1"
+        android:layout_marginEnd="@dimen/app_padding"
+        android:textAlignment="center"
+        android:ellipsize="end"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/tvNombre"
+        app:layout_constraintStart_toStartOf="@id/guidelineEnd"
+        app:layout_constraintEnd_toStartOf="@id/tvValue"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAcceso"
+        app:iconTint="@color/primary"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        app:layout_constraintStart_toEndOf="@id/guidelineStart2"
+        app:layout_constraintTop_toTopOf="@id/guidelineStartTop"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd2"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:icon="@drawable/ic_play"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

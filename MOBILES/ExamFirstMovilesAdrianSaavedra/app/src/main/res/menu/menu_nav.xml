@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/playersFragment"
+        android:icon="@drawable/user_icon"
+        android:contentDescription="@string/players"
+        android:title="@string/players"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/momentsFragment"
+        android:icon="@drawable/user_icon"
+        android:contentDescription="@string/moments"
+        android:title="@string/moments"
+        app:showAsAction="ifRoom"
+        />
+</menu>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ExamFirstMoviles-AdrianSaavedra</string>
+    <string name="players">Players</string>
+    <string name="moments">Moments</string>
+    <string name="exam">exam\n</string>
+    <string name="equipos">equipos</string>
+    <string name="error_obteniendo_usuarios">error obteniendo usuarios\n</string>
+    <string name="var">var</string>
+</resources>

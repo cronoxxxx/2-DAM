@@ -1,0 +1,76 @@
+FLOWS EN REPOSITORY, LOADING Y PROGRESSBAR
+
+
+minuto 3:30 explica para que sirven los flows
+
+minuto 4:05 explica lo de tener el loading
+
+minuto 5:35 cambios en el repository a Flow, sin interrogaciones
+
+minuto 5:50 poner ya el loading al networkresult y luego devolver un Flow de networkresult en el repository
+
+7:15 hacer collect en el fragment pq los flows se recolectan, el Flow devuelve varios networkresult
+
+-- PARA LIBRARSE DEL EXAMEN
+
+11:00 explica lo del viewmodelscope launch
+
+11:30 hacer test de móvil para librarse del examen, agregando un dispatcher al launch en el viewmodel, explica lo que es el Dispatcher e injectarlo desde el CoroutineDispatcher
+
+13:10 - 21:30 explica la clase dispatchermodule para los tests y las anotaciones, también ponerlos en los repositorios al retornar el flow
+
+--
+
+22:40 crear Flow en repository y emits
+
+25:15 dispatcher en el repository y su inyección
+
+26:20 como montar el database en el dao, --Y EXPLICA COMO QUIERE LA PRACTICA CON SU LOGIN Y CONTRASEÑA GUARDADOS EN EL MOVIL--, a partir del 28:32 empieza con la clase Databbase
+
+29:20 explica que es un entity y que componentes hay
+
+32:10 explica la anotación database (entities,version y exportSchema)
+
+32:45 explicación del dao y sus anotaciones -evitar flows ahi- en el 34:45
+
+
+--EXTRA HASHEAR CONTRASEÑA ANDROID 35:35--
+
+36:30 explica la clase DatabaseModule y para que sirve
+
+37:30 eliminar createFromAsset
+
+38:40 habla de las versiones en el AppDatabase
+
+39:50 injectar dao en el repository
+
+
+43:00 resumen -- y fin --
+
+
+
+
+
+
+preguntas oscar:
+
+¿a que te refieres con validaciones en el usecase?
+
+¿es necesario agrega el catch en el repository? también debería haber por ejemplo un result is Network.isSuccess?
+
+¿debo crearle dao hasta a los comentarios y los all?
+
+notas diego: el login debe tener otro activity
+
+
+ultimas:
+
+en local solo deben existir los usuarios registrados? entonces al registrar solo puedo ser con internet?
+
+al solo poderse agregar a través del register, me cargo la pantalla de añadir usuarios?
+
+hace falta crearse un atributo password para el usuario y luego asi pasarlo al entity y que se guarde asi en la base de datos?
+
+-- preguntar cuales deben tener flows y dispatchers y cuales no ya que en su repo hay cosas mezcladas--
+
+se puede actualizar el username de un usuario una vez se haya logeado con un usuario que existe en el jsonplaceholder?

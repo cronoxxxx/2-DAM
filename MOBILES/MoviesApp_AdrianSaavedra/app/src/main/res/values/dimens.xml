@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_padding">3dp</dimen>
+    <dimen name="item_padding">10dp</dimen>
+    <dimen name="text_size_large">21sp</dimen>
+    <dimen name="screen_padding">18dp</dimen>
+    <dimen name="null_dimension">0dp</dimen>
+    <dimen name="common_label_text_size">15sp</dimen>
+    <dimen name="thumb_radius">12dp</dimen>
+    <dimen name="halo_radius">24dp</dimen>
+    <dimen name="thumb_elevation">2dp</dimen>
+    <dimen name="item_elevation">8dp</dimen>
+    <dimen name="text_size_mid">15sp</dimen>
+</resources>
