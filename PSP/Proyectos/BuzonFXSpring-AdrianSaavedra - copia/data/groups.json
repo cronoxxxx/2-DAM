@@ -1,0 +1,115 @@
+[
+  {
+    "participantes": [
+      {
+        "nombre": "messi",
+        "password": "$2a$10$ewwe67JMArZtsXechfLwk.8/NkzHKeMzwrF8TSbnbdaTTuyDX467K"
+      }
+    ],
+    "nombre": "sevilla",
+    "password": "$2a$10$FJaYxZi0gQAQPBEfQZmP8ek7qcOvbxdsHJC6W5nhWlJCNmv5eq8hG",
+    "administrador": {
+      "nombre": "messi",
+      "password": "$2a$10$ewwe67JMArZtsXechfLwk.8/NkzHKeMzwrF8TSbnbdaTTuyDX467K"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-07T11:06:32.368876400"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "nombre": "madrid",
+    "password": "$2a$10$BA5OCOrnxvU0HdXti13K6eb0jc4/9uasz3Ye13HAeb.cJoftDj2oG",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-11T21:50:57.259862600"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "nombre": "bernabeu",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-11-11T21:51:03.226470"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "nombre": "as",
+    "password": "$2a$10$UZHW1RhXNORp12sCh9ezFe2dwoKGNIPJzsG8bu3Lcfo93I9IirwRO",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-11T22:19:47.708699200"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "nombre": "mar",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-11-11T22:21:51.218936900"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "messi",
+        "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+      },
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "nombre": "barca",
+    "administrador": {
+      "nombre": "messi",
+      "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-11-12T08:53:48.343740100"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "nombre": "ficha",
+    "password": "$2a$10$EY32FnqKKWCdhYoC7sPmDeYY2UftyjGsQzUMsYY3Hdgle8BdfqBeG",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-12T18:53:08.811246800"
+  }
+]

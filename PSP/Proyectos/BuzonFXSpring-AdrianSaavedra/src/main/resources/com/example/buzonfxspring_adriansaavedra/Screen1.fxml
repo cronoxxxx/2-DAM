@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="rootPane" prefHeight="655.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.buzonfxspring_adriansaavedra.ui.BuzonController">
+    <VBox alignment="CENTER" layoutY="25.0" prefHeight="202.0" prefWidth="294.0" spacing="5">
+        <HBox alignment="CENTER" prefHeight="194.0" prefWidth="342.0" spacing="10">
+            <VBox alignment="CENTER" spacing="5">
+                <Label style="-fx-font-size: 14;" text="REGISTRATE">
+                    <font>
+                        <Font name="Calibri Light Italic" size="14.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-font-size: 10;" text="Nuevo Usuario:" />
+                <TextField fx:id="tfNewUser" prefHeight="26.0" prefWidth="101.0" />
+                <Label style="-fx-font-size: 10;" text="Nueva contraseña:" />
+                <TextField fx:id="tfnewPasswordUser" prefWidth="105.0" />
+                <Button fx:id="btnRegisterUser" onAction="#registrarUser" style="-fx-font-size: 10;" text="Registrarse" />
+            </VBox>
+            <Line endX="-13.0" endY="-79.0" startX="-13.0" startY="121.0" />
+            <VBox alignment="CENTER" spacing="5">
+                <Label style="-fx-font-size: 14;" text="INICIAR SESIÓN">
+                    <font>
+                        <Font name="Calibri Light Italic" size="14.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-font-size: 10;" text="Usuario:" />
+                <TextField fx:id="tfUser" prefHeight="26.0" prefWidth="95.0" />
+                <Label style="-fx-font-size: 10;" text="Contraseña:" />
+                <TextField fx:id="tfPasswordUser" prefWidth="105.0" />
+                <Button fx:id="btnLoginUser" onAction="#loginUser" style="-fx-font-size: 10;" text="Ingresar" />
+            </VBox>
+        </HBox>
+    </VBox>
+   <ListView fx:id="lvMensajesGrupoPublico" layoutX="25.0" layoutY="272.0" prefHeight="201.0" prefWidth="305.0" />
+    <VBox alignment="CENTER" layoutX="301.0" layoutY="25.0" prefHeight="202.0" prefWidth="352.0" spacing="5">
+        <HBox alignment="CENTER" prefHeight="202.0" prefWidth="345.0" spacing="10">
+            <VBox alignment="CENTER" prefHeight="202.0" prefWidth="150.0" spacing="5">
+                <Label style="-fx-font-size: 10;" text="Grupo Publico" />
+                <Label style="-fx-font-size: 14;" text="CREA GRUPO">
+                    <font>
+                        <Font name="Calibri Light Italic" size="14.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-font-size: 10;" text="Nuevo grupoPublico:" />
+                <TextField fx:id="tfNewPublicGroup" prefHeight="26.0" prefWidth="101.0" />
+                <Label style="-fx-font-size: 10;" text="Nueva contraseña:" />
+                <TextField fx:id="tfnewPasswordGroup" prefWidth="105.0" />
+                <Button fx:id="btnRegisterPublicGroup" onAction="#registrarPublicGroup" style="-fx-font-size: 10;" text="Publico" />
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="202.0" prefWidth="162.0" spacing="5">
+            <Label style="-fx-font-size: 10;" text="Grupo Secreto" />
+                <Label style="-fx-font-size: 14;" text="CREA GRUPO">
+                    <font>
+                        <Font name="Calibri Light Italic" size="14.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-font-size: 10;" text="Nuevo grupoSecreto:" />
+                <TextField fx:id="tfNewSecretGroup" prefHeight="26.0" prefWidth="101.0" />
+                <Button fx:id="btnRegisterSecretGroup" onAction="#registrarSecretGroup" style="-fx-font-size: 10;" text="Secreto" />
+            </VBox>
+            <Line endX="-13.0" endY="-79.0" startX="-13.0" startY="121.0" />
+            <VBox alignment="CENTER" prefHeight="202.0" prefWidth="194.0" spacing="5">
+                <Label style="-fx-font-size: 14;" text="INGRESA GRUPO">
+                    <font>
+                        <Font name="Calibri Light Italic" size="14.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-font-size: 10;" text="Grupo:" />
+                <TextField fx:id="tfGroup" prefHeight="26.0" prefWidth="95.0" />
+                <Label style="-fx-font-size: 10;" text="Contraseña:" />
+                <TextField fx:id="tfPasswordGroup" prefHeight="26.0" prefWidth="126.0" />
+                <Button fx:id="btnIniciarGroup" onAction="#accederGrupoPublico" style="-fx-font-size: 10;" text="Ingresar" />
+            </VBox>
+        </HBox>
+    </VBox>
+   <ListView fx:id="lvGrupoParticipantes" layoutX="523.0" layoutY="293.0" prefHeight="159.0" prefWidth="112.0" />
+   <TextArea fx:id="taContenidoEnviar" layoutX="351.0" layoutY="308.0" prefHeight="129.0" prefWidth="143.0" />
+   <Label layoutX="351.0" layoutY="279.0" text="Enviar Mensaje" />
+   <Button fx:id="btnEnviarMensajeGrupos" layoutX="351.0" layoutY="448.0" mnemonicParsing="false" onAction="#enviarMensajeGrupos" text="Grupo" />
+   <Label layoutX="532.0" layoutY="271.0" text="Miembros" />
+   <Label layoutX="25.0" layoutY="255.0" text="Mensajes Grupos Publicos" />
+   <ListView fx:id="lvGruposSecretos" layoutX="669.0" layoutY="173.0" prefHeight="54.0" prefWidth="210.0" />
+   <Label layoutX="673.0" layoutY="146.0" text="Tus grupos secretos" />
+   <Label layoutX="675.0" layoutY="36.0" text="Agregar usuario a grupo secreto" />
+   <Button fx:id="btnAgregarUsuario" layoutX="675.0" layoutY="101.0" mnemonicParsing="false" onAction="#agregarUsuarioAGrupo" text="Agregar" />
+   <TextField fx:id="tfAgregarUsuarioGrupo" layoutX="669.0" layoutY="67.0" />
+   <ListView fx:id="lvGruposDeUsuario" layoutX="58.0" layoutY="517.0" prefHeight="54.0" prefWidth="210.0" />
+   <Label layoutX="62.0" layoutY="490.0" text="Tus grupos publicos" />
+   <Label layoutX="62.0" layoutY="585.0" style="-fx-font-size: 10;" text="Contraseña Grupo:" />
+   <TextField fx:id="tfPasswordGroupFromList" layoutX="152.0" layoutY="580.0" prefHeight="26.0" prefWidth="114.0" />
+   <Button fx:id="btnAccederGrupoLista" layoutX="138.0" layoutY="619.0" onAction="#accederGrupoDesdeLista" style="-fx-font-size: 10;" text="Ingresar" />
+   <ListView fx:id="lvMensajesGrupoPrivado" layoutX="680.0" layoutY="280.0" prefHeight="201.0" prefWidth="187.0" />
+   <Label layoutX="689.0" layoutY="255.0" text="Mensajes Grupos Secretos" />
+</Pane>

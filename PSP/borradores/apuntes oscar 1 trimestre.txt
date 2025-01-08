@@ -1,0 +1,31 @@
+ahora usar jsonplaceholder con add, post, put y delete
+
+
+colocar bottombarnavigation
+
+implementar topappbar, posiblemente para hacer formulario de los usuarios
+
+se usa navigation? si, navigation para pantallas añadir, actualizar y borrar, y la principal que es el recycler view
+
+usar remote data source
+
+cambios en el networkresult
+
+agregar timber a cualquier catch
+
+
+
+preguntas oscar:
+
+haría falta que para ponerle titulo a las pantallas con el label del navigation, las pantallas que van mas con el menú puedan ir ahí
+pero sin conectar a ninguna pantalla solo por el titulo label? o creo un topappbar distinto para cada pantalla? o solo creo un topappbar manual arriba en la pantalla?
+
+cada pantalla del bottom menú debería tener sus propios view holder y adapters?
+
+al tener un bottom bar, al pasar a una de las pantallas de añadir y actualizar/eliminar usuario, se tiene que esconder el bottom bar?
+
+
+
+
+
+cursor await al principio, y platform run (cuando se llama al thenrunassync) y cuando es thenrunasync se pone el cursor a default later al llamar el completablefuture a la grafica

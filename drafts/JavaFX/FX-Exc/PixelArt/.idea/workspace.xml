@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9bd0746b-5728-4ab4-9690-3db15a0fd538" name="Changes" comment="epa">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/pixelart/PixelArtScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/pixelart/SquareColor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/java/com/example/primerprograma/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/java/com/example/primerprograma/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/java/com/example/primerprograma/ResultActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/java/com/example/primerprograma/ResultActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/res/layout/activity_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AplicacionesMoviles/app/src/main/res/layout/activity_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/app/src/main/res/layout/activity_item_superhero.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/app/src/main/res/layout/activity_item_superhero.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/Aprendiendo/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AprendiendoKotlin/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AprendiendoKotlin/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AprendiendoKotlin/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AprendiendoKotlin/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AprendiendoKotlin/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/Android-Exc/AprendiendoKotlin/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/ComposeFullEquip/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/ComposeFullEquip/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/ComposeFullEquip/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/ComposeFullEquip/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/ComposeFullEquip/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/ComposeFullEquip/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/Flows/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/Flows/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/Flows/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/Flows/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/MyApplication/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/MyApplication/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/MyApplication/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/MyApplication/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/MyApplication/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/MyApplication/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/RoomViewModel/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/RoomViewModel/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/RoomViewModel/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/RoomViewModel/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/appNoBasica/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/appNoBasica/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/appNoBasica/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/appNoBasica/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/appNoBasica/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/appNoBasica/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MOVILES/MOVILESOScar/primeraapp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pixelart/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pixelart/HelloApplication.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cronoxxxx&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cronoxxxx/nuevo-2DAM&quot;,
+    &quot;accountId&quot;: &quot;56c879e7-ba2b-430f-a921-b2c6b5cd53dc&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2mRTYH3QavSkcH4LrJcC7ekSOz5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/2DAM/nuevo-2DAM/DATA ACCESS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.pixelart.HelloApplication" />
+      <module name="PixelArt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.pixelart.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9bd0746b-5728-4ab4-9690-3db15a0fd538" name="Changes" comment="" />
+      <created>1727038436708</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727038436708</updated>
+      <workItem from="1727038437764" duration="742000" />
+      <workItem from="1727039193423" duration="4251000" />
+      <workItem from="1727111161978" duration="2000" />
+      <workItem from="1727165961884" duration="9000" />
+      <workItem from="1727175096835" duration="234000" />
+    </task>
+    <task id="LOCAL-00001" summary="epa">
+      <option name="closed" value="true" />
+      <created>1727038459750</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727038459750</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="epa" />
+    <option name="LAST_COMMIT_MESSAGE" value="epa" />
+  </component>
+</project>

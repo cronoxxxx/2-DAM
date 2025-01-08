@@ -1,0 +1,18 @@
+package com.example.buzonfxspring_adriansaavedra.domain.service;
+
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorApp;
+import com.example.buzonfxspring_adriansaavedra.domain.model.*;
+import io.vavr.control.Either;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+public interface IGestionMensajes {
+    CompletableFuture<Either<ErrorApp, List<MensajePublico>>> obtenerMensajesDeGrupoPublico(GrupoPublico grupoPublico);
+    CompletableFuture<Either<ErrorApp, Boolean>> addMensajePublico(MensajePublico mensajePublico, GrupoPublico grupoPublico, String userPassword);
+
+    CompletableFuture<Either<ErrorApp, List<MensajePrivado>>> obtenerMensajesDeGrupoPrivado(GrupoPrivado grupoPrivado);
+
+    Either<ErrorApp, Boolean> addMensajePrivado(MensajePrivado mensajePrivado, GrupoPrivado grupoPrivado, String password);
+    Either<ErrorApp, MensajePrivado> desencriptarMensajePrivado(MensajePrivado mensaje, Usuario receptor, String password);
+}

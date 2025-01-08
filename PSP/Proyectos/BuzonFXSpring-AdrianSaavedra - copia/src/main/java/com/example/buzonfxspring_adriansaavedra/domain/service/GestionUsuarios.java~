@@ -1,0 +1,83 @@
+package com.example.buzonfxspring_adriansaavedra.domain.service;
+
+import com.example.buzonfxspring_adriansaavedra.common.Constantes;
+import com.example.buzonfxspring_adriansaavedra.dao.impl.DaoUsuariosImpl;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorApp;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorAppDatosNoValidos;
+import com.example.buzonfxspring_adriansaavedra.domain.model.Usuario;
+import com.example.buzonfxspring_adriansaavedra.domain.validators.UserValidator;
+import io.vavr.control.Either;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Objects;
+
+@Service
+public class GestionUsuarios implements IGestionUsuarios {
+    private final DaoUsuariosImpl dao;
+    private final UserValidator userValidator;
+    private final PasswordEncoder passwordEncoder;
+
+    public GestionUsuarios(DaoUsuariosImpl dao, UserValidator userValidator, PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+        this.dao = dao;
+        this.userValidator = userValidator;
+    }
+
+    @Override
+    public Either<ErrorApp, List<Usuario>> obtenerUsuarios() {
+        return dao.obtenerUsuarios();
+    }
+
+
+    @Override
+    public Either<ErrorApp, Boolean> saveUsuarios(List<Usuario> usuarios) {
+        return dao.saveUsuarios(usuarios);
+    }
+
+
+    @Override
+    public Either<ErrorApp, Usuario> verificacion(Usuario usuario) {
+        return userValidator.validateUser(usuario)
+                .flatMap(valid -> obtenerUsuarios()
+                        .flatMap(users -> users.stream()
+                                .filter(Objects::nonNull)
+                                .filter(usr -> usr.getNombre().equals(usuario.getNombre()))
+                                .findFirst()
+                                .map(usuarioEncontrado ->
+                                        passwordEncoder.matches(usuario.getPassword(), usuarioEncontrado.getPassword())
+                                                ? dao.verificacion(usuarioEncontrado)
+                                                : Either.<ErrorApp, Usuario>left(new ErrorAppDatosNoValidos(Constantes.USUARIO_NO_VALIDO))
+                                )
+                                .orElseGet(() -> Either.left(new ErrorAppDatosNoValidos(Constantes.USUARIO_NO_ENCONTRADO))))
+                )
+                .mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.USUARIO_NO_VALIDO));
+    }
+
+    @Override
+    public Either<ErrorApp, Boolean> addUsuario(Usuario usuario) {
+        return userValidator.validateUser(usuario)
+                .flatMap(valid -> {
+                    // Hash the user password
+                    usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                    return obtenerUsuarios()
+                            .flatMap(usuarios -> {
+                                usuarios.add(usuario);
+                                return saveUsuarios(usuarios);
+                            });
+                })
+                .mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.USUARIO_NO_VALIDO));
+    }
+
+
+    @Override
+    public Either<ErrorApp, Usuario> buscarUsuarioPorNombre(String nombre) {
+        return dao.buscarUsuarioPorNombre(nombre);
+    }
+
+    @Override
+    public Either<ErrorApp, List<Usuario>> buscarUsuariosPorNombres(List<String> nombres) {
+        return dao.buscarUsuariosPorNombres(nombres);
+    }
+}

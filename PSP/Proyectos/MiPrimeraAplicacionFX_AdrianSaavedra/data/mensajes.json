@@ -1,0 +1,906 @@
+[
+  {
+    "texto": "hola",
+    "fecha": "2024-10-06T12:58:43.046631900",
+    "owner": {
+      "nombre": "user1",
+      "password": "1234"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user2",
+        "password": "1234"
+      },
+      {
+        "nombre": "user3",
+        "password": "1234"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "adios",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user4",
+      "password": "5678"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user5",
+        "password": "5678"
+      },
+      {
+        "nombre": "user6",
+        "password": "5678"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "buen provecho",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user7",
+      "password": "9012"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user8",
+        "password": "9012"
+      },
+      {
+        "nombre": "user9",
+        "password": "9012"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "hola, como est s?",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user10",
+      "password": "1111"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user11",
+        "password": "1111"
+      },
+      {
+        "nombre": "user12",
+        "password": "1111"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "no entiendo",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user13",
+      "password": "2222"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user14",
+        "password": "2222"
+      },
+      {
+        "nombre": "user15",
+        "password": "2222"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "me alegra verte",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user16",
+      "password": "3333"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user17",
+        "password": "3333"
+      },
+      {
+        "nombre": "user18",
+        "password": "3333"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "lo siento",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user19",
+      "password": "4444"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user20",
+        "password": "4444"
+      },
+      {
+        "nombre": "user21",
+        "password": "4444"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "adi s",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user22",
+      "password": "5555"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user23",
+        "password": "5555"
+      },
+      {
+        "nombre": "user24",
+        "password": "5555"
+      }
+    ],
+    "group": "general"
+  },
+  {
+    "texto": "hasta luego",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user25",
+      "password": "6666"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user26",
+        "password": "6666"
+      },
+      {
+        "nombre": "user27",
+        "password": "6666"
+      }
+    ],
+    "group": "grupoa"
+  },
+  {
+    "texto": "chau",
+    "fecha": "2024-10-06T12:58:43.051287800",
+    "owner": {
+      "nombre": "user28",
+      "password": "7777"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "user30",
+        "password": "7777"
+      }
+    ],
+    "group": "grupoa"
+  },
+  {
+    "texto": "asas",
+    "fecha": "2024-10-06T14:33:15.124006300",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-06T14:44:06.621804",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      },
+      {
+        "nombre": "usuario3",
+        "password": "password3"
+      }
+    ]
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-06T14:44:09.623815600",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-06T14:44:10.673314200",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-06T14:44:11.250344200",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "hola que tal chicos",
+    "fecha": "2024-10-06T14:51:41.689906",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      },
+      {
+        "nombre": "usuario3",
+        "password": "password3"
+      }
+    ]
+  },
+  {
+    "texto": "hola grupo",
+    "fecha": "2024-10-06T14:51:47.373381400",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "a",
+    "fecha": "2024-10-06T14:51:55.988206500",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "asasasa",
+    "fecha": "2024-10-06T14:54:26.031523",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "juan",
+    "fecha": "2024-10-06T14:54:33.170414200",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      },
+      {
+        "nombre": "usuario3",
+        "password": "password3"
+      }
+    ]
+  },
+  {
+    "texto": "andaa",
+    "fecha": "2024-10-06T15:00:05.672202400",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      },
+      {
+        "nombre": "usuarioa",
+        "password": "passworda"
+      },
+      {
+        "nombre": "user17",
+        "password": "3333"
+      }
+    ],
+    "group": "grupob"
+  },
+  {
+    "texto": "asdasdasdasd",
+    "fecha": "2024-10-06T15:05:25.546961700",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [],
+    "group": "grupoa"
+  },
+  {
+    "texto": "hola usuarioa",
+    "fecha": "2024-10-06T15:05:38.877200700",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuarioa",
+        "password": "passworda"
+      }
+    ]
+  },
+  {
+    "texto": "negros",
+    "fecha": "2024-10-06T15:08:39.886384900",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [],
+    "group": "grupob"
+  },
+  {
+    "texto": "asdasdasdasdasd",
+    "fecha": "2024-10-06T15:08:49.398959200",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [],
+    "group": "grupoa"
+  },
+  {
+    "texto": "cheee",
+    "fecha": "2024-10-06T15:09:01.860982600",
+    "owner": {
+      "nombre": "usuario1",
+      "password": "password1"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user17",
+        "password": "3333"
+      },
+      {
+        "nombre": "user16",
+        "password": "3333"
+      },
+      {
+        "nombre": "usuario3",
+        "password": "password3"
+      }
+    ]
+  },
+  {
+    "texto": "sadasd",
+    "fecha": "2024-10-06T15:14:45.811420800",
+    "owner": {
+      "nombre": "usuarioa",
+      "password": "passworda"
+    },
+    "destinatarios": [],
+    "group": "grupob"
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-06T15:14:54.792026",
+    "owner": {
+      "nombre": "usuarioa",
+      "password": "passworda"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "user17",
+        "password": "3333"
+      },
+      {
+        "nombre": "user16",
+        "password": "3333"
+      }
+    ]
+  },
+  {
+    "texto": "sadasd",
+    "fecha": "2024-10-06T15:36:39.471997500",
+    "owner": {
+      "nombre": "usuario5",
+      "password": "password5"
+    },
+    "destinatarios": [],
+    "group": "grupod"
+  },
+  {
+    "texto": "sdasdasdasd",
+    "fecha": "2024-10-06T15:36:42.738698700",
+    "owner": {
+      "nombre": "usuario5",
+      "password": "password5"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuario6",
+        "password": "password6"
+      },
+      {
+        "nombre": "usuario7",
+        "password": "password7"
+      }
+    ]
+  },
+  {
+    "texto": "hola que tal",
+    "fecha": "2024-10-07T00:03:40.084853300",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuarioa",
+        "password": "passworda"
+      },
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      }
+    ]
+  },
+  {
+    "texto": "hola grupo",
+    "fecha": "2024-10-07T00:03:45.417259",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "pablosecreto"
+  },
+  {
+    "texto": "hola papus",
+    "fecha": "2024-10-07T00:11:10.864668700",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user12",
+        "password": "1111"
+      },
+      {
+        "nombre": "user14",
+        "password": "2222"
+      },
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      },
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ]
+  },
+  {
+    "texto": "grupo narco",
+    "fecha": "2024-10-07T00:11:19.952413800",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "pablosecreto"
+  },
+  {
+    "texto": "hola pana :D",
+    "fecha": "2024-10-07T00:12:06.991061100",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ]
+  },
+  {
+    "texto": "xd",
+    "fecha": "2024-10-07T00:12:10.762927300",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "pablosecreto"
+  },
+  {
+    "texto": "asdasdadasdas",
+    "fecha": "2024-10-07T00:20:46.167023",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "otro"
+  },
+  {
+    "texto": "prueba a todos",
+    "fecha": "2024-10-07T00:21:17.668583600",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [
+      {
+        "nombre": "usuarioa",
+        "password": "passworda"
+      },
+      {
+        "nombre": "user9",
+        "password": "9012"
+      },
+      {
+        "nombre": "user11",
+        "password": "1111"
+      },
+      {
+        "nombre": "user12",
+        "password": "1111"
+      },
+      {
+        "nombre": "user13",
+        "password": "2222"
+      },
+      {
+        "nombre": "user14",
+        "password": "2222"
+      },
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      }
+    ]
+  },
+  {
+    "texto": "sadasdasd",
+    "fecha": "2024-10-07T00:21:20.545341700",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "pablosecreto"
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-07T00:27:35.926103",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "otrosecreto"
+  },
+  {
+    "texto": "asdasdasd",
+    "fecha": "2024-10-07T00:30:14.367470300",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "grupoa"
+  },
+  {
+    "texto": "que tal bro",
+    "fecha": "2024-10-07T01:52:48.113296500",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ]
+  },
+  {
+    "texto": "sadsadasd",
+    "fecha": "2024-10-07T01:52:52.567493700",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "pablosecreto"
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-07T01:53:03.077817100",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "hola"
+  },
+  {
+    "texto": "asdasdasd",
+    "fecha": "2024-10-07T01:53:15.114613900",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user13",
+        "password": "2222"
+      },
+      {
+        "nombre": "user16",
+        "password": "3333"
+      }
+    ]
+  },
+  {
+    "texto": "todo bien adri",
+    "fecha": "2024-10-07T01:54:10.735431200",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      }
+    ]
+  },
+  {
+    "texto": "asdasdasd",
+    "fecha": "2024-10-07T01:54:13.520130300",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "otrosecreto"
+  },
+  {
+    "texto": "asdasd",
+    "fecha": "2024-10-07T16:35:25.466257",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "grupoE"
+  },
+  {
+    "texto": "asdasdasd",
+    "fecha": "2024-10-07T16:35:27.417856300",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "grupoE"
+  },
+  {
+    "texto": "asdasdasdasd",
+    "fecha": "2024-10-07T16:35:36.132360",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user12",
+        "password": "1111"
+      },
+      {
+        "nombre": "user13",
+        "password": "2222"
+      },
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      }
+    ]
+  },
+  {
+    "texto": "hola",
+    "fecha": "2024-10-07T18:27:23.007125700",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [
+      {
+        "nombre": "user12",
+        "password": "1111"
+      },
+      {
+        "nombre": "user13",
+        "password": "2222"
+      },
+      {
+        "nombre": "user15",
+        "password": "2222"
+      },
+      {
+        "nombre": "user16",
+        "password": "3333"
+      }
+    ]
+  },
+  {
+    "texto": "asdasda",
+    "fecha": "2024-10-07T18:27:32.242517200",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "pros"
+  },
+  {
+    "texto": "asdasdasdasdasdasdsadasd",
+    "fecha": "2024-10-07T18:27:36.558435",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "pros"
+  },
+  {
+    "texto": "asdasdasd",
+    "fecha": "2024-10-07T18:27:43.955341700",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "holasecreto"
+  },
+  {
+    "texto": "asdsadasdsadsadasd",
+    "fecha": "2024-10-07T18:28:40.843158",
+    "owner": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "destinatarios": [],
+    "group": "hola"
+  },
+  {
+    "texto": "asdasdsadasdsadasd",
+    "fecha": "2024-10-07T18:29:26.364503800",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [],
+    "group": "vela"
+  },
+  {
+    "texto": "asdasd",
+    "fecha": "2024-10-07T18:29:29.801642900",
+    "owner": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "destinatarios": [
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ]
+  }
+]

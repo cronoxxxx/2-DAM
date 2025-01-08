@@ -1,0 +1,24 @@
+package com.example.hospitalcrud.dao.model;
+
+import lombok.*;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Medication {
+
+    @XmlElement(name = "id")
+    private int id;
+    @XmlElement(name = "name")
+    private String medicationName;
+    @XmlElement(name = "med_record_id")
+    private int medRecordId;
+}

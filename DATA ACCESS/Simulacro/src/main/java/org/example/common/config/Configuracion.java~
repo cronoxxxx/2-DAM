@@ -1,0 +1,10 @@
+package org.example.common.config;
+
+import java.util.Properties;
+
+public class Configuracion {
+    private static Configuracion instance = null;
+    private Properties p;
+
+    
+}

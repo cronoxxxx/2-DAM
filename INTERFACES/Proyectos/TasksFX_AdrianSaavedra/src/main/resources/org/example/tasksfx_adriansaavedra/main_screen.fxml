@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.tasksfx_adriansaavedra.controllers.MainScreenController">
+    <HBox spacing="10">
+        <Button text="New Task" onAction="#handleNewTask"/>
+        <Button text="Edit Task" onAction="#handleEditTask"/>
+        <Button text="Show Statistics" onAction="#handleShowStatistics"/>
+    </HBox>
+    <ListView fx:id="taskListView" VBox.vgrow="ALWAYS"/>
+</VBox>

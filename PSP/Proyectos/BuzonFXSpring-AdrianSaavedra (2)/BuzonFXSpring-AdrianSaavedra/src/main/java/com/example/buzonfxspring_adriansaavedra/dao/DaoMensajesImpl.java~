@@ -1,0 +1,64 @@
+package com.example.buzonfxspring_adriansaavedra.dao.impl;
+
+import com.example.buzonfxspring_adriansaavedra.common.Constantes;
+import com.example.buzonfxspring_adriansaavedra.dao.DaoMensajes;
+import com.example.buzonfxspring_adriansaavedra.dao.Database;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorApp;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorAppDatosNoValidos;
+import com.example.buzonfxspring_adriansaavedra.domain.model.GrupoPrivado;
+import com.example.buzonfxspring_adriansaavedra.domain.model.GrupoPublico;
+import com.example.buzonfxspring_adriansaavedra.domain.model.MensajePrivado;
+import com.example.buzonfxspring_adriansaavedra.domain.model.MensajePublico;
+import io.vavr.control.Either;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Objects;
+
+@Repository
+public class DaoMensajesImpl implements DaoMensajes {
+    private final Database daoMensajes;
+
+    public DaoMensajesImpl(Database mensajes) {
+        this.daoMensajes = mensajes;
+    }
+
+    @Override
+    public Either<ErrorApp, List<MensajePublico>> obtenerMensajesDeGrupoPublico(GrupoPublico grupoPublico) {
+        return daoMensajes.loadMensajesPublicos()
+                .map(mensajes -> mensajes.stream()
+                        .filter(Objects::nonNull)
+                        .filter(m -> m.getGroup() != null && !m.getGroup().isEmpty())
+                        .filter(m -> m.getGroup().equals(grupoPublico.getNombre()))
+                        .toList())
+                .flatMap(Either::right);
+    }
+
+    @Override
+    public Either<ErrorApp, List<MensajePrivado>> obtenerMensajesDeGrupoPrivado(GrupoPrivado grupoPrivado) {
+        return daoMensajes.loadMensajesPrivados().map(
+                mensajes -> mensajes.stream()
+                        .filter(m -> m.getGroup() != null && !m.getGroup().isEmpty())
+                        .filter(m -> m.getGroup().equals(grupoPrivado.getNombre()))
+                        .toList()
+        );
+    }
+
+    @Override
+    public Either<ErrorApp, Boolean> addMensajesPublicos(MensajePublico mensajePublico) {
+        return daoMensajes.loadMensajesPublicos()
+                .flatMap(mensajes -> {
+                    mensajes.add(mensajePublico);
+                    return daoMensajes.saveMensajesPublicos(mensajes);
+
+                }) .mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_AL_AGREGAR_MENSAJE));
+    }
+
+    @Override
+    public Either<ErrorApp, Boolean> addMensajesPrivados(MensajePrivado mensajePrivado) {
+        return daoMensajes.loadMensajesPrivados()
+                .flatMap(mensajes -> {
+                    mensajes.add(mensajePrivado);
+                    return daoMensajes.saveMensajesPrivados(mensajes);
+                }).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_AL_AGREGAR_MENSAJE));
+    }
+}

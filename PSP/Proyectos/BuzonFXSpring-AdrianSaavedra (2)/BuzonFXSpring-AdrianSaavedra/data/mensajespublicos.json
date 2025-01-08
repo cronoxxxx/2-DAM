@@ -1,0 +1,105 @@
+[
+  {
+    "texto": "yU8fkR8M6PaSOP3fT3cc_nFzCgzfL5kpRQ4ymqFECVqb8sEQ8qHGXyF3BvvL8azMUE4\u003d",
+    "fecha": "2024-11-28T23:51:53.328295300",
+    "owner": {
+      "nombre": "ble"
+    },
+    "firma": "MIGIAkIAo9Bi808tHt5h/6cApvUATUBO4a30anSYUAqkShbArMYcmQKF3Aq9P7rE5HxXnaQmwRENIrV4FKkfE0xExa7Ux9YCQgFL7CRQY3di6sMduTui1VGHd79bZ9cFYzLhiz8r8tTKhKym3iaUN9lpJakKsrnTfklEUSlZcDZ03jXUNp7yd6GA+Q\u003d\u003d",
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "ble"
+      }
+    ],
+    "group": "publico"
+  },
+  {
+    "texto": "u4j9NY27wFVP9izVCfL-pItbvdmPnHfzIjQ4LE5JQHDstJ43ppFMRp7E2AFv21E78ASE_oxmHlM\u003d",
+    "fecha": "2024-11-28T23:52:28.110735600",
+    "owner": {
+      "nombre": "adrian"
+    },
+    "firma": "MIGIAkIBIu9aPNQtmzfCYWrgOSjiCU/l34qqhRAXpCcl+v60eRlKivsyihK7Ae4qT8gfYzuuJ435Danq+bkfTlBrwMiw790CQgFnrCzmmbZiXphhN5tsciPv1S8qmVvv7nfDbB21blHN6bNCGLl0nP2nenhypGgASoSyLJBE1AmDbUtkNQqYlR2bxw\u003d\u003d",
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      }
+    ],
+    "group": "publico"
+  },
+  {
+    "texto": "SnSVux5gZ1wkUDdp-ywQgbF3cI1ewDd-YS_1uzXvQh5hmmVYTRCMgGNQR9MJpiYTYELdKzw\u003d",
+    "fecha": "2024-11-28T23:54:14.326459300",
+    "owner": {
+      "nombre": "adrian2"
+    },
+    "firma": "MIGIAkIBc+S377iFp4Kq7a32nDjuKhWtq+GzwP7Tmy2tTbo4CnwCRpvBoYInE7/d7MLB//I6ht0VWqIsAgh0Xv9ikje4qcACQgFecfpZPNKRDWwMYtgCuJZE19xLKEVOB2LabC7vGbO423ZEftRkLL25j/+gdo32NXXnFhzTRP1emna7fQEtiE9w8Q\u003d\u003d",
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      },
+      {
+        "nombre": "adrian2"
+      }
+    ],
+    "group": "publico"
+  },
+  {
+    "texto": "vJSVMT3BzIGzFqqO34P3XMTuPAH0MiUl849UcajRa8hmeLTmaV0D_wG_Wq8mDv0IDHk\u003d",
+    "fecha": "2024-11-28T23:56:44.004675300",
+    "owner": {
+      "nombre": "adrian2"
+    },
+    "firma": "MIGHAkIBfK+bUOCs/JM7xNUNw6KyklaAjH7dWnyaiqxg9INDOdCX0FGEGujtfIPOpPxzpfSC0FgjpcmE7Tq+8FmA+B6AzkoCQVB4h5B7SJB8uuujAWLTT9AojK/C/ei5upU1htJ/Az7AtvGYaaBSjOqqlWWhkiBwkqKzXixUsL9C4QgiCRP8qBTr",
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      },
+      {
+        "nombre": "adrian2"
+      },
+      {
+        "nombre": "adrian2"
+      }
+    ],
+    "group": "publico"
+  },
+  {
+    "texto": "O5Lz3_gJ2XR_ezoYHUgZySTEd4-6VtwtvPmGSSxECo9H_rRrE91L24fsFOOsgewT0B2bTNo\u003d",
+    "fecha": "2024-11-29T00:01:47.384573800",
+    "owner": {
+      "nombre": "ble"
+    },
+    "firma": "MIGIAkIBXXV4hI6tP8b2KB/65vzTC2ZEor/5qpRDivisQeCAVY1MFS5V1J+2Lu6XtbSEFU+2IYPL/zO3eReHH7Mg82oi+5MCQgCAcw4rWv62srT52duoJga8HOAUqbLpTMaYxDEjLQ0qq3rQz//6gGdcOifHXnQ9Q7rRIgziRYFXvFt9ZkaGVJ4IeA\u003d\u003d",
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      },
+      {
+        "nombre": "adrian2"
+      },
+      {
+        "nombre": "oscar"
+      },
+      {
+        "nombre": "ble"
+      }
+    ],
+    "group": "publico"
+  }
+]

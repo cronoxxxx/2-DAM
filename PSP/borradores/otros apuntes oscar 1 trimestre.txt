@@ -1,0 +1,1280 @@
+usando la api de themoviedb, me gustaria que siguieras este ejemplo de profe y el ejemplo de código de mi amigo, el código de amigo es diferente pero te pasos sus gradle y su código de como se hacia su api el año pasado, y con el ejemplo del profe de este año, me gustaria saber como implementar la api a mi código Android, si tengo que cambiar la clase y como aplicarlo correctamente, usando el maestro detalle, el mismo que muestra el recyclerview y al lado la imagen, al centro el nombre, y en el derecho el botón que te llevara a un form que te mostrara los datos en formulario de ese objeto seleccionado, aquí hay un ejemplo de themoviedb del código de un excompañero que hizo eso, lo unicoque quiero es que cojas todo lo relacionado al remote y al uso solo de api, nada de database ni consultas sql (local), solo remote y entre las capas presente ir llamando a la lista, y usando el navigation, que al pasar a la segunda pantalla se muestre el form con los datos del id de la pelicula seleccionadaº
+
+
+
+CLASE EjemploECDSA:
+Crear claves publicas y privadas
+LA asíncrona no se transforma en principio a bytes
+Codificar clave privada con PKCS( y luego hacer getEncoded a un jks
+Codificar clave publica con X509
+Generar claves publicas y privadas de curva elíptica (EC), anteriormente era RSA
+KeyFactory con EC y BC de provider
+Hacer initialize con secp256r1
+Pasar todo a ECPublic/PrivateKeyParameters
+--Revisar también clase AlmacenarClaves
+
+. bloque estatico Security.addProvider(new BouncyCastle()) ponerlo en el SpringBootInitializer
+El servidor debe tener clave publica y privada
+
+CLASE BouncyCastleCertificateWithBuilder:
+Generar certificado (KeyPair) -> X500Name
+Date para validez de fecha
+Firmar (ContentSigner)
+Exportar KeyStore de tipo JKS 
+char[] para guardar y proteger al KeyStore
+Load al KeyStore
+
+CLASE LoadKeyFromKeyStore
+Revisar la carga del fichero
+Guardar clave privada (setKeyEntry)
+Luego guardar con el KeyStore .jks
+Tiene que firmar la clave privada con el certificado el servidor, luego generarlo
+Sacar clave privada a KeyStore con KeyEntry y parsear a KeyStore.PrivateKeyEntry
+
+CLASE SignTest
+Clase Signature para firmar
+Cambiar el Cipher y ponerle init y getInstance de EC
+
+Guion Profe
+Empezar por funcionalidad de login, coger publica del KeyStore y coger privada
+Mensajes cifrados - GruposSecretos
+No debería ni de verse ni de quien tiene los mensajes
+El cifrado asimetrico lo usamos en los grupos privados
+El mensaje sigue con cifrado simetrico, con el SecureRandom se genera aleatoriamente y esa clave la tenga que cifrar asimétricamente con la clave publica de los usuarios
+
+Ejemplo: Voy a mensaje a un grupo privado y hay 4 personas
+- Genero clave simétrica aleatoria (SecureRandom)
+Cifro mensajes con clave asimétrica aleatoria (cada mensaje debe tener su propia clave)
+Cifrar asimétricamente con la clave publica de cada usuario que pueda ver el mensaje la contraseña simétrica (Ahora los mensajes privados deben tener todos los usuarios que lo puedan ver y por cada usuario debes tener puesto su cifrado de la clave asimétrica y además tienes que saber de quien es ese cifrado pq luego cuando alguien quiera ver ese mensaje, imaginemos que estoy en un grupo, un mensaje, como saco la contraseña para descifrarlo?, me voy a la parte donde están los usuarios que pueden ver ese mensaje, busco el mio, cojo mi clave privada, descifro eso y con esa clave descifro simétricamente el mensaje
+Una persona nueva no puede ver los mensajes activos
+Como podríamos añadir alguien al grupo y darle permiso a los mensajes anteriores? tendría que ser alguien que lo añada, y como ese tiene la contraseña de todos los mensajes, recorrerme todos los mensajes asimétricamente con mi clave privada, sacar las claves simétricas de todos los mensajes y añadir otro campo con el nuevo usuario), en código seria equivalente a un for
+
+Los mensajes tienen al lado usuarios posibles con su contraseña por mensaje (cifrado con la clave publica)
+Hacer el ver los mensajes privados
+Hacer que los mensajes se puedan certificar (Comprobar firma del mensaje, cada vez que alguien mande un mensaje, se guarda la firma de esa persona como que ese mensaje es suyo)
+
+Nuestro mensaje va a tener el campo de mensaje cifrado, el campo de la firma y luego todos los usuarios con su claves
+El que pone el mensaje, el primero, meterle también como usuario de mensaje y se le descifra la contraseña pq sino el que lo ha puesto tampoco lo va a ver
+
+Hacer que el usuario guarde la clave de grupo cuando ya es miembro, si se la cifra con su clave publica, cifra la contraseña de grupo con la clave publica del usuario, y cuando vuelve a entrar ese usuario, va a sacar la contraseña del grupo no de la caja, sino que se va al campo donde esta cifrada asimétricamente la contraseña del grupo publico
+
+EXTRA: Consigue que un usuario que para ver sus mensajes de grupos públicos no tenga que poner la contraseña. Solo la pondrá cuando se va a añadir al grupo
+
+
+
+
+codigo chorra que probablemente no sigue el enunciado
+
+public class GestionGrupos implements IGestionGrupos {
+    private final DaoGruposImpl daoGrupos;
+    private final GrupoValidator grupoValidator;
+    private final PasswordEncoder passwordEncoder;
+    private final char[] keyStorePassword;
+    private final EncriptacionAES encriptacion;
+
+    public GestionGrupos(DaoGruposImpl daoGrupos, GrupoValidator grupoValidator, PasswordEncoder passwordEncoder, EncriptacionAES encriptacion) {
+        this.daoGrupos = daoGrupos;
+        this.encriptacion = encriptacion;
+        this.grupoValidator = grupoValidator;
+        this.passwordEncoder = passwordEncoder;
+        this.keyStorePassword = Constantes.PASSWORD.toCharArray();
+    }
+    @Override
+    public Either<ErrorApp, List<String>> obtenerGruposParaUsuario(String nombreUsuario, boolean publico) {
+        return daoGrupos.obtenerGruposParaUsuario(nombreUsuario, publico);
+    }
+
+    @Override
+    public Either<ErrorApp, Grupo> obtenerGrupoPorNombre(String nombreGrupo) {
+        return daoGrupos.obtenerGrupoPorNombre(nombreGrupo);
+    }
+
+    @Override
+    public Either<ErrorApp, Boolean> addGroup(Grupo grupo) {
+        return grupoValidator.validateGrupo(grupo)
+                .flatMap(valid -> {
+                    if (grupo.isPublico()) {
+                        String random = Utils.randomBytes();
+                        String encriptPassword = encriptacion.encriptar(grupo.getPassword(), random);
+                        grupo.setPassword(encriptPassword);
+                        String randomCifrado = encriptarConClavePublica(random, grupo.getAdministrador().getNombre());
+                        grupo.setRandomKey(randomCifrado);
+                    }
+                    return daoGrupos.addGroup(grupo);
+                });
+    }
+
+    @Override
+    public Either<ErrorApp, Grupo> ingresar(Grupo grupo) {
+        return daoGrupos.ingresar(grupo)
+                .flatMap(grupoEncontrado -> {
+                    if (grupoEncontrado.isPublico()) {
+                        String random = desencriptarConClavePrivada(grupoEncontrado.getRandomKey(), grupoEncontrado.getAdministrador().getNombre());
+                        String password = encriptacion.desencriptar(grupoEncontrado.getPassword(), random);
+                        if (grupo.getPassword().equals(password)) {
+                            return Either.right(grupoEncontrado);
+                        } else {
+                            return Either.left(new ErrorAppDatosNoValidos(Constantes.CONTRASENA_INCORRECTA));
+                        }
+                    }
+                    return Either.right(grupoEncontrado);
+                });
+    }
+
+
+    @Override
+    public Either<ErrorApp, Grupo> agregarMiembroGrupo(Grupo grupo, Usuario miembro) {
+        return grupoValidator.validateGrupo(grupo)
+                .flatMap(valid -> daoGrupos.agregarMiembroGrupo(grupo, miembro))
+                .flatMap(agregado -> daoGrupos.obtenerGrupoPorNombre(grupo.getNombre()));
+    }
+
+    private String encriptarConClavePublica(String data, String usuario){
+        KeyStore ks;
+        try {
+            ks = KeyStore.getInstance("JKS");
+            ks.load(new FileInputStream(Constantes.KEYSTORE_PATH), keyStorePassword);
+            Certificate cert = ks.getCertificate(usuario);
+            PublicKey publicKey = cert.getPublicKey();
+
+            Cipher cipher = Cipher.getInstance(Constantes.AES_GCM_NO_PADDING, "BC");
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            byte[]cipherText = cipher.doFinal(data.getBytes());
+            return Base64.getUrlEncoder().encodeToString(cipherText);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+    private String desencriptarConClavePrivada(String data, String usuario) {
+        KeyStore ks;
+        try {
+            ks = KeyStore.getInstance("JKS");
+            ks.load(new FileInputStream(Constantes.KEYSTORE_PATH), keyStorePassword);
+            KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(keyStorePassword);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(usuario, passwordProtection);
+            PrivateKey privateKey = privateKeyEntry.getPrivateKey();
+            Cipher cipher = Cipher.getInstance("EC", "BC");
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
+            byte[] plainText = cipher.doFinal(Base64.getUrlDecoder().decode(data));
+            return new String(plainText);
+        }catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+}
+
+@Log4j2
+@Service
+public class GestionMensajes implements IGestionMensajes {
+    private final DaoMensajesImpl daoMensajes;
+    private final EncriptacionAES encriptacion;
+    private final char[] keystorePassword;
+
+    public GestionMensajes(DaoMensajesImpl daoMensajes, EncriptacionAES encriptacion) {
+        this.encriptacion = encriptacion;
+        this.daoMensajes = daoMensajes;
+        this.keystorePassword = Constantes.PASSWORD.toCharArray();
+    }
+
+    @Override
+    public Either<ErrorApp, List<Mensaje>> obtenerMensajesDeGrupo(Grupo grupo) {
+        return daoMensajes.obtenerMensajesDeGrupo(grupo)
+                .map(mensajes -> desencriptarMensajes(mensajes, grupo.getAdministrador().getNombre()));
+    }
+
+    @Override
+    public Either<ErrorApp, Boolean> addMensajes(Mensaje mensaje, Grupo grupo) {
+        try {
+            String random = Utils.randomBytes();
+            String contenidoEncriptado = encriptacion.encriptar(mensaje.getTexto(), random);
+            mensaje.setTexto(contenidoEncriptado);
+
+            Map<String, String> clavesUsuarios = new HashMap<>();
+            for (Usuario destinatario : grupo.getParticipantes()) {
+                String randomCifrado = encriptarConClavePublica(random, destinatario.getNombre());
+                clavesUsuarios.put(destinatario.getNombre(), randomCifrado);
+            }
+            mensaje.setClavesUsuarios(clavesUsuarios);
+
+            String firma = firmar(mensaje.getTexto(), grupo.getAdministrador().getNombre());
+            mensaje.setFirma(firma);
+
+            return daoMensajes.addMensajes(mensaje);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return Either.left(new ErrorAppDatosNoValidos(Constantes.ERROR_AL_AGREGAR_MENSAJE));
+        }
+    }
+
+    private List<Mensaje> desencriptarMensajes(List<Mensaje> mensajes, String username) {
+        return mensajes.stream()
+                .map(mensaje -> desencriptarMensaje(mensaje, username))
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    private Mensaje desencriptarMensaje(Mensaje mensaje, String username) {
+        try {
+            String randomCifrado = mensaje.getClavesUsuarios().get(username);
+            String random = desencriptarConClavePrivada(randomCifrado, username);
+            String contenidoDesencriptado = encriptacion.desencriptar(mensaje.getTexto(), random);
+            mensaje.setTexto(contenidoDesencriptado);
+            return mensaje;
+        } catch (Exception e) {
+            log.error("Error al desencriptar mensaje para el usuario {}", username, e);
+            return null;
+        }
+    }
+
+    private String encriptarConClavePublica(String data, String usuario) {
+        try {
+            KeyStore ks = KeyStore.getInstance("JKS");
+            ks.load(new FileInputStream(Constantes.KEYSTORE_PATH), keystorePassword);
+            Certificate cert = ks.getCertificate(usuario);
+            PublicKey publicKey = cert.getPublicKey();
+
+            Cipher cipher = Cipher.getInstance("EC", "BC");
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            byte[] cipherText = cipher.doFinal(data.getBytes());
+            return Base64.getUrlEncoder().encodeToString(cipherText);
+        } catch (Exception e) {
+            log.error("Error al encriptar con clave pública para el usuario {}", usuario, e);
+            return null;
+        }
+    }
+
+    private String desencriptarConClavePrivada(String data, String usuario) {
+        try {
+            KeyStore ks = KeyStore.getInstance("JKS");
+            ks.load(new FileInputStream(Constantes.KEYSTORE_PATH), keystorePassword);
+            KeyStore.PasswordProtection passwordProtection = new KeyStore.PasswordProtection(keystorePassword);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(usuario, passwordProtection);
+            PrivateKey privateKey = privateKeyEntry.getPrivateKey();
+
+            Cipher cipher = Cipher.getInstance("EC", "BC");
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
+            byte[] plainText = cipher.doFinal(Base64.getUrlDecoder().decode(data));
+            return new String(plainText);
+        } catch (Exception e) {
+            log.error("Error al desencriptar con clave privada para el usuario {}", usuario, e);
+            return null;
+        }
+    }
+
+    private String firmar(String data, String usuario) {
+        try {
+            KeyStore ks = KeyStore.getInstance("JKS");
+            ks.load(new FileInputStream(Constantes.KEYSTORE_PATH), keystorePassword);
+            KeyStore.PasswordProtection keyPassword = new KeyStore.PasswordProtection(keystorePassword);
+            KeyStore.PrivateKeyEntry privateKeyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry(usuario, keyPassword);
+            PrivateKey privateKey = privateKeyEntry.getPrivateKey();
+
+            Signature signature = Signature.getInstance("SHA256WithECDSA", "BC");
+            signature.initSign(privateKey);
+            signature.update(data.getBytes());
+            return Base64.getUrlEncoder().encodeToString(signature.sign());
+        } catch (Exception e) {
+            log.error("Error al firmar el mensaje para el usuario {}", usuario, e);
+            return null;
+        }
+    }
+}
+
+@Service
+public class GestionUsuarios implements IGestionUsuarios {
+    private static final Logger log = LoggerFactory.getLogger(GestionUsuarios.class);
+    private final DaoUsuariosImpl dao;
+    private final UserValidator userValidator;
+    private final PasswordEncoder passwordEncoder;
+    private final char[] keyStorePassword;
+
+    public GestionUsuarios(DaoUsuariosImpl dao, UserValidator userValidator, PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+        this.dao = dao;
+        this.userValidator = userValidator;
+        this.keyStorePassword = Constantes.PASSWORD.toCharArray();
+    }
+
+    @Override
+    public Either<ErrorApp, Usuario> login(Usuario usuario) {
+        return userValidator.validateUser(usuario)
+                .flatMap(valid -> dao.buscarUsuarioPorNombre(usuario.getNombre()))
+                .flatMap(usuarioEncontrado ->
+                        passwordEncoder.matches(usuario.getPassword(), usuarioEncontrado.getPassword())
+                                ? Either.right(usuarioEncontrado)
+                                : Either.left(new ErrorAppDatosNoValidos(Constantes.USUARIO_NO_VALIDO))
+                );
+    }
+
+    @Override
+    public Either<ErrorApp, Boolean> addUsuario(Usuario usuario) {
+        return userValidator.validateUser(usuario)
+                .map(valid -> {
+                    usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                    return usuario;
+                })
+                .flatMap(validatedUser -> {
+                            generarYGuardarClaves(usuario.getNombre());
+                            return dao.addUsuario(validatedUser);
+                        }
+                );
+    }
+
+    private void generarYGuardarClaves(String username) {
+        try {
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("EC", "BC");
+            keyGen.initialize(new ECGenParameterSpec("secp256r1"), new SecureRandom());
+            KeyPair keyPair = keyGen.generateKeyPair();
+            KeyStore ks = KeyStore.getInstance("JKS");
+            try (FileInputStream fis = new FileInputStream(Constantes.KEYSTORE_PATH)) {
+                ks.load(fis, keyStorePassword);
+            } catch (IOException e) {
+                ks.load(null, null);
+            }
+            X509Certificate certificate = generateSelfSignedCertificate(username, keyPair);
+            ks.setKeyEntry(username, keyPair.getPrivate(), keyStorePassword, new Certificate[]{certificate});
+            try (FileOutputStream fos = new FileOutputStream(Constantes.KEYSTORE_PATH)) {
+                ks.store(fos, keyStorePassword);
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+
+        }
+    }
+
+    private X509Certificate generateSelfSignedCertificate(String username, KeyPair keyPair) {
+        try {
+            X500Name owner = new X500Name("CN=" + username);
+            BigInteger serialNumber = BigInteger.valueOf(System.currentTimeMillis());
+            Calendar calendar = Calendar.getInstance();
+            Date startDate = calendar.getTime();
+            calendar.add(Calendar.YEAR, 1);
+            Date endDate = calendar.getTime();
+
+            X509v3CertificateBuilder certBuilder = new X509v3CertificateBuilder(
+                    owner, serialNumber, startDate, endDate, owner,
+                    SubjectPublicKeyInfo.getInstance(keyPair.getPublic().getEncoded()));
+
+            ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256withECDSA").setProvider("BC").build(keyPair.getPrivate());
+            X509CertificateHolder certHolder = certBuilder.build(contentSigner);
+
+            return new JcaX509CertificateConverter().setProvider("BC").getCertificate(certHolder);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public Either<ErrorApp, Usuario> buscarUsuarioPorNombre(String nombre) {
+        return dao.buscarUsuarioPorNombre(nombre);
+    }
+
+    @Override
+    public Either<ErrorApp, List<Usuario>> buscarUsuariosPorNombres(List<String> nombres) {
+        return dao.buscarUsuariosPorNombres(nombres);
+    }
+
+
+}
+
+otro codigo de otro proyecto de amigo con impl de seguridad
+@Service
+public class ServiceRecursosImpl implements ServiceRecursos {
+
+    private final Encriptacion encriptacion;
+    private final Configuracion config;
+    private final RecursosRepository recursosRepository;
+    private final VisualizadoresRepository visualizadoresRepository;
+
+
+    public ServiceRecursosImpl(Encriptacion encriptacion, Configuracion config, RecursosRepository recursosRepository, VisualizadoresRepository visualizadoresRepository) {
+        this.encriptacion = encriptacion;
+        this.config = config;
+        this.recursosRepository = recursosRepository;
+        this.visualizadoresRepository = visualizadoresRepository;
+    }
+
+    @Override
+    public Single<Either<ErrorCliente, List<Recurso>>> getRecursos(String username) {
+        Either<ErrorCliente, List<Recurso>> result = null;
+        List<Visualizador> visualizadores = visualizadoresRepository.findByUsername(username);
+        List<Recurso> recursos = new ArrayList<>();
+        visualizadores.forEach(visualizador -> recursos.add(recursosRepository.findById(visualizador.getRecurso().getId()).orElse(null)));
+        if (!recursos.isEmpty()) {
+            result = Either.right(recursos);
+        } else {
+            result = Either.left(new ErrorCliente(Constantes.NO_HAY_RECURSOS));
+        }
+
+        return Single.just(result);
+    }
+
+    @Override
+    public Single<Either<ErrorCliente, Integer>> addRecurso(Recurso recurso) {
+        Either<ErrorCliente, Integer> result = null;
+        String firma = null;
+        try {
+            firma = generarFirma(recurso.getUserFirma(), recurso.getPassword());
+        } catch (Exception e) {
+            return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_GENERAR_LA_FIRMA)));
+        }
+        String random = Utils.randomBytes();
+        String encriptpassword = encriptacion.encriptar(recurso.getPassword(), random);
+        recurso.setPassword(encriptpassword);
+
+        recurso.setFirma(firma);
+        recursosRepository.save(recurso);
+
+        PublicKey publicKey = null;
+        try {
+            publicKey = getClavePublicaUsuario(recurso.getUserFirma());
+        } catch (KeyStoreException | IOException | CertificateException | NoSuchAlgorithmException e) {
+            return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_OBTENER_LA_CLAVE_PUBLICA)));
+        }
+
+        String randomCifrado = encriptacion.encriptar(random, publicKey);
+
+        Visualizador visualizador = new Visualizador();
+        visualizador.setUsername(recurso.getUserFirma());
+        visualizador.setPassword(randomCifrado);
+        visualizador.setRecurso(recurso);
+
+        visualizadoresRepository.save(visualizador);
+        result = Either.right(1);
+
+        return Single.just(result);
+    }
+
+    @Override
+    public Single<Either<ErrorCliente, Recurso>> getPassword(int idrecurso, String username) {
+        Either<ErrorCliente, Recurso> result = null;
+        Recurso recurso = recursosRepository.findById(idrecurso).orElse(null);
+        if (recurso != null) {
+            try {
+                PrivateKey privateKey = getPrivateKeyUser(username);
+                Visualizador visualizador = visualizadoresRepository.findByRecursoIdAndUsername(idrecurso, username);
+                String random = encriptacion.desencriptar(visualizador.getPassword(), privateKey);
+                String password = encriptacion.desencriptar(recurso.getPassword(), random);
+                recurso.setPassword(password);
+                result = Either.right(recurso);
+            } catch (Exception e) {
+                return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_OBTENER_LA_CLAVE_PRIVADA)));
+            }
+        } else {
+            result = Either.left(new ErrorCliente(Constantes.RECURSO_NO_ENCONTRADO));
+        }
+        return Single.just(result);
+    }
+ @Override
+    public Single<Either<ErrorCliente, Integer>> cambiarPassword(int idrecurso, String newpass, String username) {
+        Either<ErrorCliente, Integer> result = null;
+        Recurso recurso = recursosRepository.findById(idrecurso).orElse(null);
+        Visualizador visualizador = visualizadoresRepository.findByRecursoIdAndUsername(idrecurso, username);
+        if (recurso != null) {
+            PrivateKey privateKey = null;
+            try {
+                privateKey = getPrivateKeyUser(username);
+            } catch (Exception e) {
+                return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_OBTENER_LA_CLAVE_PRIVADA)));
+            }
+            String random = encriptacion.desencriptar(visualizador.getPassword(), privateKey);
+            String encriptpassword = encriptacion.encriptar(newpass, random);
+            recurso.setPassword(encriptpassword);
+            recurso.setUserFirma(username);
+            //firma
+            String firma = null;
+            try {
+                firma = generarFirma(username, newpass);
+            } catch (Exception e) {
+                return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_GENERAR_LA_FIRMA)));
+            }
+            recurso.setFirma(firma);
+            recursosRepository.save(recurso);
+            result = Either.right(1);
+        } else {
+            result = Either.left(new ErrorCliente(Constantes.RECURSO_NO_ENCONTRADO));
+        }
+
+        return Single.just(result);
+    }
+
+    @Override
+    public Single<Either<ErrorCliente, Integer>> verificarFirma(int idrecurso, String password) {
+        Either<ErrorCliente, Integer> result = null;
+        try {
+            Recurso recurso = recursosRepository.findById(idrecurso).orElse(null);
+
+            if (recurso != null) {
+                if (verifyFirma(recurso.getUserFirma(), password, recurso.getFirma())) {
+                    result = Either.right(1);
+                } else {
+                    result = Either.left(new ErrorCliente(Constantes.LA_FIRMA_NO_ES_VALIDA));
+                }
+            } else {
+                result = Either.left(new ErrorCliente(Constantes.RECURSO_NO_ENCONTRADO));
+            }
+        } catch (Exception e) {
+            result = Either.left(new ErrorCliente(Constantes.LA_FIRMA_NO_ES_VALIDA));
+        }
+        return Single.just(result);
+    }
+
+    @Override
+    public Single<Either<ErrorCliente, Integer>> compartirRecurso(int idrecurso, String newusername, String actualuser) {
+        Either<ErrorCliente, Integer> result = null;
+        Visualizador actualvisualizador = visualizadoresRepository.findByRecursoIdAndUsername(idrecurso, actualuser);
+        Visualizador newvisualizadordb = visualizadoresRepository.findByRecursoIdAndUsername(idrecurso, newusername);
+        if (newvisualizadordb != null) {
+            return Single.just(Either.left(new ErrorCliente(Constantes.EL_USUARIO_YA_TIENE_ACCESO_AL_RECURSO)));
+        }
+        Recurso recurso = recursosRepository.findById(idrecurso).orElse(null);
+        if (actualvisualizador != null) {
+            PrivateKey privateKey = null;
+            try {
+                privateKey = getPrivateKeyUser(actualuser);
+            } catch (Exception e) {
+                return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_OBTENER_LA_CLAVE_PRIVADA)));
+            }
+            String random = encriptacion.desencriptar(actualvisualizador.getPassword(), privateKey);
+            PublicKey publicKey = null;
+            try {
+                publicKey = getClavePublicaUsuario(newusername);
+            } catch (Exception e) {
+                return Single.just(Either.left(new ErrorCliente(Constantes.ERROR_AL_OBTENER_LA_CLAVE_PUBLICA)));
+            }
+            Visualizador newvisualizador = new Visualizador();
+            newvisualizador.setUsername(newusername);
+            newvisualizador.setRecurso(recurso);
+            newvisualizador.setPassword(encriptacion.encriptar(random, publicKey));
+            visualizadoresRepository.save(newvisualizador);
+            result = Either.right(1);
+        } else {
+            result = Either.left(new ErrorCliente(Constantes.EL_USUARIO_NO_EXISTE));
+        }
+        return Single.just(result);
+    }
+
+    private String generarFirma(String userFirma, String passrecurso) throws NoSuchAlgorithmException, UnrecoverableEntryException, CertificateException, KeyStoreException, IOException, InvalidKeyException, SignatureException {
+        Signature sign = Signature.getInstance(Constantes.SHA_256_WITH_RSA);
+        sign.initSign(getPrivateKeyUser(userFirma));
+        MessageDigest hash = MessageDigest.getInstance(Constantes.SHA_256);
+        sign.update(hash.digest(passrecurso.getBytes()));
+        return Base64.getEncoder().encodeToString(sign.sign());
+    }
+
+    private boolean verifyFirma(String userFirma, String passrecurso, String firma) throws NoSuchAlgorithmException, CertificateException, KeyStoreException, IOException, InvalidKeyException, SignatureException {
+        byte[] firmaBytes = Base64.getDecoder().decode(firma);
+        Signature signature = Signature.getInstance(Constantes.SHA_256_WITH_RSA);
+        signature.initVerify(getClavePublicaUsuario(userFirma));
+        MessageDigest hash = MessageDigest.getInstance(Constantes.SHA_256);
+        signature.update(hash.digest(passrecurso.getBytes()));
+        return signature.verify(firmaBytes);
+    }
+
+    private PrivateKey getPrivateKeyUser(String username) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException, UnrecoverableEntryException {
+        KeyStore ksLoad = KeyStore.getInstance(Constantes.PKCS_12);
+        try (FileInputStream fis = new FileInputStream(config.getPathDatos())) {
+            ksLoad.load(fis, config.getPassword().toCharArray());
+        }
+
+        KeyStore.PasswordProtection pt = new KeyStore.PasswordProtection(config.getPassword().toCharArray());
+
+        KeyStore.Entry entry;
+        entry = ksLoad.getEntry(username, pt);
+
+
+        return ((KeyStore.PrivateKeyEntry) entry).getPrivateKey();
+    }
+
+    private PublicKey getClavePublicaUsuario(String username) throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
+        KeyStore ks = KeyStore.getInstance(Constantes.PKCS_12);
+        FileInputStream fis = new FileInputStream(config.getPathDatos());
+        ks.load(fis, config.getPassword().toCharArray());
+
+        X509Certificate cert = (X509Certificate) ks.getCertificate(username);
+        return cert.getPublicKey();
+    }
+
+
+}
+
+public class ServiceCredentialsImpl implements ServiceCredentials {
+
+    private final CredentialsRepository credentialsRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final Configuracion config;
+
+    public ServiceCredentialsImpl(CredentialsRepository credentialsRepository, PasswordEncoder passwordEncoder, Configuracion config) {
+        this.credentialsRepository = credentialsRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.config = config;
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        boolean login = false;
+        Credentials userCredentials = credentialsRepository.findByUsername(username);
+        if (userCredentials != null) {
+            login = passwordEncoder.matches(password, userCredentials.getPassword());
+        }
+        return login;
+    }
+
+    @Override
+    public boolean register(String username, String password) {
+        boolean register = false;
+        Credentials userCredentials = credentialsRepository.findByUsername(username);
+        if (userCredentials == null) {
+            Credentials credentials = new Credentials();
+            credentials.setUsername(username);
+            credentials.setPassword(passwordEncoder.encode(password));
+            credentialsRepository.save(credentials);
+            KeyPair keyPair = generateKeyPair();
+            saveKeyPairToKeystore(username, keyPair);
+
+            register = true;
+        }
+        return register;
+    }
+
+    @Override
+    public Single<Either<ErrorCliente, List<String>>> getUsers() {
+        Either<ErrorCliente, List<String>> result = null;
+        List<String> user = new ArrayList<>();
+        credentialsRepository.findAll().forEach(userCredentials -> user.add(userCredentials.getUsername()));
+        if (user.isEmpty()) {
+            result = Either.left(new ErrorCliente(Constantes.NO_HAY_USUARIOS));
+        } else {
+            result = Either.right(user);
+        }
+        return Single.just(result);
+
+    }
+
+
+    private KeyPair generateKeyPair() {
+        try {
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance(Constantes.RSA);
+            return keyGen.generateKeyPair();
+        } catch (NoSuchAlgorithmException e) {
+            log.error(e);
+        }
+        return null;
+    }
+
+    private void saveKeyPairToKeystore(String username, KeyPair keyPair) {
+        try {
+            KeyStore ks = loadKeyStore();
+            X509Certificate certificate = generateSelfSignedCertificate(username, keyPair.getPublic(), keyPair.getPrivate());
+
+            // Almacenar la clave privada y el certificado en el keystore
+            ks.setKeyEntry(username, keyPair.getPrivate(), config.getPassword().toCharArray(), new Certificate[]{certificate});
+
+            storeKeyStore(ks);
+        } catch (Exception e) {
+            log.error(Constantes.ERROR_AL_GUARDAR_EL_PAR_DE_CLAVES_EN_EL_KEYSTORE, e);
+        }
+    }
+
+    private KeyStore loadKeyStore() throws KeyStoreException, IOException, CertificateException, NoSuchAlgorithmException {
+        KeyStore ks = KeyStore.getInstance(Constantes.PKCS_12);
+        char[] keystorePassword = config.getPassword().toCharArray();
+        try (FileInputStream fis = new FileInputStream(config.getPathDatos())) {
+            ks.load(fis, keystorePassword);
+        } catch (FileNotFoundException e) {
+            ks.load(null, null);
+        }
+        return ks;
+    }
+
+    private void storeKeyStore(KeyStore ks) throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException {
+        try (FileOutputStream fos = new FileOutputStream(config.getPathDatos())) {
+            ks.store(fos, config.getPassword().toCharArray());
+        }
+    }
+
+
+    private X509Certificate generateSelfSignedCertificate(String username, PublicKey publicKey, PrivateKey privateKey) throws CertificateException, OperatorCreationException {
+        X500Name owner = new X500Name(Constantes.CN + username);
+        X500Name issuer = owner;
+
+        X509v3CertificateBuilder certGen = new X509v3CertificateBuilder(
+                issuer,
+                BigInteger.valueOf(1),
+                new Date(),
+                new Date(System.currentTimeMillis() + 1000000),
+                owner, SubjectPublicKeyInfo.getInstance(
+                ASN1Sequence.getInstance(publicKey.getEncoded()))
+        );
+
+        ContentSigner signer = new JcaContentSignerBuilder(Constantes.SHA_256_WITH_RSA_ENCRYPTION).build(privateKey);
+        X509CertificateHolder certHolder = certGen.build(signer);
+        return new JcaX509CertificateConverter().getCertificate(certHolder);
+    }
+}
+
+public class Utils {
+
+
+    public static String randomBytes()
+    {
+        SecureRandom sr = new SecureRandom();
+        byte[] bits = new byte[32];
+        sr.nextBytes(bits);
+        return Base64.getUrlEncoder().encodeToString(bits);
+    }
+
+    private Utils() {
+    }
+}
+
+recuerda que aun no estoy tan avanzado, sigue la logica del texto del guion de proe y los apuntes, y adaptalos a mi codigo, aun nada de configs ni nada, puedes crear nuevos atributos a usuario, mensaje y grupo modelos siempre y cuando siga la logica que te acabo de decir que sigas
+
+Ahora en el codigo que te pase ten en cuenta estas implementaciones de seguridad 
+
+CLASE EjemploECDSA:
+Crear claves publicas y privadas
+LA asíncrona no se transforma en principio a bytes
+Codificar clave privada con PKCS( y luego hacer getEncoded a un jks
+Codificar clave publica con X509
+Generar claves publicas y privadas de curva elíptica (EC), anteriormente era RSA
+KeyFactory con EC y BC de provider
+Hacer initialize con secp256r1
+Pasar todo a ECPublic/PrivateKeyParameters
+--Revisar también clase AlmacenarClaves
+
+. bloque estatico Security.addProvider(new BouncyCastle()) ponerlo en el SpringBootInitializer
+El servidor debe tener clave publica y privada
+
+CLASE BouncyCastleCertificateWithBuilder:
+Generar certificado (KeyPair) -> X500Name
+Date para validez de fecha
+Firmar (ContentSigner)
+Exportar KeyStore de tipo JKS 
+char[] para guardar y proteger al KeyStore
+Load al KeyStore
+
+CLASE LoadKeyFromKeyStore
+Revisar la carga del fichero
+Guardar clave privada (setKeyEntry)
+Luego guardar con el KeyStore .jks
+Tiene que firmar la clave privada con el certificado el servidor, luego generarlo
+Sacar clave privada a KeyStore con KeyEntry y parsear a KeyStore.PrivateKeyEntry
+
+CLASE SignTest
+Clase Signature para firmar
+Cambiar el Cipher y ponerle init y getInstance de EC
+
+Guion Profe
+Empezar por funcionalidad de login, coger publica del KeyStore y coger privada
+Mensajes cifrados - GruposSecretos
+No debería ni de verse ni de quien tiene los mensajes
+El cifrado asimetrico lo usamos en los grupos privados
+El mensaje sigue con cifrado simetrico, con el SecureRandom se genera aleatoriamente y esa clave la tenga que cifrar asimétricamente con la clave publica de los usuarios
+
+Ejemplo: Voy a mensaje a un grupo privado y hay 4 personas
+- Genero clave simétrica aleatoria (SecureRandom)
+Cifro mensajes con clave asimétrica aleatoria (cada mensaje debe tener su propia clave)
+Cifrar asimétricamente con la clave publica de cada usuario que pueda ver el mensaje la contraseña simétrica (Ahora los mensajes privados deben tener todos los usuarios que lo puedan ver y por cada usuario debes tener puesto su cifrado de la clave asimétrica y además tienes que saber de quien es ese cifrado pq luego cuando alguien quiera ver ese mensaje, imaginemos que estoy en un grupo, un mensaje, como saco la contraseña para descifrarlo?, me voy a la parte donde están los usuarios que pueden ver ese mensaje, busco el mio, cojo mi clave privada, descifro eso y con esa clave descifro simétricamente el mensaje
+Una persona nueva no puede ver los mensajes activos
+Como podríamos añadir alguien al grupo y darle permiso a los mensajes anteriores? tendría que ser alguien que lo añada, y como ese tiene la contraseña de todos los mensajes, recorrerme todos los mensajes asimétricamente con mi clave privada, sacar las claves simétricas de todos los mensajes y añadir otro campo con el nuevo usuario), en código seria equivalente a un for
+
+Los mensajes tienen al lado usuarios posibles con su contraseña por mensaje (cifrado con la clave publica)
+Hacer el ver los mensajes privados
+Hacer que los mensajes se puedan certificar (Comprobar firma del mensaje, cada vez que alguien mande un mensaje, se guarda la firma de esa persona como que ese mensaje es suyo)
+
+Nuestro mensaje va a tener el campo de mensaje cifrado, el campo de la firma y luego todos los usuarios con su claves
+El que pone el mensaje, el primero, meterle también como usuario de mensaje y se le descifra la contraseña pq sino el que lo ha puesto tampoco lo va a ver
+
+Hacer que el usuario guarde la clave de grupo cuando ya es miembro, si se la cifra con su clave publica, cifra la contraseña de grupo con la clave publica del usuario, y cuando vuelve a entrar ese usuario, va a sacar la contraseña del grupo no de la caja, sino que se va al campo donde esta cifrada asimétricamente la contraseña del grupo publico
+
+EXTRA: Consigue que un usuario que para ver sus mensajes de grupos públicos no tenga que poner la contraseña. Solo la pondrá cuando se va a añadir al grupo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public class TaskEditorController {
+
+    @FXML
+    private TextField nameField;
+    @FXML private TextField descriptionField;
+    @FXML private Slider completionSlider;
+    @FXML private TextField locationField;
+    @FXML private TextField responsibleField;
+
+    private Task task;
+    @Setter
+    private ObservableList<Task> taskList;
+
+    // Reference to the ListView
+    @Setter
+    private ListView<Task> taskListView;
+
+    public void setTask(Task task) {
+        this.task = task;
+        if (task != null) {
+            nameField.setText(task.getName());
+            descriptionField.setText(task.getDescription());
+            completionSlider.setValue(task.getCompletionPercentage());
+            locationField.setText(task.getLocation());
+            responsibleField.setText(task.getResponsible());
+        }
+    }
+
+    @FXML
+    private void handleSave() {
+        if (task == null) {
+            task = new Task(
+                    nameField.getText(),
+                    descriptionField.getText(),
+                    (int) completionSlider.getValue(),
+                    locationField.getText(),
+                    responsibleField.getText()
+            );
+            taskList.add(task);
+        } else {
+            // Update existing task properties directly
+            task.setName(nameField.getText());
+            task.setDescription(descriptionField.getText());
+            task.setCompletionPercentage((int) completionSlider.getValue());
+            task.setLocation(locationField.getText());
+            task.setResponsible(responsibleField.getText());
+        }
+        if (taskListView != null) {
+            taskListView.refresh();
+        }
+
+        Stage stage = (Stage) nameField.getScene().getWindow();
+        stage.close();
+    }
+
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.tasksfx_adriansaavedra.controllers.TaskEditorController">
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextField fx:id="descriptionField" promptText="Description"/>
+    <Slider fx:id="completionSlider" showTickLabels="true" showTickMarks="true"/>
+    <TextField fx:id="locationField" promptText="Location"/>
+    <TextField fx:id="responsibleField" promptText="Responsible"/>
+    <Button text="Save" onAction="#handleSave"/>
+</VBox>
+
+
+ usar el control "WorldMapView" de la biblioteca controlsFX para la gestión de la ubicación
+
+@Data
+@AllArgsConstructor
+public class Task {
+    private String name;
+    private String description;
+    private int completionPercentage;
+    private String location;
+    private String responsible;
+}
+
+
+public class MainScreenController {
+
+    @FXML
+    private ListView<Task> taskListView;
+
+    private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+
+    @FXML
+    public void initialize() {
+        tasks.addAll(
+                new Task("Task 1", "Description 1", 0, "Location 1", "Person 1"),
+                new Task("Task 2", "Description 2", 50, "Location 2", "Person 2")
+        );
+        taskListView.setItems(tasks);
+    }
+
+    @FXML
+    private void handleNewTask() {
+        openTaskEditor(null);
+    }
+
+    @FXML
+    private void handleEditTask() {
+        Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
+        if (selectedTask != null) {
+            openTaskEditor(selectedTask);
+        }
+    }
+
+    @FXML
+    private void handleShowStatistics() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/tasksfx_adriansaavedra/statistics.fxml"));
+            Parent root = loader.load();
+
+            StatisticsController statisticsController = loader.getController();
+            statisticsController.setTasks(tasks);  // Pasamos la lista de tareas
+
+            Stage stage = new Stage();
+            stage.setTitle("Task Statistics");
+            stage.setScene(new Scene(root, 400, 300));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openTaskEditor(Task task) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/tasksfx_adriansaavedra/task_editor.fxml"));
+            Parent root = loader.load();
+
+            TaskEditorController controller = loader.getController();
+            controller.setTask(task);
+            controller.setTaskList(tasks);
+            controller.setTaskListView(taskListView);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 400, 300));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.tasksfx_adriansaavedra.controllers.MainScreenController">
+    <HBox spacing="10">
+        <Button text="New Task" onAction="#handleNewTask"/>
+        <Button text="Edit Task" onAction="#handleEditTask"/>
+        <Button text="Show Statistics" onAction="#handleShowStatistics"/>
+    </HBox>
+    <ListView fx:id="taskListView" VBox.vgrow="ALWAYS"/>
+</VBox>
+e implementar los cambios inmediatos en la tabla
+
+
+aqui te paso otros fxml y clases para mas contexto
+
+
+public class StatisticsController {
+
+    @FXML private Label totalTasksLabel;
+    @FXML private Label startedTasksLabel;
+    @FXML private Label completedTasksLabel;
+    @FXML private Label inProgressTasksLabel;
+
+    public void setTasks(ObservableList<Task> tasks) {
+        int total = tasks.size();
+        int started = 0;
+        int completed = 0;
+        int inProgress = 0;
+
+        for (Task task : tasks) {
+            if (task.getCompletionPercentage() > 0) started++;
+            if (task.getCompletionPercentage() == 100) completed++;
+            if (task.getCompletionPercentage() > 0 && task.getCompletionPercentage() < 100) inProgress++;
+        }
+
+        totalTasksLabel.setText("Total Tasks: " + total);
+        startedTasksLabel.setText("Started Tasks: " + started);
+        completedTasksLabel.setText("Completed Tasks: " + completed);
+        inProgressTasksLabel.setText("In Progress Tasks: " + inProgress);
+    }
+}
+public class LoginController {
+
+    @FXML
+    private TextField usernameField;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private void handleLogin() {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (!username.isEmpty() && !password.isEmpty()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/tasksfx_adriansaavedra/main_screen.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) usernameField.getScene().getWindow();
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+            } catch (Exception e) {
+                throw new IllegalArgumentException(e);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Login failed");
+            alert.setContentText("Please enter a username and password.");
+            alert.showAndWait();
+        }
+    }
+}
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.tasksfx_adriansaavedra.controllers.LoginController">
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+    <Button text="Login" onAction="#handleLogin"/>
+</VBox>
+
+<VBox spacing="20" alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.tasksfx_adriansaavedra.controllers.StatisticsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Task Statistics" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10" alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="50" prefWidth="100" />
+        </columnConstraints>
+
+        <Label text="Total Tasks:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <Label fx:id="totalTasksLabel" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label text="Started Tasks:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <Label fx:id="startedTasksLabel" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+        <Label text="Completed Tasks:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <Label fx:id="completedTasksLabel" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+        <Label text="In Progress Tasks:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <Label fx:id="inProgressTasksLabel" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+    </GridPane>
+</VBox>
+
+
+
+
+
+
+
+
+- hago el completable future de obtener el gruo y desencriptar los mensajes
+
+oscar: lo que tienes ahí mal es que tienes lógica de negocio en la ui, tu lo que tendrías que hacer simplemente es recibir un listado de mensajes, que es lo que haces aquí? obtener el grupo publico y luego actualizar sus mensajes?
+
+eso lo deberías hacer en los servicios
+
+que tu deberías tener solamente un obtener publico y tal, pasarle el nombre, y en servicios llamar a esto y luego a esto, estas metiendo lógica de negocio en la ui, porque esta función es simplemente, ponme los mensajes del grupo, pues en el servicio tendría que ser, cógeme el grupo, y ya lo miro yo como es servicios, y te los doy ya encriptaditos
+
+ten en cuenta una cosa, por ejemplo aquí esto estaría mal mira, este primero cuando acabe, va a poner el cursor default? no debería poner el cursor default, tendrías que haberlo cogido después de haber obtenido todos los mensajes. y entonces este platform run later aquí no te hace falta
+
+lo que esta mal es que debería estar todo en servicios
+
+
+
+ @FXML
+    private void accederGrupoPublico() { //bien
+        if (!sonCamposValidos()) {
+            mostrarAlerta(Alert.AlertType.WARNING, Constantes.TITULO_ADVERTENCIA, Constantes.CONTENIDO_ADVERTENCIA_DATOS_INVALIDOS);
+            return;
+        }
+
+        String nombreGrupo = tfGroup.getText();
+        String password = tfPasswordGroup.getText();
+        rootPane.setCursor(Cursor.WAIT);
+
+        gestionGrupos.loginGrupoPublico(nombreGrupo, password, usuario)
+                .thenAcceptAsync(result -> {
+                    rootPane.setCursor(Cursor.DEFAULT);
+                    result.peek(grupo -> {
+                        grupoPublicoActual = grupo;
+                        isCurrentGroupPublic = true;
+                        actualizarVistaGrupo();
+                        actualizarListaParticipantes();
+                        actualizarListaGrupos(usuario);
+                        mostrarAlerta(Alert.AlertType.INFORMATION, Constantes.ALERTA_ACCESO_EXITOSO_TITULO, Constantes.ALERTA_ACCESO_EXITOSO_CUERPO);
+                    }).peekLeft(this::mostrarError);
+                }, Platform::runLater);
+    }
+
+
+
+
+
+
+
+
+  @FXML
+    private void enviarMensajeGrupos() { //evaluar
+        if (isCurrentGroupPublic) {
+            enviarMensajePublico();
+        } else {
+            List<String> destinatariosSeleccionados = new ArrayList<>(lvGrupoParticipantes.getSelectionModel().getSelectedItems());
+            if (destinatariosSeleccionados.isEmpty()) {
+                mostrarAlerta(Alert.AlertType.WARNING, Constantes.SELECCION_DE_DESTINATARIOS, Constantes.POR_FAVOR_DESTINATARIO);
+                return;
+            }
+            enviarMensajePrivado(destinatariosSeleccionados);
+        }
+    }
+
+
+    private void enviarMensajePublico() {
+        if (grupoPublicoActual == null || taContenidoEnviar.getText().isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING, Constantes.ENVIO_DE_MENSAJE, Constantes.POR_FAVOR_ASEGURESE_DE_QUE_HAY_UN_GRUPO_SELECCIONADO_Y_EL_MENSAJE_NO_ESTA_VACIO);
+            return;
+        }
+
+        MensajePublico mensajePublico = new MensajePublico(
+                taContenidoEnviar.getText(),
+                LocalDateTime.now(),
+                usuario,
+                grupoPublicoActual.getParticipantes(),
+                grupoPublicoActual.getNombre()
+        );
+
+        rootPane.setCursor(Cursor.WAIT);
+        gestionMensajes.addMensajePublico(mensajePublico, grupoPublicoActual, userPass)
+                .thenAcceptAsync(result -> {
+                    rootPane.setCursor(Cursor.DEFAULT);
+                    result.peek(
+                            success -> {
+                                actualizarListaMensajesPublicos();
+                                taContenidoEnviar.clear();
+                            }
+                    ).peekLeft(this::mostrarError);
+                }, Platform::runLater);
+    }
+
+    private void actualizarListaMensajesPublicos() {
+        rootPane.setCursor(Cursor.WAIT);
+        gestionMensajes.obtenerYDesencriptarMensajesPublicos(grupoPublicoActual)
+                .thenAcceptAsync(result -> {
+                    rootPane.setCursor(Cursor.DEFAULT);
+                    result.peek(
+                            mensajesGrupo -> {
+                                lvMensajesGrupoPublico.getItems().clear();
+                                lvMensajesGrupoPublico.getItems().addAll(mensajesGrupo);
+                            }
+                    ).peekLeft(this::mostrarError);
+                }, Platform::runLater);
+    }
+
+
+
+
+--otro método donde se utiliza el actualizarListaMensajesPublicos
+private void actualizarVistaGrupo() {
+        lvGrupoParticipantes.getItems().clear();
+        if (isCurrentGroupPublic && grupoPublicoActual != null) {
+            lvGrupoParticipantes.getItems().addAll(grupoPublicoActual.getParticipantes().stream()
+                    .map(Usuario::getNombre)
+                    .toList());
+            actualizarListaMensajesPublicos();
+        } else if (!isCurrentGroupPublic && grupoPrivadoActual != null) {
+            lvGrupoParticipantes.getItems().addAll(grupoPrivadoActual.getParticipantes().stream()
+                    .map(Usuario::getNombre)
+                    .toList());
+            actualizarListaMensajesPrivados();
+        }
+    }
+
+
+
+
+
+
+@FXML
+    private void accederGrupoPublico() { //bien
+        if (!sonCamposValidos()) {
+            mostrarAlerta(Alert.AlertType.WARNING, Constantes.TITULO_ADVERTENCIA, Constantes.CONTENIDO_ADVERTENCIA_DATOS_INVALIDOS);
+            return;
+        }
+
+        String nombreGrupo = tfGroup.getText();
+        String password = tfPasswordGroup.getText();
+        rootPane.setCursor(Cursor.WAIT);
+
+        gestionGrupos.loginGrupoPublico(nombreGrupo, password, usuario)
+                .thenAcceptAsync(result -> {
+                    rootPane.setCursor(Cursor.DEFAULT);
+                    result.peek(grupo -> {
+                        grupoPublicoActual = grupo;
+                        isCurrentGroupPublic = true;
+                        actualizarVistaGrupo();
+                        actualizarListaParticipantes();
+                        actualizarListaGrupos(usuario);
+                        mostrarAlerta(Alert.AlertType.INFORMATION, Constantes.ALERTA_ACCESO_EXITOSO_TITULO, Constantes.ALERTA_ACCESO_EXITOSO_CUERPO);
+                    }).peekLeft(this::mostrarError);
+                }, Platform::runLater);
+    } //esto estaría también mal por no tener implementado el obtenerydesencriptarmensajes desde el service
+
+
+
+private void actualizarListaMensajesPublicos() {
+        rootPane.setCursor(Cursor.WAIT);
+        gestionMensajes.obtenerYDesencriptarMensajesPublicos(grupoPublicoActual)
+                .thenAcceptAsync(result -> {
+                    rootPane.setCursor(Cursor.DEFAULT);
+                    result.peek(
+                            mensajesGrupo -> {
+                                lvMensajesGrupoPublico.getItems().clear();
+                                lvMensajesGrupoPublico.getItems().addAll(mensajesGrupo);
+                            }
+                    ).peekLeft(this::mostrarError);
+                }, Platform::runLater);
+    }
+
+
+
+
+
+
+
+
+
+ultimas preguntas oscar:
+
+
+para pasar la gran mayoría de métodos anidados a la lógica de negocios, puedo llamar jsons de por ejemplos usuarios al daogrupos solo para evaluar si cierto usuario existe?
+
+
+
+

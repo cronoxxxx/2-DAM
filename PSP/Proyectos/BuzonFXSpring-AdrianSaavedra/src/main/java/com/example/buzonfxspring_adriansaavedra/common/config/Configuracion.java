@@ -1,0 +1,39 @@
+package com.example.buzonfxspring_adriansaavedra.common.config;
+import com.example.buzonfxspring_adriansaavedra.common.Constantes;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Component;
+import java.io.IOException;
+import java.util.Properties;
+@Getter
+@Component
+@Log4j2
+public class Configuracion {
+    private String pathJsonPublicGroup;
+    private String pathJsonPrivateGroup;
+    private String pathJsonPublicMessages;
+    private String pathJsonPrivateMessages;
+    private String pathJsonUsuarios;
+    private String pathJks;
+    private String keyStorePassword;
+
+
+    public Configuracion(){
+
+        try {
+            Properties p = new Properties();
+            p.load(getClass().getClassLoader().getResourceAsStream(Constantes.CONFIG_PROPERTIES));
+            pathJsonPublicGroup = p.getProperty(Constantes.PATH_JSON_GRUPO_PUBLICO);
+            pathJsonPrivateGroup = p.getProperty(Constantes.PATH_JSON_GRUPO_PRIVADO);
+            pathJsonPublicMessages = p.getProperty(Constantes.PATH_JSON_MENSAJES_PUBLICOS);
+            pathJsonPrivateMessages = p.getProperty(Constantes.PATH_JSON_MENSAJES_PRIVADOS);
+            pathJsonUsuarios = p.getProperty(Constantes.PATH_JSON_USUARIOS);
+            pathJks = p.getProperty(Constantes.PATH_JKS);
+            keyStorePassword = p.getProperty(Constantes.KEYSTORE_PASSWORD);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
+
+    }
+
+}

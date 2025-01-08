@@ -1,0 +1,360 @@
+package com.example.buzonfxspring_adriansaavedra.ui;
+
+import com.example.buzonfxspring_adriansaavedra.common.Constantes;
+import com.example.buzonfxspring_adriansaavedra.domain.model.*;
+import com.example.buzonfxspring_adriansaavedra.domain.service.GestionGrupos;
+import com.example.buzonfxspring_adriansaavedra.domain.service.GestionMensajes;
+import com.example.buzonfxspring_adriansaavedra.domain.service.GestionUsuarios;
+import io.vavr.control.Either;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.testfx.api.FxRobot;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.ApplicationTest;
+import org.testfx.framework.junit5.Start;
+
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
+
+@ExtendWith(ApplicationExtension.class)
+@ExtendWith(MockitoExtension.class)
+class BuzonControllerTest extends ApplicationTest {
+
+    private GestionUsuarios gestionUsuarios;
+    private GestionGrupos gestionGrupos;
+    private GestionMensajes gestionMensajes;
+
+    private final Usuario usuario = new Usuario("ble");
+    private final Usuario receptor1 = new Usuario("adrian");
+    private final Usuario receptor2 = new Usuario("juan");
+    private final Usuario usuarioAdd = new Usuario("nuevo");
+
+
+    private final GrupoPublico grupoPublico = new GrupoPublico("publico", "publico", usuario);
+    private final GrupoPublico grupoPublicoLogin = new GrupoPublico("login", "login", usuario);
+    private final GrupoPublico grupoPublicoRegister = new GrupoPublico("publico2", "publico", usuario);
+
+    private final MensajePublico mensajePublico1 = new MensajePublico("Publico 1", LocalDateTime.now(), usuario, List.of(receptor1, receptor2), grupoPublico.getNombre());
+    private final MensajePublico mensajePublico2 = new MensajePublico("Publico 2", LocalDateTime.now(), usuario, List.of(receptor1, receptor2), grupoPublico.getNombre());
+    private final MensajePublico mensajePublicoAdd = new MensajePublico("Hola mundo", LocalDateTime.now(), usuario, List.of(receptor1, receptor2, usuario), grupoPublico.getNombre());
+
+    private final GrupoPrivado grupoPrivado = new GrupoPrivado("privado", usuario);
+    private final GrupoPrivado grupoPrivadoRegister = new GrupoPrivado("privado2", usuario);
+
+    private final MensajePrivado mensajePrivado1 = new MensajePrivado("Privado 1", LocalDateTime.now(), usuario, List.of(receptor1), grupoPrivado.getNombre());
+    private final MensajePrivado mensajePrivado2 = new MensajePrivado("Privado 2", LocalDateTime.now(), usuario, List.of(receptor2), grupoPrivado.getNombre());
+    private final MensajePrivado mensajePrivadoAdd = new MensajePrivado("Hola mundo", LocalDateTime.now(), usuario, List.of(receptor1, receptor2), grupoPublico.getNombre());
+
+    @Override
+    @Start
+    public void start(Stage stage) throws IOException {
+        gestionUsuarios = mock(GestionUsuarios.class);
+        gestionGrupos = mock(GestionGrupos.class);
+        gestionMensajes = mock(GestionMensajes.class);
+        when(gestionUsuarios.buscarUsuarioPorNombre(usuario.getNombre())).thenReturn(CompletableFuture.completedFuture(Either.right(usuario)));
+        when(gestionGrupos.obtenerGruposParaUsuario(usuario, true)).thenReturn(CompletableFuture.completedFuture(Either.right(List.of(grupoPublico.getNombre(), grupoPublicoLogin.getNombre()))));
+        when(gestionGrupos.obtenerGruposParaUsuario(usuario, false)).thenReturn(CompletableFuture.completedFuture(Either.right(List.of(grupoPrivado.getNombre()))));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(param -> new BuzonController(gestionUsuarios, gestionGrupos, gestionMensajes));
+        Parent fxmlParent = fxmlLoader.load(getClass().getResourceAsStream(Constantes.RUTA_GRAFICA));
+
+        stage.setScene(new Scene(fxmlParent));
+        stage.show();
+    }
+
+
+    private void performLogin(FxRobot robot, String username, String password) {
+        Usuario user = new Usuario(username);
+        when(gestionUsuarios.login(user, password))
+                .thenReturn(CompletableFuture.completedFuture(Either.right(user)));
+        when(gestionGrupos.obtenerGruposParaUsuario(user, true))
+                .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(grupoPublico.getNombre()))));
+        robot.clickOn("#tfUser").write(username);
+        robot.clickOn("#tfPasswordUser").write(password);
+        robot.clickOn("#btnLoginUser");
+    }
+
+
+    @Nested
+    class UserAuthenticationTests {
+        @Test
+        void loginUserSuccessful(FxRobot robot) {
+            String username = "ble";
+            String password = "ble";
+            performLogin(robot, username, password);
+            verify(gestionUsuarios).login(new Usuario(username), password);
+        }
+
+        @Test
+        void registerUserSuccessful(FxRobot robot) {
+            String username = "newUser";
+            String password = "newPass";
+            when(gestionUsuarios.register(new Usuario(username), password))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(true)));
+            robot.clickOn("#tfNewUser").write(username);
+            robot.clickOn("#tfnewPasswordUser").write(password);
+            robot.clickOn("#btnRegisterUser");
+            verify(gestionUsuarios).register(new Usuario(username), password);
+        }
+
+
+    }
+
+    @Nested
+    class GroupManagementTests {
+        @Test
+        void registerPublicGroupSuccessful(FxRobot robot) {
+            performLogin(robot, usuario.getNombre(), "ble");
+            String groupName = grupoPublicoRegister.getNombre();
+            String groupPassword = grupoPublicoRegister.getPassword();
+            GrupoPublico expectedGroup = new GrupoPublico(groupName, groupPassword, usuario);
+
+            when(gestionGrupos.registrarGrupoPublico(argThat(group ->
+                    group.getNombre().equals(expectedGroup.getNombre()) &&
+                            group.getPassword().equals(expectedGroup.getPassword()) &&
+                            group.getAdministrador().equals(expectedGroup.getAdministrador())
+            ))).thenReturn(CompletableFuture.completedFuture(Either.right(true)));
+
+
+            robot.clickOn("#tfNewPublicGroup").write(groupName);
+            robot.clickOn("#tfnewPasswordGroup").write(groupPassword);
+            robot.clickOn("#btnRegisterPublicGroup");
+
+            verify(gestionGrupos).registrarGrupoPublico(argThat(group ->
+                    group.getNombre().equals(expectedGroup.getNombre()) &&
+                            group.getPassword().equals(expectedGroup.getPassword()) &&
+                            group.getAdministrador().equals(expectedGroup.getAdministrador())
+            ));
+        }
+
+        @Test
+        void registerSecretGroupSuccessful(FxRobot robot) {
+            performLogin(robot, usuario.getNombre(), "ble");
+            String groupName = grupoPrivadoRegister.getNombre();
+            GrupoPrivado expectedGroup = new GrupoPrivado(groupName, usuario);
+            when(gestionGrupos.registrarGrupoPublico(argThat(group ->
+                    group.getNombre().equals(expectedGroup.getNombre()) &&
+                            group.getAdministrador().equals(expectedGroup.getAdministrador())
+            ))).thenReturn(CompletableFuture.completedFuture(Either.right(true)));
+            robot.clickOn("#tfNewSecretGroup").write(groupName);
+            robot.clickOn("#btnRegisterSecretGroup");
+
+            verify(gestionGrupos).registrarGrupoPrivado(argThat(group ->
+                    group.getNombre().equals(expectedGroup.getNombre()) &&
+                            group.getAdministrador().equals(expectedGroup.getAdministrador())
+            ));
+        }
+
+
+        @Test
+        void addNewUserSecretGroupSuccess(FxRobot robot) {
+            // Given
+            performLogin(robot, usuario.getNombre(), "ble");
+            grupoPrivado.getParticipantes().addAll(List.of(receptor1, receptor2, usuario));
+
+            when(gestionGrupos.obtenerGrupoPrivadoPorNombre(grupoPrivado.getNombre()))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(grupoPrivado)));
+            when(gestionMensajes.obtenerYDesencriptarMensajesPrivados(grupoPrivado, usuario, "ble"))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(mensajePrivado1, mensajePrivado2))));
+            when(gestionUsuarios.buscarUsuarioPorNombre(usuarioAdd.getNombre()))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(usuarioAdd)));
+            when(gestionGrupos.agregarMiembroGrupoPrivado(grupoPrivado, usuarioAdd))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(true)));
+
+            // When
+            robot.clickOn("#lvGruposSecretos").clickOn(grupoPrivado.getNombre());
+            robot.clickOn("#tfAgregarUsuarioGrupo").write(usuarioAdd.getNombre());
+            robot.clickOn("#btnAgregarUsuario");
+
+            // Then
+            verify(gestionGrupos).obtenerGrupoPrivadoPorNombre(grupoPrivado.getNombre());
+            verify(gestionMensajes).obtenerYDesencriptarMensajesPrivados(grupoPrivado, usuario, "ble");
+            verify(gestionUsuarios).buscarUsuarioPorNombre(usuarioAdd.getNombre());
+            verify(gestionGrupos).agregarMiembroGrupoPrivado(grupoPrivado, usuarioAdd);
+
+            ListView<String> lvGruposSecretos = robot.lookup("#lvGruposSecretos").query();
+            assertThat(lvGruposSecretos.getItems()).isNotNull();
+            assertThat(lvGruposSecretos.getItems()).hasSize(1);
+            assertThat(lvGruposSecretos.getItems()).containsExactly(grupoPrivado.getNombre());
+
+            ListView<MensajePrivado> lvMensajesGrupoPrivado = robot.lookup("#lvMensajesGrupoPrivado").query();
+            assertThat(lvMensajesGrupoPrivado.getItems()).hasSize(2);
+            assertThat(lvMensajesGrupoPrivado.getItems()).containsExactly(mensajePrivado1, mensajePrivado2);
+
+            ListView<String> lvGrupoParticipantes = robot.lookup("#lvGrupoParticipantes").query();
+            assertThat(lvGrupoParticipantes.getItems()).hasSize(4);
+            assertThat(lvGrupoParticipantes.getItems()).containsExactlyInAnyOrder(
+                    receptor1.getNombre(), receptor2.getNombre(), usuario.getNombre(), usuarioAdd.getNombre());
+        }
+
+        @Test
+        void accessPublicGroupFromListaSuccess(FxRobot robot) {
+            // Given
+            performLogin(robot, usuario.getNombre(), "ble");
+            grupoPublico.getParticipantes().addAll(List.of(receptor1, receptor2));
+
+            when(gestionGrupos.loginGrupoPublico(grupoPublico.getNombre(), grupoPublico.getPassword(), usuario))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(grupoPublico)));
+            when(gestionMensajes.obtenerYDesencriptarMensajesPublicos(grupoPublico))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(mensajePublico1, mensajePublico2))));
+
+            // When
+            ListView<String> lvGruposDeUsuario = robot.lookup("#lvGruposDeUsuario").query();
+            robot.press(KeyCode.CONTROL).clickOn(grupoPublico.getNombre()).release(KeyCode.CONTROL);
+            robot.clickOn("#tfPasswordGroupFromList").write(grupoPublico.getPassword());
+            robot.clickOn("#btnAccederGrupoLista");
+
+            // Then
+            verify(gestionGrupos).loginGrupoPublico(grupoPublico.getNombre(), grupoPublico.getPassword(), usuario);
+            verify(gestionMensajes).obtenerYDesencriptarMensajesPublicos(grupoPublico);
+
+            assertThat(lvGruposDeUsuario.getItems()).isNotNull();
+            assertThat(lvGruposDeUsuario.getItems()).hasSize(1);
+            assertThat(lvGruposDeUsuario.getItems()).containsExactly(grupoPublico.getNombre());
+
+            ListView<MensajePublico> lvMensajesGrupoPublico = robot.lookup("#lvMensajesGrupoPublico").query();
+            assertThat(lvMensajesGrupoPublico.getItems()).hasSize(2);
+            assertThat(lvMensajesGrupoPublico.getItems()).containsExactly(mensajePublico1, mensajePublico2);
+
+            ListView<String> lvGrupoParticipantes = robot.lookup("#lvGrupoParticipantes").query();
+            assertThat(lvGrupoParticipantes.getItems()).hasSize(3);
+            assertThat(lvGrupoParticipantes.getItems()).containsExactly(receptor1.getNombre(), receptor2.getNombre(), usuario.getNombre());
+        }
+
+
+    }
+
+
+    @Nested
+    @DisplayName("Message Sending Tests")
+    class MessageSendingTests {
+        @Test
+        void enviarMensajesGrupoPublicoSuccess(FxRobot robot) {
+            // Given
+            performLogin(robot, usuario.getNombre(), "ble");
+            String groupName = grupoPublicoLogin.getNombre();
+            String groupPassword = grupoPublicoLogin.getPassword();
+            grupoPublicoLogin.getParticipantes().addAll(List.of(receptor1, receptor2, usuario));
+
+            when(gestionGrupos.loginGrupoPublico(groupName, groupPassword, usuario))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(grupoPublicoLogin)));
+            when(gestionMensajes.obtenerYDesencriptarMensajesPublicos(grupoPublicoLogin))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(mensajePublico1, mensajePublico2))));
+
+            // When
+            robot.clickOn("#tfGroup").write(groupName);
+            robot.clickOn("#tfPasswordGroup").write(groupPassword);
+            robot.clickOn("#btnIniciarGroup");
+
+            String newMessageContent = mensajePublicoAdd.getTexto();
+            robot.clickOn("#taContenidoEnviar").write(newMessageContent);
+
+            when(gestionMensajes.addMensajePublico(argThat(msg ->
+                    msg.getTexto().equals(newMessageContent) &&
+                            msg.getOwner().equals(usuario) &&
+                            msg.getDestinatarios().containsAll(grupoPublicoLogin.getParticipantes()) &&
+                            msg.getGroup().equals(grupoPublicoLogin.getNombre())
+            ), eq(grupoPublicoLogin), eq("ble")))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(true)));
+            when(gestionMensajes.obtenerYDesencriptarMensajesPublicos(grupoPublicoLogin))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(mensajePublico1, mensajePublico2, mensajePublicoAdd))));
+
+            robot.clickOn("#btnEnviarMensajeGrupos");
+
+            // Then
+            verify(gestionGrupos).loginGrupoPublico(groupName, groupPassword, usuario);
+            verify(gestionMensajes, times(2)).obtenerYDesencriptarMensajesPublicos(grupoPublicoLogin);
+            verify(gestionMensajes).addMensajePublico(argThat(msg ->
+                    msg.getTexto().equals(newMessageContent) &&
+                            msg.getOwner().equals(usuario) &&
+                            msg.getDestinatarios().containsAll(grupoPublicoLogin.getParticipantes()) &&
+                            msg.getGroup().equals(grupoPublicoLogin.getNombre())
+            ), eq(grupoPublicoLogin), eq("ble"));
+
+            ListView<String> lvGruposDeUsuario = robot.lookup("#lvGruposDeUsuario").query();
+            assertThat(lvGruposDeUsuario.getItems()).isNotNull();
+            assertThat(lvGruposDeUsuario.getItems()).hasSize(2);
+            assertThat(lvGruposDeUsuario.getItems()).containsExactly(grupoPublico.getNombre(), grupoPublicoLogin.getNombre());
+
+            ListView<MensajePublico> lvMensajesGrupoPublico = robot.lookup("#lvMensajesGrupoPublico").query();
+            assertThat(lvMensajesGrupoPublico.getItems()).hasSize(3);
+            assertThat(lvMensajesGrupoPublico.getItems()).containsExactly(mensajePublico1, mensajePublico2, mensajePublicoAdd);
+
+            ListView<String> lvGrupoParticipantes = robot.lookup("#lvGrupoParticipantes").query();
+            assertThat(lvGrupoParticipantes.getItems()).hasSize(3);
+            assertThat(lvGrupoParticipantes.getItems()).containsExactly(receptor1.getNombre(), receptor2.getNombre(), usuario.getNombre());
+        }
+
+
+        @Test
+        void enviarMensajesGrupoPrivadoSuccess(FxRobot robot) {
+            // Given
+            performLogin(robot, usuario.getNombre(), "ble");
+            grupoPrivado.getParticipantes().addAll(List.of(receptor1, receptor2, usuario));
+
+            when(gestionGrupos.obtenerGrupoPrivadoPorNombre(grupoPrivado.getNombre()))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(grupoPrivado)));
+            when(gestionMensajes.obtenerYDesencriptarMensajesPrivados(grupoPrivado, usuario, "ble"))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(mensajePrivado1, mensajePrivado2))));
+
+            // When
+            robot.clickOn("#lvGruposSecretos").clickOn(grupoPrivado.getNombre());
+
+            String newMessageContent = mensajePrivadoAdd.getTexto();
+            robot.clickOn("#taContenidoEnviar").write(newMessageContent);
+
+            ListView<String> lvGrupoParticipantes = robot.lookup("#lvGrupoParticipantes").query();
+            robot.clickOn(lvGrupoParticipantes);
+            robot.press(KeyCode.CONTROL).clickOn(receptor1.getNombre()).clickOn(receptor2.getNombre()).release(KeyCode.CONTROL);
+
+            when(gestionMensajes.addMensajePrivado(argThat(msg ->
+                    msg.getTexto().equals(newMessageContent) &&
+                            msg.getOwner().equals(usuario) &&
+                            msg.getDestinatarios().containsAll(List.of(receptor1, receptor2)) &&
+                            msg.getGroup().equals(grupoPrivado.getNombre())
+            ), eq("ble")))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(true)));
+            when(gestionMensajes.obtenerYDesencriptarMensajesPrivados(grupoPrivado, usuario, "ble"))
+                    .thenReturn(CompletableFuture.completedFuture(Either.right(List.of(mensajePrivado1, mensajePrivado2, mensajePrivadoAdd))));
+
+            robot.clickOn("#btnEnviarMensajeGrupos");
+
+            // Then
+            verify(gestionGrupos).obtenerGrupoPrivadoPorNombre(grupoPrivado.getNombre());
+            verify(gestionMensajes, times(2)).obtenerYDesencriptarMensajesPrivados(grupoPrivado, usuario, "ble");
+            verify(gestionMensajes).addMensajePrivado(argThat(msg ->
+                    msg.getTexto().equals(newMessageContent) &&
+                            msg.getOwner().equals(usuario) &&
+                            msg.getDestinatarios().containsAll(List.of(receptor1, receptor2)) &&
+                            msg.getGroup().equals(grupoPrivado.getNombre())
+            ), eq("ble"));
+
+            ListView<String> lvGruposSecretos = robot.lookup("#lvGruposSecretos").query();
+            assertThat(lvGruposSecretos.getItems()).isNotNull();
+            assertThat(lvGruposSecretos.getItems()).hasSize(1);
+            assertThat(lvGruposSecretos.getItems()).containsExactly(grupoPrivado.getNombre());
+
+            ListView<MensajePrivado> lvMensajesGrupoPrivado = robot.lookup("#lvMensajesGrupoPrivado").query();
+            assertThat(lvMensajesGrupoPrivado.getItems()).hasSize(3);
+            assertThat(lvMensajesGrupoPrivado.getItems()).containsExactly(mensajePrivado1, mensajePrivado2, mensajePrivadoAdd);
+
+            assertThat(lvGrupoParticipantes.getItems()).hasSize(3);
+            assertThat(lvGrupoParticipantes.getItems()).containsExactlyInAnyOrder(receptor1.getNombre(), receptor2.getNombre(), usuario.getNombre());
+        }
+
+    }
+}

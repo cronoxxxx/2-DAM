@@ -1,0 +1,21 @@
+[
+  {
+    "participantes": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      },
+      {
+        "nombre": "adrian2"
+      }
+    ],
+    "nombre": "publico",
+    "password": "$2a$10$IMedxZx3psGpgt0TGDnqUe/f924.6VD6Qd8KMEP1v9.Lc19MmJ5X6",
+    "administrador": {
+      "nombre": "ble"
+    },
+    "fechaCreacion": "2024-11-28T23:50:38.916308600"
+  }
+]

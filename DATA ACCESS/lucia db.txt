@@ -1,0 +1,5 @@
+docker run -p 3306:3306 --name root -e MYSQL_ROOT_PASSWORD=doge7777xd -e MYSQL_DATABASE=hospital -d mysql
+
+
+
+coge como ejemplo estos códigos e implementa la lógica para dar un código claro limpio y conciso  (borrar navigationevent)

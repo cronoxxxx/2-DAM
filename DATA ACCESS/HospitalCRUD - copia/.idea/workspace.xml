@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2fd3686-c5a2-4005-8833-95a8bca57029" name="Changes" comment="solo falta acceso a datos">
+      <change afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/Constantes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/doctors.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/medrecords.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/patients.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/HospitalCrudApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/config/Configuration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/LocalDateAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/files/DoctorRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/files/PatientRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/jdbc/MedRecordRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/jdbc/PatientRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/spring/CredentialRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/spring/MedRecordRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/mappers/spring/PatientRowMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/model/Credential.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/model/Doctor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/model/Medication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/CredentialRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/DoctorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/PatientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/files/TxtDoctorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/files/TxtPatientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/files/XMLMedRecordRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/jdbc/JDBCMedRecordRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/jdbc/JDBCPatientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/jdbc/JDBCPaymentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/jdbc/utils/DBConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/jdbc/utils/DBConnectionPool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/jdbc/utils/SQLQueries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/springjdbc/SpringAppointmentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/springjdbc/SpringCredentialRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/springjdbc/SpringDoctorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/springjdbc/SpringMedRecordRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/springjdbc/SpringPatientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/statics/StaticCredentialRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/statics/StaticDoctorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/statics/StaticMedRecordRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/repositories/statics/StaticPatientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/xml/MedRecordXML.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/dao/xml/MedRecordsXML.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/errors/DuplicatedUserError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/errors/ForeignKeyConstraintError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/model/CredentialUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/model/DoctorUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/model/MedRecordUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/model/PatientUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/services/CredentialService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/services/DoctorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/ui/RestCredential.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/ui/RestDoctor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/ui/RestMedicalRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/ui/RestPatient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/properties.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/properties.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/hospitalcrud/HospitalCrudApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/.idea/deploymentTargetSelector.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/MovieApp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/MovieApp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/data/remote/NetworkResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/data/remote/NetworkResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaMain/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaMain/MainFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaMain/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaMain/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaPeliculas/PeliculaFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaPeliculas/PeliculaFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaPeliculas/PeliculaViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../MOVILES/MoviesApp_AdrianSaavedra/app/src/main/java/com/example/moviesapp_adriansaavedra/ui/pantallaPeliculas/PeliculaViewModel.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="backup" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RESET_MODE" value="KEEP" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cronoxxxx&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cronoxxxx/nuevo-2DAM&quot;,
+    &quot;accountId&quot;: &quot;56c879e7-ba2b-430f-a921-b2c6b5cd53dc&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/openjdk-23/lib/src.zip!/java.sql/java/sql/Date.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-jdbc/6.1.13/spring-jdbc-6.1.13.jar!/org/springframework/jdbc/support/KeyHolder.class" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2mVzpNY7DDreEjjcgYb86Xdiubj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Spring Boot.HospitalCrudApplication.executor": "Run",
+    "ToolWindowRun.ShowToolbar": "false",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "backup",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/2DAM/nuevo-2DAM/DATA ACCESS/HospitalCRUD2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Adrian\Desktop\2DAM\nuevo-2DAM\DATA ACCESS\HospitalCRUD\src\main\resources" />
+      <recent name="C:\Users\Adrian\Desktop\2DAM\nuevo-2DAM\DATA ACCESS\HospitalCRUD" />
+      <recent name="C:\Users\Adrian\Desktop\2DAM\nuevo-2DAM\DATA ACCESS\HospitalCRUD\src\main\java\com\example\hospitalcrud\dao\config" />
+      <recent name="C:\Users\Adrian\Desktop\2DAM\nuevo-2DAM\DATA ACCESS\HospitalCRUD\src\main\java\com\example\hospitalcrud\domain\model" />
+      <recent name="C:\Users\Adrian\Desktop\2DAM\nuevo-2DAM\DATA ACCESS\HospitalCRUD\src\main\java\com\example\hospitalcrud\ui" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.HospitalCrudApplication">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.hospitalcrud.dao.repositories.TextFiles.Main" />
+      <module name="HospitalCRUD" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.hospitalcrud.dao.repositories.files.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HospitalCrudApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="HospitalCRUD" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.hospitalcrud.HospitalCrudApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2fd3686-c5a2-4005-8833-95a8bca57029" name="Changes" comment="" />
+      <created>1727176714971</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727176714971</updated>
+      <workItem from="1727176716022" duration="2020000" />
+      <workItem from="1727201144948" duration="202000" />
+      <workItem from="1727258035698" duration="5478000" />
+      <workItem from="1727264273575" duration="2294000" />
+      <workItem from="1727351540078" duration="1771000" />
+      <workItem from="1727363452726" duration="902000" />
+      <workItem from="1727775627396" duration="8143000" />
+      <workItem from="1727797004721" duration="5276000" />
+      <workItem from="1727851582628" duration="12079000" />
+      <workItem from="1727871079113" duration="73000" />
+      <workItem from="1727943934565" duration="3636000" />
+      <workItem from="1727955205722" duration="2389000" />
+      <workItem from="1727957652427" duration="686000" />
+      <workItem from="1727958375531" duration="21000" />
+      <workItem from="1727958451588" duration="107000" />
+      <workItem from="1727989878881" duration="234000" />
+      <workItem from="1728382513111" duration="1961000" />
+      <workItem from="1728467411757" duration="6344000" />
+      <workItem from="1728485687457" duration="2962000" />
+      <workItem from="1728491080763" duration="101000" />
+      <workItem from="1728491194786" duration="108000" />
+      <workItem from="1728560121838" duration="2243000" />
+      <workItem from="1728579828300" duration="6237000" />
+      <workItem from="1728635378155" duration="32000" />
+      <workItem from="1728930342515" duration="5622000" />
+      <workItem from="1728985884691" duration="7552000" />
+      <workItem from="1729072644020" duration="13146000" />
+      <workItem from="1729165129560" duration="2412000" />
+      <workItem from="1729182445407" duration="1930000" />
+      <workItem from="1729235728512" duration="3718000" />
+      <workItem from="1729443094490" duration="594000" />
+      <workItem from="1729492957071" duration="79000" />
+      <workItem from="1729579570204" duration="636000" />
+      <workItem from="1729589989690" duration="8838000" />
+      <workItem from="1729622100693" duration="1627000" />
+      <workItem from="1729676999335" duration="977000" />
+      <workItem from="1729678061653" duration="135000" />
+      <workItem from="1729681371687" duration="3436000" />
+      <workItem from="1729700949618" duration="1611000" />
+      <workItem from="1729702673305" duration="2231000" />
+      <workItem from="1729753550275" duration="3142000" />
+      <workItem from="1729957313403" duration="3298000" />
+      <workItem from="1729964935245" duration="609000" />
+      <workItem from="1730061537970" duration="1362000" />
+      <workItem from="1730066481411" duration="1612000" />
+      <workItem from="1730115984541" duration="817000" />
+      <workItem from="1730133862890" duration="641000" />
+      <workItem from="1730199383313" duration="7495000" />
+      <workItem from="1730241944594" duration="320000" />
+      <workItem from="1730242277659" duration="6467000" />
+      <workItem from="1730276653292" duration="12800000" />
+      <workItem from="1730318995344" duration="741000" />
+      <workItem from="1730376294396" duration="3020000" />
+      <workItem from="1730397220152" duration="2695000" />
+      <workItem from="1730569770035" duration="385000" />
+      <workItem from="1730803402272" duration="6757000" />
+      <workItem from="1730828338288" duration="848000" />
+      <workItem from="1730879025911" duration="14763000" />
+      <workItem from="1730905411233" duration="8781000" />
+      <workItem from="1730966539983" duration="13000" />
+      <workItem from="1730980739480" duration="1681000" />
+      <workItem from="1730983362717" duration="2280000" />
+      <workItem from="1731051256606" duration="1510000" />
+      <workItem from="1731161166524" duration="8082000" />
+      <workItem from="1731257668845" duration="609000" />
+      <workItem from="1731412080956" duration="6937000" />
+      <workItem from="1731494761260" duration="385000" />
+      <workItem from="1731495228625" duration="8412000" />
+      <workItem from="1731587525327" duration="3273000" />
+      <workItem from="1731599918649" duration="725000" />
+      <workItem from="1731802104260" duration="698000" />
+      <workItem from="1731915800248" duration="70000" />
+      <workItem from="1731915885292" duration="14000" />
+      <workItem from="1731915916337" duration="839000" />
+    </task>
+    <task id="LOCAL-00001" summary="adas">
+      <option name="closed" value="true" />
+      <created>1727176732315</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727176732315</updated>
+    </task>
+    <task id="LOCAL-00002" summary="adas">
+      <option name="closed" value="true" />
+      <created>1730242705357</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730242705357</updated>
+    </task>
+    <task id="LOCAL-00003" summary="adas">
+      <option name="closed" value="true" />
+      <created>1730278530303</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730278530303</updated>
+    </task>
+    <task id="LOCAL-00004" summary="completar medrecord">
+      <option name="closed" value="true" />
+      <created>1730898565702</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730898565703</updated>
+    </task>
+    <task id="LOCAL-00005" summary="completar medrecord">
+      <option name="closed" value="true" />
+      <created>1730898587713</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730898587713</updated>
+    </task>
+    <task id="LOCAL-00006" summary="completar medrecord y encriptacion finalizada">
+      <option name="closed" value="true" />
+      <created>1730917993067</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730917993067</updated>
+    </task>
+    <task id="LOCAL-00007" summary="solo falta acceso a datos">
+      <option name="closed" value="true" />
+      <created>1731051329813</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731051329813</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="prueba1" />
+    <MESSAGE value="adas" />
+    <MESSAGE value="completar medrecord" />
+    <MESSAGE value="completar medrecord y encriptacion finalizada" />
+    <MESSAGE value="solo falta acceso a datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="solo falta acceso a datos" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

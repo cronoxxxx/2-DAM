@@ -1,0 +1,62 @@
+package com.example.buzonfxspring_adriansaavedra.dao;
+
+import com.example.buzonfxspring_adriansaavedra.common.Constantes;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorApp;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorAppDatosNoValidos;
+import com.example.buzonfxspring_adriansaavedra.domain.model.GrupoPrivado;
+import com.example.buzonfxspring_adriansaavedra.domain.model.GrupoPublico;
+import com.example.buzonfxspring_adriansaavedra.domain.model.MensajePrivado;
+import com.example.buzonfxspring_adriansaavedra.domain.model.MensajePublico;
+import io.vavr.control.Either;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Objects;
+
+@Repository
+public class DaoMensajes {
+    private final Database database;
+
+    public DaoMensajes(Database mensajes) {
+        this.database = mensajes;
+    }
+
+     
+    public Either<ErrorApp, List<MensajePublico>> obtenerMensajesDeGrupoPublico(GrupoPublico grupoPublico) {
+        return database.loadMensajesPublicos()
+                .map(mensajes -> mensajes.stream()
+                        .filter(Objects::nonNull)
+                        .filter(m -> m.getGroup() != null && !m.getGroup().isEmpty())
+                        .filter(m -> m.getGroup().equals(grupoPublico.getNombre()))
+                        .toList())
+                .flatMap(Either::right);
+    }
+
+     
+    public Either<ErrorApp, List<MensajePrivado>> obtenerMensajesDeGrupoPrivado(String grupoPrivado) {
+        return database.loadMensajesPrivados().map(
+                mensajes -> mensajes.stream()
+                        .filter(m -> m.getGroup() != null && !m.getGroup().isEmpty())
+                        .filter(m -> m.getGroup().equals(grupoPrivado))
+                        .toList()
+        ).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_AL_OBTENER_MENSAJES));
+    }
+
+     
+    public Either<ErrorApp, Boolean> addMensajesPublicos(MensajePublico mensajePublico) {
+        return database.loadMensajesPublicos()
+                .flatMap(mensajes -> {
+                    mensajes.add(mensajePublico);
+                    return database.saveMensajesPublicos(mensajes);
+
+                }) .mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_AL_AGREGAR_MENSAJE));
+    }
+
+     
+    public Either<ErrorApp, Boolean> addMensajesPrivados(MensajePrivado mensajePrivado) {
+        return database.loadMensajesPrivados()
+                .flatMap(mensajes -> {
+                    mensajes.add(mensajePrivado);
+                    return database.saveMensajesPrivados(mensajes);
+                }).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_AL_AGREGAR_MENSAJE));
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "node2",
+  "version": "1.0.0",
+  "description": "file system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "adrian"
+  },
+  "author": "adrian saavedra",
+  "license": "ISC"
+}

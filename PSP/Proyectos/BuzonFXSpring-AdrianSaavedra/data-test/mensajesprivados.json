@@ -1,0 +1,22 @@
+[
+  {
+    "mensajesPrivadosUserClave": [
+      {
+        "user": "ble",
+        "clave": "BAErrcdXS2gRkLAYdmmM-SoYdJ_VTnaIuvUmFTiPRWfER-Kc3gmQcPB1Kr9kylFPnx7aT37L9cNuuLaxF_lwGUuHHQC2yo7wQjZZElTgSEfGI_tMCrHGzrTlONbvb3F8BC8DFz0GwABFCjwNE3skt1pjbnIwVf6JiWXbGO3TcDcFYYAC1KvnIvwiHkNJ6nytoUaxd-ih3tB_XDZg51adGDEis0Zg7X5TfQWPWBLtSj-TB_-koBpy_dStj17aCogKNLy4gs4\u003d"
+      }
+    ],
+    "texto": "9PdTRzjqOz7cUfUdS7UCssjvIZNwv7FfasuXRpywOlkyp0hnMtkVa_wHi8jgY_clDRUvt-8\u003d",
+    "fecha": "2024-11-28T23:51:43.476386100",
+    "owner": {
+      "nombre": "ble"
+    },
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      }
+    ],
+    "group": "secreto",
+    "firma": "MIGIAkIAi9kHtbYXxU0HXmpXp4h7kwbGot1EVS20bE5Pc6So5uJnFG+ySTFPuVd+v564wh4QmRJ7VlL3AKjilFey6TnXOkACQgGy9xz16VRqFNQMv7hCtiEDmdGKZ0iUJvh8XLFraH15JQIeeQNE+zr8Fy/8HzTNtGO21/NaLJ/+Vdd60MheQoBK1A\u003d\u003d"
+  }
+]

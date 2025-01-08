@@ -1,0 +1,44 @@
+<dungeon>
+    <room id="R0">
+        <door name="Norte" dest="R1"/>
+        <door name="Este" dest="R3"/>
+        <description>Entrada de la mazmorra</description>
+    </room>
+    <room id="R1">
+        <door name="Sur" dest="R0"/>
+        <door name="Este" dest="R2"/>
+        <door name="Oeste" dest="R4"/>
+        <description>Sala de guardia</description>
+    </room>
+    <room id="R2">
+        <door name="Oeste" dest="R1"/>
+        <door name="Sur" dest="R3"/>
+        <description>Almacén</description>
+    </room>
+    <room id="R3">
+        <door name="Oeste" dest="R0"/>
+        <door name="Norte" dest="R2"/>
+        <door name="Este" dest="R5"/>
+        <description>Sala común</description>
+    </room>
+    <room id="R4">
+        <door name="Este" dest="R1"/>
+        <door name="Sur" dest="R6"/>
+        <description>Habitación oscura</description>
+    </room>
+    <room id="R5">
+        <door name="Oeste" dest="R3"/>
+        <door name="Norte" dest="R7"/>
+        <description>Cocina</description>
+    </room>
+    <room id="R6">
+        <door name="Norte" dest="R4"/>
+        <door name="Este" dest="R7"/>
+        <description>Cámara del tesoro</description>
+    </room>
+    <room id="R7">
+        <door name="Oeste" dest="R6"/>
+        <door name="Sur" dest="R5"/>
+        <description>Sala del trono</description>
+    </room>
+</dungeon>

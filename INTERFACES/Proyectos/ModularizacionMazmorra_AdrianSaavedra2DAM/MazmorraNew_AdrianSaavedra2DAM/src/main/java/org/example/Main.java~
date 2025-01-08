@@ -1,0 +1,90 @@
+package org.example;
+
+import org.example.impl.MazmorraLoad;
+import org.example.impl.MazmorraLog;
+import org.example.impl.MazmorraTree;
+import org.example.moves.MazmorraMove;
+import org.example.moves.MazmorraMoveListener;
+import org.example.model.Dungeon;
+import org.example.model.Room;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = createMainFrame();
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        frame.add(mainPanel);
+
+        JMenuBar menuBar = createMenuBar();
+        frame.setJMenuBar(menuBar);
+
+        MazmorraLoad mLoad = new MazmorraLoad();
+        MazmorraLog mLog = new MazmorraLog();
+        MazmorraTree mTree = new MazmorraTree();
+        //avisa a mMove cuando cambia de habitación
+        MazmorraMoveListener listener = room -> mLog.addLogMessage("Has ido a: " + room.getId() + "\n");
+        MazmorraMove mMove = new MazmorraMove(listener);
+
+        JSplitPane splitPane = createSplitPane(mMove, mLog, mTree);
+        mainPanel.add(splitPane, BorderLayout.CENTER);
+
+        setupMenuActions(menuBar, mLoad, mLog, mMove, mTree, splitPane, mainPanel);
+
+        frame.setVisible(true);
+    }
+
+    private static JFrame createMainFrame() {
+        JFrame frame = new JFrame("Mazmorras");
+        frame.setSize(1280, 720);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        return frame;
+    }
+
+    private static JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Opciones");
+        menu.add(new JMenuItem("Salir"));
+        menu.add(new JMenuItem("Load"));
+        menuBar.add(menu);
+        return menuBar;
+    }
+
+    private static JSplitPane createSplitPane(MazmorraMove mMove, MazmorraLog mLog, MazmorraTree mTree) {
+        JSplitPane verticalSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, mMove, mLog);
+        verticalSplit.setDividerLocation(300);
+
+        JSplitPane horizontalSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mTree, verticalSplit);
+        horizontalSplit.setDividerLocation(200);
+
+        return horizontalSplit;
+    }
+
+    private static void setupMenuActions(JMenuBar menuBar, MazmorraLoad mLoad, MazmorraLog mLog,
+                                         MazmorraMove mMove, MazmorraTree mTree,
+                                         JSplitPane splitPane, JPanel mainPanel) {
+        JMenu menu = menuBar.getMenu(0);
+        menu.getItem(0).addActionListener(e -> System.exit(0));
+        menu.getItem(1).addActionListener(e -> loadDungeon(mLoad, mLog, mMove, mTree, splitPane, mainPanel));
+    }
+
+    private static void loadDungeon(MazmorraLoad mLoad, MazmorraLog mLog, MazmorraMove mMove,
+                                    MazmorraTree mTree, JSplitPane splitPane, JPanel mainPanel) {
+        mLog.clearLog();
+        mLoad.loadXMLFile();
+        Dungeon dungeon = mLoad.getDungeon();
+        if (dungeon != null && !dungeon.getRooms().isEmpty()) {
+            List<Room> rooms = dungeon.getRooms();
+            mMove.setRooms(rooms);
+            mMove.loadRoom(rooms.getFirst());
+            mLog.addLogMessage("Comienza tu aventura en la habitación " + rooms.getFirst().getId() + "\n");
+            splitPane.setLeftComponent(mTree.createJTree(dungeon));
+            mainPanel.updateUI();
+        }
+    }
+}

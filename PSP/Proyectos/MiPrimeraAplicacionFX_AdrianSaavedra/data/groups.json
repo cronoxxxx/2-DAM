@@ -1,0 +1,263 @@
+[
+  {
+    "participantes": [
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      },
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      }
+    ],
+    "nombre": "grupoa",
+    "password": "passworda",
+    "administrador": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-07T00:34:44.339191200"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "usuario1",
+        "password": "password1"
+      },
+      {
+        "nombre": "usuario2",
+        "password": "password2"
+      },
+      {
+        "nombre": "usuarioa",
+        "password": "passworda"
+      },
+      {
+        "nombre": "user17",
+        "password": "3333"
+      },
+      {
+        "nombre": "user16",
+        "password": "3333"
+      },
+      {
+        "nombre": "user15",
+        "password": "2222"
+      },
+      {
+        "nombre": "user14",
+        "password": "2222"
+      },
+      {
+        "nombre": "user12",
+        "password": "1111"
+      }
+    ],
+    "nombre": "grupob",
+    "password": "passwordb",
+    "administrador": {
+      "nombre": "usuario3",
+      "password": "password3"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-10-05T10:30:24.404016"
+  },
+  {
+    "participantes": [],
+    "nombre": "grupoc",
+    "password": "passwordc",
+    "administrador": {
+      "nombre": "usuario4",
+      "password": "password4"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-07T10:30:24.404016"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "usuario5",
+        "password": "password5"
+      },
+      {
+        "nombre": "usuario6",
+        "password": "password6"
+      }
+    ],
+    "nombre": "grupod",
+    "password": "passwordd",
+    "administrador": {
+      "nombre": "usuario7",
+      "password": "password7"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-10-04T10:30:24.404016"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ],
+    "nombre": "grupoE",
+    "password": "passworde",
+    "administrador": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-07T00:41:47.873906600"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "user15",
+        "password": "2222"
+      },
+      {
+        "nombre": "user16",
+        "password": "3333"
+      },
+      {
+        "nombre": "user13",
+        "password": "2222"
+      },
+      {
+        "nombre": "user12",
+        "password": "1111"
+      },
+      {
+        "nombre": "user17",
+        "password": "3333"
+      }
+    ],
+    "nombre": "pros",
+    "password": "pros",
+    "administrador": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-10-06T15:23:14.932403"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "usuario5",
+        "password": "password5"
+      },
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ],
+    "nombre": "hola",
+    "password": "hola",
+    "administrador": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-06T15:29:38.120995800"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "user17",
+        "password": "3333"
+      }
+    ],
+    "nombre": "holasecreto",
+    "password": "holasecreto",
+    "administrador": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-10-06T15:29:48.759423"
+  },
+  {
+    "participantes": [],
+    "nombre": "pablo",
+    "password": "pablo",
+    "administrador": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-07T00:02:34.442392300"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      }
+    ],
+    "nombre": "pablosecreto",
+    "password": "pablosecreto",
+    "administrador": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-07T01:03:46.181201500"
+  },
+  {
+    "participantes": [],
+    "nombre": "otro",
+    "password": "otro",
+    "administrador": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-10-07T00:20:21.559212900"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "adrian",
+        "password": "messi"
+      },
+      {
+        "nombre": "user12",
+        "password": "1111"
+      },
+      {
+        "nombre": "user13",
+        "password": "2222"
+      },
+      {
+        "nombre": "user14",
+        "password": "2222"
+      }
+    ],
+    "nombre": "otrosecreto",
+    "password": "otrosecreto",
+    "administrador": {
+      "nombre": "toreto",
+      "password": "toreto"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-10-07T00:20:30.577105600"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "toreto",
+        "password": "toreto"
+      }
+    ],
+    "nombre": "vela",
+    "password": "vela",
+    "administrador": {
+      "nombre": "adrian",
+      "password": "messi"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-10-07T18:29:14.167839600"
+  }
+]

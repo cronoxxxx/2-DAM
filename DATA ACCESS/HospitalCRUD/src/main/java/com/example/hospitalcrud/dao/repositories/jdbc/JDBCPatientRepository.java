@@ -1,0 +1,202 @@
+package com.example.hospitalcrud.dao.repositories.jdbc;
+
+import com.example.hospitalcrud.dao.repositories.jdbc.utils.DBConnectionPool;
+import com.example.hospitalcrud.dao.repositories.jdbc.utils.SQLQueries;
+import com.example.hospitalcrud.dao.mappers.jdbc.PatientRowMapper;
+import com.example.hospitalcrud.dao.model.Patient;
+import com.example.hospitalcrud.dao.repositories.PatientRepository;
+import com.example.hospitalcrud.domain.errors.DuplicatedUserError;
+import com.example.hospitalcrud.domain.errors.ForeignKeyConstraintError;
+import lombok.Getter;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+@Log4j2
+@Getter
+@Repository
+@Profile("files")
+public class JDBCPatientRepository implements PatientRepository {
+    private final DBConnectionPool dbConnection;
+    private final PatientRowMapper patientRowMapper;
+
+
+    public JDBCPatientRepository(DBConnectionPool dbConnection, PatientRowMapper patientRowMapper) {
+        this.dbConnection = dbConnection;
+        this.patientRowMapper = patientRowMapper;
+    }
+
+
+    @Override
+    public List<Patient> getAll() {
+        List<Patient> patients = new ArrayList<>();
+        String sql = SQLQueries.GET_ALL_PATIENTS;
+
+        try (Connection conn = dbConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Patient patient = patientRowMapper.mapRow(rs);
+                patients.add(patient);
+            }
+        } catch (SQLException e) {
+            throw new ForeignKeyConstraintError("Error getting all patients: " + e.getMessage());
+        }
+        return patients;
+    }
+
+
+    @Override
+    public int add(Patient patient) {
+        int patientId;
+        String sqlPatient = SQLQueries.ADD_PATIENT;
+        String sqlCredential = SQLQueries.ADD_USER_LOGIN;
+        Connection conn = null;
+        try {
+            conn = dbConnection.getConnection();
+            conn.setAutoCommit(false);
+            // Insertar paciente
+            try (PreparedStatement pstmtPatient = conn.prepareStatement(sqlPatient, Statement.RETURN_GENERATED_KEYS)) {
+                pstmtPatient.setString(1, patient.getName());
+                pstmtPatient.setDate(2, Date.valueOf(patient.getBirthday()));
+                pstmtPatient.setString(3, patient.getPhone());
+                int affectedRows = pstmtPatient.executeUpdate();
+
+                if (affectedRows == 0) {
+                    throw new DuplicatedUserError("Creating patient failed, no rows affected.");
+                }
+                ResultSet generatedKeys = pstmtPatient.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    patientId = generatedKeys.getInt(1);
+                } else {
+                    throw new ForeignKeyConstraintError("Creating patient failed, no ID obtained.");
+                }
+            }
+            try (PreparedStatement pstmtCredential = conn.prepareStatement(sqlCredential)) {
+                pstmtCredential.setString(1, patient.getCredential().getUserName());
+                pstmtCredential.setString(2, patient.getCredential().getPassword());
+                pstmtCredential.setInt(3, patientId);
+                int credentialRows = pstmtCredential.executeUpdate();
+
+                if (credentialRows == 0) {
+                    throw new ForeignKeyConstraintError("Creating user login failed, no rows affected.");
+                }
+            }
+
+            conn.commit();
+            return patientId;
+
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new ForeignKeyConstraintError("Error rolling back transaction: " + ex.getMessage());
+            }
+            throw new ForeignKeyConstraintError("Error adding patient: " + e.getMessage());
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException e) {
+                    log.info("Error closing connection: {}", e.getMessage());
+                }
+            }
+        }
+    }
+
+    @Override
+    public void delete(int id, boolean confirm) {
+
+
+        Connection conn = null;
+        try {
+            conn = dbConnection.getConnection();
+            conn.setAutoCommit(false);
+            try (PreparedStatement pstmt = conn.prepareStatement(SQLQueries.DELETE_PAYMENTS_BY_PATIENT_ID)) {
+                pstmt.setInt(1, id);
+                pstmt.executeUpdate();
+            }
+            // Eliminar citas
+            try (PreparedStatement pstmt = conn.prepareStatement(SQLQueries.DELETE_APPOINTMENTS_BY_PATIENT_ID)) {
+                pstmt.setInt(1, id);
+                pstmt.executeUpdate();
+            }
+
+
+            try (PreparedStatement pstmt = conn.prepareStatement(SQLQueries.DELETE_USER_LOGIN)) {
+                pstmt.setInt(1, id);
+                pstmt.executeUpdate();
+            }
+
+            try (PreparedStatement pstmt = conn.prepareStatement(SQLQueries.DELETE_PATIENT)) {
+                pstmt.setInt(1, id);
+                int affectedRows = pstmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new ForeignKeyConstraintError("Deleting patient failed, no rows affected.");
+                }
+            }
+
+            conn.commit();
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new ForeignKeyConstraintError("Error deleting patient and related data: " + e.getMessage());
+            }
+        } finally {
+            if (conn != null) {
+
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException e) {
+                    log.info("Error adding: {}", e.getMessage());
+                }
+
+
+            }
+        }
+    }
+
+    @Override
+    public void update(Patient patient) {
+        Connection conn = null;
+        try {
+
+            conn = dbConnection.getConnection();
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement pstmt = conn.prepareStatement(SQLQueries.UPDATE_PATIENT)) {
+                pstmt.setString(1, patient.getName());
+                pstmt.setDate(2, Date.valueOf(patient.getBirthday()));
+                pstmt.setString(3, patient.getPhone());
+                pstmt.setInt(4, patient.getId());
+                int affectedRows = pstmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new ForeignKeyConstraintError("Updating patient failed, no rows affected.");
+                }
+            }
+            conn.commit();
+        } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new ForeignKeyConstraintError("Error updating patient: " + e.getMessage());
+            }
+
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                } catch (SQLException e) {
+                    log.info("Error updating: {}", e.getMessage());
+                }
+            }
+        }
+    }
+}

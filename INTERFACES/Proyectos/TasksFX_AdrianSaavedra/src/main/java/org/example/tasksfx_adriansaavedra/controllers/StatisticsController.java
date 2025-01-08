@@ -1,0 +1,62 @@
+package org.example.tasksfx_adriansaavedra.controllers;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.chart.PieChart;
+import javafx.collections.ObservableList;
+import javafx.scene.input.MouseEvent;
+import org.example.tasksfx_adriansaavedra.model.Task;
+
+public class StatisticsController {
+
+    @FXML private Label totalTasksLabel;
+    @FXML private Label startedTasksLabel;
+    @FXML private Label completedTasksLabel;
+    @FXML private Label inProgressTasksLabel;
+    @FXML private PieChart taskPieChart;
+
+    private Tooltip tooltip;
+
+    @FXML
+    public void initialize() {
+        tooltip = new Tooltip();
+    }
+
+    public void setTasks(ObservableList<Task> tasks) {
+        int total = tasks.size();
+        int started = 0;
+        int completed = 0;
+        int inProgress = 0;
+
+        for (Task task : tasks) {
+            if (task.getCompletionPercentage() > 0) started++;
+            if (task.getCompletionPercentage() == 100) completed++;
+            if (task.getCompletionPercentage() > 0 && task.getCompletionPercentage() < 100) inProgress++;
+        }
+
+        totalTasksLabel.setText("Total Tasks: " + total);
+        startedTasksLabel.setText("Started Tasks: " + started);
+        completedTasksLabel.setText("Completed Tasks: " + completed);
+        inProgressTasksLabel.setText("In Progress Tasks: " + inProgress);
+
+        updatePieChart(started, completed, inProgress);
+    }
+
+    private void updatePieChart(int started, int completed, int inProgress) {
+        taskPieChart.getData().clear();
+
+        PieChart.Data startedData = new PieChart.Data("Started Tasks", started);
+        PieChart.Data completedData = new PieChart.Data("Completed Tasks", completed);
+        PieChart.Data inProgressData = new PieChart.Data("In Progress Tasks", inProgress);
+
+        taskPieChart.getData().addAll(startedData, completedData, inProgressData);
+
+        for (final PieChart.Data data : taskPieChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> {
+                tooltip.setText(String.format("%s: %.0f", data.getName(), data.getPieValue()));
+                tooltip.show(data.getNode(), e.getScreenX() + 10, e.getScreenY() + 10);
+            });
+            data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e -> tooltip.hide());
+        }
+    }
+}

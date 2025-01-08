@@ -1,0 +1,4 @@
+#Thu Oct 10 21:25:01 CEST 2024
+nextId=12
+pathDoctors=data/doctors.csv
+pathPatients=data/patients.csv

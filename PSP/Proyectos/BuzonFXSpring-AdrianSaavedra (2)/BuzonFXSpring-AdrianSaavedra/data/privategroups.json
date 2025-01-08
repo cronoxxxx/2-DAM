@@ -1,0 +1,20 @@
+[
+  {
+    "participantes": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      },
+      {
+        "nombre": "adrian2"
+      }
+    ],
+    "nombre": "secreto",
+    "administrador": {
+      "nombre": "ble"
+    },
+    "fechaCreacion": "2024-11-28T23:50:42.385053100"
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "nombre": "general",
+    "password": "123",
+    "esPublico": true,
+    "participantes": [
+      "adrian",
+      "ana",
+      "juanca"
+    ],
+    "mensajes": [
+      {
+        "remitente": "adrian",
+        "texto": "aaa"
+      },
+      {
+        "remitente": "adrian",
+        "texto": "que tal sassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+      },
+      {
+        "remitente": "juanca",
+        "texto": "hola gente"
+      },
+      {
+        "remitente": "juanca",
+        "texto": "aa"
+      },
+      {
+        "remitente": "adrian",
+        "texto": "asdasd"
+      },
+      {
+        "remitente": "adrian",
+        "texto": "asdasd"
+      },
+      {
+        "remitente": "adrian",
+        "texto": "aaa"
+      }
+    ]
+  },
+  {
+    "nombre": "amigos",
+    "password": "123",
+    "esPublico": false,
+    "participantes": [],
+    "mensajes": []
+  },
+  {
+    "nombre": "familia",
+    "password": "123",
+    "esPublico": false,
+    "participantes": [],
+    "mensajes": []
+  },
+  {
+    "nombre": "1",
+    "password": "1",
+    "esPublico": false,
+    "participantes": [
+      "juanca"
+    ],
+    "mensajes": [
+      {
+        "remitente": "adrian",
+        "texto": "hola juanca"
+      }
+    ]
+  },
+  {
+    "nombre": "patata",
+    "password": "patata",
+    "esPublico": true,
+    "participantes": [
+      "adrian"
+    ],
+    "mensajes": []
+  },
+  {
+    "nombre": "fentanilo",
+    "password": "fentanilo",
+    "esPublico": false,
+    "participantes": [
+      "adrian"
+    ],
+    "mensajes": [
+      {
+        "remitente": "manu",
+        "texto": "hola esto es un grupo de droga"
+      }
+    ]
+  }
+]

@@ -1,0 +1,146 @@
+package com.example.buzonfxspring_adriansaavedra.dao;
+
+import com.example.buzonfxspring_adriansaavedra.common.config.Configuracion;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.ErrorApp;
+import com.example.buzonfxspring_adriansaavedra.domain.model.*;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import io.vavr.control.Either;
+import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
+@Log4j2
+@ExtendWith(MockitoExtension.class)
+class DaoMensajesTest {
+    @InjectMocks
+   private Configuracion configuracion;
+
+    @InjectMocks
+   private DaoMensajes daoMensajes;
+
+    @Mock
+   private Database database;
+
+    private Gson gson;
+
+    @BeforeEach
+    void setUp() {
+        gson = new GsonBuilder().setPrettyPrinting()
+                .registerTypeAdapter(LocalDateTime.class, (JsonDeserializer<LocalDateTime>) (json, type, jsonDeserializationContext) -> LocalDateTime.parse(json.getAsJsonPrimitive().getAsString()))
+                .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (localDateTime, type, jsonSerializationContext) -> new JsonPrimitive(localDateTime.toString()))
+                .registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (json, type, jsonDeserializationContext) -> LocalDate.parse(json.getAsJsonPrimitive().getAsString()))
+                .registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (localDate, type, jsonSerializationContext) -> new JsonPrimitive(localDate.toString())
+                ).create();
+    }
+
+    @Nested
+    @DisplayName("Agregar mensajes")
+    class AgregarMensajes {
+        @Test
+        void addMensajesPublicos() {
+            // Given
+            MensajePublico mensajePublico = new MensajePublico("Test", LocalDateTime.now(), new Usuario("user"), List.of(new Usuario("recipient")), "group");
+            List<MensajePublico> mensajes = loadMensajesPublicosFromJson(configuracion.getPathJsonPublicMessages());
+            when(database.loadMensajesPublicos()).thenReturn(Either.right(mensajes));
+            when(database.saveMensajesPublicos(anyList())).thenReturn(Either.right(true));
+
+            // When
+            Either<ErrorApp, Boolean> result = daoMensajes.addMensajesPublicos(mensajePublico);
+
+            // Then
+            assertThat(result).isEqualTo(Either.right(true));
+            assertThat(mensajes).contains(mensajePublico);
+            verify(database).saveMensajesPublicos(mensajes);
+        }
+
+        @Test
+        void addMensajesPrivados() {
+            // Given
+            MensajePrivado mensajePrivado = new MensajePrivado("Test", LocalDateTime.now(), new Usuario("user"), List.of(new Usuario("recipient")), "group");
+            List<MensajePrivado> mensajes = loadMensajesPrivadosFromJson(configuracion.getPathJsonPrivateMessages());
+            when(database.loadMensajesPrivados()).thenReturn(Either.right(mensajes));
+            when(database.saveMensajesPrivados(anyList())).thenReturn(Either.right(true));
+
+            // When
+            Either<ErrorApp, Boolean> result = daoMensajes.addMensajesPrivados(mensajePrivado);
+
+            // Then
+            assertThat(result).isEqualTo(Either.right(true));
+            assertThat(mensajes).contains(mensajePrivado);
+            verify(database).saveMensajesPrivados(mensajes);
+        }
+    }
+
+    @Nested
+    @DisplayName("Obtener mensajes")
+    class ObtenerMensajes {
+        @Test
+        void obtenerMensajesDeGrupoPublico() {
+            // Given
+            GrupoPublico grupoPublico = new GrupoPublico("publico", "publico", new Usuario("ble"));
+            List<MensajePublico> allMensajes = loadMensajesPublicosFromJson(configuracion.getPathJsonPublicMessages());
+            when(database.loadMensajesPublicos()).thenReturn(Either.right(allMensajes));
+
+            // When
+            Either<ErrorApp, List<MensajePublico>> result = daoMensajes.obtenerMensajesDeGrupoPublico(grupoPublico);
+
+            // Then
+            assertThat(result.isRight()).isTrue();
+            assertThat(result.get()).hasSize(1);
+            assertThat(result.get().getFirst().getGroup()).isEqualTo(grupoPublico.getNombre());
+        }
+
+        @Test
+        void obtenerMensajesDeGrupoPrivado() {
+            // Given
+            GrupoPrivado grupoPrivado = new GrupoPrivado("secreto", new Usuario("ble"));
+            List<MensajePrivado> allMensajes = loadMensajesPrivadosFromJson(configuracion.getPathJsonPrivateMessages());
+            when(database.loadMensajesPrivados()).thenReturn(Either.right(allMensajes));
+
+            // When
+            Either<ErrorApp, List<MensajePrivado>> result = daoMensajes.obtenerMensajesDeGrupoPrivado(grupoPrivado);
+
+            // Then
+            assertThat(result.isRight()).isTrue();
+            assertThat(result.get()).hasSize(1);
+            assertThat(result.get().getFirst().getGroup()).isEqualTo(grupoPrivado.getNombre());
+        }
+    }
+
+    private List<MensajePublico> loadMensajesPublicosFromJson(String fileName)  {
+        Type messageListType = new TypeToken<ArrayList<MensajePublico>>() {}.getType();
+        try (FileReader reader = new FileReader(fileName)) {
+            return gson.fromJson(reader, messageListType);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            return new ArrayList<>();
+        }
+    }
+
+    private List<MensajePrivado> loadMensajesPrivadosFromJson(String fileName) {
+        Type messageListType = new TypeToken<ArrayList<MensajePrivado>>() {}.getType();
+        try (FileReader reader = new FileReader(fileName)) {
+            return gson.fromJson(reader, messageListType);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            return new ArrayList<>();
+        }
+    }
+}

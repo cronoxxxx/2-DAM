@@ -1,0 +1,55 @@
+package com.example.buzonfxspring_adriansaavedra;
+
+import com.example.buzonfxspring_adriansaavedra.common.config.Configuracion;
+import com.example.buzonfxspring_adriansaavedra.dao.Database;
+import com.example.buzonfxspring_adriansaavedra.domain.model.*;
+import com.google.gson.GsonBuilder;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class mainjson {
+    public static void main(String[] args) {
+
+        Usuario admin = new Usuario("AdminUser");
+        Usuario user1 = new Usuario("UserOne");
+        Usuario user2 = new Usuario("UserTwo");
+
+        // Crear un grupo público
+        GrupoPublico grupoPublico = new GrupoPublico("Grupo Público", "password123", admin);
+        grupoPublico.getParticipantes().add(user1);
+        grupoPublico.getParticipantes().add(user2);
+
+        // Crear un grupo privado
+        GrupoPrivado grupoPrivado = new GrupoPrivado("Grupo Privado", admin);
+        grupoPrivado.getParticipantes().add(user1);
+
+        // Crear mensajes privados
+        List<Usuario> destinatariosPrivados = new ArrayList<>();
+        destinatariosPrivados.add(user2);
+        MensajePrivado mensajePrivado = new MensajePrivado("Hola, esto es un mensaje privado.", LocalDateTime.now(), user1, destinatariosPrivados, "Grupo Privado");
+
+        // Crear mensajes públicos
+        List<Usuario> destinatariosPublicos = new ArrayList<>();
+        destinatariosPublicos.add(user1);
+        destinatariosPublicos.add(user2);
+        MensajePublico mensajePublico = new MensajePublico("¡Hola a todos! Este es un mensaje público.", LocalDateTime.now(), admin, destinatariosPublicos, "Grupo Público");
+
+        // Crear un mensaje privado con clave
+        MensajePrivadoUserClave mensajeClave = new MensajePrivadoUserClave();
+        mensajeClave.setUser(user1.getNombre());
+        mensajeClave.setClave("claveSecreta");
+
+        mensajePrivado.setMensajesPrivadosUserClave(List.of(mensajeClave));
+
+
+        Database dao = new Database(new Configuracion(), new GsonBuilder().setPrettyPrinting().create());
+
+        dao.saveGruposPrivados(List.of(grupoPrivado));
+        dao.saveGruposPublicos(List.of(grupoPublico));
+        dao.saveMensajesPrivados(List.of(mensajePrivado));
+        dao.saveMensajesPublicos(List.of(mensajePublico));
+
+    }
+}

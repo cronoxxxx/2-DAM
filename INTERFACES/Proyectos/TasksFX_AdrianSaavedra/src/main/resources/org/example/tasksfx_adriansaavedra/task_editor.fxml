@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.WorldMapView?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.tasksfx_adriansaavedra.controllers.TaskEditorController">
+    <TextField fx:id="nameField" promptText="Name"/>
+    <TextField fx:id="descriptionField" promptText="Description"/>
+    <Slider fx:id="completionSlider" showTickLabels="true" showTickMarks="true"/>
+    <TextField fx:id="locationField" promptText="Location" editable="false"/>
+    <TextField fx:id="responsibleField" promptText="Responsible"/>
+    <WorldMapView fx:id="worldMapView" prefHeight="300" prefWidth="300"/>
+    <Button text="Save" onAction="#handleSave"/>
+</VBox>

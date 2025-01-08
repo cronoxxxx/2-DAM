@@ -1,0 +1,19 @@
+package com.example.buzonfxspring_adriansaavedra.domain.model;
+
+
+import lombok.Getter;
+import lombok.Setter;
+@Getter @Setter
+public class Usuario {
+    private String nombre;
+    private String clavePublica;
+
+    public Usuario(String nombre, String clavePublica) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+}

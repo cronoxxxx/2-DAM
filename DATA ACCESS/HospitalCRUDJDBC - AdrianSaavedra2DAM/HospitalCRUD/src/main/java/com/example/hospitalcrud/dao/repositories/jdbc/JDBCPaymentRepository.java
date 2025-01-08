@@ -1,0 +1,40 @@
+package com.example.hospitalcrud.dao.repositories.jdbc;
+
+import com.example.hospitalcrud.dao.repositories.jdbc.utils.DBConnection;
+import com.example.hospitalcrud.dao.repositories.jdbc.utils.SQLQueries;
+import com.example.hospitalcrud.domain.errors.ForeignKeyConstraintError;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+
+@Repository
+public class JDBCPaymentRepository {
+    private final DBConnection dbConnection;
+
+    public JDBCPaymentRepository(DBConnection dbConnection) {
+        this.dbConnection = dbConnection;
+    }
+
+    public Map<Integer, Integer> getAllPayments() {
+        Map<Integer, Integer> payments = new HashMap<>();
+        String sql = SQLQueries.GET_ALL_PATIENTS_WITH_PAYMENTS;
+
+        try (Connection conn = dbConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int patientId = rs.getInt("patient_id");
+                int totalPaid = rs.getInt("total_paid");
+                payments.put(patientId, totalPaid);
+            }
+        } catch (SQLException e) {
+            throw new ForeignKeyConstraintError("Error getting all payments");
+        }
+        return payments;
+    }
+}

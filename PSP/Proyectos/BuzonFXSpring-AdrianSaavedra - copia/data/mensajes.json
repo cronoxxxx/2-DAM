@@ -1,0 +1,246 @@
+[
+  {
+    "texto": "XUSbBjjgoj3FkGvb636Vro8365Wm_fxnKLTrx1BoBUUHVgEvt7Rd5JYySdfemGG91YVKsUfS59A\u003d",
+    "fecha": "2024-11-08T08:40:46.602836",
+    "owner": {
+      "nombre": "messi",
+      "password": "$2a$10$ewwe67JMArZtsXechfLwk.8/NkzHKeMzwrF8TSbnbdaTTuyDX467K"
+    },
+    "destinatarios": [
+      {
+        "nombre": "messi",
+        "password": "$2a$10$ewwe67JMArZtsXechfLwk.8/NkzHKeMzwrF8TSbnbdaTTuyDX467K"
+      }
+    ],
+    "group": "betis"
+  },
+  {
+    "texto": "U_joV2bIIUmuimnB0yEVnQktkETL7jV-6WUBagLtq4OMgTQwDivgfD4-_DBLvSpXH3g\u003d",
+    "fecha": "2024-11-11T22:19:54.086182300",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "as"
+  },
+  {
+    "texto": "V7STKdYkNQZObBZt4DSRfGsLcHmMFmMFiGOdDAmdj9uLlxMnHEhmif0dl7cttOVfAP0\u003d",
+    "fecha": "2024-11-11T22:19:57.474980100",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "as"
+  },
+  {
+    "texto": "sadsad",
+    "fecha": "2024-11-11T22:21:53.669297800",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "mar"
+  },
+  {
+    "texto": "xEwR5bgfJKH0J422fLc8sUejiHwilE-K00UaIdvt8Q76AA0ENbMIQB_0iL9AxKKjyxc\u003d",
+    "fecha": "2024-11-11T22:22:08.628412200",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "madrid"
+  },
+  {
+    "texto": "sadsadsad",
+    "fecha": "2024-11-11T22:29:16.340484200",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "bernabeu"
+  },
+  {
+    "texto": "UvvBYIO7BpAvdRuJydSoMsEneL9fRKZRgjJx5tpLfzwZJp0YmgkH6_v3tfEpMfv0L5b4Qw\u003d\u003d",
+    "fecha": "2024-11-11T22:29:25.754403300",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "madrid"
+  },
+  {
+    "texto": "PNMGR4lyoAR8K-FzTHcibiZnO80GrLscx2id-cKqyRkcGMKDLGTHtb3EUg2t80-A8Ve4sOo\u003d",
+    "fecha": "2024-11-11T22:29:27.901999900",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "madrid"
+  },
+  {
+    "texto": "asdasdadasdasd",
+    "fecha": "2024-11-12T08:54:00.210808500",
+    "owner": {
+      "nombre": "messi",
+      "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      },
+      {
+        "nombre": "messi",
+        "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+      }
+    ],
+    "group": "barca"
+  },
+  {
+    "texto": "h1KBg67uqRSE8yBnuDytHA3BClKd1bqSWl96YFZ5I1SJQ0ID8fSrRD5ZlEJbpMKXgNS94uM\u003d",
+    "fecha": "2024-11-12T08:54:08.298704",
+    "owner": {
+      "nombre": "messi",
+      "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+    },
+    "destinatarios": [
+      {
+        "nombre": "messi",
+        "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+      }
+    ],
+    "group": "sevilla"
+  },
+  {
+    "texto": "St-WTfPNLJcY_b-6mrW-5GavjjIn6145IkBrbGHtJmoAKCgqnqkY_oWSdwDgS3flCg-16g\u003d\u003d",
+    "fecha": "2024-11-12T08:54:10.755440500",
+    "owner": {
+      "nombre": "messi",
+      "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+    },
+    "destinatarios": [
+      {
+        "nombre": "messi",
+        "password": "$2a$10$TcHPq3ATqOvSDi5ePH/fhex1iEUfdQrFk2YDz26xufjchr4mszdvm"
+      }
+    ],
+    "group": "sevilla"
+  },
+  {
+    "texto": "HaZn1qtpKZLFFt3dhvsmIhbE7-XBNh3qnxPtmitjmpASu2vLG_qkOpbMHeLu9DOUyaRZ9S4cZseB",
+    "fecha": "2024-11-12T18:52:55.430764400",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "madrid"
+  },
+  {
+    "texto": "asdsad",
+    "fecha": "2024-11-12T18:52:58.632621400",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "mar"
+  },
+  {
+    "texto": "DLha-WBJyI1GMwSImOt8KXTgaQ6xhIslpP764YlSgd9zu4sw3wMw3e-dPpdVtK4fzZr_0Nw\u003d",
+    "fecha": "2024-11-12T18:53:26.998329300",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "ficha"
+  },
+  {
+    "texto": "mxIO_7Tz1X7V14oHJ8_SPgbF7i-9ANNRzV_GZMxzwVhzidLaSWK9XhY9b_eOknnTaIw9now\u003d",
+    "fecha": "2024-11-12T18:53:28.922080600",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "ficha"
+  },
+  {
+    "texto": "Y1MY13gkmhPp2peuj7xd2lRveSAVfsTwH-3tH6eLT9ex8hI0yDQMnvx6PqkHcTjjRDM\u003d",
+    "fecha": "2024-11-12T18:53:32.744743700",
+    "owner": {
+      "nombre": "cris",
+      "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+    },
+    "destinatarios": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$fi5YyAZSfrbZauMtTwIgou.JRceG8s1Uoz8hb63mxx4aCI6XjZw1a"
+      }
+    ],
+    "group": "ficha"
+  }
+]

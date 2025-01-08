@@ -1,0 +1,40 @@
+[
+  {
+    "participantes": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "adrian"
+      },
+      {
+        "nombre": "adrian2"
+      },
+      {
+        "nombre": "diego"
+      }
+    ],
+    "nombre": "publico",
+    "password": "$2a$10$IMedxZx3psGpgt0TGDnqUe/f924.6VD6Qd8KMEP1v9.Lc19MmJ5X6",
+    "administrador": {
+      "nombre": "ble"
+    },
+    "fechaCreacion": "2024-11-28T23:50:38.916308600"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "diego"
+      },
+      {
+        "nombre": "adrian"
+      }
+    ],
+    "nombre": "diegopublico",
+    "password": "$2a$10$ZMBAWZPMEzq6MzdFsl17YequQtZ7Rp.IleQNffpVOuMnXWFqU4XXi",
+    "administrador": {
+      "nombre": "diego"
+    },
+    "fechaCreacion": "2024-12-01T23:56:03.757810500"
+  }
+]

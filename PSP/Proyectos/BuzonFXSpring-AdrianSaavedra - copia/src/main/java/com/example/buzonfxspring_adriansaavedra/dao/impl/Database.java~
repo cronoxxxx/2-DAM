@@ -1,0 +1,110 @@
+package com.example.buzonfxspring_adriansaavedra.dao.impl;
+
+import com.example.buzonfxspring_adriansaavedra.common.config.Configuracion;
+import com.example.buzonfxspring_adriansaavedra.domain.model.Grupo;
+import com.example.buzonfxspring_adriansaavedra.domain.model.Mensaje;
+import com.example.buzonfxspring_adriansaavedra.domain.model.Usuario;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import org.springframework.stereotype.Component;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class Database {
+    private final Configuracion config;
+    private final Gson gsonFile;
+
+    public Database(Configuracion config, Gson gson) {
+        this.config = config;
+        this.gsonFile = gson;
+    }
+
+    public List<Grupo> loadGrupos() {
+        Type userListType = new TypeToken<List<Grupo>>() {
+        }.getType();
+        List<Grupo> grupos = null;
+        try {
+            grupos = gsonFile.fromJson(
+                    new FileReader(config.getPathJsonGroup()),
+                    userListType);
+        } catch (FileNotFoundException e) {
+            //log.error(e.getMessage(), e);
+        }
+        return grupos;
+    }
+
+    public boolean saveGrupos(List<Grupo> grupos) {
+        String filePath = config.getPathJsonGroup();
+        try (FileWriter fw = new FileWriter(filePath)) {
+            gsonFile.toJson(grupos, fw);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Usuario> loadUsuarios() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Type userListType = new TypeToken<ArrayList<Usuario>>() {}.getType();
+
+        List<Usuario> usuarios;
+        try {
+            usuarios = gson.fromJson(
+                    new FileReader(config.getPathJsonUsuarios()),
+                    userListType);
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException();
+        }
+        return usuarios;
+    }
+
+    public boolean saveUsuarios(List<Usuario> usuarios) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String filePath = config.getPathJsonUsuarios();
+
+        try (FileWriter fw = new FileWriter(filePath)) {
+            gson.toJson(usuarios, fw);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<Mensaje> loadMensajes() {
+        Type userListType = new TypeToken<ArrayList<Mensaje>>() {
+        }.getType();
+        List<Mensaje> mensajes = new ArrayList<>();
+        try {
+            mensajes = this.gsonFile.fromJson(
+                    new FileReader(config.getPathJsonMessages()),
+                    userListType);
+            if (mensajes == null) {
+                mensajes = new ArrayList<>();
+            }
+        } catch (FileNotFoundException e) {
+            //log.error(e.getMessage(), e);
+        }
+        return mensajes;
+    }
+
+    public boolean saveMensajes(List<Mensaje> mensajes) {
+        String filePath = config.getPathJsonMessages();
+        try (FileWriter fw = new FileWriter(filePath)) {
+            gsonFile.toJson(mensajes, fw);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}

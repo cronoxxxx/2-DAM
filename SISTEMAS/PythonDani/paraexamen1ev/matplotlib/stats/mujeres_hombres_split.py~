@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Crear subplots
+fig, (aux1, aux2) = plt.subplots(1, 2, figsize=(10, 5))  # Desempaquetar correctamente los ejes
+
+# Título general para toda la figura
+font = {'family': 'serif', 'color': 'blue', 'size': 16}
+fig.suptitle('Adrian Saavedra', fontdict=font, ha='center', va='top')  # Centrado horizontal y vertical
+
+# Función para agregar líneas y sombreado
+def lines_ui(aux, stats, color):
+    mean = np.mean(stats)
+    aux.axvspan(mean - 10, mean + 10, color=color, alpha=0.2)
+    aux.vlines(x=mean, linestyles='solid', ymin=0, ymax=600, color=color)
+
+# Cargar datos
+data = np.load('medida_H18.npz')
+M_hombres = data['x']
+aux1.hist(M_hombres, bins=20, label='Hombres > 18', color='blue', alpha=0.7)
+lines_ui(aux1, M_hombres, 'blue')
+
+data2 = np.load('medida_M18.npz')
+M_mujeres = data2['x']
+aux2.hist(M_mujeres, bins=20, label='Mujeres > 18', color='orange', alpha=0.7)
+lines_ui(aux2, M_mujeres, 'orange')
+
+# Etiquetas y leyendas
+aux1.set_xlabel('Medida')
+aux1.set_ylabel('Frecuencia')
+aux1.legend()
+
+aux2.set_xlabel('Medida')
+aux2.legend()
+
+# Ajustar diseño para evitar superposición
+plt.tight_layout(rect=[0, 0, 1, 0.95])  # Deja espacio para el título
+plt.show()

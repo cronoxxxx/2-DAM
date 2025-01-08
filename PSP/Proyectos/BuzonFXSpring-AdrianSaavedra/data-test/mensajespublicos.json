@@ -1,0 +1,19 @@
+[
+  {
+    "texto": "yU8fkR8M6PaSOP3fT3cc_nFzCgzfL5kpRQ4ymqFECVqb8sEQ8qHGXyF3BvvL8azMUE4\u003d",
+    "fecha": "2024-11-28T23:51:53.328295300",
+    "owner": {
+      "nombre": "ble"
+    },
+    "firma": "MIGIAkIAo9Bi808tHt5h/6cApvUATUBO4a30anSYUAqkShbArMYcmQKF3Aq9P7rE5HxXnaQmwRENIrV4FKkfE0xExa7Ux9YCQgFL7CRQY3di6sMduTui1VGHd79bZ9cFYzLhiz8r8tTKhKym3iaUN9lpJakKsrnTfklEUSlZcDZ03jXUNp7yd6GA+Q\u003d\u003d",
+    "destinatarios": [
+      {
+        "nombre": "ble"
+      },
+      {
+        "nombre": "ble"
+      }
+    ],
+    "group": "publico"
+  }
+]

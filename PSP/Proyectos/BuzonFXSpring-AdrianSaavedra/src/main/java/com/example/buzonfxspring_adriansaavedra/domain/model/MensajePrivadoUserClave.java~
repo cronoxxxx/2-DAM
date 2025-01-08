@@ -1,0 +1,9 @@
+package com.example.buzonfxspring_adriansaavedra.domain.model;
+
+import lombok.Data;
+
+@Data
+public class MensajePrivadoUserClave {
+    private String user;
+    private String clave;
+}

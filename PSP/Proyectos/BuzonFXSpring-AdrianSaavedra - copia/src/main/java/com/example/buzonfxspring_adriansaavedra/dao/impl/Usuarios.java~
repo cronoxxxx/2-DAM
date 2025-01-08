@@ -1,0 +1,54 @@
+package com.example.buzonfxspring_adriansaavedra.dao.impl;
+
+import com.example.buzonfxspring_adriansaavedra.common.config.Configuracion;
+import com.example.buzonfxspring_adriansaavedra.domain.model.Usuario;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import lombok.Getter;
+import org.springframework.stereotype.Component;
+
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+@Component
+@Getter
+public class Usuarios {
+    private final Configuracion config;
+
+    public Usuarios(Configuracion config) {
+        this.config = config;
+    }
+    public List<Usuario> loadUsuarios() {
+        Gson gson = new GsonBuilder().create();
+        Type userListType = new TypeToken<ArrayList<Usuario>>() {}.getType();
+
+        List<Usuario> usuarios;
+        try {
+            usuarios = gson.fromJson(
+                    new FileReader(config.getPathJsonUsuarios()),
+                    userListType);
+        } catch (FileNotFoundException e) {
+           throw new IllegalArgumentException();
+        }
+        return usuarios;
+    }
+
+    public boolean saveUsuarios(List<Usuario> usuarios) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String filePath = config.getPathJsonUsuarios();
+
+        try (FileWriter fw = new FileWriter(filePath)) {
+            gson.toJson(usuarios, fw);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+

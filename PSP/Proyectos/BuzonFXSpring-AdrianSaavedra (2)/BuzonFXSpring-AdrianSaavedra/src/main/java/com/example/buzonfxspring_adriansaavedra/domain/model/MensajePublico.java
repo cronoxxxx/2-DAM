@@ -1,0 +1,39 @@
+package com.example.buzonfxspring_adriansaavedra.domain.model;
+
+
+import lombok.*;
+
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+
+@Data
+public class MensajePublico {
+
+    private String texto;
+    private LocalDateTime fecha;
+    private Usuario owner;
+    private String firma;
+    private List<Usuario> destinatarios;
+    private String group;
+
+
+
+    public MensajePublico(String texto, LocalDateTime fecha, Usuario owner, List<Usuario> destinatarios, String group) {
+        this.texto = texto;
+        this.fecha = fecha;
+        this.owner = owner;
+        this.destinatarios = destinatarios;
+        this.group = group;
+    }
+    @Override
+    public String toString() {
+        return String.format("Texto='%s', Fecha=%s, Enviador=%s, Destinatarios=%s", texto, fecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), owner.getNombre(), destinatarios.toString());
+    }
+
+    }
+
+
+

@@ -1,0 +1,65 @@
+[
+  {
+    "participantes": [
+      {
+        "nombre": "messi",
+        "password": "$2a$10$ewwe67JMArZtsXechfLwk.8/NkzHKeMzwrF8TSbnbdaTTuyDX467K"
+      }
+    ],
+    "nombre": "sevilla",
+    "password": "$2a$10$FJaYxZi0gQAQPBEfQZmP8ek7qcOvbxdsHJC6W5nhWlJCNmv5eq8hG",
+    "administrador": {
+      "nombre": "messi",
+      "password": "$2a$10$ewwe67JMArZtsXechfLwk.8/NkzHKeMzwrF8TSbnbdaTTuyDX467K"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-07T11:06:32.368876400"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$PP3FyZuBeJowrr/K7xucSOXL168T5.NvXhxmpS2hKmrR2RDwBwcvi"
+      }
+    ],
+    "nombre": "ber",
+    "password": "$2a$10$7/6zGf0gJAbXmfySPAvjH.aEvTYveUktXQcHP1tABDIObHW1lAUhu",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$PP3FyZuBeJowrr/K7xucSOXL168T5.NvXhxmpS2hKmrR2RDwBwcvi"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-11T22:02:48.426872100"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$PP3FyZuBeJowrr/K7xucSOXL168T5.NvXhxmpS2hKmrR2RDwBwcvi"
+      }
+    ],
+    "nombre": "aa",
+    "password": "$2a$10$rgFst2r574UjTR0kPYRv8e0QPmkckLEdLl7rdDmx8lqyZctletLN2",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$PP3FyZuBeJowrr/K7xucSOXL168T5.NvXhxmpS2hKmrR2RDwBwcvi"
+    },
+    "publico": true,
+    "fechaCreacion": "2024-11-11T22:06:57.324115800"
+  },
+  {
+    "participantes": [
+      {
+        "nombre": "cris",
+        "password": "$2a$10$PP3FyZuBeJowrr/K7xucSOXL168T5.NvXhxmpS2hKmrR2RDwBwcvi"
+      }
+    ],
+    "nombre": "asdas",
+    "administrador": {
+      "nombre": "cris",
+      "password": "$2a$10$PP3FyZuBeJowrr/K7xucSOXL168T5.NvXhxmpS2hKmrR2RDwBwcvi"
+    },
+    "publico": false,
+    "fechaCreacion": "2024-11-11T22:07:21.435600"
+  }
+]

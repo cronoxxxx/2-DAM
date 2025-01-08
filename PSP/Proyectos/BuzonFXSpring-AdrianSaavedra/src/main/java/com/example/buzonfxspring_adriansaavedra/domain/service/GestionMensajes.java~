@@ -1,0 +1,137 @@
+package com.example.buzonfxspring_adriansaavedra.domain.service;
+
+import com.example.buzonfxspring_adriansaavedra.common.Constantes;
+import com.example.buzonfxspring_adriansaavedra.common.seguridad.*;
+import com.example.buzonfxspring_adriansaavedra.dao.DaoMensajes;
+import com.example.buzonfxspring_adriansaavedra.domain.errors.*;
+import com.example.buzonfxspring_adriansaavedra.domain.model.*;
+import io.vavr.control.Either;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+
+@Service
+public class GestionMensajes {
+    private final DaoMensajes daoMensajes;
+    private final EncriptacionAES encriptacionAES;
+    private final EncriptacionAsim encriptacionAsim;
+
+    public GestionMensajes(DaoMensajes daoMensajes, EncriptacionAES encriptacionAES, EncriptacionAsim encriptacionAsim) {
+        this.encriptacionAsim = encriptacionAsim;
+        this.encriptacionAES = encriptacionAES;
+        this.daoMensajes = daoMensajes;
+    }
+
+    @Async
+    public CompletableFuture<Either<ErrorApp, List<MensajePublico>>> obtenerYDesencriptarMensajesPublicos(GrupoPublico grupoPublico) {
+        return CompletableFuture.completedFuture(
+                daoMensajes.obtenerMensajesDeGrupoPublico(grupoPublico)
+                        .flatMap(mensajes -> {
+                            List<MensajePublico> mensajesDesencriptados = desencriptarMensajesPublicos(mensajes, grupoPublico.getPassword());
+                            return Either.right(mensajesDesencriptados);
+                        })
+        );
+    }
+
+    private List<MensajePublico> desencriptarMensajesPublicos(List<MensajePublico> mensajes, String password) {
+        return mensajes.stream()
+                .map(mensaje -> desencriptarMensajePublico(mensaje, password))
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    private MensajePublico desencriptarMensajePublico(MensajePublico mensaje, String password) {
+        return encriptacionAES.desencriptar(mensaje.getTexto(), password)
+                .flatMap(textoDesencriptado -> encriptacionAsim.obtenerClavePublica(mensaje.getOwner().getNombre())
+                        .flatMap(publicKey -> encriptacionAsim.verificarFirma(textoDesencriptado, mensaje.getFirma(), publicKey)
+                                .flatMap(firmaValida -> {
+                                        mensaje.setTexto(textoDesencriptado);
+                                        return Either.right(mensaje);
+                                }).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_DESENCRIP_MENSAJE_PUBLICO))))
+                .getOrElse(() ->null);
+    }
+    @Async
+    public CompletableFuture<Either<ErrorApp, Boolean>> addMensajePublico(MensajePublico mensajePublico, GrupoPublico grupoPublico, String userPassword) {
+        return CompletableFuture.completedFuture(
+                encriptacionAsim.obtenerParClaves(mensajePublico.getOwner().getNombre(), userPassword)
+                        .flatMap(keyPair -> encriptacionAES.encriptar(mensajePublico.getTexto(), grupoPublico.getPassword())
+                        .flatMap(textoCifrado -> encriptacionAsim.firmarMensaje(mensajePublico.getTexto(), keyPair.getPrivate())
+                            .map(firma -> {
+                                mensajePublico.setTexto(textoCifrado);
+                                mensajePublico.setFirma(firma);
+                                return mensajePublico;
+                            }).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_FIRMAR_MENSAJE))))
+                        .flatMap(daoMensajes::addMensajesPublicos)
+        );
+    }
+
+    @Async
+    public CompletableFuture<Either<ErrorApp, Boolean>> addMensajePrivado(MensajePrivado mensajePrivado, String password) {
+        return CompletableFuture.completedFuture(
+                encriptacionAsim.generarClaveSimetricaAleatoria()
+                        .flatMap(claveSimetrica -> encriptacionAES.encriptar(mensajePrivado.getTexto(), claveSimetrica)
+                        .flatMap(textoCifrado -> encriptacionAsim.obtenerParClaves(mensajePrivado.getOwner().getNombre(), password)
+                        .flatMap(keyPair -> encriptacionAsim.firmarMensaje(mensajePrivado.getTexto(), keyPair.getPrivate())
+                                .map(firma -> {
+                                    List<MensajePrivadoUserClave> clavesSimetricasCifradas = cifrarClaveSimetricaParaDestinatarios(claveSimetrica, mensajePrivado.getDestinatarios());
+                                    mensajePrivado.setTexto(textoCifrado);
+                                    mensajePrivado.setFirma(firma);
+                                    mensajePrivado.setMensajesPrivadosUserClave(clavesSimetricasCifradas);
+                                    return mensajePrivado;
+                                }).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_FIRMAR_MENSAJE)))))
+                        .flatMap(daoMensajes::addMensajesPrivados)
+        );
+    }
+
+
+    private List<MensajePrivado> desencriptarMensajesPrivados(List<MensajePrivado> mensajes, Usuario receptor, String userPass) {
+        return mensajes.stream()
+                .map(mensaje -> desencriptarMensajePrivado(mensaje, receptor, userPass))
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    private MensajePrivado desencriptarMensajePrivado(MensajePrivado mensaje, Usuario receptor, String userPass) {
+        return encriptacionAsim.obtenerParClaves(receptor.getNombre(), userPass)
+                .flatMap(keyPair -> {
+                    Optional<MensajePrivadoUserClave> userClave = mensaje.getMensajesPrivadosUserClave().stream()
+                    .filter(uc -> uc.getUser().equals(receptor.getNombre()))
+                    .findFirst();
+                    if (userClave.isEmpty()) {
+                        return Either.left(new ErrorAppDatosNoValidos(Constantes.NO_SE_ENCONTRO_USUARIO_EN_DECRYPT));
+                    }
+                    return encriptacionAsim.desencriptar(userClave.get().getClave(), keyPair.getPrivate())
+                            .flatMap(claveSimetrica -> encriptacionAES.desencriptar(mensaje.getTexto(), claveSimetrica)
+                            .flatMap(textoDesencriptado -> encriptacionAsim.obtenerClavePublica(mensaje.getOwner().getNombre())
+                            .flatMap(publicKey -> encriptacionAsim.verificarFirma(textoDesencriptado, mensaje.getFirma(), publicKey)
+                                    .map(firmaValida -> {
+                                        mensaje.setTexto(textoDesencriptado);
+                                        return mensaje;
+                                    }).mapLeft(error -> new ErrorAppDatosNoValidos(Constantes.ERROR_DESENCRIPT_MENSAJE_PRIVADO)))));
+                })
+                .getOrElse(() -> null);
+    }
+
+
+    @Async
+    public CompletableFuture<Either<ErrorApp, List<MensajePrivado>>> obtenerYDesencriptarMensajesPrivados(String grupoPrivado, Usuario receptor, String userPass) {
+        return CompletableFuture.completedFuture(
+                daoMensajes.obtenerMensajesDeGrupoPrivado(grupoPrivado)
+                        .flatMap(mensajes -> {
+                            List<MensajePrivado> mensajesDesencriptados = desencriptarMensajesPrivados(mensajes, receptor, userPass);
+                            return Either.right(mensajesDesencriptados);
+                        })
+        );
+    }
+
+    private List<MensajePrivadoUserClave> cifrarClaveSimetricaParaDestinatarios(String claveSimetrica, List<Usuario> destinatarios) {
+        return destinatarios.stream()
+                .map(destinatario -> encriptacionAsim.obtenerClavePublica(destinatario.getNombre())
+                        .flatMap(publicKey -> encriptacionAsim.encriptar(claveSimetrica, publicKey))
+                        .map(claveCifrada -> new MensajePrivadoUserClave(destinatario.getNombre(), claveCifrada)))
+                .filter(Either::isRight)
+                .map(Either::get)
+                .toList();
+    }
+}

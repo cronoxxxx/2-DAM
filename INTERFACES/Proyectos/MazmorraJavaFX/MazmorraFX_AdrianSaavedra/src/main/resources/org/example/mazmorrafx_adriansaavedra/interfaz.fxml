@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.mazmorrafx_adriansaavedra.HelloController">
+    <top>
+        <MenuBar>
+            <Menu text="Opciones">
+                <MenuItem onAction="#loadXML" text="Cargar XML" />
+                <MenuItem onAction="#exit" text="Salir" />
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.4">
+            <TreeView fx:id="treeView" maxWidth="700" minWidth="200" />
+            <SplitPane orientation="VERTICAL" dividerPositions="0.7">
+                <BorderPane>
+                    <top>
+                        <Button fx:id="northButton" onAction="#onNorthButtonClick" maxWidth="Infinity" text="Norte" />
+                    </top>
+                    <left>
+                        <Button fx:id="westButton" onAction="#onWestButtonClick" maxHeight="Infinity" text="Oeste" />
+                    </left>
+                    <center>
+                        <Label fx:id="descriptionLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="COMENZAR" />
+                    </center>
+                    <right>
+                        <Button fx:id="eastButton" onAction="#onEastButtonClick" maxHeight="Infinity" text="Este" />
+                    </right>
+                    <bottom>
+                        <Button fx:id="southButton" onAction="#onSouthButtonClick" maxWidth="Infinity" text="Sur" />
+                    </bottom>
+                </BorderPane>
+                <TextArea fx:id="logArea" editable="false" />
+            </SplitPane>
+        </SplitPane>
+    </center>
+</BorderPane>

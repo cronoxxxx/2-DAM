@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" prefHeight="438.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.miprimeraaplicacionfx_adriansaavedra.ui.PantallaSecondViewModel">
+    <top>
+        <VBox>
+            <HBox alignment="CENTER" spacing="100">
+                <Label text="MENSAJES RECIBIDOS">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+                <Label text="ENVIAR MENSAJE">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+            <Button fx:id="btnExit" mnemonicParsing="false" onAction="#salidaApp" text="Salir" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox prefHeight="430.0" prefWidth="602.0" spacing="20">
+            <TableView fx:id="tvTablaMensajes" prefHeight="303.0" prefWidth="358.0">
+                <columns>
+                    <TableColumn fx:id="tcNombreUsuario" prefWidth="75.0" text="Nombre" />
+                    <TableColumn fx:id="tcMensaje" prefWidth="282.4" text="Mensaje" />
+                </columns>
+            </TableView>
+            <VBox spacing="10">
+                <Label text="Nombre de usuario:" />
+                <TextField fx:id="tfNombreEnviar" />
+                <Label text="Enviar mensaje:" />
+                <TextArea fx:id="taMensajeEnviado" prefHeight="200.0" prefWidth="200.0" />
+                <Button fx:id="btnMandarMensaje" mnemonicParsing="false" onAction="#comprobarUsuario" prefHeight="26.0" prefWidth="82.0" text="Enviar" />
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>
