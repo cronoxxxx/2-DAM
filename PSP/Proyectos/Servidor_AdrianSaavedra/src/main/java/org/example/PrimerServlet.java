@@ -16,7 +16,7 @@ public class PrimerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        resp.setContentType(Constantes.INIT);
+        resp.setContentType(Constantes.CONTENT_TYPE);
         try {
             PrintWriter result = resp.getWriter();
             initializeSession(req);
