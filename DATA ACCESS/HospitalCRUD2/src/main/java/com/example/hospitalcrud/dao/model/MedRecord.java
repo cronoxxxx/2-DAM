@@ -12,6 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
+@Entity
+@Table(name = "medical_records")
+@NamedQuery(name = "MedRecord.deleteByPatientId", query = "DELETE FROM MedRecord m WHERE m.patient.id = :patientId")
+
 public class MedRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +35,6 @@ public class MedRecord {
     @Column(name = "admission_date")
     private LocalDate date;
 
-    @OneToMany(mappedBy = "medRecord", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "medRecord",cascade = {CascadeType.ALL, CascadeType.PERSIST})
     private List<Medication> medications;
 }

@@ -10,9 +10,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 @Table(name = "prescribed_medications")
-
-
 public class Medication {
 
 

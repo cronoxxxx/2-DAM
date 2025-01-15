@@ -5,6 +5,9 @@ import com.example.hospitalcrud.dao.model.Payment;
 import java.util.List;
 
 public interface PaymentRepository {
-    List<Payment> getAllPayments();
-    void delete(int patientId);
+
+
+   double getAllPayments(int patientId);
+
+
 }

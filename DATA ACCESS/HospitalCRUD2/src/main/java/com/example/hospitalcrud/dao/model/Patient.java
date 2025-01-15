@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "patients")
+
 @NamedQuery(name = "Patient.findAll", query = "SELECT p FROM Patient p")
 public class Patient {
     @Id
@@ -26,24 +27,30 @@ public class Patient {
     private String name;
 
     @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
+    private LocalDate birthDate;
 
     @Column(name = "phone", length = 20)
     private String phone;
 
-    @OneToOne(mappedBy = "patient", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "patient")
     private Credential credential;
 
-    public Patient(int id, String name, String phone, LocalDate dateOfBirth) {
+
+    public Patient(int id, String name, String phone, LocalDate birthDate) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.dateOfBirth = dateOfBirth;
+        this.birthDate = birthDate;
     }
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return id + ";" + name + ";" + dateOfBirth.format(formatter) + ";" + phone;
+        return id + ";" + name + ";" + birthDate.format(formatter) + ";" + phone;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+        credential.setPatient(this);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.hospitalcrud.dao.repositories.jpa.impl;
 
+import com.example.hospitalcrud.dao.model.Credential;
 import com.example.hospitalcrud.dao.model.Patient;
 import com.example.hospitalcrud.dao.repositories.PatientRepository;
 import com.example.hospitalcrud.dao.repositories.jpa.utils.JPAUtil;
@@ -41,9 +42,16 @@ public class JPAPatientRepository implements PatientRepository {
 
         try {
             tx.begin();
-            em.persist(patient); // This will also persist the Credential if it's set in Patient
+
+            Credential credential = patient.getCredential();
+            if (credential != null) {
+                patient.setCredential(credential);
+            }
+
+            em.persist(patient);
+
             tx.commit();
-            result = 1;
+            result = patient.getId();
         } catch (Exception e) {
             if (tx.isActive()) tx.rollback();
             log.error(e.getMessage(), e);
@@ -62,21 +70,34 @@ public class JPAPatientRepository implements PatientRepository {
 
         try {
             tx.begin();
+
+            em.createNamedQuery("Appointment.deleteByPatientId")
+                    .setParameter("patientId", id)
+                    .executeUpdate();
+
+            em.createNamedQuery("Payment.deleteByPatientId")
+                    .setParameter("patientId", id)
+                    .executeUpdate();
+
+            em.createNamedQuery("MedRecord.deleteByPatientId")
+                    .setParameter("patientId", id)
+                    .executeUpdate();
+
+
             Patient patient = em.find(Patient.class, id);
 
             if (patient != null) {
-                em.remove(patient); // This will also remove the associated Credential due to cascade
+                em.remove(patient);
             }
 
             tx.commit();
-        } catch (Exception e) {
+        } catch (NoResultException e) {
             if (tx.isActive()) tx.rollback();
             log.warn(e.getMessage(), e);
         } finally {
             if (em != null) em.close();
         }
     }
-
 
 
     @Override

@@ -8,7 +8,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-public class RegistroViewModel {
+public class  RegistroViewModel {
 
     private final ServicesClientes servicesClientes;
     private final ObjectProperty<RegistroState> state;

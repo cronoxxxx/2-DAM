@@ -1,6 +1,6 @@
 package game.dungeon;
 
-public class Door {
+public class    Door {
     private final Site a;
     private final Site b;
     private boolean used = false;

@@ -62,7 +62,7 @@ class CombinadoFragment : Fragment() {
     private fun setupRecyclerView() {
         combinadoAdapter = CombinadoAdapter()
         binding.rvUsers.apply {
-            adapter = CombinadoAdapter()
+            adapter = combinadoAdapter
             addItemDecoration(MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.margin)))
         }
 

@@ -1,0 +1,45 @@
+primer video--
+
+11:00 explica el web listener y como declararlo
+
+16:15 explica como usar el thymeleaf
+
+26:00 explica como va a ser la practica
+
+27:00 pequeño ejemplo de la practica
+
+31:00 como evitar poner el request get sessions en muchas paginas y solo en una
+
+33:00 explica lo que es el filtro
+
+35:50 explica como declarar en filter
+
+37:55 muestra otros filters distintos para api rest
+
+--una cosa es hacer login y otra mantener el login
+
+SEGUNDO VIDEO-- :no hay autodeploy
+10:45 explica meter condicionales en el HTML
+
+13:25 explica como meter listados de equipo en HTML
+
+22:00 explica como meter select option para luego hacer operaciones crud al seleccionar una opcion
+
+23:10 explica mas o menos un ejemplo de como podríamos hacer la practica
+
+27:00 explica ya de como va el login
+
+28:00: explica diferencia entre 401 y 403
+
+30:00 explica como mantener el login desde el loginServlet y tmb de logout para la practica
+
+33:00 explica que el filter se puede usar y como (lo termina aplicando al repo de backend)
+
+38:00 aplica el pattern en el webfilter (obligatorio)
+
+
+
+practica: como hacerla: usar webfilter,listener,thymeleaf, datafaker, usar login y al acceder mantener ese login y hacer las operaciones crud, usar backend paquete del profe, tener en cuenta que no se agrega * en un urlpattern
+
+toma este ejemplo de practica que usa weblistener, del profe, de como izo los equipos y pedirle que usando datafaker, use web filter y tmb las paginas de template, que mantenga el login y asi poder acceder al crud de la tabla donde habrá un select option y al seleccionar add o update se ingresen datos y se hagan las actualizaciones correspondientes.
+

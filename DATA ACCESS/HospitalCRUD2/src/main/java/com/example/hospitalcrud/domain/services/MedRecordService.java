@@ -62,20 +62,22 @@ public class MedRecordService {
         Patient patient = new Patient();
         patient.setId(medRecordUI.getIdPatient());
 
-
-        return MedRecord.builder()
+        MedRecord medRecord = MedRecord.builder()
                 .id(medRecordUI.getId())
                 .patient(patient)
                 .idDoctor(medRecordUI.getIdDoctor())
                 .diagnosis(medRecordUI.getDescription())
                 .date(LocalDate.parse(medRecordUI.getDate()))
-                .medications(convertToMedications(medRecordUI.getMedications(), medRecordUI.getId()))
                 .build();
+
+        List<Medication> medications = convertToMedications(medRecordUI.getMedications(), medRecord);
+        medRecord.setMedications(medications);
+
+        return medRecord;
     }
 
-    private List<Medication> convertToMedications(List<String> medicationNames, int medRecordId) {
-        MedRecord medRecord = new MedRecord();
-        medRecord.setId(medRecordId);
+
+    private List<Medication> convertToMedications(List<String> medicationNames, MedRecord medRecord) {
         return medicationNames.stream()
                 .map(name -> new Medication(0, name, medRecord))
                 .toList();
