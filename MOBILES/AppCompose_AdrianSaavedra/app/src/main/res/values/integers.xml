@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="initial_team1_score">34</integer>
+    <integer name="initial_team2_score">18</integer>
+    <integer name="initial_fouls">0</integer>
+</resources>

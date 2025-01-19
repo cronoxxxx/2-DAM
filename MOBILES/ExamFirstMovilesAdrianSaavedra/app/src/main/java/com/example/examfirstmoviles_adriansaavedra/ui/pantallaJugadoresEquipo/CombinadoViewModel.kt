@@ -37,7 +37,7 @@ class CombinadoViewModel @Inject constructor (
 
     private fun getUsers(id: Int) {
         viewModelScope.launch {
-            when (val result = getPlayersUseCase(id)) {
+            when (val result = getPlayersUseCase.invoke(id)) {
                 is NetworkResult.Success -> {
                     _uiState.value = _uiState.value?.copy(
                         players = result.data,

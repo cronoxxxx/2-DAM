@@ -1,8 +1,0 @@
-package com.example.examfirstmoviles_adriansaavedra.data
-
-import com.example.examfirstmoviles_adriansaavedra.data.remote.datasource.MomentosRemoteDataSource
-import javax.inject.Inject
-
-class MomentosRepository  @Inject constructor(private val momentosRemoteDataSource: MomentosRemoteDataSource) {
-    suspend fun fetchMomentos = momentosRemoteDataSource.fetchMoments()
-}
