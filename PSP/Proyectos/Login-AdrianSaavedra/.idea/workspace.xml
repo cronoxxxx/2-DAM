@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Login-AdrianSaavedra:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c6d1b29-88e6-4fa2-aec7-5d3057d28d39" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../MOBILES/AppCompose_AdrianSaavedra/app/src/main/res/font/digital7.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../MOBILES/apuntes/borradorCompose/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedicationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedRecordRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedicationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPatientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MOBILES/AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MOBILES/AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MOBILES/AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MOBILES/AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../MOBILES/apuntes/borradorCompose/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../MOBILES/apuntes/borradorCompose/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="cdi.beans_4_0" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cronoxxxx&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cronoxxxx/2-DAM.git&quot;,
+    &quot;accountId&quot;: &quot;56c879e7-ba2b-430f-a921-b2c6b5cd53dc&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/corretto-21.0.4/lib/src.zip!/java.base/java/util/Map.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/net/datafaker/datafaker/2.4.2/datafaker-2.4.2.jar!/en-CA.yml" root0="SKIP_INSPECTION" />
+    <setting file="jar://$MAVEN_REPOSITORY$/net/datafaker/datafaker/2.4.2/datafaker-2.4.2.jar!/en-MD.yml" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2rWJLaTGuUpp0g1y1k2jUxwyLhw" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;GlassFish Server.GlassFish 6.22.0.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature-1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adrian/Desktop/main2dam/PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Adrian\Desktop\main2dam\PSP\Proyectos\Login-AdrianSaavedra\src\main\webapp" />
+      <recent name="C:\Users\Adrian\Desktop\main2dam\PSP\Proyectos\Login-AdrianSaavedra\src\main\resources" />
+      <recent name="C:\Users\Adrian\Desktop\main2dam\PSP\Proyectos\Login-AdrianSaavedra\src\main\resources\WEB-INF\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GlassFish 6.22.0" type="GlassfishConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="GlassFish 6.22.0" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="LOCAL" value="false" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/Login-AdrianSaavedra-1.0-SNAPSHOT/login" />
+      <option name="UPDATING_POLICY" value="hot-swap-classes" />
+      <deployment>
+        <artifact name="Login-AdrianSaavedra:war">
+          <settings />
+        </artifact>
+      </deployment>
+      <server-settings>
+        <data>
+          <option name="adminServerHost" value="" />
+          <option name="clusterName" value="" />
+          <option name="credentialAlias" value="f15736a8-4332-485e-8db6-f53064e738bd" />
+          <option name="secured" value="true" />
+          <option name="stagingRemotePath" value="" />
+          <option name="transportHostId" value="" />
+          <option name="transportStagingTarget">
+            <TransportTarget>
+              <option name="id" value="b560c502-13bb-4694-a48f-07228bbc3136" />
+              <id>b560c502-13bb-4694-a48f-07228bbc3136</id>
+            </TransportTarget>
+          </option>
+          <credential-alias>f15736a8-4332-485e-8db6-f53064e738bd</credential-alias>
+          <secured>true</secured>
+          <admin-server-host />
+          <cluster-name />
+          <transport-target>
+            <TransportTarget>
+              <option name="id" value="b560c502-13bb-4694-a48f-07228bbc3136" />
+              <id>b560c502-13bb-4694-a48f-07228bbc3136</id>
+            </TransportTarget>
+          </transport-target>
+          <staging-path />
+          <host-id />
+        </data>
+      </server-settings>
+      <predefined_log_file enabled="true" id="GlassFish" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9009" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Login-AdrianSaavedra:war" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c6d1b29-88e6-4fa2-aec7-5d3057d28d39" name="Changes" comment="" />
+      <created>1736668842961</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736668842961</updated>
+      <workItem from="1736668844310" duration="136000" />
+      <workItem from="1736669007228" duration="4336000" />
+      <workItem from="1736753709287" duration="6637000" />
+      <workItem from="1736768814808" duration="12524000" />
+      <workItem from="1736847285236" duration="7913000" />
+      <workItem from="1736931740181" duration="3539000" />
+      <workItem from="1736961502428" duration="5832000" />
+      <workItem from="1736971425891" duration="110000" />
+      <workItem from="1737019296300" duration="5344000" />
+      <workItem from="1737103090464" duration="5400000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
