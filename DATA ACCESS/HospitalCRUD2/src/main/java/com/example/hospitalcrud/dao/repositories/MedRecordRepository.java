@@ -3,6 +3,7 @@ package com.example.hospitalcrud.dao.repositories;
 import com.example.hospitalcrud.dao.model.MedRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MedRecordRepository {
 

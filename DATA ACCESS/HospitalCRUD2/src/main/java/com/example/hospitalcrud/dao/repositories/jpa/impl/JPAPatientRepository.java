@@ -4,6 +4,8 @@ import com.example.hospitalcrud.dao.model.Credential;
 import com.example.hospitalcrud.dao.model.Patient;
 import com.example.hospitalcrud.dao.repositories.PatientRepository;
 import com.example.hospitalcrud.dao.repositories.jpa.utils.JPAUtil;
+import com.example.hospitalcrud.domain.errors.ForeignKeyConstraintError;
+import com.example.hospitalcrud.domain.errors.PatientHasMedicalRecordsException;
 import jakarta.persistence.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
@@ -70,6 +72,23 @@ public class JPAPatientRepository implements PatientRepository {
 
         try {
             tx.begin();
+            Patient patient = em.find(Patient.class, id);
+            // Verificar si el paciente tiene registros médicos
+            Long medRecordCount = em.createQuery("SELECT COUNT(m) FROM MedRecord m WHERE m.patient.id = :patientId", Long.class)
+                    .setParameter("patientId", id)
+                    .getSingleResult();
+
+            if (medRecordCount > 0 && !confirm) {
+                throw new PatientHasMedicalRecordsException("El paciente tiene registros médicos. ¿Está seguro de que desea eliminarlo?");
+            }
+            //No me funciona el cascade, lo vimos en clase
+            em.createQuery("DELETE FROM Medication m WHERE m.medRecord IN (SELECT mr FROM MedRecord mr WHERE mr.patient.id = :patientId)")
+                    .setParameter("patientId", id)
+                    .executeUpdate();
+
+            em.createNamedQuery("MedRecord.deleteByPatientId")
+                    .setParameter("patientId", id)
+                    .executeUpdate();
 
             em.createNamedQuery("Appointment.deleteByPatientId")
                     .setParameter("patientId", id)
@@ -79,21 +98,15 @@ public class JPAPatientRepository implements PatientRepository {
                     .setParameter("patientId", id)
                     .executeUpdate();
 
-            em.createNamedQuery("MedRecord.deleteByPatientId")
-                    .setParameter("patientId", id)
-                    .executeUpdate();
-
-
-            Patient patient = em.find(Patient.class, id);
 
             if (patient != null) {
                 em.remove(patient);
             }
 
             tx.commit();
-        } catch (NoResultException e) {
+        } catch (PatientHasMedicalRecordsException | NoResultException e) {
             if (tx.isActive()) tx.rollback();
-            log.warn(e.getMessage(), e);
+            throw e;
         } finally {
             if (em != null) em.close();
         }

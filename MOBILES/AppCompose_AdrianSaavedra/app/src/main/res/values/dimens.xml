@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sixty_text_size">60sp</dimen>
+    <dimen name="tf_text_size">25sp</dimen>
+    <dimen name="forty_text_size">40sp</dimen>
+    <dimen name="oht_text_size">110sp</dimen>
+    <dimen name="thirty_text_size">30sp</dimen>
+    <dimen name="action_btn_text_size">23sp</dimen>
+    <dimen name="text_btn_size">25sp</dimen>
+    <dimen name="foul_counter_text_size">55sp</dimen>
+    <dimen name="timer_size">80sp</dimen>
+    <dimen name="period_size">40sp</dimen>
+    <dimen name="figures_standard">10dp</dimen>
+    <dimen name="twelve_padding">12dp</dimen>
+    <dimen name="second_standard_padding">16dp</dimen>
+    <dimen name="action_button_padding">14dp</dimen>
+    <dimen name="standard_padding">8dp</dimen>
+    <dimen name="landscape_horizontal_padding">50dp</dimen>
+
+
+</resources>

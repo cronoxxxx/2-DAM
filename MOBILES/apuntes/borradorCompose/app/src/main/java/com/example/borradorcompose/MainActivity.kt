@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +32,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
@@ -44,7 +46,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Preview(showBackground = true, showSystemUi = true, device = Devices.PHONE)
+    @PreviewScreenSizes
     @Composable
     fun App() {
         var counter by rememberSaveable() { mutableIntStateOf(0) }
@@ -94,6 +96,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.align(Alignment.TopStart),
                             color = Color.White
                         )
+
 
                     }
 

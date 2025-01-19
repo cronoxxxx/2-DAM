@@ -32,7 +32,7 @@ public class Patient {
     @Column(name = "phone", length = 20)
     private String phone;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, mappedBy = "patient")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "patient")
     private Credential credential;
 
 

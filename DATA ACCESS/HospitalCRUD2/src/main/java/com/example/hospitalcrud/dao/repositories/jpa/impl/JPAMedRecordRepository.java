@@ -22,11 +22,8 @@ public class JPAMedRecordRepository implements MedRecordRepository {
 
     @Override
     public List<MedRecord> findAll() {
-        EntityManager em = jpaUtil.getEntityManager();
-        try {
-            return em.createQuery("SELECT m FROM MedRecord m", MedRecord.class).getResultList();
-        } finally {
-            if (em != null) em.close();
+        try (EntityManager em = jpaUtil.getEntityManager()) {
+            return em.createQuery("SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications", MedRecord.class).getResultList();
         }
     }
 
@@ -58,7 +55,15 @@ public class JPAMedRecordRepository implements MedRecordRepository {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.merge(medRecord);
+
+            em.createQuery("DELETE FROM Medication m WHERE m.medRecord.id = :medRecordId")
+                    .setParameter("medRecordId", medRecord.getId())
+                    .executeUpdate();
+
+            for (Medication medication : medRecord.getMedications()) {
+                em.persist(medication);
+            }
+
             tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) tx.rollback();
@@ -68,12 +73,13 @@ public class JPAMedRecordRepository implements MedRecordRepository {
         }
     }
 
+
     @Override
     public List<MedRecord> findByPatientId(int patientId) {
         EntityManager em = jpaUtil.getEntityManager();
         try {
             return em.createQuery(
-                            "SELECT m FROM MedRecord m WHERE m.patient.id = :patientId", MedRecord.class)
+                            "SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications WHERE m.patient.id = :patientId", MedRecord.class)
                     .setParameter("patientId", patientId)
                     .getResultList();
         } finally {
@@ -87,13 +93,13 @@ public class JPAMedRecordRepository implements MedRecordRepository {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            em.remove(em.contains(medRecord) ? medRecord : em.merge(medRecord));
+            em.remove(em.find(MedRecord.class, medRecord));
             tx.commit();
         } catch (Exception e) {
             if (tx.isActive()) tx.rollback();
             log.error(e.getMessage(), e);
         } finally {
-            if (em != null) em.close();
+            em.close();
         }
     }
 
@@ -111,7 +117,7 @@ public class JPAMedRecordRepository implements MedRecordRepository {
             if (tx.isActive()) tx.rollback();
             log.error(e.getMessage(), e);
         } finally {
-            if (em != null) em.close();
+            em.close();
         }
     }
 }

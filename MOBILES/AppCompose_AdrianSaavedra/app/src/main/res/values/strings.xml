@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">AppCompose_AdrianSaavedra</string>
+    <string name="team1_name">Equipo 1</string>
+    <string name="team2_name">Equipo 2</string>
+    <string name="versus">x</string>
+    <string name="fouls">Faltas</string>
+    <string name="timer">10:00</string>
+    <string name="period">1.°</string>
+    <string name="edit">EDITAR</string>
+    <string name="share">COMPARTIR</string>
+    <string name="increment_1">+1</string>
+    <string name="increment_2">+2</string>
+    <string name="increment_3">+3</string>
+    <string name="increment">+</string>
 </resources>

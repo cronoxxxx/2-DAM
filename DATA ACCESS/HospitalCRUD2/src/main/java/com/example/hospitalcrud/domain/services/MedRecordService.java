@@ -24,10 +24,9 @@ public class MedRecordService {
     }
 
     public List<MedRecordUI> getAll(int idPatient) {
-        List<MedRecord> allMedRecords = medRecordRepository.findAll();
+        List<MedRecord> patientMedRecords = medRecordRepository.findByPatientId(idPatient);
 
-        return allMedRecords.stream()
-                .filter(medRecord -> medRecord.getPatient().getId() == idPatient)
+        return patientMedRecords.stream()
                 .map(this::convertToMedRecordUI)
                 .toList();
     }

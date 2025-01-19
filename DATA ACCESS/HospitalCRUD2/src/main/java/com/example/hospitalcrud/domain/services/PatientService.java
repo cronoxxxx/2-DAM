@@ -62,12 +62,8 @@ public class PatientService {
     public void updatePatient(PatientUI patientUI) {
         Patient patient = new Patient(patientUI.getId(), patientUI.getName(), patientUI.getPhone(), patientUI.getBirthDate());
 
-        // Credential remains transient and is not persisted in this implementation.
-        String username = patientUI.getUserName() != null ? patientUI.getUserName() : null;
-        String password = patientUI.getPassword() != null ? patientUI.getPassword() : null;
 
-        Credential credential = new Credential(username, password);
-        patient.setCredential(credential);
+
 
         patientRepository.update(patient);
     }

@@ -35,6 +35,6 @@ public class MedRecord {
     @Column(name = "admission_date")
     private LocalDate date;
 
-    @OneToMany(mappedBy = "medRecord",cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "medRecord",cascade = { CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.MERGE})
     private List<Medication> medications;
 }
