@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-
+import org.hibernate.annotations.NamedQuery;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,6 +12,8 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "prescribed_medications")
+@NamedQuery(name="Medication.deleteByPatientId", query="DELETE FROM Medication m WHERE m.medRecord IN (SELECT mr FROM MedRecord mr WHERE mr.patient.id = :patientId)")
+@NamedQuery(name="Medication.deleteByRecordId", query="DELETE FROM Medication m WHERE m.medRecord.id = :medRecordId")
 public class Medication {
 
 

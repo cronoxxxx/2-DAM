@@ -10,34 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="594b91e4-8491-4006-8f79-b3ce41d507d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btn_play.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/digital7.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/integers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedicationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedRecordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedicationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPatientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/theme/Color.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/theme/Theme.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/appcompose_adriansaavedra/ui/theme/Type.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/Login-AdrianSaavedra/src/main/webapp/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +74,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature-1",
+    "git-widget-placeholder": "feature/first-test",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Adrian/Desktop/main2dam/MOBILES/AppCompose_AdrianSaavedra/app/src/main/res/drawable",
     "project.structure.last.edited": "Suggestions",

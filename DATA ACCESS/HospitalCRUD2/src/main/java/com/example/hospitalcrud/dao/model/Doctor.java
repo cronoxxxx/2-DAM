@@ -3,7 +3,7 @@ package com.example.hospitalcrud.dao.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import org.hibernate.annotations.NamedQuery;
 @Data
 @AllArgsConstructor
 @Entity

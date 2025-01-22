@@ -1,5 +1,5 @@
 package com.example.hospitalcrud.dao.model;
-
+import org.hibernate.annotations.NamedQuery;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "user_login")
+@NamedQuery(name = "Credential.findByUserName", query = "SELECT c FROM Credential c WHERE c.userName = :username")
 public class Credential {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
