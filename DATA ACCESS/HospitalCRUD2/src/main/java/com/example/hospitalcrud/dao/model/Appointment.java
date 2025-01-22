@@ -3,7 +3,7 @@ package com.example.hospitalcrud.dao.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
+import org.hibernate.annotations.NamedQuery;
 @Entity
 @Table(name = "appointments")
 @NamedQuery(name = "Appointment.deleteByPatientId", query = "DELETE FROM Appointment a WHERE a.patient.id = :patientId")

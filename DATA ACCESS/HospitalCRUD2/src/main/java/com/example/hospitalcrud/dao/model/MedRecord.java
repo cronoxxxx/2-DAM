@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
-
+import org.hibernate.annotations.NamedQuery;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,6 +15,9 @@ import java.util.List;
 @Entity
 @Table(name = "medical_records")
 @NamedQuery(name = "MedRecord.deleteByPatientId", query = "DELETE FROM MedRecord m WHERE m.patient.id = :patientId")
+@NamedQuery(name="MedRecord.medRecordByPatientId",query = "SELECT COUNT(m) FROM MedRecord m WHERE m.patient.id = :patientId")
+@NamedQuery(name="MedRecord.getAllWithMedications",query = "SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications")
+@NamedQuery(name="MedRecord.findByPatientId",query = "SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications WHERE m.patient.id = :patientId")
 
 public class MedRecord {
     @Id

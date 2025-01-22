@@ -9,15 +9,13 @@ import org.springframework.stereotype.Service;
 public class CredentialService {
     private final CredentialRepository credentialRepository;
 
-
     public CredentialService(CredentialRepository credentialRepository) {
         this.credentialRepository = credentialRepository;
     }
 
     public boolean login(CredentialUI userCredentials) {
-        Credential credential = credentialRepository.get(userCredentials.getUsername());
-        return credential != null && credential.getPassword() != null &&
-                credential.getPassword().equals(userCredentials.getPassword());
+        return credentialRepository.findByUserName(userCredentials.getUsername())
+                .map(credential -> credential.getPassword().equals(userCredentials.getPassword()))
+                .orElse(false);
     }
-
 }

@@ -10,186 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Appointment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/sonarlint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/androidTest/java/com/example/appcompose_adriansaavedra/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/pantallaPrincipal/MainScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/java/com/example/appcompose_adriansaavedra/ui/theme/Type.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/drawable/btn_play.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/font/digital7.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/values/integers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/app/src/test/java/com/example/appcompose_adriansaavedra/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/gradle/libs.versions.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/data/MomentosRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/data/remote/datasource/MomentosRemoteDataSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/data/remote/services/MomentosService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaMomentosEquipo/MezcladoAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaMomentosEquipo/MezcladoEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaMomentosEquipo/MezcladoFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaMomentosEquipo/MezcladoState.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaMomentosEquipo/MezcladoViewHolder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaMomentosEquipo/MezcladoViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/res/layout/activity_mezclado_fragment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/res/layout/item_momento.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/borradorcompose/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/borradorcompose/MainActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/borradorcompose/ui/theme/Color.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/borradorcompose/ui/theme/Theme.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/borradorcompose/ui/theme/Type.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/fav.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/backup_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/data_extraction_rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/example/borradorcompose/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/common/Constantes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/dao/DaoJugadores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/dao/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/domain/model/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/domain/service/GestionJugadores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/jakarta/filters/LoginFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/jakarta/listeners/ThymeLeafListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/jakarta/servlets/LoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/jakarta/servlets/LogoutServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/java/org/example/jakarta/servlets/PlayersServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/webapp/WEB-INF/beans.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/webapp/WEB-INF/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/webapp/WEB-INF/templates/players.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/src/main/webapp/WEB-INF/templates/update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/borradores/httposcar.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/ejercicios/examen/robot/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/ejercicios/examen/robot/robot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/ejercicios/examen/tablero/ex1/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/ejercicios/examen/tablero/ex2/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/ejercicios/examen/tablero/exc3/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/ejercicios/examen/tablero/tablero.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Credential.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Credential.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/MedRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Medication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Medication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/model/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/AppointmentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedicationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/PaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAAppointmentRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedRecordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAMedicationRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPatientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/jpa/impl/JPAPaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/errors/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../INTERFACES/Proyectos/WizardNighmare-2024-v1/WizardNighmare-2024-v1/game/dungeon/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../INTERFACES/Proyectos/WizardNighmare-2024-v1/WizardNighmare-2024-v1/game/dungeon/Door.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/data/remote/services/PlayersService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/data/remote/services/PlayersService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/common/MargenItemDecoration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/common/MarginItemDecoration.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaJugadoresEquipo/CombinadoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaJugadoresEquipo/CombinadoFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaJugadoresEquipo/CombinadoViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ExamFirstMovilesAdrianSaavedra/app/src/main/java/com/example/examfirstmoviles_adriansaavedra/ui/pantallaJugadoresEquipo/CombinadoViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../UsersAppDao_AdrianSaavedra.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../../UsersAppDao_AdrianSaavedra.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX/src/main/java/gui/pantallas/registro/RegistroViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX/src/main/java/gui/pantallas/registro/RegistroViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/src/main/java/org/example/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/ServidorPSP_AdrianSaavedra/src/main/webapp/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/Servidor_AdrianSaavedra/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Servidor_AdrianSaavedra/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/borradores/borradorprimerproyecto/MiPrimeraAplicacionFX_AdrianSaavedra.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/borradores/borradorprimerproyecto/ParaDescomprimirSiFalla.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/borradores/borradorprimerproyecto/segundoborrador.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/.idea/2eval.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/.idea/2eval.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../SISTEMAS/PythonDani/2eval/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AppCompose_AdrianSaavedra/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,27 +89,27 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "Compose Preview.App.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "Merging develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Adrian/Desktop/main2dam/MOBILES/apuntes/borradorCompose"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;Compose Preview.App.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/first-test&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adrian/Desktop/main2dam/MOBILES/apuntes/borradorCompose&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1",
-      "C:\\Users\\Adrian\\.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1&quot;,
+      &quot;C:\\Users\\Adrian\\.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="borradorCompose.app.main" />
@@ -429,7 +253,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="76b37a9f-2386-41a3-8a2c-29382b364e7c" name="Changes" comment="" />
+      <changelist id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="" />
       <created>1736886467253</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

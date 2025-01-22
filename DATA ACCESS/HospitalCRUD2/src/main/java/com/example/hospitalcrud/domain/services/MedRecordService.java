@@ -20,28 +20,22 @@ public class MedRecordService {
 
     public void update(MedRecordUI medRecordUI) {
         MedRecord medRecord = convertToMedRecord(medRecordUI);
-        medRecordRepository.update(medRecord);
+        medRecordRepository.save(medRecord);
     }
 
     public List<MedRecordUI> getAll(int idPatient) {
-        List<MedRecord> patientMedRecords = medRecordRepository.findByPatientId(idPatient);
-
-        return patientMedRecords.stream()
+        return medRecordRepository.findByPatientId(idPatient).stream()
                 .map(this::convertToMedRecordUI)
                 .toList();
     }
 
     public int add(MedRecordUI medRecordUI) {
         MedRecord medRecord = convertToMedRecord(medRecordUI);
-        return medRecordRepository.add(medRecord);
+        return medRecordRepository.save(medRecord).getId();
     }
 
     public void delete(int id) {
-        MedRecord medRecord = deleteMedRecord(id);
-        medRecordRepository.delete(medRecord);
-    }
-    private MedRecord deleteMedRecord(int id){
-        return medRecordRepository.findAll().stream().filter(medRecord -> medRecord.getId() == id).findFirst().orElse(null);
+        medRecordRepository.deleteById(id);
     }
 
     private MedRecordUI convertToMedRecordUI(MedRecord medRecord) {
