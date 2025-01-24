@@ -73,13 +73,11 @@ public class PatientService {
         if (!confirm && !patientRecords.isEmpty()) {
             throw new PatientHasMedicalRecordsException("Patient has medical records. Are you sure you want to delete?");
         }
-
-        if (confirm) {
             paymentRepository.deleteByPatientId(id);
             appointmentRepository.deleteByPatientId(id);
             medicationRepository.deleteByPatientId(id);
             medRecordRepository.deleteByPatientId(id);
             patientRepository.deleteById(id);
-        }
+
     }
 }

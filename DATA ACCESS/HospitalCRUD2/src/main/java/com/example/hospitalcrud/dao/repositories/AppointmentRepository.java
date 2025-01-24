@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface AppointmentRepository extends JpaRepository<Appointment,Integer> {
-    void deleteByPatientId( int patientId);
+    @Modifying
+    void deleteByPatientId(int patientId);
 
 }

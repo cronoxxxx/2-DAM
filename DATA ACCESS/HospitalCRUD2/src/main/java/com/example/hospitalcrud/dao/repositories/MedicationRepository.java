@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface MedicationRepository extends JpaRepository<Medication, Integer> {
-    void deleteByPatientId(int patientId);
-//    void deleteByMedRecordId(int medRecordId);
+    @Modifying
+    void deleteByPatientId( int patientId);
+    @Modifying
+    void deleteByRecordId(int medRecordId);
 }

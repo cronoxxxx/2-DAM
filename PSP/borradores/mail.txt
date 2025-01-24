@@ -1,0 +1,1 @@
+hacer un atributo usuario con correo nombre contraseña y si esta activado, para que se registre enviarle un correo a donde esta con el link a la aplicación (activación) y si existe, se registrara automáticamente, como no lo tengo guardado en memoria, pues podre usar el mismo correo cuantas veces quiera, primero pasar a spring todo el proyecto y de ahí empezar
