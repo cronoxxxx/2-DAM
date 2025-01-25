@@ -29,10 +29,9 @@
             <td th:text="${player.team}"></td>
             <td th:text="${player.country}"></td>
             <td>
-                <form th:action="@{/players}" method="post" style="display: inline;">
-                    <input type="hidden" name="action" value="edit">
+                <form th:action="@{/players/edit}" method="get" style="display: inline;">
                     <input type="hidden" name="id" th:value="${player.id}">
-                    <a th:href="@{/players(action='edit',id=${player.id})}">Edit</a>
+                    <button type="submit">Edit</button>
                 </form>
                 <form th:action="@{/players}" method="post" style="display: inline;">
                     <input type="hidden" name="action" value="delete">

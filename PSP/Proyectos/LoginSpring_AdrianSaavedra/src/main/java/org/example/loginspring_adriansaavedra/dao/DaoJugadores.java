@@ -1,15 +1,17 @@
-package org.example.dao;
+package org.example.loginspring_adriansaavedra.dao;
 
-import jakarta.inject.Inject;
-import org.example.domain.model.Player;
+
+
+import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class DaoJugadores {
     private final Database jugadores;
 
-    @Inject
+
     public DaoJugadores(Database jugadores) {
         this.jugadores = jugadores;
     }

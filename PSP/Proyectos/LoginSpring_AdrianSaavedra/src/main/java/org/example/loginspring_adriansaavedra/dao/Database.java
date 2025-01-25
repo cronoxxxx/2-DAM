@@ -1,15 +1,17 @@
-package org.example.dao;
+package org.example.loginspring_adriansaavedra.dao;
 
-import jakarta.inject.Inject;
 import lombok.Getter;
-import org.example.domain.model.Player;
+
+import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 @Getter
+@Component
 public class Database {
     private final List<Player> players;
-     @Inject
+
     public Database() {
         players = new ArrayList<>();
         players.add(new Player(1, "Lionel Messi", "Inter Miami", "Argentina"));

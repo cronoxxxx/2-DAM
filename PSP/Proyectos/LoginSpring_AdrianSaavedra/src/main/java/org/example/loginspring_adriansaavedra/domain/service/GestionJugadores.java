@@ -1,15 +1,15 @@
-package org.example.domain.service;
+package org.example.loginspring_adriansaavedra.domain.service;
 
-import jakarta.inject.Inject;
-import org.example.dao.DaoJugadores;
-import org.example.domain.model.Player;
+
+import org.example.loginspring_adriansaavedra.dao.DaoJugadores;
+import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class GestionJugadores {
     private final DaoJugadores daoJugadores;
 
-    @Inject
     public GestionJugadores(DaoJugadores daoJugadores) {
         this.daoJugadores = daoJugadores;
     }

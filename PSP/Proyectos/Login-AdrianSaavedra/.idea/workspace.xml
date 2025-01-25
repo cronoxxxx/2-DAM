@@ -9,14 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c6d1b29-88e6-4fa2-aec7-5d3057d28d39" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/AppointmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedRecordRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/MedicationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/PaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/dao/repositories/PaymentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/MedRecordService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/domain/services/PatientService.java" afterDir="false" />
+    <list default="true" id="9c6d1b29-88e6-4fa2-aec7-5d3057d28d39" name="Changes" comment="25 enero commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/common/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/common/Constantes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoJugadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoJugadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionJugadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionJugadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/SessionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/SessionFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/resources/templates/players.html" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginSpring_AdrianSaavedra/src/main/resources/templates/players.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,26 +67,27 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;GlassFish Server.GlassFish 6.22.0.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adrian/Desktop/main2dam/PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "GlassFish Server.GlassFish 6.22.0.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "feature/second-test",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/main2dam/PSP/PSPOscar/MercaViceCityJavaFX/MercaViceCityJavaFX",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Adrian\Desktop\main2dam\PSP\Proyectos\Login-AdrianSaavedra\src\main\webapp" />
@@ -172,10 +176,24 @@
       <workItem from="1737398230633" duration="13000" />
       <workItem from="1737548743451" duration="608000" />
       <workItem from="1737635227140" duration="65000" />
+      <workItem from="1737759784180" duration="3389000" />
     </task>
+    <task id="LOCAL-00001" summary="25 enero commit">
+      <option name="closed" value="true" />
+      <created>1737759997975</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737759997975</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="25 enero commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="25 enero commit" />
   </component>
 </project>
