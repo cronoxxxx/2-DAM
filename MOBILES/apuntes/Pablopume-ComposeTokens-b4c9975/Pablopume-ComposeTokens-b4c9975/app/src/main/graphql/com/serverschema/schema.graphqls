@@ -1,0 +1,88 @@
+scalar LocalDate
+
+type Tienda {
+    id: ID
+    nombre: String
+    ubicacion: String
+
+}
+
+type Producto {
+    id: ID!
+    nombre: String!
+    precio: Float!
+    stock: Int!
+
+}
+
+type Empleado {
+    id: ID!
+    nombre: String!
+    apellido: String!
+    cargo: String!
+
+}
+
+type Venta {
+    id: ID!
+    fecha: LocalDate!
+    total: Float!
+    clienteId: ID!
+    empleadoId: ID!
+
+}
+
+type Cliente {
+    id: ID!
+    nombre: String!
+    email: String!
+
+}
+input TiendaInput {
+    nombre: String!
+    ubicacion: String!
+}
+
+input EmpleadoInput {
+    nombre: String!
+    apellido: String!
+    cargo: String!
+    tiendaId: ID!
+}
+
+input UpdateTiendaInput {
+    id: ID!
+    nombre: String!
+    ubicacion: String!
+}
+
+input UpdateVentaInput {
+    id: ID!
+    fecha: String!
+    total: Float!
+    clienteId: ID!
+    empleadoId: ID!
+
+}
+input CrearProductoInput {
+    nombre: String!
+    precio: Float!
+    cantidadEnStock: Int!
+    id: ID!
+}
+type Query {
+    getTiendas: [Tienda!]!
+    getEmpleadosByIdTienda(id: ID!): [Empleado!]!
+    getClientes: [Cliente!]!
+    getVentas: [Venta!]!
+    getVentaById(id: ID!): Venta
+    getProductos: [Producto!]!
+}
+type Mutation {
+    addTienda(tiendaInput: TiendaInput!): Tienda
+    addEmpleado(empleadoInput: EmpleadoInput!): Boolean
+    deleteTienda(id: ID!): Boolean
+    deleteCliente(id: ID!): Boolean
+    updateTienda(updateTiendaInput: UpdateTiendaInput!): Tienda
+    updateVenta(updateVentaInput: UpdateVentaInput!): Boolean
+}

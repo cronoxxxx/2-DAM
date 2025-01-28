@@ -10,10 +10,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="594b91e4-8491-4006-8f79-b3ce41d507d6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/di/DispatcherModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/domain/modelo/MedRecord.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/domain/usecases/patients/GetPatientRecordsUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/domain/usecases/patients/GetPatientUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/domain/usecases/patients/GetPatientsUseCase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/common/UiEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaPaciente/PatientActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/components/MailComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/ConfigurationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/RestCredential.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/RestCredential.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../apuntes/borradorCompose/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/data/PatientRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/data/PatientRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/data/remote/datasource/PatientsRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/data/remote/datasource/PatientsRemoteDataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/data/remote/services/PatientService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/data/remote/services/PatientService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/common/Navigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/common/Navigation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/common/Screens.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/app/src/main/java/com/example/hospitalapp_adriansaavedra/ui/pantallaLogin/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalApp_AdrianSaavedra/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UsersAppDao_AdrianSaavedra/UsersApp_AdrianSaavedra/app/src/main/java/com/example/usersapp_adriansaavedra/ui/pantallaLogin/LoginState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../UsersAppDao_AdrianSaavedra/UsersApp_AdrianSaavedra/app/src/main/java/com/example/usersapp_adriansaavedra/ui/pantallaLogin/LoginState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/BuzonFXSpring-AdrianSaavedra/src/main/java/com/example/buzonfxspring_adriansaavedra/ConfigurationFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/BuzonFXSpring-AdrianSaavedra/src/main/java/com/example/buzonfxspring_adriansaavedra/ConfigurationFX.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/SessionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/SessionFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/test/java/org/example/loginspring_adriansaavedra/LoginSpringAdrianSaavedraApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,31 +100,31 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.MainActivity.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/first-test",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Adrian/Desktop/main2dam/MOBILES/AppCompose_AdrianSaavedra/app/src/main/res/drawable",
-    "project.structure.last.edited": "Suggestions",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.MainActivity.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/second-test&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adrian/Desktop/main2dam/MOBILES/AppCompose_AdrianSaavedra/app/src/main/res/drawable&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Suggestions&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1",
-      "C:\\Users\\Adrian\\.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1&quot;,
+      &quot;C:\\Users\\Adrian\\.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Properties" />
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />

@@ -8,5 +8,5 @@ class PatientsRemoteDataSource @Inject constructor(
 ) : BaseApiResponse(){
 
     suspend fun fetchPatients() = safeApiCall {  patientService.getPatients()}
-    suspend fun fetchPatient(id: Int) = safeApiCall {  patientService.getPatient(id)}
+    suspend fun fetchPatientRecords(id: Int) = safeApiCall {  patientService.getPatientRecords(id)}
 }
