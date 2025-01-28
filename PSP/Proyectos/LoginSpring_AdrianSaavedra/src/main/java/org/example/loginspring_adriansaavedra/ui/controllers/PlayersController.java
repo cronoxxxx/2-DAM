@@ -1,6 +1,5 @@
 package org.example.loginspring_adriansaavedra.ui.controllers;
 
-import jakarta.servlet.http.HttpSession;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.Player;
 import org.example.loginspring_adriansaavedra.domain.service.GestionJugadores;
@@ -17,19 +16,13 @@ public class PlayersController {
 
     private final GestionJugadores gestionJugadores;
 
-
     public PlayersController(GestionJugadores gestionJugadores) {
         this.gestionJugadores = gestionJugadores;
     }
 
     @GetMapping
-    public String getPlayers(Model model, HttpSession session) {
+    public String getPlayers(Model model) {
         model.addAttribute("players", gestionJugadores.getAllPlayers());
-        String errorMessage = (String) session.getAttribute(Constantes.ERROR_ADD_PLAYER);
-        if (errorMessage != null) {
-            model.addAttribute(Constantes.ERROR_ADD_PLAYER, errorMessage);
-            session.removeAttribute(Constantes.ERROR_ADD_PLAYER);
-        }
         return "players";
     }
 
@@ -40,7 +33,8 @@ public class PlayersController {
             model.addAttribute("player", player);
             return "update";
         }
-        return "redirect:/players";
+        model.addAttribute("error", "Player not found");
+        return "players";
     }
 
     @PostMapping
@@ -48,12 +42,12 @@ public class PlayersController {
                                      @RequestParam(required = false) String name,
                                      @RequestParam(required = false) String team,
                                      @RequestParam(required = false) String country,
-                                     HttpSession session) {
+                                     Model model) {
         switch (action) {
             case Constantes.ADD:
                 boolean added = gestionJugadores.addPlayer(Player.builder().name(name).team(team).country(country).build());
                 if (!added) {
-                    session.setAttribute(Constantes.ERROR_ADD_PLAYER, Constantes.MESSAGE_ERROR_ADD_PLAYER);
+                    model.addAttribute(Constantes.ERROR_ADD_PLAYER, Constantes.MESSAGE_ERROR_ADD_PLAYER);
                 }
                 break;
             case Constantes.UPDATE:
@@ -62,6 +56,7 @@ public class PlayersController {
             default:
                 gestionJugadores.deletePlayer(id);
         }
-        return "redirect:/players";
+        model.addAttribute("players", gestionJugadores.getAllPlayers());
+        return "players";
     }
 }

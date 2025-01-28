@@ -1,4 +1,4 @@
-package org.example.loginspring_adriansaavedra.ui.components;
+package org.example.loginspring_adriansaavedra.domain.components;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;

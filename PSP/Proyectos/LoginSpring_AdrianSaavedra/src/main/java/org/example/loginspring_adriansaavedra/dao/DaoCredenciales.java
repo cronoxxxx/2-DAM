@@ -8,22 +8,25 @@ import java.util.List;
 
 @Repository
 public class DaoCredenciales {
-    private final List<Credential> credentials = new ArrayList<>();
+    private final Database credentials;
+    public DaoCredenciales (Database credentials) {
+        this.credentials = credentials;
+    }
 
     public void save(Credential credential) {
-        credentials.removeIf(c -> c.getUsername().equals(credential.getUsername()));
-        credentials.add(credential);
+        credentials.getCredentials().removeIf(c -> c.getUsername().equals(credential.getUsername()));
+        credentials.getCredentials().add(credential);
     }
 
     public Credential findByUsername(String username) {
-        return credentials.stream()
+        return credentials.getCredentials().stream()
                 .filter(c -> c.getUsername().equals(username))
                 .findFirst()
                 .orElse(null);
     }
 
     public Credential findByVerificationCode(String verificationCode) {
-        return credentials.stream()
+        return credentials.getCredentials().stream()
                 .filter(c -> verificationCode.equals(c.getVerificationCode()))
                 .findFirst()
                 .orElse(null);

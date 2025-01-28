@@ -2,8 +2,7 @@ package org.example.loginspring_adriansaavedra.domain.service;
 
 import org.example.loginspring_adriansaavedra.dao.DaoCredenciales;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
-import org.example.loginspring_adriansaavedra.ui.components.MailComponent;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.example.loginspring_adriansaavedra.domain.components.MailComponent;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -16,7 +15,6 @@ public class GestionCredenciales {
 
     public GestionCredenciales(DaoCredenciales daoCredenciales, MailComponent mailComponent) {
         this.daoCredenciales = daoCredenciales;
-
         this.mailComponent = mailComponent;
     }
 
@@ -24,11 +22,9 @@ public class GestionCredenciales {
         if (daoCredenciales.findByUsername(credential.getUsername()) != null) {
             return false;
         }
-
-
-
+        SecureRandom sr = new SecureRandom();
         byte[] verificationCodeBytes = new byte[16];
-        new SecureRandom().nextBytes(verificationCodeBytes);
+        sr.nextBytes(verificationCodeBytes);
         String verificationCode = Base64.getUrlEncoder().encodeToString(verificationCodeBytes);
 
         credential.setVerificationCode(verificationCode);
@@ -53,6 +49,6 @@ public class GestionCredenciales {
 
     public boolean authenticateUser(String username, String password) {
         Credential credential = daoCredenciales.findByUsername(username);
-        return credential != null && credential.isVerified();
+        return credential != null && credential.isVerified() && credential.getPassword().equals(password);
     }
 }
