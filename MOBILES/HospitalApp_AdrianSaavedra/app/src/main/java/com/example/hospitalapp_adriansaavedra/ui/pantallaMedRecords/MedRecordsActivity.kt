@@ -12,27 +12,31 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material3.*
-import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.hospitalapp_adriansaavedra.R
 import com.example.hospitalapp_adriansaavedra.domain.modelo.MedRecord
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MedRecordsScreen(
     patientId: Int,
-    onNavigateBack: () -> Unit,
     showSnackbar: (String) -> Unit,
     onNavigateToDetail: (Int, Int) -> Unit,
     viewModel: MedRecordsViewModel = hiltViewModel()
@@ -48,26 +52,18 @@ fun MedRecordsScreen(
             when (it) {
                 is UiEvent.ShowSnackbar -> {
                     showSnackbar(it.message)
+                    viewModel.handleEvent(MedRecordsEvent.AvisoVisto)
                 }
+
                 is UiEvent.Navigate -> {
-                    // Handle navigation if needed
+                    onNavigateToDetail(patientId, state.selectedRecordId)
+                    viewModel.handleEvent(MedRecordsEvent.AvisoVisto)
                 }
             }
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Medical Records for Patient #$patientId") },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Navigate back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -82,7 +78,7 @@ fun MedRecordsScreen(
                     items(state.patientsRecords) { record ->
                         MedRecordCard(
                             record = record,
-                            onPlayClick = { onNavigateToDetail(patientId, record.id) }
+                            onPlayClick = { viewModel.handleEvent(MedRecordsEvent.OnPlayClick(record.id)) }
                         )
                     }
                 }
@@ -108,22 +104,22 @@ fun MedRecordCard(record: MedRecord, onPlayClick: () -> Unit) {
         ) {
             Column {
                 Text(
-                    text = "Record ID: ${record.id}",
+                    text = stringResource(R.string.record_id) + "${record.id}",
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Date: ${record.date}",
+                    text = stringResource(R.string.date) + record.date,
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Patient ID: ${record.idPatient}",
+                    text = stringResource(R.string.patient_id) + "${record.idPatient}",
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
             IconButton(onClick = onPlayClick) {
-                Icon(Icons.Filled.PlayArrow, contentDescription = "Play")
+                Icon(Icons.Filled.PlayArrow, contentDescription = null)
             }
         }
     }

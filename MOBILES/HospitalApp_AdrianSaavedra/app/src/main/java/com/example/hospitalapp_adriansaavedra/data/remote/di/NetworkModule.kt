@@ -1,6 +1,7 @@
 package com.example.hospitalapp_adriansaavedra.data.remote.di
 
 import com.example.hospitalapp_adriansaavedra.BuildConfig
+import com.example.hospitalapp_adriansaavedra.data.remote.services.PatientRecordService
 import com.example.hospitalapp_adriansaavedra.data.remote.services.PatientService
 import dagger.Module
 import dagger.Provides
@@ -33,8 +34,12 @@ object NetworkModule {
             .build()
 
     @Provides
-    fun provideUserService(retrofit: Retrofit): PatientService =
+    fun providePatientService(retrofit: Retrofit): PatientService =
         retrofit.create(PatientService::class.java)
+
+    @Provides
+    fun providePatientRecordService(retrofit: Retrofit): PatientRecordService =
+        retrofit.create(PatientRecordService::class.java)
 
 
 }

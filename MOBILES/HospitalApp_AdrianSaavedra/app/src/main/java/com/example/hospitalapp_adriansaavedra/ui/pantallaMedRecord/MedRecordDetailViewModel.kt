@@ -21,8 +21,17 @@ class MedRecordDetailViewModel @Inject constructor(
 
     fun handleEvent(event: MedRecordDetailEvent) {
         when (event) {
-            is MedRecordDetailEvent.GetPatientRecord -> getPatientRecord(event.patientId, event.recordId)
+            is MedRecordDetailEvent.GetPatientRecord -> getPatientRecord(
+                event.patientId,
+                event.recordId
+            )
+
+            is MedRecordDetailEvent.AvisoVisto -> avisoVisto()
         }
+    }
+
+    private fun avisoVisto() {
+        _uiState.update { it.copy(aviso = null) }
     }
 
     private fun getPatientRecord(patientId: Int, recordId: Int) {
@@ -38,6 +47,7 @@ class MedRecordDetailViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is NetworkResult.Error -> {
                         _uiState.update {
                             it.copy(
@@ -46,6 +56,7 @@ class MedRecordDetailViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is NetworkResult.Loading -> {
                         _uiState.update { it.copy(isLoading = true) }
                     }

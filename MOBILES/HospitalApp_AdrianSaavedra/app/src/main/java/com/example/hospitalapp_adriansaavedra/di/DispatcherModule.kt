@@ -1,4 +1,4 @@
-package com.example.usersapp_adriansaavedra.di
+package com.example.hospitalapp_adriansaavedra.di
 
 import dagger.Module
 import dagger.Provides

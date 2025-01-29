@@ -18,8 +18,6 @@ timber = "5.0.1"
 kotlinx_serialization = "1.6.0"
 navigationCompose = "2.8.5"
 hiltNavigationCompose = "1.1.0"
-androidxHiltNavigationCompose = "1.2.0"
-composeMaterial3 = "1.0.0-alpha31"
 
 
 
@@ -53,10 +51,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx_serialization" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
-androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android" }
-androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose"}
-androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
-androidx-compose-material3 = { group = "androidx.wear.compose", name = "compose-material3", version.ref = "composeMaterial3" }
+
 
 [bundles]
 retrofit = ["retrofit", "converter-gson", "logging-interceptor", "converter-scalars"]

@@ -6,5 +6,6 @@ import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 data class PatientsState(
     val patients: List<Patient> = emptyList(),
     val aviso: UiEvent? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val selectedPatientId: Int = 0
 )

@@ -21,7 +21,9 @@ class MedRecordsViewModel @Inject constructor(private val getPatientRecordsUseCa
 
     fun handleEvent(event: MedRecordsEvent) {
         when (event) {
-            is MedRecordsEvent.GetPatientRecords -> getPatientRecords(event.id)
+            is MedRecordsEvent.GetPatientRecords -> getPatientRecords(event.patientId)
+            is MedRecordsEvent.OnPlayClick -> navigateToDetail(event.recordId)
+            is MedRecordsEvent.AvisoVisto -> avisoVisto()
         }
     }
 
@@ -53,5 +55,18 @@ class MedRecordsViewModel @Inject constructor(private val getPatientRecordsUseCa
                 }
             }
         }
+    }
+
+    private fun navigateToDetail(recordId: Int) {
+        _uiState.update {
+            it.copy(
+                aviso = UiEvent.Navigate,
+                selectedRecordId = recordId
+            )
+        }
+    }
+
+    private fun avisoVisto() {
+        _uiState.update { it.copy(aviso = null) }
     }
 }

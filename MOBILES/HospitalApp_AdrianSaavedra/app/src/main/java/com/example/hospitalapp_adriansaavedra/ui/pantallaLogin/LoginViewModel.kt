@@ -7,7 +7,6 @@ import com.example.hospitalapp_adriansaavedra.domain.usecases.records.GetPatient
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginState())
-    val state: StateFlow<LoginState> = _uiState.asStateFlow()
+    val state = _uiState.asStateFlow()
 
     fun handleEvent(event: LoginEvent) {
         when (event) {
@@ -29,10 +28,10 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun login(patientId: String) {
+    private fun login(patientId: Int) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            val result = getPatientRecordsUseCase(patientId.toIntOrNull() ?: -1)
+            val result = getPatientRecordsUseCase(patientId)
             result.collect { networkResult ->
                 when (networkResult) {
                     is NetworkResult.Success -> {
@@ -43,14 +42,16 @@ class LoginViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is NetworkResult.Error -> {
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
-                                aviso = UiEvent.ShowSnackbar("Patient not found")
+                                aviso = UiEvent.ShowSnackbar(networkResult.message)
                             )
                         }
                     }
+
                     is NetworkResult.Loading -> {
                         _uiState.update { it.copy(isLoading = true) }
                     }

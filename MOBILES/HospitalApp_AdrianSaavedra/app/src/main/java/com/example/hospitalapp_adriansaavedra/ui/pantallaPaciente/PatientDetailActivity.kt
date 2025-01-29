@@ -6,35 +6,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.hospitalapp_adriansaavedra.R
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PatientDetailScreen(
     patientId: Int,
     showSnackbar: (String) -> Unit,
-    onNavigateBack: () -> Unit,
     viewModel: PatientDetailViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -47,22 +38,12 @@ fun PatientDetailScreen(
         state.aviso?.let {
             if (it is UiEvent.ShowSnackbar) {
                 showSnackbar(it.message)
+                viewModel.handleEvent(PatientDetailEvent.AvisoVisto)
             }
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Patient Detail") },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Navigate back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -80,27 +61,27 @@ fun PatientDetailScreen(
                             .padding(16.dp)
                     ) {
                         Text(
-                            text = "Patient ID: ${patient.id}",
+                            text = stringResource(R.string.patient_id) + "${patient.id}",
                             style = MaterialTheme.typography.headlineMedium
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Name: ${patient.name}",
+                            text = stringResource(R.string.patient_name) + patient.name,
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Birth Date: ${patient.birthDate}",
+                            text = stringResource(R.string.patient_birthdate) + patient.birthDate,
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Phone: ${patient.phone}",
+                            text = stringResource(R.string.patient_phone) + patient.phone,
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Paid: $${patient.paid}",
+                            text = stringResource(R.string.patient_paid) + "${patient.paid}",
                             style = MaterialTheme.typography.bodyLarge
                         )
                     }

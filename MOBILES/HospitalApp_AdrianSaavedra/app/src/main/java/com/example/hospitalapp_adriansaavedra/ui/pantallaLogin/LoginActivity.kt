@@ -16,19 +16,18 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.hospitalapp_adriansaavedra.R
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 import com.example.hospitalapp_adriansaavedra.ui.navigation.Navigation
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,8 +60,10 @@ fun LoginScreen(
                     showSnackbar(it.message)
                     viewModel.handleEvent(LoginEvent.AvisoVisto)
                 }
+
                 is UiEvent.Navigate -> {
-                    navigateToMedRecords(state.idLogin.toIntOrNull() ?: -1)
+                    navigateToMedRecords(state.idLogin.toInt())
+                    viewModel.handleEvent(LoginEvent.AvisoVisto)
                 }
             }
         }
@@ -80,16 +81,10 @@ fun LoginScreen(
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.padding(16.dp)
             ) {
-                Text(
-                    text = "Login",
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
-
                 OutlinedTextField(
                     value = state.idLogin,
                     onValueChange = { viewModel.handleEvent(LoginEvent.OnIdLoginChange(it)) },
-                    label = { Text("Patient ID") },
+                    label = { Text(stringResource(R.string.patient_id)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -97,7 +92,7 @@ fun LoginScreen(
                 )
 
                 Button(
-                    onClick = { viewModel.handleEvent(LoginEvent.OnLoginClick(state.idLogin)) },
+                    onClick = { viewModel.handleEvent(LoginEvent.OnLoginClick(state.idLogin.toInt())) },
                     modifier = Modifier.fillMaxWidth(),
                     enabled = !state.isLoading
                 ) {
@@ -107,13 +102,12 @@ fun LoginScreen(
                             color = MaterialTheme.colorScheme.onPrimary
                         )
                     } else {
-                        Text("Access")
+                        Text(stringResource(R.string.access))
                     }
                 }
             }
         }
     }
 }
-
 
 

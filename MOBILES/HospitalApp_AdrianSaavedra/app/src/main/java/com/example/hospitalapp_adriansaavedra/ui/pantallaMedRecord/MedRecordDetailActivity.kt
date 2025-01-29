@@ -6,36 +6,27 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.hospitalapp_adriansaavedra.R
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MedRecordDetailScreen(
     patientId: Int,
     recordId: Int,
     showSnackbar: (String) -> Unit,
-    onNavigateBack: () -> Unit,
     viewModel: MedRecordDetailViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -48,23 +39,12 @@ fun MedRecordDetailScreen(
         state.aviso?.let {
             if (it is UiEvent.ShowSnackbar) {
                 showSnackbar(it.message)
-//                viewModel.handleEvent(MedRecordDetailEvent.AvisoVisto)
+                viewModel.handleEvent(MedRecordDetailEvent.AvisoVisto)
             }
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Medical Record Detail") },
-                navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Navigate back")
-                    }
-                }
-            )
-        }
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -82,22 +62,22 @@ fun MedRecordDetailScreen(
                             .padding(16.dp)
                     ) {
                         Text(
-                            text = "Record ID: ${record.id}",
+                            text = stringResource(R.string.record_id) + "${record.id}",
                             style = MaterialTheme.typography.headlineMedium
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Date: ${record.date}",
+                            text = stringResource(R.string.date) + record.date,
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
-                            text = "Patient ID: ${record.idPatient}",
+                            text = stringResource(R.string.patient_id) + "${record.idPatient}",
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "Description:",
+                            text = stringResource(R.string.description),
                             style = MaterialTheme.typography.titleLarge
                         )
                         Text(
@@ -106,12 +86,12 @@ fun MedRecordDetailScreen(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "Medications:",
+                            text = stringResource(R.string.medications),
                             style = MaterialTheme.typography.titleLarge
                         )
                         record.medications.forEach { medication ->
                             Text(
-                                text = "• $medication",
+                                text = medication,
                                 style = MaterialTheme.typography.bodyLarge
                             )
                         }

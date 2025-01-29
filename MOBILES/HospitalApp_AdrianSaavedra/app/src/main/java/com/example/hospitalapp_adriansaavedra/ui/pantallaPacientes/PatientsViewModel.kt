@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.hospitalapp_adriansaavedra.data.remote.NetworkResult
 import com.example.hospitalapp_adriansaavedra.domain.usecases.patients.GetPatientsUseCase
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
-import com.example.hospitalapp_adriansaavedra.ui.pantallaMedRecords.MedRecordsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,13 +13,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PatientsViewModel @Inject constructor(private val getPatientsUseCase: GetPatientsUseCase): ViewModel() {
+class PatientsViewModel @Inject constructor(private val getPatientsUseCase: GetPatientsUseCase) :
+    ViewModel() {
     private val _uiState = MutableStateFlow(PatientsState())
     val uiState = _uiState.asStateFlow()
 
     fun handleEvent(event: PatientsEvent) {
         when (event) {
             is PatientsEvent.GetPatients -> getPatients()
+            is PatientsEvent.OnPlayClick -> navigateToDetail(event.patientId)
+            is PatientsEvent.AvisoVisto -> avisoVisto()
         }
     }
 
@@ -29,16 +31,42 @@ class PatientsViewModel @Inject constructor(private val getPatientsUseCase: GetP
             getPatientsUseCase().collect { result ->
                 when (result) {
                     is NetworkResult.Success -> {
-                        _uiState.update { currentState -> currentState.copy(patients = result.data, isLoading = false) }
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                patients = result.data,
+                                isLoading = false
+                            )
+                        }
                     }
+
                     is NetworkResult.Error -> {
-                        _uiState.update { currentState -> currentState.copy(aviso = UiEvent.ShowSnackbar(result.message), isLoading = false) }
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                aviso = UiEvent.ShowSnackbar(
+                                    result.message
+                                ), isLoading = false
+                            )
+                        }
                     }
+
                     is NetworkResult.Loading -> {
                         _uiState.update { currentState -> currentState.copy(isLoading = true) }
                     }
                 }
             }
         }
+    }
+
+    private fun navigateToDetail(patientId: Int) {
+        _uiState.update {
+            it.copy(
+                aviso = UiEvent.Navigate,
+                selectedPatientId = patientId
+            )
+        }
+    }
+
+    private fun avisoVisto() {
+        _uiState.update { it.copy(aviso = null) }
     }
 }

@@ -6,14 +6,11 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.hospitalapp_adriansaavedra.ui.navigation.MedRecordDestination
+import com.example.hospitalapp_adriansaavedra.ui.navigation.MedRecordListDestination
 import com.example.hospitalapp_adriansaavedra.ui.navigation.PatientListDestination
-import com.example.hospitalapp_adriansaavedra.ui.navigation.PatientSession
 
 @Composable
 fun BottomBar(
@@ -31,7 +28,10 @@ fun BottomBar(
                 selected = currentDestination?.route == item.destination.toString(),
                 onClick = {
                     when (item.destination) {
-                        is MedRecordDestination -> navController.navigate(MedRecordDestination)
+                        is MedRecordListDestination -> navController.navigate(
+                            MedRecordListDestination
+                        )
+
                         is PatientListDestination -> navController.navigate(PatientListDestination)
                     }
                 }
@@ -40,3 +40,8 @@ fun BottomBar(
     }
 }
 
+data class BottomNavItem(
+    val title: String,
+    val destination: Any,
+    val icon: ImageVector
+)

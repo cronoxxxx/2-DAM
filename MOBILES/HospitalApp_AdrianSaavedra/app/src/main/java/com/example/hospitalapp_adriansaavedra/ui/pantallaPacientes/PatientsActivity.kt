@@ -1,5 +1,5 @@
 package com.example.hospitalapp_adriansaavedra.ui.pantallaPacientes
-import androidx.compose.foundation.clickable
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,27 +13,31 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
-
-import androidx.compose.material3.*
-import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.hospitalapp_adriansaavedra.domain.modelo.MedRecord
+import com.example.hospitalapp_adriansaavedra.R
 import com.example.hospitalapp_adriansaavedra.domain.modelo.Patient
 import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PatientListScreen(
-    onNavigateToDetail: (Int) -> Unit,
     showSnackbar: (String) -> Unit,
+    onNavigateToDetail: (Int) -> Unit,
     viewModel: PatientsViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -44,19 +48,21 @@ fun PatientListScreen(
 
     LaunchedEffect(state.aviso) {
         state.aviso?.let {
-            if (it is UiEvent.ShowSnackbar) {
-                showSnackbar(it.message)
+            when (it) {
+                is UiEvent.ShowSnackbar -> {
+                    showSnackbar(it.message)
+                    viewModel.handleEvent(PatientsEvent.AvisoVisto)
+                }
+
+                is UiEvent.Navigate -> {
+                    onNavigateToDetail(state.selectedPatientId)
+                    viewModel.handleEvent(PatientsEvent.AvisoVisto)
+                }
             }
         }
     }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text("Patient List") }
-            )
-        }
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -71,7 +77,7 @@ fun PatientListScreen(
                     items(state.patients) { patient ->
                         PatientCard(
                             patient = patient,
-                            onCardClick = { onNavigateToDetail(patient.id) }
+                            onCardClick = { viewModel.handleEvent(PatientsEvent.OnPlayClick(patient.id)) }
                         )
                     }
                 }
@@ -86,7 +92,6 @@ fun PatientCard(patient: Patient, onCardClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-//            .clickable(onClick = onCardClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
@@ -98,17 +103,17 @@ fun PatientCard(patient: Patient, onCardClick: () -> Unit) {
         ) {
             Column {
                 Text(
-                    text = "Patient ID: ${patient.id}",
+                    text = stringResource(R.string.patient_id) + "${patient.id}",
                     style = MaterialTheme.typography.titleMedium
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Name: ${patient.name}",
+                    text = stringResource(R.string.patient_name) + patient.name,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
             IconButton(onClick = onCardClick) {
-                Icon(Icons.Filled.PlayArrow, contentDescription = "Play")
+                Icon(Icons.Filled.PlayArrow, contentDescription = null)
             }
         }
     }
