@@ -3,8 +3,7 @@ package org.example.loginspring_adriansaavedra.dao;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Repository
 public class DaoCredenciales {

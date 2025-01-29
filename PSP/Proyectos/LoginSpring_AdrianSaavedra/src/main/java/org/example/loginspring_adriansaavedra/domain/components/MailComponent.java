@@ -1,15 +1,17 @@
 package org.example.loginspring_adriansaavedra.domain.components;
 
+import lombok.extern.log4j.Log4j2;
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
-
+@Log4j2
 @Component
 public class MailComponent {
 
-    @Value("${spring.mail.username}")
+    @Value(Constantes.SPRING_MAIL_USERNAME)
     private String fromEmail;
 
     private final JavaMailSender javaMailSender;
@@ -22,14 +24,14 @@ public class MailComponent {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         message.setTo(to);
-        message.setSubject("Email Verification");
-        message.setText("Please click on the link to verify your email: " +
-                "http://localhost:8080/verify?code=" + verificationCode);
+        message.setSubject(Constantes.EMAIL_VERIFICATION_SUBJECT);
+        message.setText(Constantes.PLEASE_CLICK_ON_THE_LINK_TO_VERIFY_YOUR_EMAIL +
+                Constantes.LINK_VERIFY + verificationCode);
 
         try {
             javaMailSender.send(message);
         } catch (MailException e) {
-            System.err.println("Error sending email: " + e.getMessage());
+            log.error(e.getMessage(),e);
         }
     }
 }

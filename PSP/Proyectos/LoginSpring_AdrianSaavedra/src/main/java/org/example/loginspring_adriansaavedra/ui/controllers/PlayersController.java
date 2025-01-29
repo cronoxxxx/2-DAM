@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/players")
+@RequestMapping(Constantes.PLAYERS_DIR)
 public class PlayersController {
 
     private final GestionJugadores gestionJugadores;
@@ -22,19 +22,19 @@ public class PlayersController {
 
     @GetMapping
     public String getPlayers(Model model) {
-        model.addAttribute("players", gestionJugadores.getAllPlayers());
-        return "players";
+        model.addAttribute(Constantes.PLAYERS, gestionJugadores.getAllPlayers());
+        return Constantes.PLAYERS;
     }
 
-    @GetMapping("/edit")
+    @GetMapping(Constantes.EDIT_DIR)
     public String editPlayer(@RequestParam String id, Model model) {
         Player player = gestionJugadores.getPlayerById(id);
         if (player != null) {
-            model.addAttribute("player", player);
-            return "update";
+            model.addAttribute(Constantes.PLAYER, player);
+            return Constantes.UPDATE;
         }
-        model.addAttribute("error", "Player not found");
-        return "players";
+        model.addAttribute(Constantes.ERROR, Constantes.PLAYER_NOT_FOUND);
+        return Constantes.PLAYERS;
     }
 
     @PostMapping
@@ -56,7 +56,7 @@ public class PlayersController {
             default:
                 gestionJugadores.deletePlayer(id);
         }
-        model.addAttribute("players", gestionJugadores.getAllPlayers());
-        return "players";
+        model.addAttribute(Constantes.PLAYERS, gestionJugadores.getAllPlayers());
+        return Constantes.PLAYERS;
     }
 }

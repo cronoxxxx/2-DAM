@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpSession;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.example.loginspring_adriansaavedra.domain.service.GestionCredenciales;
-import org.example.loginspring_adriansaavedra.domain.service.GestionJugadores;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,34 +19,34 @@ public class LoginController {
         this.gestionCredenciales = gestionCredenciales;
     }
 
-    @GetMapping("/login")
+    @GetMapping(Constantes.LOGIN_DIR)
     public String loginPage() {
-        return "login";
+        return Constantes.LOGIN;
     }
 
-    @PostMapping("/login")
+    @PostMapping(Constantes.LOGIN_DIR)
     public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
         if (gestionCredenciales.authenticateUser(username, password)) {
-            session.setAttribute("user", username);
-            return "redirect:/players";
+            session.setAttribute(Constantes.USER, username);
+            return Constantes.REDIRECT  + Constantes.PLAYERS_DIR;
         } else {
-            model.addAttribute("error", "Invalid username or password, or account not verified");
-            return "login";
+            model.addAttribute(Constantes.ERROR, Constantes.ERROR_MESSAGE);
+            return Constantes.LOGIN;
         }
     }
 
-    @GetMapping("/logout")
+    @GetMapping(Constantes.LOGOUT_DIR)
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/login";
+        return Constantes.REDIRECT + Constantes.LOGIN_DIR;
     }
 
-    @GetMapping("/register")
+    @GetMapping(Constantes.REGISTER_DIR)
     public String registerPage() {
-        return "register";
+        return Constantes.REGISTER;
     }
 
-    @PostMapping("/register")
+    @PostMapping(Constantes.REGISTER_DIR)
     public String register(@RequestParam String username, @RequestParam String password, @RequestParam String email, Model model) {
         Credential credential = Credential.builder()
                 .username(username)
@@ -56,21 +55,21 @@ public class LoginController {
                 .build();
 
         if (gestionCredenciales.registerUser(credential)) {
-            model.addAttribute("message", "Registration successful. Please check your email to verify your account.");
-            return "login";
+            model.addAttribute(Constantes.MESSAGE, Constantes.SUCCESS_REGISTER_MESSAGE);
+            return Constantes.LOGIN;
         } else {
-            model.addAttribute("error", "Username already exists");
-            return "register";
+            model.addAttribute(Constantes.ERROR, Constantes.ERROR_REGISTER_MESSAGE);
+            return Constantes.REGISTER;
         }
     }
 
-    @GetMapping("/verify")
+    @GetMapping(Constantes.VERIFY_DIR)
     public String verifyUser(@RequestParam String code, Model model) {
         if (gestionCredenciales.verifyUser(code)) {
-            model.addAttribute("message", "Your account has been verified. You can now log in.");
+            model.addAttribute(Constantes.MESSAGE, Constantes.SUCCESS_MESSAGE);
         } else {
-            model.addAttribute("error", "Invalid or expired verification code.");
+            model.addAttribute(Constantes.ERROR, Constantes.EXPIRED_CODE_MESSAGE);
         }
-        return "login";
+        return Constantes.LOGIN;
     }
 }
