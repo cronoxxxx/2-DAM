@@ -1,12 +1,12 @@
 package org.example.loginspring_adriansaavedra.dao;
 
 
-
 import org.example.loginspring_adriansaavedra.domain.model.Player;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class DaoJugadores {
     private final Database jugadores;
@@ -37,7 +37,6 @@ public class DaoJugadores {
         jugadores.getPlayers().add(player);
         return true;
     }
-
 
 
     public void updatePlayer(Player updatedPlayer) {

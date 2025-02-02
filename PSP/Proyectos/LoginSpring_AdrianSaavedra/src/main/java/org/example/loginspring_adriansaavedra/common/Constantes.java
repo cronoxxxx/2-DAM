@@ -30,7 +30,6 @@ public class Constantes {
     public static final String SPRING_MAIL_USERNAME = "spring.mail.username";
     public static final String EMAIL_VERIFICATION_SUBJECT = "Email Verification";
     public static final String UPDATE_DIR = "/update";
-    public static final String ERROR_SEND_EMAIL = "Error sending email";
     public static final String LINK_VERIFY = "http://localhost:8080/verify?code=";
     public static final String PLEASE_CLICK_ON_THE_LINK_TO_VERIFY_YOUR_EMAIL = "Please click on the link to verify your email: ";
 }

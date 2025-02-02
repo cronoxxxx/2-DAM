@@ -9,23 +9,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/RestCredential.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../DATA ACCESS/HospitalCRUD2/src/main/java/com/example/hospitalcrud/ui/RestCredential.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/BuzonFXSpring-AdrianSaavedra/src/main/java/com/example/buzonfxspring_adriansaavedra/ConfigurationFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/BuzonFXSpring-AdrianSaavedra/src/main/java/com/example/buzonfxspring_adriansaavedra/ConfigurationFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/Login-AdrianSaavedra/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/common/Constantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/common/Constantes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/components/MailComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/components/MailComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/ConfigurationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/ConfigurationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/SessionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/filters/SessionFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/resources/templates/login.html" afterDir="false" />
+    <list default="true" id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="29">
+      <change beforePath="$PROJECT_DIR$/../../HospitalApp_AdrianSaavedra/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../../HospitalApp_AdrianSaavedra/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,27 +93,28 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;Compose Preview.App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/second-test&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adrian/Desktop/main2dam/MOBILES/apuntes/borradorCompose&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "Compose Preview.App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "feature/second-test",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/oscarnovillo dam2_2425 main moviles-ComposeApp"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1&quot;,
-      &quot;C:\\Users\\Adrian\\.gradle&quot;
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1",
+      "C:\\Users\\Adrian\\.gradle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Adrian\Desktop\main2dam\MOBILES\apuntes\borradorCompose\app\src\main\java\com\example\borradorcompose" />
@@ -283,6 +269,15 @@
       <option name="presentableId" value="Default" />
       <updated>1736886467253</updated>
     </task>
+    <task id="LOCAL-00001" summary="29">
+      <option name="closed" value="true" />
+      <created>1738108973393</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738108973393</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,5 +290,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="29" />
+    <option name="LAST_COMMIT_MESSAGE" value="29" />
   </component>
 </project>

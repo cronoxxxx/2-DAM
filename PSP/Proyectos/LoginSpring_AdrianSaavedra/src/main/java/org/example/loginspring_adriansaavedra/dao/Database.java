@@ -1,13 +1,13 @@
 package org.example.loginspring_adriansaavedra.dao;
 
 import lombok.Getter;
-
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.example.loginspring_adriansaavedra.domain.model.Player;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Component
 public class Database {

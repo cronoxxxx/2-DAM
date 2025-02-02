@@ -36,7 +36,7 @@ class MedRecordDetailViewModel @Inject constructor(
 
     private fun getPatientRecord(patientId: Int, recordId: Int) {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
+
             getPatientRecordUseCase(patientId, recordId).collect { result ->
                 when (result) {
                     is NetworkResult.Success -> {

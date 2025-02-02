@@ -1,4 +1,5 @@
 package com.example.hospitalcrud.dao.model;
+import com.example.hospitalcrud.common.UserType;
 import org.hibernate.annotations.NamedQuery;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -29,14 +30,21 @@ public class Credential {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
+    @Column(name = "doctor_id")
+    private Integer doctorId;
 
     public Credential(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
-
-
-
-
+    public UserType getUserType() {
+        if (patient != null) {
+            return UserType.PATIENT;
+        } else if (doctorId != null) {
+            return UserType.DOCTOR;
+        } else {
+            return UserType.ADMIN;
+        }
+    }
 }

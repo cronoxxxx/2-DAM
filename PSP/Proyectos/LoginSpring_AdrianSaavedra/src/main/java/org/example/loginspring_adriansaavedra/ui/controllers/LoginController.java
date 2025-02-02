@@ -28,7 +28,7 @@ public class LoginController {
     public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
         if (gestionCredenciales.authenticateUser(username, password)) {
             session.setAttribute(Constantes.USER, username);
-            return Constantes.REDIRECT  + Constantes.PLAYERS_DIR;
+            return Constantes.REDIRECT + Constantes.PLAYERS_DIR;
         } else {
             model.addAttribute(Constantes.ERROR, Constantes.ERROR_MESSAGE);
             return Constantes.LOGIN;

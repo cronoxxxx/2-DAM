@@ -7,6 +7,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+
 @Log4j2
 @Component
 public class MailComponent {
@@ -31,7 +32,7 @@ public class MailComponent {
         try {
             javaMailSender.send(message);
         } catch (MailException e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
     }
 }

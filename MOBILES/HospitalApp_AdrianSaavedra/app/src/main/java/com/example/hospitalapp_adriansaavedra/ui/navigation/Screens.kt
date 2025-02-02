@@ -21,7 +21,7 @@ data object MedRecordListDestination
 data class MedRecordDetailDestination(val patientId: Int, val recordId: Int)
 
 @Serializable
-object PatientListDestination
+data object PatientListDestination
 
 @Serializable
 data class PatientDetailDestination(val patientId: Int)

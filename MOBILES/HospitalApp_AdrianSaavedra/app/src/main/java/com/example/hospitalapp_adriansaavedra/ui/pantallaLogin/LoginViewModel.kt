@@ -30,7 +30,6 @@ class LoginViewModel @Inject constructor(
 
     private fun login(patientId: Int) {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
             val result = getPatientRecordsUseCase(patientId)
             result.collect { networkResult ->
                 when (networkResult) {

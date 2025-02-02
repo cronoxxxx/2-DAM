@@ -4,11 +4,11 @@ import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.springframework.stereotype.Repository;
 
 
-
 @Repository
 public class DaoCredenciales {
     private final Database credentials;
-    public DaoCredenciales (Database credentials) {
+
+    public DaoCredenciales(Database credentials) {
         this.credentials = credentials;
     }
 
