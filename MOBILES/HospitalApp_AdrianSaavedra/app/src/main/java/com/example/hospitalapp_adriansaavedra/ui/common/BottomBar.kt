@@ -34,6 +34,7 @@ fun BottomBar(
 
                         is PatientListDestination -> navController.navigate(PatientListDestination)
                     }
+
                 }
             )
         }

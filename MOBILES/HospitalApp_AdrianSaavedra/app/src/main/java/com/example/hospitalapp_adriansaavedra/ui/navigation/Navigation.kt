@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -39,8 +40,8 @@ fun Navigation() {
     val navController = rememberNavController()
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
-    var topBarTitle by remember { mutableStateOf("") }
-    var showBackButton by remember { mutableStateOf(false) }
+    var topBarTitle by rememberSaveable { mutableStateOf("") }
+    var showBackButton by rememberSaveable { mutableStateOf(false) }
 
     val showSnackbar: (String) -> Unit = { message ->
         coroutineScope.launch {
