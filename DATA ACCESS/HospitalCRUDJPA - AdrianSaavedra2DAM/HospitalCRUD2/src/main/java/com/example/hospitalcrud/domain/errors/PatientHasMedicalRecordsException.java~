@@ -1,0 +1,2 @@
+package com.example.hospitalcrud.domain.errors;public class PatientHasMedicalRecordsException {
+}
