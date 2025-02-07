@@ -3,15 +3,16 @@ package org.example.loginspring_adriansaavedra.ui.controllers;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.Player;
 import org.example.loginspring_adriansaavedra.domain.service.GestionJugadores;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping(Constantes.PLAYERS_DIR)
+import java.util.List;
+
+@RestController
+@RequestMapping("/players")
 public class PlayersController {
 
     private final GestionJugadores gestionJugadores;
@@ -21,42 +22,38 @@ public class PlayersController {
     }
 
     @GetMapping
-    public String getPlayers(Model model) {
-        model.addAttribute(Constantes.PLAYERS, gestionJugadores.getAllPlayers());
-        return Constantes.PLAYERS;
+    public ResponseEntity<List<Player>> getPlayers() {
+        return ResponseEntity.ok(gestionJugadores.getAllPlayers());
     }
 
-    @GetMapping(Constantes.EDIT_DIR)
-    public String editPlayer(@RequestParam String id, Model model) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Player> getPlayer(@PathVariable String id) {
         Player player = gestionJugadores.getPlayerById(id);
         if (player != null) {
-            model.addAttribute(Constantes.PLAYER, player);
-            return Constantes.UPDATE;
+            return ResponseEntity.ok(player);
         }
-        model.addAttribute(Constantes.ERROR, Constantes.PLAYER_NOT_FOUND);
-        return Constantes.PLAYERS;
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping
-    public String handlePlayerAction(@RequestParam String action, @RequestParam(required = false) String id,
-                                     @RequestParam(required = false) String name,
-                                     @RequestParam(required = false) String team,
-                                     @RequestParam(required = false) String country,
-                                     Model model) {
-        switch (action) {
-            case Constantes.ADD:
-                boolean added = gestionJugadores.addPlayer(Player.builder().name(name).team(team).country(country).build());
-                if (!added) {
-                    model.addAttribute(Constantes.ERROR_ADD_PLAYER, Constantes.MESSAGE_ERROR_ADD_PLAYER);
-                }
-                break;
-            case Constantes.UPDATE:
-                gestionJugadores.updatePlayer(new Player(Integer.parseInt(id), name, team, country));
-                break;
-            default:
-                gestionJugadores.deletePlayer(id);
+    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
+        boolean added = gestionJugadores.addPlayer(player);
+        if (added) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(player);
         }
-        model.addAttribute(Constantes.PLAYERS, gestionJugadores.getAllPlayers());
-        return Constantes.PLAYERS;
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Player> updatePlayer(@PathVariable String id, @RequestBody Player player) {
+        player.setId(Integer.parseInt(id));
+        gestionJugadores.updatePlayer(player);
+        return ResponseEntity.ok(player);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlayer(@PathVariable String id) {
+        gestionJugadores.deletePlayer(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,75 +1,56 @@
 package org.example.loginspring_adriansaavedra.ui.controllers;
 
-import jakarta.servlet.http.HttpSession;
-import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.example.loginspring_adriansaavedra.domain.service.GestionCredenciales;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.example.loginspring_adriansaavedra.ui.common.JwtTokenUtil;
+import org.example.loginspring_adriansaavedra.ui.model.LoginRequest;
+import org.example.loginspring_adriansaavedra.ui.model.RegisterRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class LoginController {
 
     private final GestionCredenciales gestionCredenciales;
+    private final JwtTokenUtil jwtTokenUtil;
 
-    public LoginController(GestionCredenciales gestionCredenciales) {
+    public LoginController(GestionCredenciales gestionCredenciales, JwtTokenUtil jwtTokenUtil) {
         this.gestionCredenciales = gestionCredenciales;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @GetMapping(Constantes.LOGIN_DIR)
-    public String loginPage() {
-        return Constantes.LOGIN;
-    }
-
-    @PostMapping(Constantes.LOGIN_DIR)
-    public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-        if (gestionCredenciales.authenticateUser(username, password)) {
-            session.setAttribute(Constantes.USER, username);
-            return Constantes.REDIRECT + Constantes.PLAYERS_DIR;
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        if (gestionCredenciales.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword())) {
+            String token = jwtTokenUtil.generateToken(loginRequest.getPassword()); //pregunta oscar
+            return ResponseEntity.ok(token);
         } else {
-            model.addAttribute(Constantes.ERROR, Constantes.ERROR_MESSAGE);
-            return Constantes.LOGIN;
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password, or account not verified");
         }
     }
 
-    @GetMapping(Constantes.LOGOUT_DIR)
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return Constantes.REDIRECT + Constantes.LOGIN_DIR;
-    }
-
-    @GetMapping(Constantes.REGISTER_DIR)
-    public String registerPage() {
-        return Constantes.REGISTER;
-    }
-
-    @PostMapping(Constantes.REGISTER_DIR)
-    public String register(@RequestParam String username, @RequestParam String password, @RequestParam String email, Model model) {
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
         Credential credential = Credential.builder()
-                .username(username)
-                .password(password)
-                .email(email)
+                .username(registerRequest.getUsername())
+                .password(registerRequest.getPassword())
+                .email(registerRequest.getEmail())
                 .build();
 
         if (gestionCredenciales.registerUser(credential)) {
-            model.addAttribute(Constantes.MESSAGE, Constantes.SUCCESS_REGISTER_MESSAGE);
-            return Constantes.LOGIN;
+            return ResponseEntity.status(HttpStatus.CREATED).body("Registration successful. Please check your email to verify your account.");
         } else {
-            model.addAttribute(Constantes.ERROR, Constantes.ERROR_REGISTER_MESSAGE);
-            return Constantes.REGISTER;
+            return ResponseEntity.badRequest().body("Username already exists");
         }
     }
 
-    @GetMapping(Constantes.VERIFY_DIR)
-    public String verifyUser(@RequestParam String code, Model model) {
+    @GetMapping("/verify")
+    public ResponseEntity<String> verifyUser(@RequestParam String code) {
         if (gestionCredenciales.verifyUser(code)) {
-            model.addAttribute(Constantes.MESSAGE, Constantes.SUCCESS_MESSAGE);
+            return ResponseEntity.ok("Your account has been verified. You can now log in.");
         } else {
-            model.addAttribute(Constantes.ERROR, Constantes.EXPIRED_CODE_MESSAGE);
+            return ResponseEntity.badRequest().body("Invalid or expired verification code.");
         }
-        return Constantes.LOGIN;
     }
 }

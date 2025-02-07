@@ -2,6 +2,8 @@ package com.example.consolesapp_adriansaavedra.ui.pantallaLogin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.consolesapp_adriansaavedra.data.NetworkResult
+import com.example.consolesapp_adriansaavedra.data.PlayerConsoleRepository
 import com.example.consolesapp_adriansaavedra.data.PreferencesRepository
 import com.example.consolesapp_adriansaavedra.di.IoDispatcher
 import com.example.consolesapp_adriansaavedra.domain.model.Player
@@ -21,7 +23,6 @@ class LoginViewModel @Inject constructor(
     private val getPlayersUseCase: GetPlayersUseCase,
     private val registerPlayerUseCase: RegisterPlayerUseCase,
     private val preferencesRepository: PreferencesRepository,
-    @IoDispatcher val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginState())
@@ -42,33 +43,48 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun login(player: Player) {
-        viewModelScope.launch(dispatcher) {
-            _uiState.update { it.copy(isLoading = true) }
-            val cachedUsers = getPlayersUseCase
-            val obtained = cachedUsers.invoke()
-                .find { it.username == player.username && it.password == player.password }
-            if (obtained != null) {
-                preferencesRepository.saveUserId(obtained.jugadorId)
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        idLogin = obtained.jugadorId.toString(),
-                        aviso = UiEvent.Navigate,
-                        isLoading = false
-                    )
+        viewModelScope.launch {
+
+            when (val result = getPlayersUseCase.invoke()) {
+                is NetworkResult.Success -> {
+                    val obtained =
+                        result.data.find { it.username == player.username && it.password == player.password }
+                    if (obtained != null) {
+                        preferencesRepository.saveUserId(obtained.jugadorId)
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                idLogin = obtained.jugadorId.toString(),
+                                aviso = UiEvent.Navigate,
+                                isLoading = false
+                            )
+                        }
+                    } else {
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                aviso = UiEvent.ShowSnackbar("Login error"),
+                                isLoading = false
+                            )
+                        }
+                    }
                 }
-            } else {
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        aviso = UiEvent.ShowSnackbar("Login error"),
-                        isLoading = false
-                    )
+
+                is NetworkResult.Error -> {
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            aviso = UiEvent.ShowSnackbar(result.message),
+                            isLoading = false
+                        )
+                    }
+                }
+                is NetworkResult.Loading -> {
+                    _uiState.update { it.copy(isLoading = true) }
                 }
             }
         }
     }
 
     private fun register(player: Player) {
-        viewModelScope.launch(dispatcher) {
+        viewModelScope.launch{
             _uiState.update { it.copy(isLoading = true) }
             val cachedUsers = getPlayersUseCase
             val obtained = cachedUsers.invoke()

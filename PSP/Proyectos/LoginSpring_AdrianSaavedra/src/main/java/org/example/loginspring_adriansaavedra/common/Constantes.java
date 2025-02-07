@@ -25,8 +25,6 @@ public class Constantes {
     public static final String ERROR_REGISTER_MESSAGE = "Username already exists";
     public static final String EXPIRED_CODE_MESSAGE = "Invalid or expired verification code.";
     public static final String PLAYER_NOT_FOUND = "Player not found";
-    public static final String PLAYERS_BEANS = "/players/*";
-    public static final String UPDATE_BEANS = "/update/*";
     public static final String SPRING_MAIL_USERNAME = "spring.mail.username";
     public static final String EMAIL_VERIFICATION_SUBJECT = "Email Verification";
     public static final String UPDATE_DIR = "/update";
