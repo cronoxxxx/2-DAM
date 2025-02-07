@@ -45,10 +45,9 @@ class LoginViewModel @Inject constructor(
     private fun login(player: Player) {
         viewModelScope.launch {
 
-            when (val result = getPlayersUseCase.invoke()) {
+            when (val result = getPlayersUseCase()) {
                 is NetworkResult.Success -> {
-                    val obtained =
-                        result.data.find { it.username == player.username && it.password == player.password }
+                    val obtained = result.data.find { it.username == player.username && it.password == player.password }
                     if (obtained != null) {
                         preferencesRepository.saveUserId(obtained.jugadorId)
                         _uiState.update { currentState ->
@@ -67,7 +66,6 @@ class LoginViewModel @Inject constructor(
                         }
                     }
                 }
-
                 is NetworkResult.Error -> {
                     _uiState.update { currentState ->
                         currentState.copy(
@@ -84,25 +82,51 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun register(player: Player) {
-        viewModelScope.launch{
-            _uiState.update { it.copy(isLoading = true) }
-            val cachedUsers = getPlayersUseCase
-            val obtained = cachedUsers.invoke()
-                .find { it.username == player.username && it.password == player.password }
-            if (obtained == null) {
-                registerPlayerUseCase(player)
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        aviso = UiEvent.ShowSnackbar("Registration successful"),
-                        isLoading = false
-                    )
+        viewModelScope.launch {
+            when (val playersResult = getPlayersUseCase()) {
+                is NetworkResult.Success -> {
+                    val obtained = playersResult.data.find { it.username == player.username }
+                    if (obtained == null) {
+                        when (val registerResult = registerPlayerUseCase(player)) {
+                            is NetworkResult.Success -> {
+                                _uiState.update { currentState ->
+                                    currentState.copy(
+                                        aviso = UiEvent.ShowSnackbar("Registration successful"),
+                                        isLoading = false
+                                    )
+                                }
+                            }
+                            is NetworkResult.Error -> {
+                                _uiState.update { currentState ->
+                                    currentState.copy(
+                                        aviso = UiEvent.ShowSnackbar("Registration error: ${registerResult.message}"),
+                                        isLoading = false
+                                    )
+                                }
+                            }
+                            is NetworkResult.Loading -> {
+                                // This state is handled by setting isLoading to true at the start of the function
+                            }
+                        }
+                    } else {
+                        _uiState.update { currentState ->
+                            currentState.copy(
+                                aviso = UiEvent.ShowSnackbar("User already exists"),
+                                isLoading = false
+                            )
+                        }
+                    }
                 }
-            } else {
-                _uiState.update { currentState ->
-                    currentState.copy(
-                        aviso = UiEvent.ShowSnackbar("Register error"),
-                        isLoading = false
-                    )
+                is NetworkResult.Error -> {
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            aviso = UiEvent.ShowSnackbar("Error checking existing users: ${playersResult.message}"),
+                            isLoading = false
+                        )
+                    }
+                }
+                is NetworkResult.Loading -> {
+                    _uiState.update { it.copy(isLoading = true) }
                 }
             }
         }

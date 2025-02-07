@@ -23,7 +23,7 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         if (gestionCredenciales.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword())) {
-            String token = jwtTokenUtil.generateToken(loginRequest.getPassword()); //pregunta oscar
+            String token = jwtTokenUtil.generateToken(loginRequest.getUsername()); //pregunta oscar
             return ResponseEntity.ok(token);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password, or account not verified");

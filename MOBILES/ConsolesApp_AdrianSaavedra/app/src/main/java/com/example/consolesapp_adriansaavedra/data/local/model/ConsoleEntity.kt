@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "consolas")
 data class ConsoleEntity(
     @PrimaryKey(autoGenerate = true)
-    val consolaId: Int ?= null,
+    val consolaId: Int =0,
     val nombre: String,
     val modelo: String,
     val precio: Double,

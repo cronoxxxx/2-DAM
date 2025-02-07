@@ -14,12 +14,17 @@ import javax.inject.Inject
 class PlayerConsoleRepository @Inject constructor(private val playerConsoleDao: PlayerConsoleDao,@IoDispatcher private val dispatcher: CoroutineDispatcher) {
     suspend fun deleteConsole(id: Int) = playerConsoleDao.deleteConsole(id)
     suspend fun deletePlayer(id: Int) = playerConsoleDao.deletePlayer(id)
-    suspend fun fetchAllPlayers()= withContext(dispatcher) {
+    suspend fun fetchAllPlayers(): NetworkResult<List<Player>> = withContext(dispatcher) {
+        try {
             val players = playerConsoleDao.getAllPlayers().map { it.toPlayer() }
-        if (players.isEmpty())
-            NetworkResult.Error("No players found")
-        else
-            NetworkResult.Success(players)
+            if (players.isEmpty()) {
+                NetworkResult.Error("No players found")
+            } else {
+                NetworkResult.Success(players)
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error("Error fetching players: ${e.message}")
+        }
     }
     suspend fun fetchPlayerWithConsoles(id: Int) =
         playerConsoleDao.getPlayerWithConsoles(id).toPlayer()

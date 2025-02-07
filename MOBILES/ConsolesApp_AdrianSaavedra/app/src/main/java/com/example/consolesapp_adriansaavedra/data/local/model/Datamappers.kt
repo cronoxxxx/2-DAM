@@ -7,10 +7,10 @@ fun Console.toEntity() =
     ConsoleEntity(nombre = this.nombre, modelo = this.modelo, precio = this.precio)
 
 fun ConsoleEntity.toConsola() =
-    Console(consolaId = this.consolaId ?:0, nombre = this.nombre, modelo = this.modelo, precio = this.precio)
+    Console(consolaId = this.consolaId, nombre = this.nombre, modelo = this.modelo, precio = this.precio)
 
 fun PlayerEntity.toPlayer() = Player(
-    jugadorId = this.jugadorId ?: 0,
+    jugadorId = this.jugadorId,
     username = this.username,
     password = this.password,
     consolasList = emptyList()
