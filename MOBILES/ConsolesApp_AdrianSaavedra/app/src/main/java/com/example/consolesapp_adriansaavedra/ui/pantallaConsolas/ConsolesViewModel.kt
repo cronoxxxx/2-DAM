@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ConsolesViewModel @Inject constructor(
     private val getPlayerConsolesUseCase: GetPlayerConsolesUseCase,
-    private val preferencesRepository: PreferencesRepository,
+    preferencesRepository: PreferencesRepository,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(ConsolesState())
     val uiState = _uiState.asStateFlow()

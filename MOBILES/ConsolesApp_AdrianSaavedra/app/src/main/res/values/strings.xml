@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">ConsolesApp_AdrianSaavedra</string>
+    <string name="consoles">Consoles</string>
+    <string name="players">Players</string>
+    <string name="login">Login</string>
+    <string name="console">Console</string>
+    <string name="add_console">Add Console</string>
+    <string name="player">Player</string>
+    <string name="add_new_console">Add New Console</string>
+    <string name="user_id">User ID: %1$d</string>
+    <string name="name">Name</string>
+    <string name="name_args">Name: %1$s</string>
+
+    <string name="model">Model</string>
+    <string name="price">Price</string>
+    <string name="console_detail">Console Detail</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="no_console_data">No console data available</string>
+    <string name="console_id">Console ID: %1$d</string>
+    <string name="no_consoles_found">No consoles found</string>
+
+    <string name="player_detail">Player Detail</string>
+    <string name="username">Username: %1$s</string>
+    <string name="password">Password: %1$s</string>
+    <string name="no_consoles">This player does not have any consoles</string>
+    <string name="console_item">- %1$s (%2$s)</string>
+    <string name="no_player_data">No player data available</string>
+    <string name="player_id">Player ID: %1$d</string>
+    <string name="no_players_found">No players found</string>
+    <string name="login_error">Login error</string>
+    <string name="registration_success">"Registration success"</string>
+
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Register</string>
+
+
 </resources>

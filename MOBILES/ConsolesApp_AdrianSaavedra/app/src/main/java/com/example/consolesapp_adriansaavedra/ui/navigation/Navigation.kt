@@ -1,8 +1,15 @@
 package com.example.consolesapp_adriansaavedra.ui.navigation
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.*
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
@@ -15,14 +22,19 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.consolesapp_adriansaavedra.R
 import com.example.consolesapp_adriansaavedra.ui.common.BottomBar
 import com.example.consolesapp_adriansaavedra.ui.common.TopBar
+import com.example.consolesapp_adriansaavedra.ui.pantallaAgregarConsola.AddConsoleScreen
 import com.example.consolesapp_adriansaavedra.ui.pantallaConsolaDetalle.ConsoleDetailScreen
 import com.example.consolesapp_adriansaavedra.ui.pantallaConsolas.ConsolesScreen
+import com.example.consolesapp_adriansaavedra.ui.pantallaJugadorDetalle.PlayerDetailScreen
+import com.example.consolesapp_adriansaavedra.ui.pantallaJugadores.PlayersScreen
 import com.example.consolesapp_adriansaavedra.ui.pantallaLogin.LoginScreen
 import kotlinx.coroutines.launch
 
@@ -35,6 +47,7 @@ fun Navigation() {
     var topBarTitle by rememberSaveable { mutableStateOf("") }
     var showBackButton by rememberSaveable { mutableStateOf(false) }
     var isBottomBarVisible by rememberSaveable { mutableStateOf(true) }
+    var isBottomFabVisible by rememberSaveable { mutableStateOf(false) }
 
     val showSnackbar: (String) -> Unit = { message ->
         coroutineScope.launch {
@@ -60,6 +73,16 @@ fun Navigation() {
             ) {
                 BottomBar(navController = navController, items = rememberBottomNavItems())
             }
+        }, floatingActionButton = {
+            AnimatedVisibility(visible = isBottomFabVisible) {
+                FloatingActionButton(
+                    onClick = {
+                        navController.navigate(AddConsoleDestination)
+                    }
+                ) {
+                    Icon(imageVector = Icons.Rounded.Add, contentDescription = null)
+                }
+            }
         }
 
     ) { innerPadding ->
@@ -68,10 +91,12 @@ fun Navigation() {
             startDestination = LoginDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
+
             composable<LoginDestination> {
-                topBarTitle = "Login"
+                topBarTitle = stringResource(R.string.login)
                 showBackButton = false
                 isBottomBarVisible = false
+                isBottomFabVisible = false
                 LoginScreen(
                     navigateToHome = {
                         navController.navigate(ConsoleListDestination)
@@ -80,9 +105,10 @@ fun Navigation() {
                 )
             }
             composable<ConsoleListDestination> {
-                topBarTitle = "Consolas"
+                topBarTitle = stringResource(R.string.consoles)
                 showBackButton = false
                 isBottomBarVisible = true
+                isBottomFabVisible = true
 
                 ConsolesScreen(
                     showSnackbar = showSnackbar,
@@ -93,13 +119,51 @@ fun Navigation() {
             }
             composable<ConsoleDetailDestination> { backStackEntry ->
                 val destination = backStackEntry.toRoute() as ConsoleDetailDestination
-                topBarTitle = "Consola" + destination.consoleId
+                topBarTitle = stringResource(R.string.console) + destination.consoleId
                 showBackButton = true
                 isBottomBarVisible = true
+                isBottomFabVisible = false
                 ConsoleDetailScreen(
                     showSnackbar = showSnackbar,
-                    onNavigateBack = { navController.popBackStack() },
+                    onNavigateBack = { navController.navigateUp() },
                     consoleId = destination.consoleId
+                )
+            }
+            composable<AddConsoleDestination> {
+                topBarTitle = stringResource(R.string.add_console)
+                showBackButton = true
+                isBottomBarVisible = true
+                isBottomFabVisible = false
+                AddConsoleScreen(
+                    onNavigateBack = {
+                        navController.navigateUp()
+                    },
+                    showSnackbar = showSnackbar
+                )
+            }
+            composable<PlayerListDestination> {
+                topBarTitle = stringResource(R.string.players)
+                showBackButton = false
+                isBottomBarVisible = true
+                isBottomFabVisible = false
+                PlayersScreen(
+                    showSnackbar = showSnackbar,
+                    onNavigateToDetail = { playerId ->
+                        navController.navigate(
+                            PlayerDetailDestination(playerId = playerId)
+                        )
+                    })
+            }
+            composable<PlayerDetailDestination> { backStackEntry ->
+                val destination = backStackEntry.toRoute() as PlayerDetailDestination
+                topBarTitle = stringResource(R.string.player) + destination.playerId
+                showBackButton = true
+                isBottomBarVisible = true
+                isBottomFabVisible = false
+                PlayerDetailScreen(
+                    showSnackbar = showSnackbar,
+                    onNavigateBack = { navController.navigateUp() },
+                    playerId = destination.playerId
                 )
             }
         }

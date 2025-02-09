@@ -11,31 +11,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.hilt.navigation.compose.hiltViewModel
-
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import androidx.compose.ui.unit.dp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.consolesapp_adriansaavedra.R
 import com.example.consolesapp_adriansaavedra.domain.model.Player
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 import com.example.consolesapp_adriansaavedra.ui.navigation.Navigation
@@ -45,6 +39,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContent {
             MaterialTheme {
                 Navigation()
@@ -52,7 +47,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 
 @Composable
@@ -70,6 +64,7 @@ fun LoginScreen(
                     showSnackbar(it.message)
                     viewModel.handleEvent(LoginEvent.AvisoVisto)
                 }
+
                 is UiEvent.Navigate -> {
                     navigateToHome(state.idLogin.toInt())
                     viewModel.handleEvent(LoginEvent.AvisoVisto)
@@ -83,10 +78,24 @@ fun LoginScreen(
         onUsernameChange = { viewModel.handleEvent(LoginEvent.OnUsernameChange(it)) },
         onPasswordChange = { viewModel.handleEvent(LoginEvent.OnPasswordChange(it)) },
         onLoginClick = {
-            viewModel.handleEvent(LoginEvent.OnLoginClick(Player(username = state.username, password = state.password)))
+            viewModel.handleEvent(
+                LoginEvent.OnLoginClick(
+                    Player(
+                        username = state.username,
+                        password = state.password
+                    )
+                )
+            )
         },
         onRegisterClick = {
-            viewModel.handleEvent(LoginEvent.OnRegisterClick(Player(username = state.username, password = state.password)))
+            viewModel.handleEvent(
+                LoginEvent.OnRegisterClick(
+                    Player(
+                        username = state.username,
+                        password = state.password
+                    )
+                )
+            )
         }
     )
 }
@@ -107,24 +116,24 @@ fun LoginScreenContent(
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
             ) {
                 OutlinedTextField(
                     value = state.username,
                     onValueChange = onUsernameChange,
-                    label = { Text("Username") },
+                    label = { Text(stringResource(id = R.string.username_label)) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 16.dp)
+                        .padding(bottom = dimensionResource(id = R.dimen.padding_medium))
                 )
 
                 OutlinedTextField(
                     value = state.password,
                     onValueChange = onPasswordChange,
-                    label = { Text("Password") },
+                    label = { Text(stringResource(id = R.string.password_label)) },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 16.dp)
+                        .padding(bottom=dimensionResource(id = R.dimen.padding_medium))
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -136,11 +145,11 @@ fun LoginScreenContent(
                     ) {
                         if (state.isLoading) {
                             CircularProgressIndicator(
-                                modifier = Modifier.size(24.dp),
+                                modifier = Modifier.size(dimensionResource(id = R.dimen.progress_indicator_size)),
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
                         } else {
-                            Text("Login")
+                            Text(stringResource(id = R.string.login_button))
                         }
                     }
                     Button(
@@ -149,11 +158,11 @@ fun LoginScreenContent(
                     ) {
                         if (state.isLoading) {
                             CircularProgressIndicator(
-                                modifier = Modifier.size(24.dp),
+                                modifier = Modifier.size(dimensionResource(id = R.dimen.progress_indicator_size)),
                                 color = MaterialTheme.colorScheme.onPrimary
                             )
                         } else {
-                            Text("Register")
+                            Text(stringResource(id = R.string.register_button))
                         }
                     }
                 }

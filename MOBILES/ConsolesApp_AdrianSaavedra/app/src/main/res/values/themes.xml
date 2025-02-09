@@ -2,4 +2,11 @@
 <resources>
 
     <style name="Theme.ConsolesApp_AdrianSaavedra" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.App.ComposeSplash" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/game_icon</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/black</item>
+        <item name="postSplashScreenTheme">@style/Theme.ConsolesApp_AdrianSaavedra</item>
+    </style>
 </resources>

@@ -7,7 +7,6 @@ import com.example.consolesapp_adriansaavedra.domain.model.Console
 import com.example.consolesapp_adriansaavedra.domain.usecases.console.DeleteConsoleUseCase
 import com.example.consolesapp_adriansaavedra.domain.usecases.console.GetConsoleUseCase
 import com.example.consolesapp_adriansaavedra.domain.usecases.console.UpdateConsoleUseCase
-import com.example.consolesapp_adriansaavedra.domain.usecases.player.DeletePlayerUseCase
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +24,7 @@ class ConsoleDetailViewModel @Inject constructor(
     ViewModel() {
     private val _uiState = MutableStateFlow(ConsoleDetailState())
     val uiState = _uiState.asStateFlow()
+
 
     private fun avisoVisto() {
         _uiState.update { it.copy(aviso = null) }
@@ -75,6 +75,7 @@ class ConsoleDetailViewModel @Inject constructor(
                         )
                     }
                 }
+
                 is NetworkResult.Error -> {
                     _uiState.update {
                         it.copy(
@@ -86,6 +87,7 @@ class ConsoleDetailViewModel @Inject constructor(
             }
         }
     }
+
     private fun deleteConsole(id: Int) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
@@ -93,6 +95,7 @@ class ConsoleDetailViewModel @Inject constructor(
                 is NetworkResult.Success -> {
                     _uiState.update { it.copy(aviso = UiEvent.Navigate, isLoading = false) }
                 }
+
                 is NetworkResult.Error -> {
                     _uiState.update {
                         it.copy(
@@ -129,8 +132,6 @@ class ConsoleDetailViewModel @Inject constructor(
             )
         }
     }
-
-
 
 
 }

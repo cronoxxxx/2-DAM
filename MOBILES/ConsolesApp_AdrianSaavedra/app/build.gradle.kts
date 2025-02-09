@@ -97,5 +97,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.hilt.navigation.compose)
+    //Splash
+    implementation(libs.androidx.core.splashscreen)
+
 
 }

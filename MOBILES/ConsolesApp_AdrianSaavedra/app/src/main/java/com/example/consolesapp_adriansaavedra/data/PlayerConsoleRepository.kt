@@ -8,6 +8,7 @@ import com.example.consolesapp_adriansaavedra.data.local.model.toPlayer
 import com.example.consolesapp_adriansaavedra.di.IoDispatcher
 import com.example.consolesapp_adriansaavedra.domain.model.Console
 import com.example.consolesapp_adriansaavedra.domain.model.Player
+import com.example.consolesapp_adriansaavedra.ui.Constantes
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -21,35 +22,29 @@ class PlayerConsoleRepository @Inject constructor(
             playerConsoleDao.deleteConsole(id)
             NetworkResult.Success(Unit)
         } catch (e: Exception) {
-            NetworkResult.Error("Error deleting console: ${e.message}")
+            NetworkResult.Error("${Constantes.ERROR_DELETING_CONSOLE}${e.message}")
         }
     }
 
-    suspend fun deletePlayer(id: Int) = playerConsoleDao.deletePlayer(id)
     suspend fun fetchAllPlayers() = withContext(dispatcher) {
         try {
             val players = playerConsoleDao.getAllPlayers().map { it.toPlayer() }
             if (players.isEmpty()) {
-                NetworkResult.Error("No players found")
+                NetworkResult.Error(Constantes.NO_PLAYERS_FOUND)
             } else {
                 NetworkResult.Success(players)
             }
         } catch (e: Exception) {
-            NetworkResult.Error("Error fetching players: ${e.message}")
+            NetworkResult.Error("${Constantes.ERROR_FETCHING_PLAYERS}${e.message}")
         }
     }
 
     suspend fun fetchPlayerWithConsoles(id: Int) = withContext(dispatcher) {
         try {
             val result = playerConsoleDao.getPlayerWithConsoles(id).toPlayer()
-            if (result.consolasList.isEmpty()) {
-                NetworkResult.Error("No consoles found for player")
-            } else {
-                NetworkResult.Success(result)
-            }
             NetworkResult.Success(result)
         } catch (e: Exception) {
-            NetworkResult.Error("Error fetching player with consoles: ${e.message}")
+            NetworkResult.Error("${Constantes.ERROR_FETCHING_PLAYER_WITH_CONSOLES}${e.message}")
         }
 
     }
@@ -60,11 +55,27 @@ class PlayerConsoleRepository @Inject constructor(
             val result = playerConsoleDao.getConsole(id).toConsole()
             NetworkResult.Success(result)
         } catch (e: Exception) {
-            NetworkResult.Error("Error fetching console: ${e.message}")
+            NetworkResult.Error("${Constantes.ERROR_FETCHING_CONSOLE}${e.message}")
         }
     }
 
-    suspend fun insertConsole(consola: Console) = playerConsoleDao.insertConsole(consola.toEntity())
+    suspend fun insertConsole(userId: Int, consola: Console) = withContext(dispatcher) {
+        try {
+            val result = playerConsoleDao.getAllConsoles()
+            val existingConsole = result.find { it.nombre == consola.nombre }
+            if (existingConsole == null) {
+                val newConsoleId = playerConsoleDao.insertConsole(consola.toEntity())
+                playerConsoleDao.insertCrossRef(PlayerConsoleCrossRef(userId, newConsoleId.toInt()))
+                NetworkResult.Success(Unit)
+            } else {
+                NetworkResult.Error(Constantes.CONSOLE_ALREADY_EXISTS)
+            }
+        } catch (e: Exception) {
+            NetworkResult.Error("${Constantes.ERROR_INSERTING_CONSOLE}${e.message}")
+        }
+    }
+
+
     suspend fun insertPlayer(player: Player): NetworkResult<Unit> = withContext(dispatcher) {
         try {
             val result = playerConsoleDao.getAllPlayers()
@@ -73,27 +84,21 @@ class PlayerConsoleRepository @Inject constructor(
                 playerConsoleDao.insertPlayer(player.toEntity())
                 NetworkResult.Success(Unit)
             } else {
-                NetworkResult.Error("User already exists")
+                NetworkResult.Error(Constantes.USER_ALREADY_EXISTS)
             }
         } catch (e: Exception) {
-            NetworkResult.Error("Error inserting player: ${e.message}")
+            NetworkResult.Error("${Constantes.ERROR_INSERTING_PLAYER}${e.message}")
         }
     }
-
-    suspend fun insertCrossRef(playerId: Int, consoleId: Int) =
-        playerConsoleDao.insertCrossRef(PlayerConsoleCrossRef(playerId, consoleId))
 
     suspend fun updateConsole(consola: Console) = withContext(dispatcher) {
         try {
             playerConsoleDao.updateConsole(consola.toEntity())
             NetworkResult.Success(Unit)
         } catch (e: Exception) {
-            NetworkResult.Error("Error updating console: ${e.message}")
+            NetworkResult.Error("${Constantes.ERROR_UPDATING_CONSOLE}${e.message}")
         }
 
     }
-
-    suspend fun updatePlayer(player: Player) = playerConsoleDao.updatePlayer(player.toEntity())
-
 
 }

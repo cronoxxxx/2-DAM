@@ -1,0 +1,9 @@
+package com.example.usersapp_adriansaavedra.data.remote.services
+
+import com.example.usersapp_adriansaavedra.domain.modelo.Task
+import retrofit2.Response
+import retrofit2.http.GET
+fun interface TaskService {
+    @GET("todos")
+    suspend fun getTasks(): Response<List<Task>>
+}

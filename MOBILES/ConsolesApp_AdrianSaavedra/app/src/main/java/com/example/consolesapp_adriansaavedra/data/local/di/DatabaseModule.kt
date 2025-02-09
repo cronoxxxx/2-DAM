@@ -21,7 +21,7 @@ object DatabaseModule {
             appContext,
             AppDatabase::class.java,
             Constantes.APP_DB
-        ).createFromAsset("data.db").fallbackToDestructiveMigration()
+        ).createFromAsset(Constantes.DB_ASSETS).fallbackToDestructiveMigration()
             .build()
 
     @Provides

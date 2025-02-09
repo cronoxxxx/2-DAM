@@ -16,15 +16,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.consolesapp_adriansaavedra.R
 import com.example.consolesapp_adriansaavedra.domain.model.Console
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 
@@ -100,26 +102,26 @@ fun ConsoleDetailScreenContent(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                            .padding(dimensionResource(id = R.dimen.padding_default)),
+                        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.spacing_default))
                     ) {
-                        Text("Console Detail", fontSize = 24.sp)
+                        Text(stringResource(R.string.console_detail),fontSize = dimensionResource(id = R.dimen.text_size_title).value.sp)
                         OutlinedTextField(
                             value = console.nombre,
                             onValueChange = onNameChange,
-                            label = { Text("Name") },
+                            label = { Text(stringResource(R.string.name)) },
                             modifier = Modifier.fillMaxWidth()
                         )
                         OutlinedTextField(
                             value = console.modelo,
                             onValueChange = onModelChange,
-                            label = { Text("Model") },
+                            label = { Text(stringResource(R.string.model)) },
                             modifier = Modifier.fillMaxWidth()
                         )
                         OutlinedTextField(
                             value = console.precio.toString(),
                             onValueChange = onPriceChange,
-                            label = { Text("Price") },
+                            label = { Text(stringResource(R.string.price)) },
                             keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -129,19 +131,20 @@ fun ConsoleDetailScreenContent(
                         ) {
                             Button(
                                 onClick = onUpdateClick,
-                                modifier = Modifier.padding(end = 8.dp)
+                                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_small))
                             ) {
-                                Text("Update")
+                                Text(stringResource(R.string.update))
                             }
                             Button(
                                 onClick = onDeleteClick,
-                                modifier = Modifier.padding(start = 8.dp)
+                                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_small))
                             ) {
-                                Text("Delete")
+                                Text(stringResource(R.string.delete))
                             }
                         }
                     }
-                } ?: Text("No console data available")
+                } ?: Text(stringResource(R.string.no_console_data))
+
             }
         }
     }

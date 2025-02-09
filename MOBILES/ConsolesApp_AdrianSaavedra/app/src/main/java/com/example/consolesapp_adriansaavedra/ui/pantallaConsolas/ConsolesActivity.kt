@@ -10,26 +10,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.consolesapp_adriansaavedra.R
 import com.example.consolesapp_adriansaavedra.domain.model.Console
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 
@@ -55,6 +54,7 @@ fun ConsolesScreen(
                     showSnackbar(it.message)
                     viewModel.handleEvent(ConsolesEvent.AvisoVisto)
                 }
+
                 is UiEvent.Navigate -> {
                     onNavigateToDetail(state.selectedConsoleId)
                     viewModel.handleEvent(ConsolesEvent.AvisoVisto)
@@ -76,31 +76,32 @@ fun ConsoleCard(console: Console, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(dimensionResource(id = R.dimen.padding_small))
             .clickable(onClick = onClick),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(id = R.dimen.card_elevation))
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.padding_medium))
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
                 Text(
-                    text = "Console ID: ${console.consolaId}",
+                    text = stringResource(R.string.console_id, console.consolaId),
                     style = MaterialTheme.typography.titleMedium
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.spacing_small)))
                 Text(
-                    text = "Name: ${console.nombre}",
+                    text = stringResource(R.string.name_args, console.nombre),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
         }
     }
 }
+
 @Composable
 fun ConsolesScreenContent(
     state: ConsolesState,
@@ -116,12 +117,14 @@ fun ConsolesScreenContent(
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
+
                 state.playerConsoles.isEmpty() -> {
                     Text(
-                        "No consoles found",
+                        stringResource(R.string.no_consoles_found),
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
+
                 else -> {
                     LazyColumn {
                         items(state.playerConsoles) { console ->
@@ -141,11 +144,13 @@ class ConsolesStateProvider : PreviewParameterProvider<ConsolesState> {
     override val values = sequenceOf(
         ConsolesState(isLoading = true),
         ConsolesState(playerConsoles = emptyList()),
-        ConsolesState(playerConsoles = listOf(
-            Console(consolaId = 1, nombre = "PlayStation 5"),
-            Console(consolaId = 2, nombre = "Xbox Series X"),
-            Console(consolaId = 3, nombre = "Nintendo Switch")
-        ))
+        ConsolesState(
+            playerConsoles = listOf(
+                Console(consolaId = 1, nombre = "PlayStation 5"),
+                Console(consolaId = 2, nombre = "Xbox Series X"),
+                Console(consolaId = 3, nombre = "Nintendo Switch")
+            )
+        )
     )
 }
 

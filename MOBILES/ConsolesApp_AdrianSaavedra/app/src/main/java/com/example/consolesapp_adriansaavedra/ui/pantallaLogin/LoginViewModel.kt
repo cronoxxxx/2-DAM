@@ -2,21 +2,19 @@ package com.example.consolesapp_adriansaavedra.ui.pantallaLogin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.consolesapp_adriansaavedra.R
 import com.example.consolesapp_adriansaavedra.data.NetworkResult
-import com.example.consolesapp_adriansaavedra.data.PlayerConsoleRepository
 import com.example.consolesapp_adriansaavedra.data.PreferencesRepository
-import com.example.consolesapp_adriansaavedra.di.IoDispatcher
 import com.example.consolesapp_adriansaavedra.domain.model.Player
 import com.example.consolesapp_adriansaavedra.domain.usecases.player.GetPlayersUseCase
 import com.example.consolesapp_adriansaavedra.domain.usecases.player.RegisterPlayerUseCase
+import com.example.consolesapp_adriansaavedra.ui.common.StringProvider
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.yield
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +22,7 @@ class LoginViewModel @Inject constructor(
     private val getPlayersUseCase: GetPlayersUseCase,
     private val registerPlayerUseCase: RegisterPlayerUseCase,
     private val preferencesRepository: PreferencesRepository,
+    private val stringProvider: StringProvider
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginState())
@@ -48,7 +47,8 @@ class LoginViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = true) }
             when (val result = getPlayersUseCase()) {
                 is NetworkResult.Success -> {
-                    val obtained = result.data.find { it.username == player.username && it.password == player.password }
+                    val obtained =
+                        result.data.find { it.username == player.username && it.password == player.password }
                     if (obtained != null) {
                         preferencesRepository.saveUserId(obtained.jugadorId)
                         _uiState.update { currentState ->
@@ -61,12 +61,13 @@ class LoginViewModel @Inject constructor(
                     } else {
                         _uiState.update { currentState ->
                             currentState.copy(
-                                aviso = UiEvent.ShowSnackbar("Login error"),
+                                aviso = UiEvent.ShowSnackbar(stringProvider.getString(R.string.login_error)),
                                 isLoading = false
                             )
                         }
                     }
                 }
+
                 is NetworkResult.Error -> {
                     _uiState.update { currentState ->
                         currentState.copy(
@@ -82,29 +83,27 @@ class LoginViewModel @Inject constructor(
     private fun register(player: Player) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-                        when (val registerResult = registerPlayerUseCase(player)) {
-                            is NetworkResult.Success -> {
-                                _uiState.update { currentState ->
-                                    currentState.copy(
-                                        aviso = UiEvent.ShowSnackbar("Registration successful"),
-                                        isLoading = false
-                                    )
-                                }
-                            }
-                            is NetworkResult.Error -> {
-                                _uiState.update { currentState ->
-                                    currentState.copy(
-                                        aviso = UiEvent.ShowSnackbar("Registration error: ${registerResult.message}"),
-                                        isLoading = false
-                                    )
-                                }
-                            }
-                        }
+            when (val registerResult = registerPlayerUseCase(player)) {
+                is NetworkResult.Success -> {
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            aviso = UiEvent.ShowSnackbar(stringProvider.getString(R.string.registration_success)),
+                            isLoading = false
+                        )
                     }
                 }
 
-
-
+                is NetworkResult.Error -> {
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            aviso = UiEvent.ShowSnackbar(registerResult.message),
+                            isLoading = false
+                        )
+                    }
+                }
+            }
+        }
+    }
 
 
     private fun updateUsername(value: String) {
