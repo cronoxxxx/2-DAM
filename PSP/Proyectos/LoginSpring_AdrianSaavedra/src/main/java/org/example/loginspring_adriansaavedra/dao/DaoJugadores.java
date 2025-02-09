@@ -39,14 +39,16 @@ public class DaoJugadores {
     }
 
 
-    public void updatePlayer(Player updatedPlayer) {
-        jugadores.getPlayers().replaceAll(player ->
-                player.getId() == updatedPlayer.getId() ? updatedPlayer : player
-        );
+    public boolean updatePlayer(Player updatedPlayer) {
+        boolean playerExists = jugadores.getPlayers().removeIf(player -> player.getId() == updatedPlayer.getId());
+        if (playerExists) {
+            jugadores.getPlayers().add(updatedPlayer);
+        }
+        return playerExists;
     }
 
-    public void deletePlayer(int id) {
-        jugadores.getPlayers().removeIf(player -> player.getId() == id);
+    public boolean deletePlayer(int id) {
+        return jugadores.getPlayers().removeIf(player -> player.getId() == id);
     }
 
     public Player getPlayerById(int id) {

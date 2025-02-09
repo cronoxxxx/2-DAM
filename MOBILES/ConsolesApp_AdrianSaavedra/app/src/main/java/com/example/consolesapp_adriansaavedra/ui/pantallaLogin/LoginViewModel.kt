@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.yield
 import javax.inject.Inject
 
 @HiltViewModel
@@ -44,7 +45,7 @@ class LoginViewModel @Inject constructor(
 
     private fun login(player: Player) {
         viewModelScope.launch {
-
+            _uiState.update { it.copy(isLoading = true) }
             when (val result = getPlayersUseCase()) {
                 is NetworkResult.Success -> {
                     val obtained = result.data.find { it.username == player.username && it.password == player.password }
@@ -74,19 +75,13 @@ class LoginViewModel @Inject constructor(
                         )
                     }
                 }
-                is NetworkResult.Loading -> {
-                    _uiState.update { it.copy(isLoading = true) }
-                }
             }
         }
     }
 
     private fun register(player: Player) {
         viewModelScope.launch {
-            when (val playersResult = getPlayersUseCase()) {
-                is NetworkResult.Success -> {
-                    val obtained = playersResult.data.find { it.username == player.username }
-                    if (obtained == null) {
+            _uiState.update { it.copy(isLoading = true) }
                         when (val registerResult = registerPlayerUseCase(player)) {
                             is NetworkResult.Success -> {
                                 _uiState.update { currentState ->
@@ -104,33 +99,13 @@ class LoginViewModel @Inject constructor(
                                     )
                                 }
                             }
-                            is NetworkResult.Loading -> {
-                                // This state is handled by setting isLoading to true at the start of the function
-                            }
-                        }
-                    } else {
-                        _uiState.update { currentState ->
-                            currentState.copy(
-                                aviso = UiEvent.ShowSnackbar("User already exists"),
-                                isLoading = false
-                            )
                         }
                     }
                 }
-                is NetworkResult.Error -> {
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            aviso = UiEvent.ShowSnackbar("Error checking existing users: ${playersResult.message}"),
-                            isLoading = false
-                        )
-                    }
-                }
-                is NetworkResult.Loading -> {
-                    _uiState.update { it.copy(isLoading = true) }
-                }
-            }
-        }
-    }
+
+
+
+
 
     private fun updateUsername(value: String) {
         _uiState.update { it.copy(username = value) }

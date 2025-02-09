@@ -23,9 +23,15 @@ interface PlayerConsoleDao {
     @Query("SELECT * FROM jugadores")
     suspend fun getAllPlayers(): List<PlayerEntity>
 
+    @Query("SELECT * FROM consolas")
+    suspend fun getAllConsoles(): List<ConsoleEntity>
+
     @Transaction
     @Query("SELECT * FROM jugadores WHERE jugadorId = :playerId")
     suspend fun getPlayerWithConsoles(playerId: Int): PlayerWithConsoles
+
+    @Query("SELECT * FROM consolas WHERE consolaId = :consoleId")
+    suspend fun getConsole(consoleId: Int): ConsoleEntity
 
     @Query("DELETE FROM jugadores WHERE jugadorId=:idJugador")
     suspend fun deletePlayer(idJugador: Int)

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailComponent {
 
-    @Value(Constantes.SPRING_MAIL_USERNAME)
+    @Value(Constantes.INIT_EXP + Constantes.SPRING_MAIL_USERNAME + Constantes.END_EXP)
     private String fromEmail;
 
     private final JavaMailSender javaMailSender;

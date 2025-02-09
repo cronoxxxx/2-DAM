@@ -1,11 +1,12 @@
 package org.example.loginspring_adriansaavedra.ui.controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
+import org.example.loginspring_adriansaavedra.domain.model.Login;
+import org.example.loginspring_adriansaavedra.domain.model.Register;
 import org.example.loginspring_adriansaavedra.domain.service.GestionCredenciales;
 import org.example.loginspring_adriansaavedra.ui.common.JwtTokenUtil;
-import org.example.loginspring_adriansaavedra.ui.model.LoginRequest;
-import org.example.loginspring_adriansaavedra.ui.model.RegisterRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,37 +21,42 @@ public class LoginController {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        if (gestionCredenciales.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword())) {
-            String token = jwtTokenUtil.generateToken(loginRequest.getUsername()); //pregunta oscar
-            return ResponseEntity.ok(token);
+    @PostMapping(Constantes.LOGIN_DIR)
+    public ResponseEntity<String> login(@RequestBody Login login) {
+        if (gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword())) {
+            String token = jwtTokenUtil.generateToken(login.getUsername());
+            return ResponseEntity.status(HttpServletResponse.SC_OK).body(token);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password, or account not verified");
+            return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED)
+                    .body(Constantes.ERROR_MESSAGE);
         }
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+    @PostMapping(Constantes.REGISTER_DIR)
+    public ResponseEntity<String> register(@RequestBody Register register) {
         Credential credential = Credential.builder()
-                .username(registerRequest.getUsername())
-                .password(registerRequest.getPassword())
-                .email(registerRequest.getEmail())
+                .username(register.getUsername())
+                .password(register.getPassword())
+                .email(register.getEmail())
                 .build();
 
         if (gestionCredenciales.registerUser(credential)) {
-            return ResponseEntity.status(HttpStatus.CREATED).body("Registration successful. Please check your email to verify your account.");
+            return ResponseEntity.status(HttpServletResponse.SC_CREATED)
+                    .body(Constantes.SUCCESS_REGISTER_MESSAGE);
         } else {
-            return ResponseEntity.badRequest().body("Username already exists");
+            return ResponseEntity.status(HttpServletResponse.SC_BAD_REQUEST)
+                    .body(Constantes.ERROR_REGISTER_MESSAGE);
         }
     }
 
-    @GetMapping("/verify")
+    @GetMapping(Constantes.VERIFY_DIR)
     public ResponseEntity<String> verifyUser(@RequestParam String code) {
         if (gestionCredenciales.verifyUser(code)) {
-            return ResponseEntity.ok("Your account has been verified. You can now log in.");
+            return ResponseEntity.status(HttpServletResponse.SC_OK)
+                    .body(Constantes.SUCCESS_MESSAGE);
         } else {
-            return ResponseEntity.badRequest().body("Invalid or expired verification code.");
+            return ResponseEntity.status(HttpServletResponse.SC_BAD_REQUEST)
+                    .body(Constantes.EXPIRED_CODE_MESSAGE);
         }
     }
 }

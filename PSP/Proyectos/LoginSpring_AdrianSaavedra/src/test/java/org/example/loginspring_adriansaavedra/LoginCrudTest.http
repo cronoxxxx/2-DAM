@@ -1,0 +1,80 @@
+@token = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjIiLCJpc3MiOiJTZXJ2aWRvciIsImlhdCI6MTczOTA2MjI1MiwiZXhwIjoxNzM5MDYyODUyLCJ1c2VyIjoiYWRtaW4yIn0.6TCcCfZEtddo6E3gU0sYjiSjaBkUyh6Z-JVyFrOg6xYsZP8bjT2rPsImBcxsxD2QWjGllnROem_PazPnZj2kqw
+
+
+
+
+
+
+###Register
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "admin2",
+  "password": "admin2",
+  "email": "saavedra.mateo.walter@gmail.com"
+}
+
+
+
+
+###Log in
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "admin2",
+  "password": "admin2"
+}
+
+
+###Get All Players
+GET http://localhost:8080/players
+Authorization: Bearer {{token}}
+
+
+
+
+
+
+### Get Individual Player (by ID)
+GET http://localhost:8080/players/1
+Authorization: Bearer {{token}}
+
+
+
+
+### Add New Player
+POST http://localhost:8080/players
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Neymar",
+  "team": "Al Hilal",
+  "country": "Brazil"
+}
+
+
+
+
+
+### Update Player (by ID)
+PUT http://localhost:8080/players/8
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Neymar",
+  "team": "Santos FC",
+  "country": "Brazil"
+}
+
+
+
+
+
+
+### Delete Player (by ID)
+DELETE http://localhost:8080/players/3
+Authorization: Bearer {{token}}

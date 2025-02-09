@@ -2,7 +2,9 @@ package org.example.loginspring_adriansaavedra.ui.filters;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.ui.common.JwtTokenUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -25,19 +27,15 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        // Only apply the filter to /players endpoints
-        if (request.getRequestURI().startsWith("/players")) {
+        if (request.getRequestURI().startsWith(Constantes.PLAYERS_DIR)) {
             final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-            if (isEmpty(header) || !header.startsWith("Bearer ")) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authorization header must be provided");
+            if (isEmpty(header) || !header.startsWith(Constantes.BEARER)) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.HEADER_PROVIDED_NEEDED);
                 return;
             }
 
             final String token = header.split(" ")[1].trim();
-            if (!jwtTokenUtil.validateToken(token)) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
-                return;
-            }
+            jwtTokenUtil.validateToken(token);
         }
 
         chain.doFilter(request, response);

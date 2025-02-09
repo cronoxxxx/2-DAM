@@ -3,6 +3,7 @@ package org.example.loginspring_adriansaavedra.domain.service;
 
 import org.example.loginspring_adriansaavedra.dao.DaoJugadores;
 import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.example.loginspring_adriansaavedra.domain.validators.PlayerValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
 @Service
 public class GestionJugadores {
     private final DaoJugadores daoJugadores;
+    private final PlayerValidator playerValidator;
 
-    public GestionJugadores(DaoJugadores daoJugadores) {
+    public GestionJugadores(DaoJugadores daoJugadores, PlayerValidator playerValidator) {
+        this.playerValidator = playerValidator;
         this.daoJugadores = daoJugadores;
     }
 
@@ -20,16 +23,22 @@ public class GestionJugadores {
     }
 
     public boolean addPlayer(Player player) {
+        if (playerValidator.validatePlayer(player)) {
+            return false;
+        }
         return daoJugadores.addPlayer(player);
     }
 
 
-    public void updatePlayer(Player player) {
-        daoJugadores.updatePlayer(player);
+    public boolean updatePlayer(Player player) {
+        if (playerValidator.validatePlayer(player)) {
+            return false;
+        }
+        return daoJugadores.updatePlayer(player);
     }
 
-    public void deletePlayer(String id) {
-        daoJugadores.deletePlayer(Integer.parseInt(id));
+    public boolean deletePlayer(String id) {
+        return daoJugadores.deletePlayer(Integer.parseInt(id));
     }
 
     public Player getPlayerById(String id) {

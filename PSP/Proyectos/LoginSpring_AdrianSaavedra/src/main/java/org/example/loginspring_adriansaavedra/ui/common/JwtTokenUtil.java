@@ -1,10 +1,7 @@
 package org.example.loginspring_adriansaavedra.ui.common;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -24,19 +21,19 @@ public class JwtTokenUtil {
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
-                .setIssuer("Servidor")
+                .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now().plusSeconds(600).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim("user", username)
+                .claim(Constantes.USER_S, username)
                 .signWith(key)
                 .compact();
     }
 
-    public boolean validateToken(String token) {
-
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            return true;
-
+    public void validateToken(String token) {
+        Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token);
     }
 
 

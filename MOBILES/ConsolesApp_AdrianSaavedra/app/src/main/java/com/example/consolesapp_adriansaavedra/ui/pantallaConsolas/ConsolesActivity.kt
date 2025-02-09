@@ -15,77 +15,60 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Label
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.consolesapp_adriansaavedra.domain.model.Console
-import com.example.consolesapp_adriansaavedra.ui.common.PreferencesViewModel
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 
 @Composable
-fun ConsoleScreen(
+fun ConsolesScreen(
     showSnackbar: (String) -> Unit,
     onNavigateToDetail: (Int) -> Unit,
-    viewModel: ConsoleViewModel = hiltViewModel()
+    viewModel: ConsolesViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val userId by viewModel.userId.collectAsStateWithLifecycle()
+
+    LaunchedEffect(userId) {
+        if (userId > 0) {
+            viewModel.handleEvent(ConsolesEvent.LoadConsoles(userId))
+        }
+    }
 
     LaunchedEffect(state.aviso) {
         state.aviso?.let {
             when (it) {
                 is UiEvent.ShowSnackbar -> {
                     showSnackbar(it.message)
-                    viewModel.handleEvent(ConsoleEvent.AvisoVisto)
+                    viewModel.handleEvent(ConsolesEvent.AvisoVisto)
                 }
                 is UiEvent.Navigate -> {
                     onNavigateToDetail(state.selectedConsoleId)
-                    viewModel.handleEvent(ConsoleEvent.AvisoVisto)
+                    viewModel.handleEvent(ConsolesEvent.AvisoVisto)
                 }
             }
         }
     }
 
-    Surface {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            when {
-                state.isLoading -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-                state.playerConsoles.isEmpty() -> {
-                    Text(
-                        "No consoles found",
-                        modifier = Modifier.align(Alignment.Center)
-                    )
-                }
-                else -> {
-                    LazyColumn {
-                        items(state.playerConsoles) { console ->
-                            ConsoleCard(
-                                console = console,
-                                onClick = { viewModel.handleEvent(ConsoleEvent.OnConsoleClick(console.consolaId)) }
-                            )
-                        }
-                    }
-                }
-            }
+    ConsolesScreenContent(
+        state = state,
+        onConsolesClick = { consoleId ->
+            viewModel.handleEvent(ConsolesEvent.OnConsolesClick(consoleId))
         }
-    }
+    )
 }
 
 @Composable
@@ -118,5 +101,59 @@ fun ConsoleCard(console: Console, onClick: () -> Unit) {
         }
     }
 }
+@Composable
+fun ConsolesScreenContent(
+    state: ConsolesState,
+    onConsolesClick: (Int) -> Unit = {}
+) {
+    Surface {
+        Box(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            when {
+                state.isLoading -> {
+                    CircularProgressIndicator(
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+                state.playerConsoles.isEmpty() -> {
+                    Text(
+                        "No consoles found",
+                        modifier = Modifier.align(Alignment.Center)
+                    )
+                }
+                else -> {
+                    LazyColumn {
+                        items(state.playerConsoles) { console ->
+                            ConsoleCard(
+                                console = console,
+                                onClick = { onConsolesClick(console.consolaId) }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+class ConsolesStateProvider : PreviewParameterProvider<ConsolesState> {
+    override val values = sequenceOf(
+        ConsolesState(isLoading = true),
+        ConsolesState(playerConsoles = emptyList()),
+        ConsolesState(playerConsoles = listOf(
+            Console(consolaId = 1, nombre = "PlayStation 5"),
+            Console(consolaId = 2, nombre = "Xbox Series X"),
+            Console(consolaId = 3, nombre = "Nintendo Switch")
+        ))
+    )
+}
+
+@Preview(showSystemUi = true, showBackground = true, device = Devices.PHONE)
+@Composable
+fun ConsoleScreenPreview(@PreviewParameter(ConsolesStateProvider::class) state: ConsolesState) {
+    ConsolesScreenContent(state = state)
+}
+
 
 

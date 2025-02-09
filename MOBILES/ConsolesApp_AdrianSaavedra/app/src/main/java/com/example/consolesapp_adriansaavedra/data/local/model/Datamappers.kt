@@ -4,9 +4,9 @@ import com.example.consolesapp_adriansaavedra.domain.model.Console
 import com.example.consolesapp_adriansaavedra.domain.model.Player
 
 fun Console.toEntity() =
-    ConsoleEntity(nombre = this.nombre, modelo = this.modelo, precio = this.precio)
+    ConsoleEntity( consolaId = this.consolaId, nombre = this.nombre, modelo = this.modelo, precio = this.precio)
 
-fun ConsoleEntity.toConsola() =
+fun ConsoleEntity.toConsole() =
     Console(consolaId = this.consolaId, nombre = this.nombre, modelo = this.modelo, precio = this.precio)
 
 fun PlayerEntity.toPlayer() = Player(
@@ -23,7 +23,7 @@ fun Player.toEntity() = PlayerEntity(
 )
 
 fun PlayerWithConsoles.toPlayer(): Player {
-    return Player(jugador.toPlayer().jugadorId, jugador.toPlayer().username, jugador.toPlayer().password, consolas.map { it.toConsola() })
+    return Player(jugador.toPlayer().jugadorId, jugador.toPlayer().username, jugador.toPlayer().password, consolas.map { it.toConsole() })
 }
 
 fun Player.validate()= username.isNotBlank() && password.isNotBlank()

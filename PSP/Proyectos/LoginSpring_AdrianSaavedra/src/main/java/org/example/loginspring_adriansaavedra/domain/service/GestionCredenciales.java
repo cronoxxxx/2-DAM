@@ -3,6 +3,7 @@ package org.example.loginspring_adriansaavedra.domain.service;
 import org.example.loginspring_adriansaavedra.dao.DaoCredenciales;
 import org.example.loginspring_adriansaavedra.domain.components.MailComponent;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
+import org.example.loginspring_adriansaavedra.domain.validators.CredentialValidator;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -12,13 +13,18 @@ import java.util.Base64;
 public class GestionCredenciales {
     private final DaoCredenciales daoCredenciales;
     private final MailComponent mailComponent;
+    private final CredentialValidator credentialValidator;
 
-    public GestionCredenciales(DaoCredenciales daoCredenciales, MailComponent mailComponent) {
+    public GestionCredenciales(DaoCredenciales daoCredenciales, MailComponent mailComponent, CredentialValidator credentialValidator) {
+        this.credentialValidator = credentialValidator;
         this.daoCredenciales = daoCredenciales;
         this.mailComponent = mailComponent;
     }
 
     public boolean registerUser(Credential credential) {
+        if (credentialValidator.validateCredential(credential)) {
+            return false;
+        }
         if (daoCredenciales.findByUsername(credential.getUsername()) != null) {
             return false;
         }

@@ -29,6 +29,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -74,6 +78,27 @@ fun LoginScreen(
         }
     }
 
+    LoginScreenContent(
+        state = state,
+        onUsernameChange = { viewModel.handleEvent(LoginEvent.OnUsernameChange(it)) },
+        onPasswordChange = { viewModel.handleEvent(LoginEvent.OnPasswordChange(it)) },
+        onLoginClick = {
+            viewModel.handleEvent(LoginEvent.OnLoginClick(Player(username = state.username, password = state.password)))
+        },
+        onRegisterClick = {
+            viewModel.handleEvent(LoginEvent.OnRegisterClick(Player(username = state.username, password = state.password)))
+        }
+    )
+}
+
+@Composable
+fun LoginScreenContent(
+    state: LoginState,
+    onUsernameChange: (String) -> Unit = {},
+    onPasswordChange: (String) -> Unit = {},
+    onLoginClick: () -> Unit = {},
+    onRegisterClick: () -> Unit = {}
+) {
     Surface {
         Box(
             modifier = Modifier.fillMaxSize(),
@@ -86,7 +111,7 @@ fun LoginScreen(
             ) {
                 OutlinedTextField(
                     value = state.username,
-                    onValueChange = { viewModel.handleEvent(LoginEvent.OnUsernameChange(it)) },
+                    onValueChange = onUsernameChange,
                     label = { Text("Username") },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -95,7 +120,7 @@ fun LoginScreen(
 
                 OutlinedTextField(
                     value = state.password,
-                    onValueChange = { viewModel.handleEvent(LoginEvent.OnPasswordChange(it)) },
+                    onValueChange = onPasswordChange,
                     label = { Text("Password") },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -106,9 +131,7 @@ fun LoginScreen(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Button(
-                        onClick = {
-                            viewModel.handleEvent(LoginEvent.OnLoginClick(Player(username = state.username, password = state.password)))
-                        },
+                        onClick = onLoginClick,
                         enabled = !state.isLoading
                     ) {
                         if (state.isLoading) {
@@ -121,9 +144,7 @@ fun LoginScreen(
                         }
                     }
                     Button(
-                        onClick = {
-                            viewModel.handleEvent(LoginEvent.OnRegisterClick(Player(username = state.username, password = state.password)))
-                        },
+                        onClick = onRegisterClick,
                         enabled = !state.isLoading
                     ) {
                         if (state.isLoading) {
@@ -139,6 +160,20 @@ fun LoginScreen(
             }
         }
     }
+}
+
+class LoginStateProvider : PreviewParameterProvider<LoginState> {
+    override val values = sequenceOf(
+        LoginState(username = "", password = "", isLoading = false),
+        LoginState(username = "user123", password = "password", isLoading = false),
+        LoginState(username = "user123", password = "password", isLoading = true)
+    )
+}
+
+@Preview(showSystemUi = true, showBackground = true, device = Devices.PHONE)
+@Composable
+fun LoginScreenPreview(@PreviewParameter(LoginStateProvider::class) state: LoginState) {
+    LoginScreenContent(state = state)
 }
 
 

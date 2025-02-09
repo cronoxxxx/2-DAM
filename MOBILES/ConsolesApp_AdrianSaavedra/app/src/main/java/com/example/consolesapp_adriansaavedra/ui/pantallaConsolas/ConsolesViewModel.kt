@@ -2,13 +2,11 @@ package com.example.consolesapp_adriansaavedra.ui.pantallaConsolas
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.consolesapp_adriansaavedra.data.NetworkResult
 import com.example.consolesapp_adriansaavedra.data.PreferencesRepository
-import com.example.consolesapp_adriansaavedra.di.IoDispatcher
 import com.example.consolesapp_adriansaavedra.domain.usecases.player.GetPlayerConsolesUseCase
-import com.example.consolesapp_adriansaavedra.ui.common.PreferencesViewModel
 import com.example.consolesapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,41 +16,49 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ConsoleViewModel @Inject constructor(
+class ConsolesViewModel @Inject constructor(
     private val getPlayerConsolesUseCase: GetPlayerConsolesUseCase,
     private val preferencesRepository: PreferencesRepository,
-    @IoDispatcher val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(ConsoleState())
+    private val _uiState = MutableStateFlow(ConsolesState())
     val uiState = _uiState.asStateFlow()
+    val userId = preferencesRepository.userId
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = 0
+        )
 
-    init {
-        viewModelScope.launch {
-            preferencesRepository.userId.collect { id ->
-                if (id > 0) {
-                    getPlayerConsoles(id)
-                }
-            }
-        }
-    }
-
-    fun handleEvent(event: ConsoleEvent) {
+    fun handleEvent(event: ConsolesEvent) {
         when (event) {
-            is ConsoleEvent.OnConsoleClick -> selectConsole(event.consoleId)
-            is ConsoleEvent.AvisoVisto -> avisoVisto()
+            is ConsolesEvent.OnConsolesClick -> selectConsole(event.consoleId)
+            is ConsolesEvent.AvisoVisto -> avisoVisto()
+            is ConsolesEvent.LoadConsoles -> getPlayerConsoles(event.userId)
         }
     }
 
     private fun getPlayerConsoles(id: Int) {
-        viewModelScope.launch(dispatcher) {
+        viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-                val player = getPlayerConsolesUseCase(id)
-                _uiState.update {
+            when (val player = getPlayerConsolesUseCase(id)) {
+                is NetworkResult.Error -> _uiState.update {
                     it.copy(
-                        playerConsoles = player.consolasList,
-                        isLoading = false
+                        aviso = UiEvent.ShowSnackbar(
+                            player.message
+                        )
                     )
                 }
+
+                is NetworkResult.Success -> {
+                    _uiState.update {
+                        it.copy(
+                            playerConsoles = player.data.consolasList,
+                            isLoading = false
+                        )
+                    }
+                }
+            }
+
 
         }
     }
