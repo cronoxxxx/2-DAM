@@ -16,7 +16,7 @@
         android:theme="@style/Theme.HospitalApp_AdrianSaavedra"
         tools:targetApi="31">
         <activity
-            android:name=".ui.pantallaLogin.LoginActivity"
+            android:name=".ui.pantallaLogin.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.HospitalApp_AdrianSaavedra">

@@ -1,0 +1,74 @@
+###Register
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "admin3",
+  "password": "admin3",
+  "email": "saavedra.mateo.walter@gmail.com"
+}
+###Log in
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "admin3",
+  "password": "admin3"
+}
+
+
+> {%
+    client.global.set("tokencito", response.body.trim())
+%}
+
+
+###Get All Players
+GET http://localhost:8080/players
+Authorization: Bearer {{tokencito}}
+
+
+
+
+
+
+### Get Individual Player (by ID)
+GET http://localhost:8080/players/1
+Authorization: Bearer {{tokencito}}
+
+
+
+
+### Add New Player
+POST http://localhost:8080/players
+Content-Type: application/json
+Authorization: Bearer {{tokencito}}
+
+{
+  "name": "Neymar",
+  "team": "Al Hilal",
+  "country": "Brazil"
+}
+
+
+
+
+
+### Update Player (by ID)
+PUT http://localhost:8080/players/8
+Content-Type: application/json
+Authorization: Bearer {{tokencito}}
+
+{
+  "name": "Neymar",
+  "team": "Santos CF",
+  "country": "Brazil"
+}
+
+
+
+
+
+
+### Delete Player (by ID)
+DELETE http://localhost:8080/players/1
+Authorization: Bearer {{tokencito}}

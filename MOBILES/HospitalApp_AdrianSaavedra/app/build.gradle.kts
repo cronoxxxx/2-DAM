@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.hilt)
 
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
+
 }
 
 android {
@@ -69,6 +71,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,6 +81,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     // Hilt
     implementation(libs.hilt.core)
+    implementation(libs.androidx.hilt.navigation.compose)
+
     //Logs
     implementation(libs.timber)
     //bundle
@@ -86,6 +91,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
 
     implementation(libs.androidx.room.ktx)
+//Serializable
+    implementation(libs.kotlinx.serialization.json)
 
     // Testing
     testImplementation(libs.junit)
@@ -95,4 +102,5 @@ dependencies {
 
     ksp(libs.androidx.room.compiler)
     ksp(libs.hilt.compiler)
+
 }

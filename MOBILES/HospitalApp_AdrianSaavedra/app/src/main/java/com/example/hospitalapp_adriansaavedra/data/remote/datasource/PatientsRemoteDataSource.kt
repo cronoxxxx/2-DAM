@@ -5,8 +5,8 @@ import javax.inject.Inject
 
 class PatientsRemoteDataSource @Inject constructor(
     private val patientService: PatientService
-) : BaseApiResponse(){
+) : BaseApiResponse() {
 
-    suspend fun fetchPatients() = safeApiCall {  patientService.getPatients()}
-    suspend fun fetchPatient(id: Int) = safeApiCall {  patientService.getPatient(id)}
+    suspend fun fetchPatients() = safeApiCall { patientService.getPatients() }
+
 }

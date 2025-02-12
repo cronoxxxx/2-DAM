@@ -3,42 +3,70 @@ package com.example.hospitalapp_adriansaavedra.ui.pantallaLogin
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.hospitalapp_adriansaavedra.R
+import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
+import com.example.hospitalapp_adriansaavedra.ui.navigation.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 
-class LoginActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LoginScreen()
+            MaterialTheme {
+                Navigation()
+            }
         }
     }
 }
 
 
 @Composable
-fun LoginScreen() {
-    var id by rememberSaveable { mutableStateOf(TextFieldValue()) }
+fun LoginScreen(
+
+    navigateToMedRecords: (Int) -> Unit,
+    showSnackbar: (String) -> Unit,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(state.aviso) {
+        state.aviso?.let {
+            when (it) {
+                is UiEvent.ShowSnackbar -> {
+                    showSnackbar(it.message)
+                    viewModel.handleEvent(LoginEvent.AvisoVisto)
+                }
+
+                is UiEvent.Navigate -> {
+                    navigateToMedRecords(state.idLogin.toInt())
+                    viewModel.handleEvent(LoginEvent.AvisoVisto)
+                }
+            }
+        }
+    }
 
     Scaffold { innerPadding ->
         Box(
@@ -52,34 +80,33 @@ fun LoginScreen() {
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier.padding(16.dp)
             ) {
-                Text(
-                    text = "Login",
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
-
-                TextField(
-                    value = id,
-                    onValueChange = { id = it },
-                    label = { Text("ID") },
+                OutlinedTextField(
+                    value = state.idLogin,
+                    onValueChange = { viewModel.handleEvent(LoginEvent.OnIdLoginChange(it)) },
+                    label = { Text(stringResource(R.string.patient_id)) },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp)
                 )
 
                 Button(
-                    onClick = { /* TODO: Implementar lógica de acceso */ },
-                    modifier = Modifier.fillMaxWidth()
+                    onClick = { viewModel.handleEvent(LoginEvent.OnLoginClick(state.idLogin.toInt())) },
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = !state.isLoading
                 ) {
-                    Text("Acceder")
+                    if (state.isLoading) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    } else {
+                        Text(stringResource(R.string.access))
+                    }
                 }
             }
         }
     }
 }
 
-@PreviewScreenSizes
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
-}
+

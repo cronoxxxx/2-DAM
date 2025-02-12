@@ -1,4 +1,9 @@
 package com.example.hospitalapp_adriansaavedra.ui.pantallaLogin
 
-class LoginState {
-}
+import com.example.hospitalapp_adriansaavedra.ui.common.UiEvent
+
+data class LoginState(
+    val aviso: UiEvent? = null,
+    val idLogin: String = "",
+    val isLoading: Boolean = false
+)

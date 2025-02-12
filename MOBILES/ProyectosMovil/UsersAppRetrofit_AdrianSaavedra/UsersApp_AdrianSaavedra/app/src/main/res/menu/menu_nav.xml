@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/usersFragment"
+
+        android:icon="@drawable/user_icon"
+
+        android:contentDescription="@string/users"
+
+        android:title="@string/users"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/commentsFragment"
+        android:icon="@drawable/user_comment"
+        android:contentDescription="@string/comments"
+        android:title="@string/comments"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/tasksFragment"
+        android:icon="@drawable/user_task"
+        android:contentDescription="@string/tasks"
+        android:title="@string/tasks"
+        app:showAsAction="ifRoom"
+        />
+</menu>

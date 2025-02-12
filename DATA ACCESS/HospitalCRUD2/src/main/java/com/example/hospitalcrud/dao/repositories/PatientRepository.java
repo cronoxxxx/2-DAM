@@ -9,5 +9,4 @@ import java.util.Map;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
-    // No additional methods needed
 }

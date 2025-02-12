@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/usersFragment">
+
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.example.usersapp_adriansaavedra.ui.pantallaPrincipal.MainFragment"
+        android:label="@string/users"
+        tools:layout="@layout/activity_main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_addUsuarioFragment"
+            app:destination="@id/addUsuarioFragment"/>
+        <action
+            android:id="@+id/action_mainFragment_to_detalleFragment"
+            app:destination="@id/detalleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addUsuarioFragment"
+        android:name="com.example.usersapp_adriansaavedra.ui.pantallaAgregar.AddUsuarioFragment"
+        android:label="@string/add_user"
+        tools:layout="@layout/activity_add_usuario_fragment" />
+
+    <fragment
+        android:id="@+id/detalleFragment"
+        android:name="com.example.usersapp_adriansaavedra.ui.pantallaUsuario.DetalleFragment"
+        android:label="@string/user_details"
+        tools:layout="@layout/activity_detalle_fragment">
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.example.usersapp_adriansaavedra.ui.pantallaTareas.TasksFragment"
+        android:label="@string/tasks"
+        tools:layout="@layout/activity_tasks_fragment" />
+
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.example.usersapp_adriansaavedra.ui.pantallaComentarios.CommentsFragment"
+        android:label="@string/comments"
+        tools:layout="@layout/activity_comments_fragment" />
+</navigation>
