@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 
 public interface CredentialRepository {
     Credential get(String username);
-    void add (Credential credential);
+    void add(Credential credential);
     Credential getByPatientId(ObjectId patientId);
-    void delete(ObjectId id);
+    void deleteByPatientId(ObjectId patientId);
 }

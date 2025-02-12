@@ -35,7 +35,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             }
 
             final String token = header.split(" ")[1].trim();
-            jwtTokenUtil.validateToken(token);
+            if (!jwtTokenUtil.validateToken(token)) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.INVALID_TOKEN);
+                return;
+            }
         }
 
         chain.doFilter(request, response);

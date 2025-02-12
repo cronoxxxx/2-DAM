@@ -1,5 +1,6 @@
 package org.example.loginspring_adriansaavedra.dao;
 
+import org.example.loginspring_adriansaavedra.common.errors.UserNotFoundException;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,7 @@ public class DaoCredenciales {
         return credentials.getCredentials().stream()
                 .filter(c -> c.getUsername().equals(username))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new UserNotFoundException("Credencial no encontrada"));
     }
 
     public Credential findByVerificationCode(String verificationCode) {

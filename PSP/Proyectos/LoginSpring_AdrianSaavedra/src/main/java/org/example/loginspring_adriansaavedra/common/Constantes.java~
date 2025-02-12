@@ -16,7 +16,6 @@ public class Constantes {
     public static final String PLEASE_CLICK_ON_THE_LINK_TO_VERIFY_YOUR_EMAIL = "Please click on the link to verify your email: ";
     public static final String ID_ARGUMENT = "/{id}";
     public static final String HEADER_PROVIDED_NEEDED = "Authorization header must be provided";
-    public static final String INVALID_TOKEN = "Invalid JWT token";
     public static final String BEARER = "Bearer ";
     public static final String USER_S = "user";
     public static final String SERVIDOR = "Servidor";

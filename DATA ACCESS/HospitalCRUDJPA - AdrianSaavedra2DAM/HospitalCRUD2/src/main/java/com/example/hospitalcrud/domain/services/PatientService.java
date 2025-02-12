@@ -12,67 +12,78 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
     private final CredentialRepository credentialRepository;
+    private final Map<Integer, ObjectId> patientIdMap = new HashMap<>();
+    private int patientIdCounter = 0;
 
     public PatientService(PatientRepository patientRepository, CredentialRepository credentialRepository) {
         this.patientRepository = patientRepository;
         this.credentialRepository = credentialRepository;
+        initializePatientIdMap();
+    }
+
+    private void initializePatientIdMap() {
+        List<Patient> allPatients = patientRepository.getAll();
+        for (Patient patient : allPatients) {
+            patientIdCounter++;
+            patientIdMap.put(patientIdCounter, patient.getId());
+        }
     }
 
     public List<PatientUI> getPatients() {
         List<Patient> patients = patientRepository.getAll();
-        return patients.stream().map(this::convertToPatientUI).collect(Collectors.toList());
+        return patients.stream()
+                .map(this::convertToPatientUI)
+                .collect(Collectors.toList());
     }
 
     public int addPatient(PatientUI patientUI) {
         Patient patient = new Patient();
         patient.setName(patientUI.getName());
-        patient.setPhone(patientUI.getPhone());
         patient.setBirthDate(patientUI.getBirthDate());
+        patient.setPhone(patientUI.getPhone());
 
         ObjectId patientId = patientRepository.add(patient);
+        patientIdCounter++;
+        patientIdMap.put(patientIdCounter, patientId);
 
-        if (patientUI.getUserName() != null && patientUI.getPassword() != null) {
-            Credential credential = new Credential();
-            credential.setUsername(patientUI.getUserName());
-            credential.setPassword(patientUI.getPassword());
-            credential.setPatient(patientId);
-            credentialRepository.add(credential);
-        }
+        Credential credential = new Credential();
+        credential.setUsername(patientUI.getUserName());
+        credential.setPassword(patientUI.getPassword());
+        credential.setPatient(patientId);
+        credentialRepository.add(credential);
 
-        return Integer.parseInt(patientId.toString());
+        return patientIdCounter;
     }
 
     public void updatePatient(PatientUI patientUI) {
-        Patient patient = new Patient();
-        patient.setId(new ObjectId(String.valueOf(patientUI.getId())));
-        patient.setName(patientUI.getName());
-        patient.setPhone(patientUI.getPhone());
-        patient.setBirthDate(patientUI.getBirthDate());
-
-        patientRepository.update(patient);
-
-        Credential credential = credentialRepository.getByPatientId(patient.getId());
-        if (credential != null && patientUI.getUserName() != null && patientUI.getPassword() != null) {
-            credential.setUsername(patientUI.getUserName());
-            credential.setPassword(patientUI.getPassword());
-            credentialRepository.add(credential);
+        ObjectId patientId = patientIdMap.get(patientUI.getId());
+        if (patientId != null) {
+            Patient patient = patientRepository.getById(patientId);
+            if (patient != null) {
+                patient.setName(patientUI.getName());
+                patient.setBirthDate(patientUI.getBirthDate());
+                patient.setPhone(patientUI.getPhone());
+                patientRepository.update(patient);
+            }
         }
     }
 
-    public void delete(int id,boolean confirm) {
-        ObjectId objectId = new ObjectId(String.valueOf(id));
-        patientRepository.delete(objectId);
-        Credential credential = credentialRepository.getByPatientId(objectId);
-        if (credential != null) {
-            credentialRepository.delete(credential.getId());
-        }
+    public void delete(int id, boolean confirm) {
+            ObjectId patientId = patientIdMap.get(id);
+            if (patientId != null) {
+                patientRepository.delete(patientId);
+                credentialRepository.deleteByPatientId(patientId);
+                patientIdMap.remove(id);
+            }
     }
 
     private int calculateTotalPaid(Patient patient) {
@@ -81,10 +92,16 @@ public class PatientService {
     }
 
     private PatientUI convertToPatientUI(Patient patient) {
-        int toInt = patient.getId().hashCode();
+        int patientId = patientIdMap.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(patient.getId()))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(0);
+
         Credential credential = credentialRepository.getByPatientId(patient.getId());
+
         return new PatientUI(
-                toInt,
+                patientId,
                 calculateTotalPaid(patient),
                 patient.getName(),
                 patient.getPhone(),
@@ -93,7 +110,9 @@ public class PatientService {
                 patient.getBirthDate()
         );
     }
-
-
-
 }
+
+
+
+
+

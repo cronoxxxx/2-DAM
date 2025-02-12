@@ -6,6 +6,7 @@ import com.example.hospitalcrud.dao.repositories.jpa.utils.MongoUtil;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
@@ -18,19 +19,11 @@ public class MongoCredentialRepository implements CredentialRepository {
         MongoDatabase database = MongoUtil.getDatabase();
         this.collection = database.getCollection("credential");
     }
+
     @Override
     public Credential get(String username) {
         Document doc = collection.find(Filters.eq("username", username)).first();
         return doc != null ? documentToCredential(doc) : null;
-    }
-    private Credential documentToCredential(Document doc) {
-        Credential credential = new Credential();
-        credential.setId(doc.getObjectId("_id"));
-        credential.setUsername(doc.getString("username"));
-        credential.setPassword(doc.getString("password"));
-        credential.setPatient(doc.getObjectId("patient"));
-        credential.setDoctor(doc.getObjectId("doctor"));
-        return credential;
     }
 
     @Override
@@ -42,6 +35,7 @@ public class MongoCredentialRepository implements CredentialRepository {
         collection.insertOne(doc);
     }
 
+
     @Override
     public Credential getByPatientId(ObjectId patientId) {
         Document doc = collection.find(Filters.eq("patient", patientId)).first();
@@ -49,7 +43,18 @@ public class MongoCredentialRepository implements CredentialRepository {
     }
 
     @Override
-    public void delete(ObjectId id) {
-        collection.deleteOne(Filters.eq("_id", id));
+    public void deleteByPatientId(ObjectId patientId) {
+        collection.deleteOne(Filters.eq("patient", patientId));
+    }
+
+    private Credential documentToCredential(Document doc) {
+        Credential credential = new Credential();
+        credential.setId(doc.getObjectId("_id"));
+        credential.setUsername(doc.getString("username"));
+        credential.setPassword(doc.getString("password"));
+        credential.setPatient(doc.getObjectId("patient"));
+        credential.setDoctor(doc.getObjectId("doctor"));
+        return credential;
     }
 }
+

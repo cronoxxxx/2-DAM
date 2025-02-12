@@ -1,6 +1,0 @@
-package com.example.hospitalcrud.dao.model;
-
-public class Payment {
-    private int patient_id;
-    private int total_paid;
-}

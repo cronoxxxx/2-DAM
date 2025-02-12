@@ -20,11 +20,6 @@ public class Patient {
     private String phone;
     private List<Payment> payments;
 
-    @Data
-    @NoArgsConstructor
-    public static class Payment {
-        private double amount;
-        private LocalDate date;
-    }
+
 }
 

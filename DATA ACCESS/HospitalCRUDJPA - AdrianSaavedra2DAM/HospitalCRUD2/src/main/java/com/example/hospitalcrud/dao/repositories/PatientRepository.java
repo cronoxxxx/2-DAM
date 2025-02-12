@@ -11,4 +11,8 @@ public interface PatientRepository {
     ObjectId add(Patient patient);
     void delete(ObjectId id);
     void update(Patient patient);
+    Patient getById(ObjectId id);
+
 }
+
+
