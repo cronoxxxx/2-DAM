@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class PlayerValidator {
     public boolean validatePlayer(Player player) {
-        return player.getName().isBlank() || player.getCountry().isBlank();
+        return !player.getName().isBlank() && !player.getCountry().isBlank();
     }
 }

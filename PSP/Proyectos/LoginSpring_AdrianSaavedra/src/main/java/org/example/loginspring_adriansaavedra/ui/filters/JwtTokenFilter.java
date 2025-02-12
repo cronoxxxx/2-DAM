@@ -1,5 +1,6 @@
 package org.example.loginspring_adriansaavedra.ui.filters;
 
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,10 +36,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             }
 
             final String token = header.split(" ")[1].trim();
-            if (!jwtTokenUtil.validateToken(token)) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.INVALID_TOKEN);
-                return;
+            try {
+                jwtTokenUtil.validateToken(token);
+            } catch (JwtException e) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.EXPIRED_CODE_MESSAGE); //preguntar si debe aparecer el mensaje en la captura oscar
             }
+
         }
 
         chain.doFilter(request, response);

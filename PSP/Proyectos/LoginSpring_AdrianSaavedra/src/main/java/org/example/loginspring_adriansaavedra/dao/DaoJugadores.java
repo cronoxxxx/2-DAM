@@ -19,19 +19,15 @@ public class DaoJugadores {
     }
 
     public List<Player> getAllPlayers() {
-        if (jugadores.getPlayers().isEmpty()) {
-            throw new PlayerNotFoundException("No hay jugadores registrados");
-        } else {
-            return new ArrayList<>(jugadores.getPlayers());
-        }
+        return new ArrayList<>(jugadores.getPlayers());
     }
 
-    public boolean addPlayer(Player player) {
+    public void addPlayer(Player player) {
         boolean exists = jugadores.getPlayers().stream()
                 .anyMatch(playerIter -> playerIter.getName().strip().equalsIgnoreCase(player.getName().strip()));
 
         if (exists) {
-            throw new PlayerAlreadyExistsException("El jugador ya existe");
+            throw new PlayerAlreadyExistsException("El jugador " + player.getName() + " ya existe");
         }
 
         int maxId = jugadores.getPlayers().stream()
@@ -41,30 +37,27 @@ public class DaoJugadores {
 
         player.setId(maxId);
         jugadores.getPlayers().add(player);
-        return true;
     }
 
-    public boolean updatePlayer(Player updatedPlayer) {
+    public void updatePlayer(Player updatedPlayer) {
         boolean playerExists = jugadores.getPlayers().removeIf(player -> player.getId() == updatedPlayer.getId());
         if (!playerExists) {
-            throw new PlayerNotFoundException("Jugador no encontrado");
+            throw new PlayerNotFoundException("Jugador no encontrado con ID: " + updatedPlayer.getId());
         }
         jugadores.getPlayers().add(updatedPlayer);
-        return true;
     }
 
-    public boolean deletePlayer(int id) {
+    public void deletePlayer(int id) {
         boolean removed = jugadores.getPlayers().removeIf(player -> player.getId() == id);
         if (!removed) {
-            throw new PlayerNotFoundException("Jugador no encontrado");
+            throw new PlayerNotFoundException("Jugador no encontrado con ID: " + id);
         }
-        return true;
     }
 
     public Player getPlayerById(int id) {
         return jugadores.getPlayers().stream()
                 .filter(player -> player.getId() == id)
                 .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException("Jugador no encontrado"));
+                .orElseThrow(() -> new PlayerNotFoundException("Jugador no encontrado con ID: " + id));
     }
 }

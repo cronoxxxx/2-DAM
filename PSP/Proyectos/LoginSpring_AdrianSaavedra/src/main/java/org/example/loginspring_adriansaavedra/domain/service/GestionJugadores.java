@@ -22,27 +22,23 @@ public class GestionJugadores {
         return daoJugadores.getAllPlayers();
     }
 
-    public boolean addPlayer(Player player) {
+    public void addPlayer(Player player) {
         if (playerValidator.validatePlayer(player)) {
-            return false;
+            daoJugadores.addPlayer(player);
         }
-        return daoJugadores.addPlayer(player);
     }
 
-
-    public boolean updatePlayer(Player player) {
+    public void updatePlayer(Player player) {
         if (playerValidator.validatePlayer(player)) {
-            return false;
+            daoJugadores.updatePlayer(player);
         }
-        return daoJugadores.updatePlayer(player);
     }
 
-    public boolean deletePlayer(String id) {
-        return daoJugadores.deletePlayer(Integer.parseInt(id));
+    public void deletePlayer(String id) {
+        daoJugadores.deletePlayer(Integer.parseInt(id));
     }
 
     public Player getPlayerById(String id) {
         return daoJugadores.getPlayerById(Integer.parseInt(id));
     }
-
 }

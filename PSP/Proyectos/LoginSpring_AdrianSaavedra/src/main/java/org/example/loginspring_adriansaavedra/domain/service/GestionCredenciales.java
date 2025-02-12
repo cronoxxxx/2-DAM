@@ -21,40 +21,31 @@ public class GestionCredenciales {
         this.mailComponent = mailComponent;
     }
 
-    public boolean registerUser(Credential credential) {
-        if (credentialValidator.validateCredential(credential)) {
-            return false;
+    public void registerUser(Credential credential) {
+        if (credentialValidator.validateCredential(credential)) { //se puede lanzar una excepcion en el validator? pregunta oscar
+            SecureRandom sr = new SecureRandom();
+            byte[] verificationCodeBytes = new byte[16];
+            sr.nextBytes(verificationCodeBytes);
+            String verificationCode = Base64.getUrlEncoder().encodeToString(verificationCodeBytes);
+
+            credential.setVerificationCode(verificationCode);
+            credential.setVerified(false);
+
+            daoCredenciales.verifyUserExists(credential);
+            mailComponent.sendVerificationEmail(credential.getEmail(), verificationCode);
         }
-        if (daoCredenciales.verifyUsername(credential.getUsername()) != null) {
-            return false;
-        }
-        SecureRandom sr = new SecureRandom();
-        byte[] verificationCodeBytes = new byte[16];
-        sr.nextBytes(verificationCodeBytes);
-        String verificationCode = Base64.getUrlEncoder().encodeToString(verificationCodeBytes);
-
-        credential.setVerificationCode(verificationCode);
-        credential.setVerified(false);
-
-        daoCredenciales.save(credential);
-        mailComponent.sendVerificationEmail(credential.getEmail(), verificationCode);
-
-        return true;
     }
 
-    public boolean verifyUser(String verificationCode) {
+    public void verifyUser(String verificationCode) {
         Credential credential = daoCredenciales.findByVerificationCode(verificationCode);
-        if (credential != null && !credential.isVerified()) {
+        if (!credential.isVerified()) {
             credential.setVerified(true);
             credential.setVerificationCode(null);
-            daoCredenciales.save(credential);
-            return true;
+            daoCredenciales.updateUserVerification(credential);
         }
-        return false;
     }
 
-    public boolean authenticateUser(String username, String password) {
-        Credential credential = daoCredenciales.verifyUsername(username);
-        return credential != null && credential.isVerified() && credential.getPassword().equals(password);
+    public void authenticateUser(String username, String password) {
+        daoCredenciales.authenticateUser(username, password);
     }
 }

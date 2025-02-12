@@ -29,37 +29,35 @@ public class PlayersController {
     @GetMapping(Constantes.ID_ARGUMENT)
     public ResponseEntity<Player> getPlayer(@PathVariable String id) {
         Player player = gestionJugadores.getPlayerById(id);
-        if (player != null) {
-            return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
-        }
-        return ResponseEntity.status(HttpServletResponse.SC_NOT_FOUND).build();
+
+        return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
+
+
     }
 
     @PostMapping
     public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
-        boolean added = gestionJugadores.addPlayer(player);
-        if (added) {
-            return ResponseEntity.status(HttpServletResponse.SC_CREATED).body(player);
-        }
-        return ResponseEntity.status(HttpServletResponse.SC_BAD_REQUEST).build();
+        gestionJugadores.addPlayer(player);
+
+        return ResponseEntity.status(HttpServletResponse.SC_CREATED).body(player);
+
     }
 
     @PutMapping(Constantes.ID_ARGUMENT)
     public ResponseEntity<Player> updatePlayer(@PathVariable String id, @RequestBody Player player) {
         player.setId(Integer.parseInt(id));
-        boolean updated = gestionJugadores.updatePlayer(player);
-        if (updated) {
-            return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
-        }
-        return ResponseEntity.status(HttpServletResponse.SC_NOT_FOUND).build();
+        gestionJugadores.updatePlayer(player);
+        return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
     }
 
     @DeleteMapping(Constantes.ID_ARGUMENT)
     public ResponseEntity<Void> deletePlayer(@PathVariable String id) {
-        boolean deleted = gestionJugadores.deletePlayer(id);
-        if (deleted) {
-            return ResponseEntity.status(HttpServletResponse.SC_NO_CONTENT).build();
-        }
-        return ResponseEntity.status(HttpServletResponse.SC_NOT_FOUND).build();
+        gestionJugadores.deletePlayer(id);
+        return ResponseEntity.status(HttpServletResponse.SC_NO_CONTENT).build(); //como hacer que devuelva algo mas alla de un 204
+
+
     }
+    //validator throw
+    //delete
+    //manejo de token invalido 401 correcto
 }

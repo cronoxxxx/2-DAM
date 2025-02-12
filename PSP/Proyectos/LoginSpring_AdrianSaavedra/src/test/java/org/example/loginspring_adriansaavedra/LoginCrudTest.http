@@ -1,11 +1,10 @@
-
 ###Register
 POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-  "username": "admin2",
-  "password": "admin2",
+  "username": "admin3",
+  "password": "admin3",
   "email": "saavedra.mateo.walter@gmail.com"
 }
 ###Log in
@@ -13,16 +12,19 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "admin2",
-  "password": "admin2"
+  "username": "admin3",
+  "password": "admin3"
 }
 
+
 > {%
-    client.global.set("token", response.body.trim())
+    client.global.set("tokencito", response.body.trim())
 %}
+
+
 ###Get All Players
 GET http://localhost:8080/players
-Authorization: Bearer {{token}}
+Authorization: Bearer {{tokencito}}
 
 
 
@@ -31,7 +33,7 @@ Authorization: Bearer {{token}}
 
 ### Get Individual Player (by ID)
 GET http://localhost:8080/players/1
-Authorization: Bearer {{token}}
+Authorization: Bearer {{tokencito}}
 
 
 
@@ -39,7 +41,7 @@ Authorization: Bearer {{token}}
 ### Add New Player
 POST http://localhost:8080/players
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{tokencito}}
 
 {
   "name": "Neymar",
@@ -54,11 +56,11 @@ Authorization: Bearer {{token}}
 ### Update Player (by ID)
 PUT http://localhost:8080/players/8
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{tokencito}}
 
 {
   "name": "Neymar",
-  "team": "Santos FC",
+  "team": "Santos CF",
   "country": "Brazil"
 }
 
@@ -68,5 +70,5 @@ Authorization: Bearer {{token}}
 
 
 ### Delete Player (by ID)
-DELETE http://localhost:8080/players/8
-Authorization: Bearer {{token}}
+DELETE http://localhost:8080/players/1
+Authorization: Bearer {{tokencito}}

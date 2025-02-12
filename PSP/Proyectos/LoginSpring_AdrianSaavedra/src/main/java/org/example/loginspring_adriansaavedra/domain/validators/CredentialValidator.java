@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CredentialValidator {
     public boolean validateCredential(Credential credential) {
-        return credential.getUsername().isBlank() || credential.getPassword().isBlank() || credential.getEmail().isBlank();
+        return !credential.getUsername().isBlank() && !credential.getPassword().isBlank() && !credential.getEmail().isBlank();
     }
 }

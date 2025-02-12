@@ -23,13 +23,10 @@ public class LoginController {
 
     @PostMapping(Constantes.LOGIN_DIR)
     public ResponseEntity<String> login(@RequestBody Login login) {
-        if (gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword())) {
-            String token = jwtTokenUtil.generateToken(login.getUsername());
-            return ResponseEntity.status(HttpServletResponse.SC_OK).body(token);
-        } else {
-            return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED)
-                    .body(Constantes.ERROR_MESSAGE);
-        }
+        gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword());
+        String token = jwtTokenUtil.generateToken(login.getUsername());
+        return ResponseEntity.status(HttpServletResponse.SC_OK).body(token);
+
     }
 
     @PostMapping(Constantes.REGISTER_DIR)
@@ -41,19 +38,16 @@ public class LoginController {
                 .build();
 
         gestionCredenciales.registerUser(credential);
-            return ResponseEntity.status(HttpServletResponse.SC_CREATED)
-                    .body(Constantes.SUCCESS_REGISTER_MESSAGE);
+        return ResponseEntity.status(HttpServletResponse.SC_CREATED)
+                .body(Constantes.SUCCESS_REGISTER_MESSAGE);
 
     }
 
     @GetMapping(Constantes.VERIFY_DIR)
     public ResponseEntity<String> verifyUser(@RequestParam String code) {
-        if (gestionCredenciales.verifyUser(code)) {
+        gestionCredenciales.verifyUser(code);
             return ResponseEntity.status(HttpServletResponse.SC_OK)
                     .body(Constantes.SUCCESS_MESSAGE);
-        } else {
-            return ResponseEntity.status(HttpServletResponse.SC_BAD_REQUEST)
-                    .body(Constantes.EXPIRED_CODE_MESSAGE);
-        }
+
     }
 }

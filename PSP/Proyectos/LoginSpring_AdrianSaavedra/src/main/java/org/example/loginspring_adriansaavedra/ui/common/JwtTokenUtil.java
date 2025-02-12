@@ -1,6 +1,5 @@
 package org.example.loginspring_adriansaavedra.ui.common;
 
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.springframework.stereotype.Component;
@@ -24,22 +23,20 @@ public class JwtTokenUtil {
                 .setSubject(username)
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusSeconds(600).atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(LocalDateTime.now().plusSeconds(60).atZone(ZoneId.systemDefault()).toInstant()))
                 .claim(Constantes.USER_S, username)
                 .signWith(key)
                 .compact();
     }
 
-    public boolean validateToken(String token) { //pregunta oscar
-        try {
+    public void validateToken(String token) {
+
             Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token);
-            return true;
-        } catch (JwtException e) {
-            return false;
-        }
+
+
     }
 
 
