@@ -25,7 +25,7 @@ public class GestionCredenciales {
         if (credentialValidator.validateCredential(credential)) {
             return false;
         }
-        if (daoCredenciales.findByUsername(credential.getUsername()) != null) {
+        if (daoCredenciales.verifyUsername(credential.getUsername()) != null) {
             return false;
         }
         SecureRandom sr = new SecureRandom();
@@ -54,7 +54,7 @@ public class GestionCredenciales {
     }
 
     public boolean authenticateUser(String username, String password) {
-        Credential credential = daoCredenciales.findByUsername(username);
+        Credential credential = daoCredenciales.verifyUsername(username);
         return credential != null && credential.isVerified() && credential.getPassword().equals(password);
     }
 }

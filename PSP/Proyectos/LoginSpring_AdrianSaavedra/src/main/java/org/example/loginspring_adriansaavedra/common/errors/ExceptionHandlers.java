@@ -26,6 +26,12 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
     }
 
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<ApiError> handleAlreadyExistsException(UserAlreadyExistsException ex) {
+        String message = ex.getMessage();
+        return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
+    }
+
     private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.status());
     }

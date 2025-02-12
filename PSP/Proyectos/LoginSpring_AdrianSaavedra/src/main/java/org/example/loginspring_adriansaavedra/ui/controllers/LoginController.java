@@ -40,13 +40,10 @@ public class LoginController {
                 .email(register.getEmail())
                 .build();
 
-        if (gestionCredenciales.registerUser(credential)) {
+        gestionCredenciales.registerUser(credential);
             return ResponseEntity.status(HttpServletResponse.SC_CREATED)
                     .body(Constantes.SUCCESS_REGISTER_MESSAGE);
-        } else {
-            return ResponseEntity.status(HttpServletResponse.SC_BAD_REQUEST)
-                    .body(Constantes.ERROR_REGISTER_MESSAGE);
-        }
+
     }
 
     @GetMapping(Constantes.VERIFY_DIR)
