@@ -1,4 +1,4 @@
-package com.example.hospitalcrud.dao.repositories.jpa.utils;
+package com.example.hospitalcrud.dao.repositories.utils;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

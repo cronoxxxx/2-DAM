@@ -1,6 +1,7 @@
 package com.example.hospitalcrud.dao.model;
 
 import lombok.*;
+import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.List;
 @Builder
 @Data
 public class MedRecord {
-    private int id;
-    private int idPatient;
-    private int idDoctor;
+    private ObjectId id;
+    private ObjectId idPatient;
+    private ObjectId idDoctor;
     private String diagnosis;
     private LocalDate date;
-    private List<Medication> medications;
+    private List<String> medications;
 }

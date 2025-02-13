@@ -81,7 +81,6 @@ public class PatientService {
             ObjectId patientId = patientIdMap.get(id);
             if (patientId != null) {
                 patientRepository.delete(patientId);
-                credentialRepository.deleteByPatientId(patientId);
                 patientIdMap.remove(id);
             }
     }
@@ -109,6 +108,18 @@ public class PatientService {
                 null,
                 patient.getBirthDate()
         );
+    }
+
+    public ObjectId getObjectIdFromMap(int id) {
+        return patientIdMap.get(id);
+    }
+
+    public int getIntIdFromObjectId(ObjectId objectId) {
+        return patientIdMap.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(objectId))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(0);
     }
 }
 
