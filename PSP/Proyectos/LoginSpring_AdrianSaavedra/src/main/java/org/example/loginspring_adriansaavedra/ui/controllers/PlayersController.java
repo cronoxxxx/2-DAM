@@ -53,7 +53,7 @@ public class PlayersController {
     @DeleteMapping(Constantes.ID_ARGUMENT)
     public ResponseEntity<Void> deletePlayer(@PathVariable String id) {
         gestionJugadores.deletePlayer(id);
-        return ResponseEntity.status(HttpServletResponse.SC_NO_CONTENT).build(); //como hacer que devuelva algo mas alla de un 204
+        return ResponseEntity.status(HttpServletResponse.SC_NO_CONTENT).build();
 
 
     }

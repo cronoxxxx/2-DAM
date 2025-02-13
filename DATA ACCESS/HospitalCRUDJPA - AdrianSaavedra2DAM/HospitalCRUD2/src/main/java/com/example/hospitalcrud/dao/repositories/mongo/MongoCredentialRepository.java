@@ -1,12 +1,11 @@
-package com.example.hospitalcrud.dao.repositories.jpa.mongo;
+package com.example.hospitalcrud.dao.repositories.mongo;
 
 import com.example.hospitalcrud.dao.model.Credential;
 import com.example.hospitalcrud.dao.repositories.CredentialRepository;
-import com.example.hospitalcrud.dao.repositories.jpa.utils.MongoUtil;
+import com.example.hospitalcrud.dao.repositories.utils.MongoUtil;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;

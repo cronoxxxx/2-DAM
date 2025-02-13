@@ -1,10 +1,9 @@
-package com.example.hospitalcrud.dao.repositories.jpa.mongo;
+package com.example.hospitalcrud.dao.repositories.mongo;
 
 import com.example.hospitalcrud.dao.model.Patient;
 import com.example.hospitalcrud.dao.model.Payment;
 import com.example.hospitalcrud.dao.repositories.PatientRepository;
-import com.example.hospitalcrud.dao.repositories.jpa.utils.MongoUtil;
-import com.mongodb.client.FindIterable;
+import com.example.hospitalcrud.dao.repositories.utils.MongoUtil;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -13,7 +12,6 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
