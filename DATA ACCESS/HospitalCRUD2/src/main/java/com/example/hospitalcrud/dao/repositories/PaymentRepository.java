@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
-   Double getPaymentsByPatient(int patientId);
-   @Modifying
-   @Query(name = "Payment.deleteByPatientId")
-   void deleteByPatientId( @Param("patientId")int patientId);}
+    Double getPaymentsByPatient(int patientId);
+    @Modifying
+    void deleteByPatientId( int patientId);
+}

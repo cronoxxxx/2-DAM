@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">HospitalApp_AdrianSaavedra</string>
+    <string name="patient_id">Patient ID: </string>
+    <string name="patient_name">Patient Name: </string>
+    <string name="patient_birthdate">Birth Date: </string>
+    <string name="patient_phone">Phone: </string>
+    <string name="patient_paid">Paid: $</string>
+    <string name="date">Date: </string>
+    <string name="record_id">Record ID: </string>
+    <string name="access">Access</string>
+    <string name="description">Description:</string>
+    <string name="medications">Medications:</string>
+    <string name="records">Records</string>
+    <string name="patients">Patients</string>
+    <string name="patient_detail">Patient Detail</string>
+    <string name="patient_list">Patient List</string>
+    <string name="record_detail">Record Detail</string>
+    <string name="med_records_patient">Medical Records for Patient </string>
+   <string name="login">Login</string>
+</resources>

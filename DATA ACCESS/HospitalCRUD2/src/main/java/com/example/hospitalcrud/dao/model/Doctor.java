@@ -20,7 +20,6 @@ public class Doctor {
     private String specialization;
     @Column(name = "phone", length = 20)
     private String phone;
-
     public Doctor() {
 
     }

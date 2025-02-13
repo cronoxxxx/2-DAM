@@ -18,7 +18,7 @@ import org.hibernate.annotations.NamedQuery;
 @NamedQuery(name="MedRecord.medRecordByPatientId",query = "SELECT COUNT(m) FROM MedRecord m WHERE m.patient.id = :patientId")
 @NamedQuery(name="MedRecord.getAllWithMedications",query = "SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications")
 @NamedQuery(name="MedRecord.findByPatientId",query = "SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications WHERE m.patient.id = :patientId")
-
+@NamedQuery(name = "MedRecord.findByDoctorId", query = "SELECT DISTINCT m FROM MedRecord m LEFT JOIN FETCH m.medications WHERE m.idDoctor = :doctorId")
 public class MedRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

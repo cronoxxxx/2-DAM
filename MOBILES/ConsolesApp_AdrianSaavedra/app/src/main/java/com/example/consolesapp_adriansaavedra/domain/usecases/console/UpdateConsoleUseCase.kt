@@ -1,0 +1,17 @@
+package com.example.consolesapp_adriansaavedra.domain.usecases.console
+
+import com.example.consolesapp_adriansaavedra.data.NetworkResult
+import com.example.consolesapp_adriansaavedra.data.PlayerConsoleRepository
+import com.example.consolesapp_adriansaavedra.data.local.model.validate
+import com.example.consolesapp_adriansaavedra.domain.model.Console
+import com.example.consolesapp_adriansaavedra.ui.Constantes
+import javax.inject.Inject
+
+class UpdateConsoleUseCase @Inject constructor(private val playerConsoleRepository: PlayerConsoleRepository) {
+    suspend operator fun invoke(console: Console)= if (console.validate()) {
+            playerConsoleRepository.updateConsole(console)
+        } else {
+        NetworkResult.Error(Constantes.EMPTY_FIELDS)
+        }
+    }
+

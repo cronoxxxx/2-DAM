@@ -1,0 +1,33 @@
+10:10 explica lo de los exception handlers
+
+16:20 ejemplo de dao
+
+23:00 poner excepción en el dao (no mirar ningún tipo de error en el servlet
+
+segundo video--
+
+
+4:00 al poner roles el claim será importante, ya que se necesitara info de ese token
+
+4:40 archivo de propiedades de perfiles
+
+
+6:00 muestra como importar un fichero a un .properties
+
+7:04 poner claves en el fichero .gitignore
+
+9:20 explica lo que es un DTO
+
+12:20 crear un model con objetos DTO en la ui
+
+24:15 excepción para validación? donde ponerla? oscar pregunta------
+
+28:30 - 30:30 explica como parsear el error en móviles: BaseApiResponse con body y errorBody
+
+32:00 EXPLICA LO DEL TOKEN, QUE SE DEVUELVE COMO UN STRING TAL CUAL EN EL REST CONTROLLER, PUES YA NO DEBERIA PQ AHORA DEBERIA DEVOLVER DOS CAMPOS, --EL ACCESS Y EL REFRESH-- en un objeto que tenga esos dos campos, y ya no seria un response.body en el http client sino un response.(objeto)
+
+34:00 muestra como hacer ese objeto para devolver el Access y el refresh del token
+
+37:30 muestra un dns de localhost
+
+

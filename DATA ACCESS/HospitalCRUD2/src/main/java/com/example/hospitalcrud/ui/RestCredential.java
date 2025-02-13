@@ -2,10 +2,7 @@ package com.example.hospitalcrud.ui;
 
 import com.example.hospitalcrud.domain.model.CredentialUI;
 import com.example.hospitalcrud.domain.services.CredentialService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RestCredential {

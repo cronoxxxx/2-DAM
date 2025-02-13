@@ -14,5 +14,8 @@ import java.util.Optional;
 @Repository
 public interface MedRecordRepository extends JpaRepository<MedRecord, Integer> {
     List<MedRecord> findByPatientId(int patientId);
-    void deleteByPatientId( int patientId);
+
+    @Modifying
+    void deleteByPatientId(int patientId);
+
 }
