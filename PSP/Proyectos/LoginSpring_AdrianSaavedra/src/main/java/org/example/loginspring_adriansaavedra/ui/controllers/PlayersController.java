@@ -57,7 +57,4 @@ public class PlayersController {
 
 
     }
-    //validator throw
-    //delete
-    //manejo de token invalido 401 correcto
 }

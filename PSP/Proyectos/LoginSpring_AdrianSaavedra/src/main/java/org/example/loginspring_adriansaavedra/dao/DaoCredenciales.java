@@ -21,9 +21,16 @@ public class DaoCredenciales {
         if (existingCredential != null) {
 
             throw new UserAlreadyExistsException("El usuario " + credential.getUsername() + " ya existe");
+        } else {
+            int maxId = credentials.getCredentials().stream()
+                    .mapToInt(Credential::getId)
+                    .max()
+                    .orElse(0) + 1;
+            credential.setId(maxId);
+            credentials.getCredentials().add(credential);
         }
 
-        credentials.getCredentials().add(credential);
+
     }
 
     public void updateUserVerification(Credential credential) {

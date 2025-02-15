@@ -22,7 +22,7 @@ public class GestionCredenciales {
     }
 
     public void registerUser(Credential credential) {
-        if (credentialValidator.validateCredential(credential)) { //se puede lanzar una excepcion en el validator? pregunta oscar
+        if (credentialValidator.validateCredential(credential)) {
             SecureRandom sr = new SecureRandom();
             byte[] verificationCodeBytes = new byte[16];
             sr.nextBytes(verificationCodeBytes);
@@ -36,7 +36,7 @@ public class GestionCredenciales {
         }
     }
 
-    public void verifyUser(String verificationCode) {
+    public void verifyToLoginUser(String verificationCode) {
         Credential credential = daoCredenciales.findByVerificationCode(verificationCode);
         if (!credential.isVerified()) {
             credential.setVerified(true);

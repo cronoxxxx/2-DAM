@@ -38,10 +38,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             final String token = header.split(" ")[1].trim();
             try {
                 jwtTokenUtil.validateToken(token);
+                String username = jwtTokenUtil.getUsernameFromToken(token);
+                request.setAttribute("username", username);
             } catch (JwtException e) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.EXPIRED_CODE_MESSAGE); //preguntar si debe aparecer el mensaje en la captura oscar
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.EXPIRED_CODE_MESSAGE);
+                return;
             }
-
         }
 
         chain.doFilter(request, response);

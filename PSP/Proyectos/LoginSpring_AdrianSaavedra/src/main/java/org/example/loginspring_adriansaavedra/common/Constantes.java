@@ -4,6 +4,7 @@ public class Constantes {
     public static final String LOGIN_DIR = "/login";
     public static final String PLAYERS_DIR = "/players";
     public static final String REGISTER_DIR = "/register";
+    public static final String FAVORITES_DIR = "/favorites";
     public static final String VERIFY_DIR = "/verify";
     public static final String ERROR_MESSAGE = "Invalid username or password, or account not verified";
     public static final String SUCCESS_MESSAGE = "Your account has been verified. You can now log in.";

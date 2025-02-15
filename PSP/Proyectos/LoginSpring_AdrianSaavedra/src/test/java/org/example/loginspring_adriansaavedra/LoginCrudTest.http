@@ -1,74 +1,86 @@
-###Register
-POST http://localhost:8080/register
-Content-Type: application/json
-
-{
-  "username": "admin3",
-  "password": "admin3",
-  "email": "saavedra.mateo.walter@gmail.com"
-}
-###Log in
 POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "admin3",
-  "password": "admin3"
+  "username": "a",
+  "password": "a"
 }
 
 
-> {%
-    client.global.set("tokencito", response.body.trim())
-%}
+###
+@login = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk1NzYxMTcsImV4cCI6MTczOTU3NzAxNywidXNlciI6ImEifQ.tpIqV9Ww5nSs_AfmTAt4oJS2_XLaUNyik5_TsBtLAuKaYlYc1m6Yry3o6LhpQSNGQwAGrepbIL4sWXCnhCBRvw
+@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk1NzYwNDEsImV4cCI6MTc0MDE4MDg0MSwidXNlciI6ImEifQ.mZHdVEQKs1SGvvna6U8ZPTX9CssTP1zy3j3kj-ZmItrC2GSffsT3TsucilTOlXxopcefjuaGpVcUZrBi8U0LNA
 
 
-###Get All Players
+### Register
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "a",
+  "password": "a",
+  "email": "saavedra.mateo.walter@gmail.com"
+}
+
+
+
+
+
+### Refresh Token
+POST http://localhost:8080/refresh-token
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refresh}}"
+}
+
+
+### Use Access Token
 GET http://localhost:8080/players
-Authorization: Bearer {{tokencito}}
+Authorization: Bearer {{login}}
 
-
-
-
-
-
-### Get Individual Player (by ID)
+### Get Player by ID
 GET http://localhost:8080/players/1
-Authorization: Bearer {{tokencito}}
+Authorization: Bearer your_access_token_here
 
-
-
-
-### Add New Player
+### Add Player
 POST http://localhost:8080/players
 Content-Type: application/json
-Authorization: Bearer {{tokencito}}
+Authorization: Bearer your_access_token_here
 
 {
-  "name": "Neymar",
-  "team": "Al Hilal",
-  "country": "Brazil"
+  "name": "New Player",
+  "position": "Forward",
+  "team": "Team A"
 }
 
-
-
-
-
-### Update Player (by ID)
-PUT http://localhost:8080/players/8
+### Update Player
+PUT http://localhost:8080/players/1
 Content-Type: application/json
-Authorization: Bearer {{tokencito}}
+Authorization: Bearer your_access_token_here
 
 {
-  "name": "Neymar",
-  "team": "Santos CF",
-  "country": "Brazil"
+  "name": "Updated Player",
+  "position": "Midfielder",
+  "team": "Team B"
 }
 
-
-
-
-
-
-### Delete Player (by ID)
+### Delete Player
 DELETE http://localhost:8080/players/1
-Authorization: Bearer {{tokencito}}
+Authorization: Bearer your_access_token_here
+
+### Get Favorite Players
+GET http://localhost:8080/favorites/1
+Authorization: Bearer your_access_token_here
+
+### Get Favorite Player
+GET http://localhost:8080/favorites/1/1
+Authorization: Bearer your_access_token_here
+
+### Add Favorite Player
+POST http://localhost:8080/favorites/1/1
+Authorization: Bearer your_access_token_here
+
+### Delete Favorite Player
+DELETE http://localhost:8080/favorites/1/1
+Authorization: Bearer your_access_token_here

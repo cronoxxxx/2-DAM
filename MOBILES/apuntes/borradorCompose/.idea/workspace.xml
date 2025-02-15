@@ -10,9 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="29">
+      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoJugadoresFavoritos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionJugadoresFavoritos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/FavoritePlayersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../ConsolesApp_AdrianSaavedra/app/src/main/java/com/example/consolesapp_adriansaavedra/data/NetworkResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ConsolesApp_AdrianSaavedra/app/src/main/java/com/example/consolesapp_adriansaavedra/data/NetworkResult.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ConsolesApp_AdrianSaavedra/app/src/main/java/com/example/consolesapp_adriansaavedra/ui/navigation/Navigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ConsolesApp_AdrianSaavedra/app/src/main/java/com/example/consolesapp_adriansaavedra/ui/navigation/Navigation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,28 +101,28 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;Compose Preview.App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/second-test&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adrian/Desktop/oscarnovillo dam2_2425 main moviles-ComposeApp&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Android App.app.executor": "Run",
+    "Compose Preview.App.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/oscarnovillo dam2_2425 main moviles-ComposeApp"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1&quot;,
-      &quot;C:\\Users\\Adrian\\.gradle&quot;
+  "keyToStringList": {
+    "kotlin-gradle-user-dirs": [
+      "C:\\Users\\Adrian\\Desktop\\upa\\Login_DavidRoldan\\.gradle\\8.10.1",
+      "C:\\Users\\Adrian\\.gradle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Adrian\Desktop\main2dam\MOBILES\apuntes\borradorCompose\app\src\main\java\com\example\borradorcompose" />
