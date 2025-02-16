@@ -28,7 +28,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        if (request.getRequestURI().startsWith(Constantes.PLAYERS_DIR)) {
+        if (request.getRequestURI().startsWith(Constantes.PLAYERS_DIR) || request.getRequestURI().startsWith(Constantes.FAVORITES_DIR)) {
             final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
             if (isEmpty(header) || !header.startsWith(Constantes.BEARER)) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.HEADER_PROVIDED_NEEDED);

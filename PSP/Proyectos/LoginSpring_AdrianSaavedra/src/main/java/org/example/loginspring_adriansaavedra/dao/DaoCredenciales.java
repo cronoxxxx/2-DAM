@@ -50,7 +50,7 @@ public class DaoCredenciales {
                 .findFirst()
                 .orElseThrow(() -> new UserNotFoundException("Código de verificación inválido"));
     }
-    public void authenticateUser(String username, String password) {
+    public Credential authenticateUser(String username, String password) {
         Credential credential = credentials.getCredentials().stream()
                 .filter(c -> c.getUsername().equals(username))
                 .findFirst()
@@ -58,5 +58,7 @@ public class DaoCredenciales {
         if (!credential.isVerified() || !credential.getPassword().equals(password)) {
             throw new UserNotFoundException("Credenciales inválidas o usuario no verificado");
         }
+
+        return credential;
     }
 }

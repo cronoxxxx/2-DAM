@@ -34,27 +34,4 @@ public class PlayersController {
 
 
     }
-
-    @PostMapping
-    public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
-        gestionJugadores.addPlayer(player);
-
-        return ResponseEntity.status(HttpServletResponse.SC_CREATED).body(player);
-
-    }
-
-    @PutMapping(Constantes.ID_ARGUMENT)
-    public ResponseEntity<Player> updatePlayer(@PathVariable String id, @RequestBody Player player) {
-        player.setId(Integer.parseInt(id));
-        gestionJugadores.updatePlayer(player);
-        return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
-    }
-
-    @DeleteMapping(Constantes.ID_ARGUMENT)
-    public ResponseEntity<Void> deletePlayer(@PathVariable String id) {
-        gestionJugadores.deletePlayer(id);
-        return ResponseEntity.status(HttpServletResponse.SC_NO_CONTENT).build();
-
-
-    }
 }

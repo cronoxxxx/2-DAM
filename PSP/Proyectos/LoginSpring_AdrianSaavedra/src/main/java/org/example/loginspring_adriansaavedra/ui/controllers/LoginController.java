@@ -7,8 +7,8 @@ import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.example.loginspring_adriansaavedra.domain.model.Login;
 import org.example.loginspring_adriansaavedra.domain.model.Register;
 import org.example.loginspring_adriansaavedra.domain.service.GestionCredenciales;
-import org.example.loginspring_adriansaavedra.ui.auth.AuthenticationResponse;
-import org.example.loginspring_adriansaavedra.ui.auth.RefreshTokenRequest;
+import org.example.loginspring_adriansaavedra.ui.utils.AuthenticationResponse;
+import org.example.loginspring_adriansaavedra.ui.utils.RefreshTokenRequest;
 import org.example.loginspring_adriansaavedra.ui.common.JwtTokenUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +26,13 @@ public class LoginController {
 
     @PostMapping(Constantes.LOGIN_DIR)
     public ResponseEntity<AuthenticationResponse> login(@RequestBody Login login) {
-        gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword());
+        Credential credential = gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword());
         String accessToken = jwtTokenUtil.generateAccessToken(login.getUsername());
         String refreshToken = jwtTokenUtil.generateRefreshToken(login.getUsername());
         AuthenticationResponse response = AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
+                .userId(credential.getId())
                 .build();
         return ResponseEntity.status(HttpServletResponse.SC_OK).body(response);
     }
@@ -58,7 +59,7 @@ public class LoginController {
 
     }
 
-    @PostMapping("/refresh-token")
+    @PostMapping("/refresh")
     public ResponseEntity<AuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest request) {
         try {
             String refreshToken = request.getRefreshToken();

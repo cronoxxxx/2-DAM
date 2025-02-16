@@ -1,36 +1,34 @@
 package com.example.playersapp_adriansaavedra.data.remote.utils
 
 import com.example.playersapp_adriansaavedra.data.PreferencesRepository
-import com.example.playersapp_adriansaavedra.data.remote.services.AuthService
+import com.example.playersapp_adriansaavedra.data.remote.services.LoginService
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AuthAuthenticator @Inject constructor(
     private val preferencesRepository: PreferencesRepository,
-    private val authService: Lazy<AuthService>
+    private val loginService: Lazy<LoginService>
 ) : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         return runBlocking {
-            val token = preferencesRepository.token.first()
-            val newToken = getNewToken(token)
+            val refreshToken = preferencesRepository.refreshToken.first()
+            val newTokenResponse = loginService.value.refreshToken(RefreshTokenRequest(refreshToken ?: ""))
 
-            if (!newToken.isSuccessful || newToken.body() == null) {
+            if (newTokenResponse.isSuccessful && newTokenResponse.body() != null) {
+                val newTokens = newTokenResponse.body()!!
+                preferencesRepository.saveToken(newTokens.accessToken)
+                preferencesRepository.saveRefreshToken(newTokens.refreshToken)
+                response.request.newBuilder()
+                    .header("Authorization", "Bearer ${newTokens.accessToken}")
+                    .build()
+            } else {
                 preferencesRepository.deleteToken()
                 null
-            } else {
-                newToken.body()?.let {
-                    preferencesRepository.saveToken(it.accessToken)
-                    response.request.newBuilder()
-                        .header("Authorization", "Bearer ${it.accessToken}")
-                        .build()
-                }
             }
         }
-    }
-
-    private suspend fun getNewToken(refreshToken: String?): retrofit2.Response<AuthenticationResponse> {
-        return authService.value.refreshToken(RefreshTokenRequest(refreshToken ?: ""))
     }
 }

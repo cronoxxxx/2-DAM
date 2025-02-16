@@ -24,6 +24,12 @@ public class Database {
         players.add(new Player(5, "Robert Lewandowski", "FC Barcelona", "Poland"));
         players.add(new Player(6, "Erling Haaland", "Manchester City", "Norway"));
         players.add(new Player(7, "Kevin De Bruyne", "Manchester City", "Belgium"));
+        players.add(new Player(9, "Rodrygo", "Real Madrid", "Brazil"));
+        players.add(new Player(10, "Julián Álvarez", "Atlético de Madrid", "Argentina"));
+        players.add(new Player(11, "Jamal Musiala", "Bayern Munich", "Germany"));
+        players.add(new Player(14, "Mohamed Salah", "Liverpool", "Egypt"));
+        players.add(new Player(15, "Bruno Fernandes", "Manchester United", "Portugal"));
+        players.add(new Player(16, "Trent Alexander-Arnold", "Liverpool", "England"));
     }
 
 

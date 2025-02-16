@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.Player;
 import org.example.loginspring_adriansaavedra.domain.service.GestionJugadoresFavoritos;
+import org.example.loginspring_adriansaavedra.ui.utils.PlayerNameRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,11 +32,13 @@ public class FavoritePlayersController {
         return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
     }
 
-    @PostMapping("/{credentialId}/{playerId}")
-    public ResponseEntity<Void> addFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {
-        gestionJugadoresFavoritos.addPlayerForCredential(credentialId, playerId);
+    @PostMapping("/{credentialId}")
+    public ResponseEntity<Void> addFavoritePlayer(@PathVariable int credentialId, @RequestBody PlayerNameRequest request) {
+        gestionJugadoresFavoritos.addPlayerForCredential(credentialId, request.getPlayerName());
         return ResponseEntity.status(HttpServletResponse.SC_CREATED).build();
     }
+
+
 
     @DeleteMapping("/{credentialId}/{playerId}")
     public ResponseEntity<Void> deleteFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {

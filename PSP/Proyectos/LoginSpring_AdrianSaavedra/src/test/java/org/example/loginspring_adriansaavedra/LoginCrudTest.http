@@ -8,8 +8,8 @@ Content-Type: application/json
 
 
 ###
-@login = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk1NzYxMTcsImV4cCI6MTczOTU3NzAxNywidXNlciI6ImEifQ.tpIqV9Ww5nSs_AfmTAt4oJS2_XLaUNyik5_TsBtLAuKaYlYc1m6Yry3o6LhpQSNGQwAGrepbIL4sWXCnhCBRvw
-@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk1NzYwNDEsImV4cCI6MTc0MDE4MDg0MSwidXNlciI6ImEifQ.mZHdVEQKs1SGvvna6U8ZPTX9CssTP1zy3j3kj-ZmItrC2GSffsT3TsucilTOlXxopcefjuaGpVcUZrBi8U0LNA
+@login = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk3MTkzMjAsImV4cCI6MTczOTcxOTM4MCwidXNlciI6ImEifQ.sGjYBbWfGtnFg0z10lwgaTAd57KD999MT3-7QAKS66HCrE1MsLy9q9DWFTP22iR_lpLRBFp-Xx9s3T8Bfms44A
+@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk3MTUyMjcsImV4cCI6MTczOTcxNjEyNywidXNlciI6ImEifQ.ll1cLqP2kP56SciVYNXMD-8P0xkRI94iu0fS2_Y68IEB-ZfFn3qlGqHCPKg52ejhWQqyCwqcf6dTk46ONSjMSA
 
 
 ### Register
@@ -43,44 +43,22 @@ Authorization: Bearer {{login}}
 GET http://localhost:8080/players/1
 Authorization: Bearer{{login}}
 
-### Add Player
-POST http://localhost:8080/players
-Content-Type: application/json
-Authorization: Bearer {{login}}
-
-{
-  "name": "New Player",
-  "position": "Forward",
-  "team": "Team A"
-}
-
-### Update Player
-PUT http://localhost:8080/players/1
-Content-Type: application/json
-Authorization: {{login}}
-
-{
-  "name": "Updated Player",
-  "position": "Midfielder",
-  "team": "Team B"
-}
-
-### Delete Player
-DELETE http://localhost:8080/players/1
-Authorization: Bearer {{login}}
-
 ### Get Favorite Players
 GET http://localhost:8080/favorites/1
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}
 
 ### Get Favorite Player
 GET http://localhost:8080/favorites/1/1
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}
 
 ### Add Favorite Player
-POST http://localhost:8080/favorites/1/1
-Authorization: Bearer your_access_token_here
+POST http://localhost:8080/favorites/1
+Content-Type: text/plain
+Authorization: Bearer {{login}}
+
+Cristiano Ronaldo
+
 
 ### Delete Favorite Player
 DELETE http://localhost:8080/favorites/1/1
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}

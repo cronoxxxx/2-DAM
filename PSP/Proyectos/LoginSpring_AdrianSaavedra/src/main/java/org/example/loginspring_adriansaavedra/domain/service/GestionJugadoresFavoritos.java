@@ -18,9 +18,10 @@ public class GestionJugadoresFavoritos {
     public Player getPlayerForCredential(int credentialId, int playerId){
         return daoJugadoresFavoritos.getPlayerForCredential(credentialId, playerId);
     }
-    public void addPlayerForCredential(int credentialId, int playerId){
-        daoJugadoresFavoritos.addPlayerForCredential(credentialId, playerId);
+    public void addPlayerForCredential(int credentialId, String playerName) {
+        daoJugadoresFavoritos.addPlayerForCredential(credentialId, playerName);
     }
+
     public void deletePlayerForCredential(int credentialId, int playerId){
         daoJugadoresFavoritos.deletePlayerForCredential(credentialId, playerId);
     }

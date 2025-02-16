@@ -37,12 +37,6 @@ public class ExceptionHandlers {
         return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
     }
 
-    @ExceptionHandler(PlayerValidatorException.class)
-    public ResponseEntity<ApiError> handleValidatorException(PlayerValidatorException ex) {
-        String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
-    }
-
     private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.status());
     }

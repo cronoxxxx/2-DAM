@@ -1,4 +1,4 @@
-package org.example.loginspring_adriansaavedra.ui.auth;
+package org.example.loginspring_adriansaavedra.ui.utils;
 
 import lombok.*;
 

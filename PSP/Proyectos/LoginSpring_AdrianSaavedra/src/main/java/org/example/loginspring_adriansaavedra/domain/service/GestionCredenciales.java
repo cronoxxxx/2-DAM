@@ -45,7 +45,7 @@ public class GestionCredenciales {
         }
     }
 
-    public void authenticateUser(String username, String password) {
-        daoCredenciales.authenticateUser(username, password);
+    public Credential authenticateUser(String username, String password) {
+        return daoCredenciales.authenticateUser(username, password);
     }
 }

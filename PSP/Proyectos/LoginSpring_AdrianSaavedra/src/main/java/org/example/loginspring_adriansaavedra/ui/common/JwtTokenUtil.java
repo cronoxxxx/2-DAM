@@ -24,7 +24,7 @@ public class JwtTokenUtil {
                 .setSubject(username)
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(1).atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(LocalDateTime.now().plusSeconds(10).atZone(ZoneId.systemDefault()).toInstant()))
                 .claim(Constantes.USER_S, username)
                 .signWith(key)
                 .compact();

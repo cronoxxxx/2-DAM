@@ -1,6 +1,8 @@
 package com.example.playersapp_adriansaavedra.data.remote.utils
 
 import com.example.playersapp_adriansaavedra.data.PreferencesRepository
+import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
+import com.example.playersapp_adriansaavedra.domain.usecases.credential.RefreshTokenUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -12,13 +14,12 @@ class AuthInterceptor @Inject constructor(
     private val preferencesRepository: PreferencesRepository
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = runBlocking {
-            preferencesRepository.token.first()
-        }
-        val request = chain.request().newBuilder()
-        token?.let {
-            request.addHeader("Authorization", "Bearer $it")
-        }
-        return chain.proceed(request.build())
+        val originalRequest = chain.request()
+        val token = runBlocking { preferencesRepository.token.first() }
+        val requestWithToken = originalRequest.newBuilder()
+            .apply { token?.let { header("Authorization", "Bearer $it") } }
+            .build()
+        return chain.proceed(requestWithToken)
     }
 }
+
