@@ -1,4 +1,3 @@
 package com.example.playersapp_adriansaavedra.data.remote.model
 
-class Auth {
-}
+data class Auth(val username: String, val password: String)

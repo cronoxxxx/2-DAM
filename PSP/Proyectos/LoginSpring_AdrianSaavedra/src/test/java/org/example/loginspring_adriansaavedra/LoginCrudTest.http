@@ -41,12 +41,12 @@ Authorization: Bearer {{login}}
 
 ### Get Player by ID
 GET http://localhost:8080/players/1
-Authorization: Bearer your_access_token_here
+Authorization: Bearer{{login}}
 
 ### Add Player
 POST http://localhost:8080/players
 Content-Type: application/json
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}
 
 {
   "name": "New Player",
@@ -57,7 +57,7 @@ Authorization: Bearer your_access_token_here
 ### Update Player
 PUT http://localhost:8080/players/1
 Content-Type: application/json
-Authorization: Bearer your_access_token_here
+Authorization: {{login}}
 
 {
   "name": "Updated Player",
@@ -67,7 +67,7 @@ Authorization: Bearer your_access_token_here
 
 ### Delete Player
 DELETE http://localhost:8080/players/1
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}
 
 ### Get Favorite Players
 GET http://localhost:8080/favorites/1

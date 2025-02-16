@@ -1,4 +1,4 @@
-package com.example.consolesapp_adriansaavedra.di
+package com.example.playersapp_adriansaavedra.di
 
 import dagger.Module
 import dagger.Provides

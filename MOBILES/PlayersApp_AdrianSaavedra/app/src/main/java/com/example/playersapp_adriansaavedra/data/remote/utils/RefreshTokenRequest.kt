@@ -1,4 +1,3 @@
 package com.example.playersapp_adriansaavedra.data.remote.utils
 
-class RefreshTokenRequest {
-}
+data class RefreshTokenRequest(val refreshToken: String)
