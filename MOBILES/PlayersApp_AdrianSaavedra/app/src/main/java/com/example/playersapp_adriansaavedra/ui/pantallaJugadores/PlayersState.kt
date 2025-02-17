@@ -6,5 +6,6 @@ import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 data class PlayersState(
     val players: List<Player> = emptyList(),
     val isLoading: Boolean = false,
-    val aviso: UiEvent? = null
+    val aviso: UiEvent? = null,
+    val selectedPlayerId : Int = 0
 )

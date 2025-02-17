@@ -8,4 +8,5 @@
     <dimen name="spacing_default">8dp</dimen>
     <dimen name="text_size_title">24sp</dimen>
     <dimen name="text_size_subtitle">18sp</dimen>
+    <dimen name="text_size_body_large">16sp</dimen>
 </resources>

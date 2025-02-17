@@ -1,7 +1,8 @@
 package com.example.playersapp_adriansaavedra.data.remote.di
 
 import com.example.playersapp_adriansaavedra.BuildConfig
-import com.example.playersapp_adriansaavedra.data.remote.services.AuthService
+import com.example.playersapp_adriansaavedra.data.remote.services.FavoritePlayerService
+import com.example.playersapp_adriansaavedra.data.remote.services.LoginService
 import com.example.playersapp_adriansaavedra.data.remote.services.PlayerService
 import com.example.playersapp_adriansaavedra.data.remote.utils.*
 import dagger.*
@@ -23,35 +24,45 @@ object NetworkModule {
         return interceptor
     }
 
+
+
     @Provides
-    fun provideOkHttpClient(
+    fun provideBaseOkHttpClient(
         loggingInterceptor: HttpLoggingInterceptor,
-        authInterceptor: AuthInterceptor,
-        authAuthenticator: AuthAuthenticator
+        authInterceptor: AuthInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)
-            .authenticator(authAuthenticator)
             .build()
     }
 
+
+
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    @Singleton
+    fun provideRetrofit( okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-//            .baseUrl(BuildConfig.API_URL)
+            .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
     }
 
-    @Singleton
     @Provides
-    fun provideAuthService(retrofit: Retrofit): AuthService =
-        retrofit.create(AuthService::class.java)
+    @Singleton
+    fun provideAuthService(retrofit: Retrofit): LoginService =
+        retrofit.create(LoginService::class.java)
 
     @Singleton
     @Provides
     fun providePlayerService(retrofit: Retrofit): PlayerService =
         retrofit.create(PlayerService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideFavoritePlayerService(retrofit: Retrofit): FavoritePlayerService =
+        retrofit.create(FavoritePlayerService::class.java)
+
+
 }

@@ -2,13 +2,13 @@ package com.example.playersapp_adriansaavedra.data.remote.datasource
 
 import com.example.playersapp_adriansaavedra.data.remote.services.FavoritePlayerService
 import com.example.playersapp_adriansaavedra.data.remote.utils.PlayerNameRequest
-import com.example.playersapp_adriansaavedra.domain.usecases.credential.RefreshTokenUseCase
+import com.example.playersapp_adriansaavedra.data.remote.utils.TokenRefresher
 import javax.inject.Inject
 
 class FavoritePlayersRemoteDataSource @Inject constructor(
     private val favoritePlayerService: FavoritePlayerService,
-    refreshTokenUseCase: RefreshTokenUseCase
-) : BaseApiResponse(refreshTokenUseCase) {
+    tokenRefresher: TokenRefresher
+) : BaseApiResponse(tokenRefresher) {
     suspend fun getFavoritePlayers(credentialId: Int) = safeApiCall { favoritePlayerService.getFavoritePlayers(credentialId) }
     suspend fun getFavoritePlayer(credentialId: Int, playerId: Int) = safeApiCall { favoritePlayerService.getFavoritePlayer(credentialId, playerId) }
     suspend fun addFavoritePlayer(credentialId: Int, playerName: PlayerNameRequest) = safeApiCall { favoritePlayerService.addFavoritePlayer(credentialId, playerName) }

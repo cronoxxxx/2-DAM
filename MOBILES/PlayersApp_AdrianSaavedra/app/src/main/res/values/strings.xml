@@ -4,10 +4,13 @@
     <string name="player_id">ID: %d</string>
     <string name="name_args">Nombre: %s</string>
     <string name="team_args">Equipo: %s</string>
+    <string name="country_args">Pais: %s</string>
     <string name="no_favorite_players_found">No se encontraron jugadores favoritos</string>
     <string name="add_new_favorite">Add New Favorite</string>
     <string name="user_id">User ID: %1$s</string>
     <string name="player_name">Player Name</string>
     <string name="add_favorite">Add Favorite</string>
+    <string name="player_detail">Player Detail</string>
+    <string name="no_player_data">No player data</string>
 
 </resources>

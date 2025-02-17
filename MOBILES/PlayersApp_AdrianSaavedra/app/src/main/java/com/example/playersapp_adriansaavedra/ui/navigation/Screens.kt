@@ -24,6 +24,9 @@ data object FavoritePlayersDestination
 data class FavoritePlayerDetailsDestination(val playerId: Int)
 
 @Serializable
+data class PlayerDetailsDestination(val playerId: Int)
+
+@Serializable
 data object AddFavoritePlayerDestination
 
 

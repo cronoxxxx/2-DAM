@@ -4,4 +4,5 @@ sealed class PlayersEvent {
 
     data object OnGetPlayers : PlayersEvent()
     data object OnAvisoVisto : PlayersEvent()
+    data class OnPlayerSelected(val playerId: Int) : PlayersEvent()
 }

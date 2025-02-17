@@ -1,12 +1,9 @@
 package com.example.playersapp_adriansaavedra.data.remote.utils
 
 import com.example.playersapp_adriansaavedra.data.PreferencesRepository
-import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
-import com.example.playersapp_adriansaavedra.domain.usecases.credential.RefreshTokenUseCase
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.Response
 import javax.inject.Inject
 

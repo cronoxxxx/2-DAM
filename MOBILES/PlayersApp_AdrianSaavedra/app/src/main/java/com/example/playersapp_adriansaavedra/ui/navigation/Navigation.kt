@@ -25,10 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.example.playersapp_adriansaavedra.ui.common.BottomBar
 import com.example.playersapp_adriansaavedra.ui.common.TopBar
 import com.example.playersapp_adriansaavedra.ui.pantallaAgregarFavoritos.AddFavoritesScreen
 import com.example.playersapp_adriansaavedra.ui.pantallaFavoritos.FavoritesScreen
+import com.example.playersapp_adriansaavedra.ui.pantallaJugador.PlayerDetailScreen
 import com.example.playersapp_adriansaavedra.ui.pantallaJugadores.PlayersScreen
 import com.example.playersapp_adriansaavedra.ui.pantallaLogin.LoginScreen
 import kotlinx.coroutines.launch
@@ -102,7 +104,21 @@ fun Navigation() {
                 isBottomFabVisible = false
                 topBarTitle = "PlayersList"
                 showBackButton = false
-                PlayersScreen(showSnackbar = showSnackbar)
+                PlayersScreen(showSnackbar = showSnackbar, onNavigateToDetail = {
+                    navController.navigate(PlayerDetailsDestination(it))
+                })
+            }
+
+            composable<PlayerDetailsDestination> { backStackEntry ->
+                val destination = backStackEntry.toRoute() as PlayerDetailsDestination
+                isBottomBarVisible = false
+                isBottomFabVisible = false
+                topBarTitle = "PlayerDetail"
+                showBackButton = true
+                PlayerDetailScreen(
+                    playerId = destination.playerId,
+                    showSnackbar = showSnackbar,
+                )
             }
 
             composable<FavoritePlayersDestination> {
@@ -120,9 +136,12 @@ fun Navigation() {
                 isBottomFabVisible = false
                 topBarTitle = "Add Favorite Player"
                 showBackButton = true
-                AddFavoritesScreen(showSnackbar = showSnackbar, onNavigateBack = {
-                    navController.navigateUp()
-                })
+                AddFavoritesScreen(
+                    showSnackbar = showSnackbar,
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
             }
 
         }

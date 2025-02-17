@@ -1,5 +1,6 @@
 package com.example.playersapp_adriansaavedra.ui.pantallaJugadores
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
@@ -15,10 +16,10 @@ import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 @Composable
 fun PlayersScreen(
     showSnackbar: (String) -> Unit,
+    onNavigateToDetail: (Int) -> Unit,
     viewModel: PlayersViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-
 
     LaunchedEffect(Unit) {
         viewModel.handleEvent(PlayersEvent.OnGetPlayers)
@@ -29,16 +30,25 @@ fun PlayersScreen(
             if (it is UiEvent.ShowSnackbar) {
                 showSnackbar(it.message)
                 viewModel.handleEvent(PlayersEvent.OnAvisoVisto)
+            } else if (it is UiEvent.Navigate) {
+                onNavigateToDetail(state.selectedPlayerId)
+                viewModel.handleEvent(PlayersEvent.OnAvisoVisto)
             }
         }
     }
 
-    PlayersScreenContent(state = state)
+    PlayersScreenContent(
+        state = state,
+        onConsolesClick = { playerId ->
+            viewModel.handleEvent(PlayersEvent.OnPlayerSelected(playerId))
+        }
+    )
 }
 
 @Composable
 fun PlayersScreenContent(
-    state: PlayersState
+    state: PlayersState,
+    onConsolesClick: (Int) -> Unit  = {}
 ) {
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -57,7 +67,10 @@ fun PlayersScreenContent(
                 else -> {
                     LazyColumn {
                         items(state.players) { player ->
-                            PlayerCard(player = player)
+                            PlayerCard(
+                                player = player,
+                                onClick = { onConsolesClick(player.id) }
+                            )
                         }
                     }
                 }
@@ -67,11 +80,11 @@ fun PlayersScreenContent(
 }
 
 @Composable
-fun PlayerCard(player: Player) {
+fun PlayerCard(player: Player, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(8.dp).clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(

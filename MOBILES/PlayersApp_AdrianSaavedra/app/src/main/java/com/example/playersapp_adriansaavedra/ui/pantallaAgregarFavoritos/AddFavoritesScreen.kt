@@ -54,7 +54,6 @@ fun AddFavoritesScreen(
         }
     )
 }
-
 @Composable
 fun AddFavoritesScreenContent(
     state: AddFavoritesState,

@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.playersapp_adriansaavedra.data.PreferencesRepository
 import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
 import com.example.playersapp_adriansaavedra.data.remote.utils.PlayerNameRequest
-import com.example.playersapp_adriansaavedra.domain.model.Player
 import com.example.playersapp_adriansaavedra.domain.usecases.favorites.AddFavoritePlayerUseCase
 import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,10 +30,13 @@ class AddFavoritesViewModel @Inject constructor(
             initialValue = 0
         )
 
-    fun handleEvent (event: AddFavoritesEvent) {
+    fun handleEvent(event: AddFavoritesEvent) {
         when (event) {
             is AddFavoritesEvent.AvisoVisto -> avisoMostrado()
-            is AddFavoritesEvent.AddFavoritePlayer -> addFavoritePlayer(event.userId,event.playerName)
+            is AddFavoritesEvent.AddFavoritePlayer -> addFavoritePlayer(
+                event.userId,
+                event.playerName
+            )
             is AddFavoritesEvent.OnNameChange -> updateName(event.value)
             is AddFavoritesEvent.UpdateUserId -> updateUserId(event.userId)
         }
@@ -48,14 +50,17 @@ class AddFavoritesViewModel @Inject constructor(
         _uiState.value = _uiState.value.copy(aviso = null)
     }
 
-    private fun addFavoritePlayer(userId:Int,playerName: String) {
+    private fun addFavoritePlayer(userId: Int, playerName: String) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             when (val result = addFavoritePlayerUseCase.invoke(userId, PlayerNameRequest(playerName))) {
                 is NetworkResult.Success -> {
-                    _uiState.update { it.copy(aviso = UiEvent.Navigate, isLoading = false) }
+                    _uiState.update {
+                        it.copy(
+                            aviso = UiEvent.Navigate,
+                            isLoading = false)
+                    }
                 }
-
                 is NetworkResult.Error -> {
                     _uiState.update {
                         it.copy(
@@ -67,6 +72,7 @@ class AddFavoritesViewModel @Inject constructor(
             }
         }
     }
+
     private fun updateName(value: String) {
         _uiState.update { it.copy(playerName = value) }
     }
