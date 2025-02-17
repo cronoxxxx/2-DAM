@@ -10,11 +10,10 @@ class LoginUseCase @Inject constructor(
     private val loginRepository: LoginRepository,
     private val preferencesRepository: PreferencesRepository
 ) {
-    suspend operator fun invoke(username: String, password: String): NetworkResult<AuthenticationResponse> {
+    suspend operator fun invoke(username: String, password: String) : NetworkResult<AuthenticationResponse> {
         val result = loginRepository.login(Login(username, password))
         if (result is NetworkResult.Success) {
-            preferencesRepository.saveToken(result.data.accessToken)
-            preferencesRepository.saveRefreshToken(result.data.refreshToken)
+            preferencesRepository.saveTokens(result.data.accessToken, result.data.refreshToken)
             preferencesRepository.saveUserId(result.data.userId)
         }
         return result
