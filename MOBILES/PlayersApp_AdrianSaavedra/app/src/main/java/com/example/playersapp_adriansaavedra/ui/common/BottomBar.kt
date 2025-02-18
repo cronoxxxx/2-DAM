@@ -29,7 +29,7 @@ fun BottomBar(
                 selected = currentDestination?.route == item.destination.toString(),
                 onClick = {
                     when (item.destination) {
-                        is PlayersDestination -> navController.navigate(PlayersDestination){
+                        is PlayersDestination -> navController.navigate(PlayersDestination) {
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
                             }
@@ -38,7 +38,9 @@ fun BottomBar(
                             restoreState = true
                         }
 
-                        is FavoritePlayersDestination -> navController.navigate(FavoritePlayersDestination){
+                        is FavoritePlayersDestination -> navController.navigate(
+                            FavoritePlayersDestination
+                        ) {
                             popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
                             }

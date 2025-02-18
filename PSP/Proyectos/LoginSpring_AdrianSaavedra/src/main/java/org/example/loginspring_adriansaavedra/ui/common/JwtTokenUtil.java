@@ -19,24 +19,24 @@ public class JwtTokenUtil {
         this.key = key;
     }
 
-    public String generateAccessToken(String username) {
+    public String generateAccessToken(int userId) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(String.valueOf(userId))
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now().plusSeconds(10).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim(Constantes.USER_S, username)
+                .claim(Constantes.USER_ID_S, userId)
                 .signWith(key)
                 .compact();
     }
 
-    public String generateRefreshToken(String username) {
+    public String generateRefreshToken(int userId) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(String.valueOf(userId))
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now().plusMinutes(15).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim(Constantes.USER_S, username)
+                .claim(Constantes.USER_ID_S, userId)
                 .signWith(key)
                 .compact();
     }
@@ -48,12 +48,12 @@ public class JwtTokenUtil {
                 .parseClaimsJws(token);
     }
 
-    public String getUsernameFromToken(String token) {
+    public int getUserIdFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        return claims.getSubject();
+        return Integer.parseInt(claims.getSubject());
     }
 }

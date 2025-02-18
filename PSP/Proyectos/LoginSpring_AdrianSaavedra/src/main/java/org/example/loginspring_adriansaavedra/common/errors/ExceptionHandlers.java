@@ -10,34 +10,34 @@ public class ExceptionHandlers {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ApiError> handleNotFoundException(UserNotFoundException ex) {
         String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message, HttpStatus.NOT_FOUND));
+        return buildResponseEntity(new ApiError(message), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(PlayerNotFoundException.class)
     public ResponseEntity<ApiError> handleNotFoundException(PlayerNotFoundException ex) {
         String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message, HttpStatus.NOT_FOUND));
+        return buildResponseEntity(new ApiError(message), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(PlayerAlreadyExistsException.class)
     public ResponseEntity<ApiError> handleAlreadyExistsException(PlayerAlreadyExistsException ex) {
         String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
+        return buildResponseEntity(new ApiError(message), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ApiError> handleAlreadyExistsException(UserAlreadyExistsException ex) {
         String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
+        return buildResponseEntity(new ApiError(message), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserValidatorException.class)
     public ResponseEntity<ApiError> handleValidatorException(UserValidatorException ex) {
         String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message, HttpStatus.BAD_REQUEST));
+        return buildResponseEntity(new ApiError(message), HttpStatus.BAD_REQUEST);
     }
 
-    private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
-        return new ResponseEntity<>(apiError, apiError.status());
+    private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError, HttpStatus status) {
+        return new ResponseEntity<>(apiError, status);
     }
 }

@@ -1,12 +1,19 @@
 package com.example.playersapp_adriansaavedra.ui.pantallaAgregarFavoritos
 
-import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
@@ -14,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.playersapp_adriansaavedra.R
 import com.example.playersapp_adriansaavedra.ui.common.UiEvent
@@ -28,7 +36,9 @@ fun AddFavoritesScreen(
     val userId by viewModel.userId.collectAsStateWithLifecycle()
 
     LaunchedEffect(userId) {
-        viewModel.handleEvent(AddFavoritesEvent.UpdateUserId(userId))
+        userId?.takeIf { it > 0 }?.let { id ->
+            viewModel.handleEvent(AddFavoritesEvent.UpdateUserId(id))
+        }
     }
 
     LaunchedEffect(state.aviso) {
@@ -38,6 +48,7 @@ fun AddFavoritesScreen(
                     showSnackbar(it.message)
                     viewModel.handleEvent(AddFavoritesEvent.AvisoVisto)
                 }
+
                 is UiEvent.Navigate -> {
                     onNavigateBack()
                     viewModel.handleEvent(AddFavoritesEvent.AvisoVisto)
@@ -50,10 +61,16 @@ fun AddFavoritesScreen(
         state = state,
         onNameChange = { viewModel.handleEvent(AddFavoritesEvent.OnNameChange(it)) },
         onAddFavorite = {
-            viewModel.handleEvent(AddFavoritesEvent.AddFavoritePlayer(state.userId, state.playerName))
+            viewModel.handleEvent(
+                AddFavoritesEvent.AddFavoritePlayer(
+                    state.userId,
+                    state.playerName
+                )
+            )
         }
     )
 }
+
 @Composable
 fun AddFavoritesScreenContent(
     state: AddFavoritesState,

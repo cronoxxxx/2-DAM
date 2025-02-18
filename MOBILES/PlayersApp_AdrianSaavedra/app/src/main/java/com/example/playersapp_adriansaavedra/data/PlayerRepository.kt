@@ -2,7 +2,6 @@ package com.example.playersapp_adriansaavedra.data
 
 import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
 import com.example.playersapp_adriansaavedra.data.remote.datasource.PlayersRemoteDataSource
-import com.example.playersapp_adriansaavedra.domain.model.Player
 import com.example.playersapp_adriansaavedra.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext

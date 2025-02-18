@@ -37,6 +37,7 @@ class AddFavoritesViewModel @Inject constructor(
                 event.userId,
                 event.playerName
             )
+
             is AddFavoritesEvent.OnNameChange -> updateName(event.value)
             is AddFavoritesEvent.UpdateUserId -> updateUserId(event.userId)
         }
@@ -53,14 +54,17 @@ class AddFavoritesViewModel @Inject constructor(
     private fun addFavoritePlayer(userId: Int, playerName: String) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            when (val result = addFavoritePlayerUseCase.invoke(userId, PlayerNameRequest(playerName))) {
+            when (val result =
+                addFavoritePlayerUseCase.invoke(userId, PlayerNameRequest(playerName))) {
                 is NetworkResult.Success -> {
                     _uiState.update {
                         it.copy(
                             aviso = UiEvent.Navigate,
-                            isLoading = false)
+                            isLoading = false
+                        )
                     }
                 }
+
                 is NetworkResult.Error -> {
                     _uiState.update {
                         it.copy(

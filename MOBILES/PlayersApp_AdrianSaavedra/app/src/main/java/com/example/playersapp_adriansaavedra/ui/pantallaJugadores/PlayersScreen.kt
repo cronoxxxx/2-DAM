@@ -1,15 +1,30 @@
 package com.example.playersapp_adriansaavedra.ui.pantallaJugadores
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.*
-import androidx.compose.material3.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.playersapp_adriansaavedra.R
 import com.example.playersapp_adriansaavedra.domain.model.Player
 import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 
@@ -48,7 +63,7 @@ fun PlayersScreen(
 @Composable
 fun PlayersScreenContent(
     state: PlayersState,
-    onConsolesClick: (Int) -> Unit  = {}
+    onConsolesClick: (Int) -> Unit = {}
 ) {
     Surface {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -58,12 +73,14 @@ fun PlayersScreenContent(
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
+
                 state.players.isEmpty() -> {
                     Text(
-                        "No players found",
+                        stringResource(R.string.no_players_found),
                         modifier = Modifier.align(Alignment.Center)
                     )
                 }
+
                 else -> {
                     LazyColumn {
                         items(state.players) { player ->
@@ -84,12 +101,13 @@ fun PlayerCard(player: Player, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp).clickable(onClick = onClick),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+            .padding(dimensionResource(R.dimen.card_padding))
+            .clickable(onClick = onClick),
+        elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(R.dimen.card_elevation))
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(dimensionResource(R.dimen.card_content_padding))
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -98,9 +116,9 @@ fun PlayerCard(player: Player, onClick: () -> Unit) {
                     text = player.name,
                     style = MaterialTheme.typography.bodyLarge
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.text_spacing)))
                 Text(
-                    text = "ID: ${player.id}",
+                    text = stringResource(R.string.player_id, player.id),
                     style = MaterialTheme.typography.bodyMedium
                 )
 

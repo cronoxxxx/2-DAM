@@ -38,8 +38,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             final String token = header.split(" ")[1].trim();
             try {
                 jwtTokenUtil.validateToken(token);
-                String username = jwtTokenUtil.getUsernameFromToken(token);
-                request.setAttribute("username", username);
+                int username = jwtTokenUtil.getUserIdFromToken(token);
+                request.setAttribute(Constantes.USERNAME, username);
             } catch (JwtException e) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, Constantes.EXPIRED_CODE_MESSAGE);
                 return;

@@ -7,5 +7,5 @@ data class PlayersState(
     val players: List<Player> = emptyList(),
     val isLoading: Boolean = false,
     val aviso: UiEvent? = null,
-    val selectedPlayerId : Int = 0
+    val selectedPlayerId: Int = 0
 )

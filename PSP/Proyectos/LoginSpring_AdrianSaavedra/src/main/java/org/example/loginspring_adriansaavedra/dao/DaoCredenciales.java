@@ -1,6 +1,8 @@
 package org.example.loginspring_adriansaavedra.dao;
 
-import org.example.loginspring_adriansaavedra.common.errors.*;
+import org.example.loginspring_adriansaavedra.common.Constantes;
+import org.example.loginspring_adriansaavedra.common.errors.UserAlreadyExistsException;
+import org.example.loginspring_adriansaavedra.common.errors.UserNotFoundException;
 import org.example.loginspring_adriansaavedra.domain.model.Credential;
 import org.springframework.stereotype.Repository;
 
@@ -15,12 +17,12 @@ public class DaoCredenciales {
 
     public void verifyUserExists(Credential credential) {
         Credential existingCredential = credentials.getCredentials().stream()
-                .filter(c -> c.getUsername().equals(credential.getUsername()))
+                .filter(c -> c.getUsername().equals(credential.getUsername()) || c.getEmail().equals(credential.getEmail()))
                 .findFirst()
                 .orElse(null);
         if (existingCredential != null) {
 
-            throw new UserAlreadyExistsException("El usuario " + credential.getUsername() + " ya existe");
+            throw new UserAlreadyExistsException(Constantes.USER_ALREADY_EXISTS + credential.getUsername());
         } else {
             int maxId = credentials.getCredentials().stream()
                     .mapToInt(Credential::getId)
@@ -48,15 +50,16 @@ public class DaoCredenciales {
         return credentials.getCredentials().stream()
                 .filter(c -> verificationCode.equals(c.getVerificationCode()))
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("Código de verificación inválido"));
+                .orElseThrow(() -> new UserNotFoundException(Constantes.INVALID_VERIFICATION_CODE));
     }
+
     public Credential authenticateUser(String username, String password) {
         Credential credential = credentials.getCredentials().stream()
                 .filter(c -> c.getUsername().equals(username))
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado: " + username));
+                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND + username));
         if (!credential.isVerified() || !credential.getPassword().equals(password)) {
-            throw new UserNotFoundException("Credenciales inválidas o usuario no verificado");
+            throw new UserNotFoundException(Constantes.INVALID_CRED_OR_NOT_VERIFIED);
         }
 
         return credential;

@@ -2,10 +2,12 @@ package com.example.playersapp_adriansaavedra.ui.pantallaLogin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.playersapp_adriansaavedra.R
 import com.example.playersapp_adriansaavedra.data.PreferencesRepository
 import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
 import com.example.playersapp_adriansaavedra.domain.usecases.credential.LoginUseCase
 import com.example.playersapp_adriansaavedra.domain.usecases.credential.RegisterUseCase
+import com.example.playersapp_adriansaavedra.ui.common.StringProvider
 import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val registerUseCase: RegisterUseCase,
-    private val preferencesRepository: PreferencesRepository
+    private val stringProvider: StringProvider,
+    private val preferenceRepository: PreferencesRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginState())
     val state = _uiState.asStateFlow()
@@ -35,6 +38,7 @@ class LoginViewModel @Inject constructor(
             is LoginEvent.OnUsernameRegisterChange -> updateUsernameRegister(event.username)
         }
     }
+
     private fun avisoVisto() {
         _uiState.update { currentState -> currentState.copy(aviso = null) }
     }
@@ -44,6 +48,7 @@ class LoginViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = true) }
             when (val result = loginUseCase.invoke(username, password)) {
                 is NetworkResult.Success -> {
+                    preferenceRepository.saveTokens(result.data.accessToken,result.data.refreshToken)
                     _uiState.update { it.copy(aviso = UiEvent.Navigate, isLoading = false) }
                 }
 
@@ -65,7 +70,15 @@ class LoginViewModel @Inject constructor(
             _uiState.update { it.copy(isLoading = true) }
             when (val result = registerUseCase.invoke(username, password, email)) {
                 is NetworkResult.Success -> {
-                    _uiState.update { it.copy(aviso = UiEvent.Navigate, isLoading = false) }
+                    _uiState.update {
+                        it.copy(
+                            aviso = UiEvent.ShowSnackbar(
+                                stringProvider.getString(
+                                    R.string.ve_correo
+                                )
+                            ), isLoading = false
+                        )
+                    }
                 }
 
                 is NetworkResult.Error -> {
@@ -88,12 +101,15 @@ class LoginViewModel @Inject constructor(
     private fun updatePasswordLogin(value: String) {
         _uiState.update { it.copy(login = it.login.copy(password = value)) }
     }
+
     private fun updateEmailRegister(value: String) {
         _uiState.update { it.copy(register = it.register.copy(email = value)) }
     }
+
     private fun updatePasswordRegister(value: String) {
         _uiState.update { it.copy(register = it.register.copy(password = value)) }
     }
+
     private fun updateUsernameRegister(value: String) {
         _uiState.update { it.copy(register = it.register.copy(username = value)) }
     }

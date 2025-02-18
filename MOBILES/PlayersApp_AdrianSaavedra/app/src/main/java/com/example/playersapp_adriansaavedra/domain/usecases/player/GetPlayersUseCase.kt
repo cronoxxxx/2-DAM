@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetPlayersUseCase @Inject constructor(
     private val playerRepository: PlayerRepository
 ) {
-    suspend operator fun invoke()= playerRepository.getPlayers()
+    suspend operator fun invoke() = playerRepository.getPlayers()
 
 }

@@ -1,14 +1,17 @@
 package com.example.playersapp_adriansaavedra.ui.pantallaJugador
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -17,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.playersapp_adriansaavedra.R
 import com.example.playersapp_adriansaavedra.domain.model.Player
 import com.example.playersapp_adriansaavedra.ui.common.UiEvent
@@ -97,7 +102,10 @@ fun PlayerDetailScreenContent(
 class PlayerDetailStateProvider : PreviewParameterProvider<PlayerDetailState> {
     override val values = sequenceOf(
         PlayerDetailState(isLoading = true, player = null),
-        PlayerDetailState(player = Player(1, "Lionel Messi", "Inter Miami", "Argentina"), isLoading = false),
+        PlayerDetailState(
+            player = Player(1, "Lionel Messi", "Inter Miami", "Argentina"),
+            isLoading = false
+        ),
     )
 }
 

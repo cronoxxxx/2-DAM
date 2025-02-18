@@ -1,36 +1,43 @@
 package com.example.playersapp_adriansaavedra.data.remote.datasource
 
+
 import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
 import com.example.playersapp_adriansaavedra.data.remote.utils.ApiError
 import com.google.gson.Gson
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 abstract class BaseApiResponse {
-    suspend fun <T> safeApiCall(apiCall: suspend () -> Response<T>): NetworkResult<T> {
-        try {
+    inline fun <reified T> safeApiCall(apiCall: () -> Response<T>): NetworkResult<T> {
+        return try {
             val response = apiCall()
             if (response.isSuccessful) {
-
-//                body?.let {
-//                    return NetworkResult.Success(body)
-//                }
                 val body = response.body()
-                return if (body != null) {
-                    NetworkResult.Success(body)
-                } else {
-                    @Suppress("UNCHECKED_CAST")
-                    NetworkResult.Success(Unit as T) //pregunta oscar
+                when {
+                    body != null -> NetworkResult.Success(body)
+                    else -> NetworkResult.Success(Unit as T)
                 }
+            } else {
+                response.errorBody()?.let { errorBody ->
+                    parseErrorResponse(errorBody)
+                } ?: NetworkResult.Error("${response.code()} ${response.message()}")
             }
-            response.errorBody()?.let {
-                val errorBody = Gson().fromJson(it.charStream(), ApiError::class.java)
-                return NetworkResult.Error(errorBody.message)
-            }
-            return NetworkResult.Error("${response.code()} ${response.message()}")
         } catch (e: Exception) {
-            return NetworkResult.Error(e.message ?: e.toString())
+            NetworkResult.Error(e.message ?: e.toString())
+        }
+    }
+
+    fun <T> parseErrorResponse(errorBody: ResponseBody): NetworkResult<T> {
+        return try {
+            val errorBodyString = errorBody.string()
+            val apiError = Gson().fromJson(errorBodyString, ApiError::class.java)
+            NetworkResult.Error(apiError.message)
+        } catch (e: Exception) {
+            NetworkResult.Error(e.message ?: e.toString())
         }
     }
 }
+
+
 
 

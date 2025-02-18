@@ -1,6 +1,8 @@
 package org.example.loginspring_adriansaavedra.ui.utils;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor

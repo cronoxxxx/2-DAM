@@ -22,13 +22,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.playersapp_adriansaavedra.R
 import com.example.playersapp_adriansaavedra.ui.common.BottomBar
 import com.example.playersapp_adriansaavedra.ui.common.TopBar
 import com.example.playersapp_adriansaavedra.ui.pantallaAgregarFavoritos.AddFavoritesScreen
+import com.example.playersapp_adriansaavedra.ui.pantallaFavorito.FavoriteDetailScreen
 import com.example.playersapp_adriansaavedra.ui.pantallaFavoritos.FavoritesScreen
 import com.example.playersapp_adriansaavedra.ui.pantallaJugador.PlayerDetailScreen
 import com.example.playersapp_adriansaavedra.ui.pantallaJugadores.PlayersScreen
@@ -89,7 +92,7 @@ fun Navigation() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable<LoginDestination> {
-                topBarTitle = "Login"
+                topBarTitle = stringResource(R.string.login_screen_title)
                 showBackButton = false
                 isBottomBarVisible = false
                 isBottomFabVisible = false
@@ -102,7 +105,7 @@ fun Navigation() {
             composable<PlayersDestination> {
                 isBottomBarVisible = true
                 isBottomFabVisible = false
-                topBarTitle = "PlayersList"
+                topBarTitle = stringResource(R.string.players_list_title)
                 showBackButton = false
                 PlayersScreen(showSnackbar = showSnackbar, onNavigateToDetail = {
                     navController.navigate(PlayerDetailsDestination(it))
@@ -111,9 +114,9 @@ fun Navigation() {
 
             composable<PlayerDetailsDestination> { backStackEntry ->
                 val destination = backStackEntry.toRoute() as PlayerDetailsDestination
-                isBottomBarVisible = false
+                isBottomBarVisible = true
                 isBottomFabVisible = false
-                topBarTitle = "PlayerDetail"
+                topBarTitle = stringResource(R.string.player_detail_title)
                 showBackButton = true
                 PlayerDetailScreen(
                     playerId = destination.playerId,
@@ -121,10 +124,27 @@ fun Navigation() {
                 )
             }
 
+            composable<FavoritePlayerDetailsDestination> { backStackEntry ->
+                val destination = backStackEntry.toRoute() as FavoritePlayerDetailsDestination
+                isBottomBarVisible = true
+                isBottomFabVisible = false
+                topBarTitle = stringResource(R.string.favorite_player_screen_title)
+                showBackButton = true
+                FavoriteDetailScreen(
+                    playerId = destination.playerId,
+                    showSnackbar = showSnackbar,
+                    onNavigateBack = {
+                        navController.navigateUp()
+                    }
+                )
+
+            }
+
+
             composable<FavoritePlayersDestination> {
                 isBottomBarVisible = true
                 isBottomFabVisible = true
-                topBarTitle = "Favorites"
+                topBarTitle = stringResource(R.string.favorites_title)
                 showBackButton = false
                 FavoritesScreen(showSnackbar = showSnackbar, onNavigateToDetail = {
                     navController.navigate(FavoritePlayerDetailsDestination(it))
@@ -134,12 +154,12 @@ fun Navigation() {
             composable<AddFavoritePlayerDestination> {
                 isBottomBarVisible = false
                 isBottomFabVisible = false
-                topBarTitle = "Add Favorite Player"
+                topBarTitle = stringResource(R.string.add_favorite_player_title)
                 showBackButton = true
                 AddFavoritesScreen(
                     showSnackbar = showSnackbar,
                     onNavigateBack = {
-                        navController.popBackStack()
+                        navController.navigateUp()
                     }
                 )
             }

@@ -28,13 +28,14 @@ class FavoritePlayerRepository @Inject constructor(
         }
     }
 
-    suspend fun addFavoritePlayer(credentialId: Int, playerName: PlayerNameRequest) = withContext(dispatcher) {
-        try {
-            favoritePlayersRemoteDataSource.addFavoritePlayer(credentialId, playerName)
-        } catch (e: Exception) {
-            NetworkResult.Error(e.message ?: e.toString())
+    suspend fun addFavoritePlayer(credentialId: Int, playerName: PlayerNameRequest) =
+        withContext(dispatcher) {
+            try {
+                favoritePlayersRemoteDataSource.addFavoritePlayer(credentialId, playerName)
+            } catch (e: Exception) {
+                NetworkResult.Error(e.message ?: e.toString())
+            }
         }
-    }
 
     suspend fun deleteFavoritePlayer(credentialId: Int, playerId: Int) = withContext(dispatcher) {
         try {

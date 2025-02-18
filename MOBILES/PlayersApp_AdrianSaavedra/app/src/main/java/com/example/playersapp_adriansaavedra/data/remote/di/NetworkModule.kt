@@ -5,14 +5,16 @@ import com.example.playersapp_adriansaavedra.data.PreferencesRepository
 import com.example.playersapp_adriansaavedra.data.remote.services.FavoritePlayerService
 import com.example.playersapp_adriansaavedra.data.remote.services.LoginService
 import com.example.playersapp_adriansaavedra.data.remote.services.PlayerService
-import com.example.playersapp_adriansaavedra.data.remote.utils.*
-import dagger.*
-
-import dagger.hilt.*
-import dagger.hilt.components.*
-import okhttp3.*
-import okhttp3.logging.*
-import retrofit2.*
+import com.example.playersapp_adriansaavedra.data.remote.utils.AuthAuthenticator
+import com.example.playersapp_adriansaavedra.data.remote.utils.AuthInterceptor
+import dagger.Lazy
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 

@@ -2,11 +2,15 @@ package com.example.playersapp_adriansaavedra.data.remote.utils
 
 import com.example.playersapp_adriansaavedra.data.PreferencesRepository
 import com.example.playersapp_adriansaavedra.data.remote.services.LoginService
+import com.example.playersapp_adriansaavedra.ui.Constantes
+import dagger.Lazy
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-import okhttp3.*
+import okhttp3.Authenticator
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.Route
 import javax.inject.Inject
-import dagger.*
 
 
 class AuthAuthenticator @Inject constructor(
@@ -25,7 +29,10 @@ class AuthAuthenticator @Inject constructor(
             } else {
                 preferencesRepository.saveTokens(newToken.accessToken, newToken.refreshToken)
                 response.request.newBuilder()
-                    .header("Authorization", "Bearer ${newToken.accessToken}")
+                    .header(
+                        Constantes.AUTHORIZATION,
+                        Constantes.BEARER_PREFIX + newToken.accessToken
+                    )
                     .build()
             }
         }

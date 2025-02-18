@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
 
     ksp(libs.hilt.compiler)
+    implementation(libs.auth0.jwt)
 
     //Datastore
     implementation(libs.androidx.datastore.preferences)

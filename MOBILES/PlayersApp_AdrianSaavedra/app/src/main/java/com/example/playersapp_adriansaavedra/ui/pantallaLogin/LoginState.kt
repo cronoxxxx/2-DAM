@@ -6,7 +6,7 @@ import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 
 data class LoginState(
     val aviso: UiEvent? = null,
-    val login : Login = Login(),
-    val register : Register = Register(),
+    val login: Login = Login(),
+    val register: Register = Register(),
     val isLoading: Boolean = false
 )

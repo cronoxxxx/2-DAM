@@ -2,9 +2,7 @@ package com.example.playersapp_adriansaavedra.ui.pantallaJugadores
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.example.playersapp_adriansaavedra.data.remote.NetworkResult
-import com.example.playersapp_adriansaavedra.domain.usecases.player.GetPlayerUseCase
 import com.example.playersapp_adriansaavedra.domain.usecases.player.GetPlayersUseCase
 import com.example.playersapp_adriansaavedra.ui.common.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel

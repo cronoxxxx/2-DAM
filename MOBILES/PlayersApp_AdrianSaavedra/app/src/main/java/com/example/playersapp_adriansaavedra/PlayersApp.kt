@@ -14,7 +14,3 @@ class PlayersApp : Application() {
         }
     }
 }
-
-//pasar cuerpo de un solo parametro solo por nombre como en jugador
-//puedo pasar un id de usuario en el authenticationresponse
-//de cuantas pantallas quieres la app

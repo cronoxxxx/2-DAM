@@ -9,4 +9,11 @@
     <dimen name="text_size_title">24sp</dimen>
     <dimen name="text_size_subtitle">18sp</dimen>
     <dimen name="text_size_body_large">16sp</dimen>
+    <dimen name="login_title_text_size">16sp</dimen>
+    <dimen name="login_form_spacing">16dp</dimen>
+    <dimen name="login_input_spacing">8dp</dimen>
+    <dimen name="login_section_spacing">32dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="card_content_padding">16dp</dimen>
+    <dimen name="text_spacing">4dp</dimen>
 </resources>

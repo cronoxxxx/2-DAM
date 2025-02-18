@@ -48,6 +48,7 @@ class FavoritesViewModel @Inject constructor(
                 is NetworkResult.Success -> {
                     _uiState.update { it.copy(favoritePlayers = result.data, isLoading = false) }
                 }
+
                 is NetworkResult.Error -> {
                     _uiState.update {
                         it.copy(

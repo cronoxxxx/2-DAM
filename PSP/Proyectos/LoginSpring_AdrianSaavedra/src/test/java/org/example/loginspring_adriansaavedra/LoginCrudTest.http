@@ -19,7 +19,7 @@ Content-Type: application/json
 {
   "username": "a",
   "password": "a",
-  "email": "saavedra.mateo.walter@gmail.com"
+  "email": "inserte correo"
 }
 
 
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 
 ### Refresh Token
-POST http://localhost:8080/refresh-token
+POST http://localhost:8080/refresh
 Content-Type: application/json
 
 {
@@ -53,10 +53,12 @@ Authorization: Bearer {{login}}
 
 ### Add Favorite Player
 POST http://localhost:8080/favorites/1
-Content-Type: text/plain
+Content-Type: application/json
 Authorization: Bearer {{login}}
 
-Cristiano Ronaldo
+{
+"playerName": "Lionel Messi"
+}
 
 
 ### Delete Favorite Player

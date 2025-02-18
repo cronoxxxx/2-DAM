@@ -12,5 +12,25 @@
     <string name="add_favorite">Add Favorite</string>
     <string name="player_detail">Player Detail</string>
     <string name="no_player_data">No player data</string>
+    <string name="favorite_player_detail">Favorite Player Detail</string>
+    <string name="delete_favorite_player">Delete Favorite Player</string>
+    <string name="no_favorite_player_data">No favorite player data available</string>
+    <string name="players">Players</string>
+    <string name="favorites">Favorites</string>
+    <string name="ve_correo">Ve al correo</string>
+    <string name="register_title">Register</string>
+    <string name="login_title">Login</string>
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="email_label">Email</string>
+    <string name="register_button">Register</string>
+    <string name="login_button">Login</string>
+    <string name="no_players_found">No players found</string>
+    <string name="login_screen_title">Login</string>
+    <string name="players_list_title">Players List</string>
+    <string name="player_detail_title">Player Detail</string>
+    <string name="favorite_player_screen_title">Fav Player Screen</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="add_favorite_player_title">Add Favorite Player</string>
 
 </resources>

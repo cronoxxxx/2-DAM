@@ -1,5 +1,6 @@
 package org.example.loginspring_adriansaavedra.dao;
 
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerAlreadyExistsException;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerNotFoundException;
 import org.example.loginspring_adriansaavedra.common.errors.UserNotFoundException;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class DaoJugadoresFavoritos {
     private final Database database;
@@ -22,7 +24,7 @@ public class DaoJugadoresFavoritos {
         List<Player> lista = database.getCredentials().stream()
                 .filter(c -> c.getId() == credentialId)
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("El usuario no existe"))
+                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND))
                 .getJugadoresFavoritos();
 
         if (lista == null) {
@@ -36,7 +38,7 @@ public class DaoJugadoresFavoritos {
         Credential found = database.getCredentials().stream()
                 .filter(c -> c.getId() == credentialId)
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("El usuario no existe"));
+                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND));
 
         if (found.getJugadoresFavoritos() == null) {
             found.setJugadoresFavoritos(new ArrayList<>());
@@ -45,7 +47,7 @@ public class DaoJugadoresFavoritos {
         return found.getJugadoresFavoritos().stream()
                 .filter(p -> p.getId() == playerId)
                 .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException("El jugador no existe"));
+                .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
 
     }
 
@@ -53,10 +55,10 @@ public class DaoJugadoresFavoritos {
         Credential found = database.getCredentials().stream()
                 .filter(c -> c.getId() == credentialId)
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("El usuario no existe"));
+                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND));
 
         if (!found.isVerified()) {
-            throw new UserNotFoundException("Usuario no verificado");
+            throw new UserNotFoundException(Constantes.USER_NOT_VERIFIED);
         }
         if (found.getJugadoresFavoritos() == null) {
             found.setJugadoresFavoritos(new ArrayList<>());
@@ -65,10 +67,10 @@ public class DaoJugadoresFavoritos {
         Player player = database.getPlayers().stream()
                 .filter(p -> p.getName().equalsIgnoreCase(playerName))
                 .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException("El jugador no existe"));
+                .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
 
         if (found.getJugadoresFavoritos().stream().anyMatch(p -> p.getId() == player.getId())) {
-            throw new PlayerAlreadyExistsException("El jugador ya está en favoritos");
+            throw new PlayerAlreadyExistsException(Constantes.PLAYER_FAVORITE_ALREADY_EXISTS);
         }
 
         found.getJugadoresFavoritos().add(player);
@@ -79,14 +81,14 @@ public class DaoJugadoresFavoritos {
         Credential found = database.getCredentials().stream()
                 .filter(c -> c.getId() == credentialId)
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("El usuario no existe"));
+                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND));
         if (found.getJugadoresFavoritos() == null) {
             found.setJugadoresFavoritos(new ArrayList<>());
         }
         Player player = found.getJugadoresFavoritos().stream()
                 .filter(p -> p.getId() == playerId)
                 .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException("El jugador no existe"));
+                .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
         found.getJugadoresFavoritos().removeIf(p -> p.getId() == player.getId());
     }
 }
