@@ -6,6 +6,7 @@ import com.example.hospitalcrud.dao.repositories.utils.MongoUtil;
 import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import jakarta.annotation.PreDestroy;
 import org.bson.*;
 import org.bson.types.*;
 import org.springframework.stereotype.Repository;
@@ -86,5 +87,8 @@ public class MongoMedRecordRepository implements MedRecordRepository {
                 .date(doc.getDate("date").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                 .medications(doc.getList("medications", String.class))
                 .build();
+    }@PreDestroy
+    public void cleanup() {
+        MongoUtil.closeConnection();
     }
 }

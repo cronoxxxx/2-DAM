@@ -6,6 +6,7 @@ import com.example.hospitalcrud.dao.repositories.utils.MongoUtil;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import jakarta.annotation.PreDestroy;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
@@ -54,6 +55,9 @@ public class MongoCredentialRepository implements CredentialRepository {
         credential.setPatient(doc.getObjectId("patient"));
         credential.setDoctor(doc.getObjectId("doctor"));
         return credential;
+    }@PreDestroy
+    public void cleanup() {
+        MongoUtil.closeConnection();
     }
 }
 

@@ -5,6 +5,7 @@ import com.example.hospitalcrud.dao.repositories.DoctorRepository;
 import com.example.hospitalcrud.dao.repositories.utils.MongoUtil;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import jakarta.annotation.PreDestroy;
 import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ public class MongoDoctorRepository implements DoctorRepository {
 
     public MongoDoctorRepository() {
         MongoDatabase database = MongoUtil.getDatabase();
-        this.collection = database.getCollection("doctors");
+        this.collection = database.getCollection("doctor");
     }
 
     @Override
@@ -33,6 +34,9 @@ public class MongoDoctorRepository implements DoctorRepository {
                 .doctor_id(doc.getObjectId("_id"))
                 .name(doc.getString("name"))
                 .build();
+    }@PreDestroy
+    public void cleanup() {
+        MongoUtil.closeConnection();
     }
 }
 

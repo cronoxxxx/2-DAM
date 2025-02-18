@@ -1,7 +1,6 @@
 package com.example.hospitalcrud.domain.services;
 
 import com.example.hospitalcrud.dao.model.MedRecord;
-import com.example.hospitalcrud.dao.model.Medication;
 import com.example.hospitalcrud.dao.repositories.MedRecordRepository;
 import com.example.hospitalcrud.domain.model.MedRecordUI;
 import org.bson.types.ObjectId;
@@ -11,7 +10,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class MedRecordService {
@@ -58,7 +56,7 @@ public class MedRecordService {
         List<MedRecord> medRecords = medRecordRepository.findByPatientId(patientId);
         return medRecords.stream()
                 .map(this::convertToMedRecordUI)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public int add(MedRecordUI medRecordUI) {
