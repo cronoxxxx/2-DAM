@@ -9,7 +9,6 @@ import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-
 @Component
 public class JwtTokenUtil {
 
@@ -19,24 +18,24 @@ public class JwtTokenUtil {
         this.key = key;
     }
 
-    public String generateAccessToken(int userId) {
+    public String generateAccessToken(String username) {
         return Jwts.builder()
-                .setSubject(String.valueOf(userId))
+                .setSubject(username)
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusSeconds(10).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim(Constantes.USER_ID_S, userId)
+                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(2).atZone(ZoneId.systemDefault()).toInstant()))
+                .claim(Constantes.USER_S, username)
                 .signWith(key)
                 .compact();
     }
 
-    public String generateRefreshToken(int userId) {
+    public String generateRefreshToken(String username) {
         return Jwts.builder()
-                .setSubject(String.valueOf(userId))
+                .setSubject(username)
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(15).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim(Constantes.USER_ID_S, userId)
+                .setExpiration(Date.from(LocalDateTime.now().plusDays(7).atZone(ZoneId.systemDefault()).toInstant()))
+                .claim(Constantes.USER_S, username)
                 .signWith(key)
                 .compact();
     }
@@ -48,12 +47,12 @@ public class JwtTokenUtil {
                 .parseClaimsJws(token);
     }
 
-    public int getUserIdFromToken(String token) {
+    public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-        return Integer.parseInt(claims.getSubject());
+        return claims.getSubject();
     }
 }

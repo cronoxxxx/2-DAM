@@ -1,0 +1,48 @@
+0:45 usar entities y tables de jpa 
+
+ 0:55 configuración de properties para jpa
+
+--revisar el data y schema sql para crear tablas--
+
+el showProcessList muestra las conexiones
+
+(3:45) usar el maximumpoolsize = 1 para solo mostrar una conexión 
+
+4:00 explica el security config class
+
+4:40 autentication básica no vale (httpbasic) pq ya tenemos un login
+
+securityconfig (hay que tener logout?) es opcional
+
+12:50 mira la clase de customuserdetailsservice, donde saca los roles del usuario y como lo hace
+
+15:50 explica el login, no vale poner securitycontextholder en solo el login ya que es para el resto de la llamada?
+
+17:15 hacer que el password te venga deshasheado por defecto, usando elo authenticationprovider y en la clase configuración poner un passwordencoder y userdetailsinyectado inyectado, también poner en configuración el autenticationmanager inyectado
+
+22:50 nada de sessionfilter en el securityconfig o es bajar muchos puntos
+
+25:15 poner security context el authtoken y un userdetails para decir que persona esta pasando después de validar el token, y en el securiy context acabaría metiendo una credencial, para que el resto vea quien es y quien no
+
+26:45 muestra un rolesallowed con rol admin en un get donde si el usuario tiene el rol de credentail admin, puede acceder (pedir que haya rolesallowed con user y admin)
+
+28:40 anotaciones de securityconfig
+
+29:25 explica que con la jsr250 se puede poner el roles allowed
+
+29:40 muestra que pasa al poner preauthorized
+
+--usar mejor preauthorize (que viene por defecto en el @EnableWebSecurity
+@EnableMethodSecurity, y poner hasRoles
+
+33:00 a la hora de crear el token se le debe poner tmb el rol que tenga EN LOS CLAIMS
+
+33:30 cuando llega el filtro, mando solamente el usuario y cada vez que me venga el token, me voy a base de datos a cargar el usuario (la primera opción), yo tengo que mandar información del token lo que hago es mandar info del usuario para que me lo devuelva, en el momento que me lo devuelve debo generarme ese user otra vez para que me funcionen las anotaciones (UserDetails)
+-- en este proyecto no comprobaremos que si el token esta revocado o no--
+
+41:36 generateToken con el userdetails
+
+hacer que en las peticiones de datos de jugadores favoritos del credential, hacer que solo pueda acceder cuando el id del usuario coincida con el que esta conectado (usar securitycontext
+
+
+

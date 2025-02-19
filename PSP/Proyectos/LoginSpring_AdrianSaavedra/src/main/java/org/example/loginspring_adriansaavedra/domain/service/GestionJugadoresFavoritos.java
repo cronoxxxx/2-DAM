@@ -1,7 +1,7 @@
 package org.example.loginspring_adriansaavedra.domain.service;
 
 import org.example.loginspring_adriansaavedra.dao.DaoJugadoresFavoritos;
-import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.example.loginspring_adriansaavedra.domain.model.PlayerEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +14,11 @@ public class GestionJugadoresFavoritos {
         this.daoJugadoresFavoritos = daoJugadoresFavoritos;
     }
 
-    public List<Player> getPlayersForCredential(int credentialId) {
+    public List<PlayerEntity> getPlayersForCredential(int credentialId) {
         return daoJugadoresFavoritos.getPlayersForCredential(credentialId);
     }
 
-    public Player getPlayerForCredential(int credentialId, int playerId) {
+    public PlayerEntity getPlayerForCredential(int credentialId, int playerId) {
         return daoJugadoresFavoritos.getPlayerForCredential(credentialId, playerId);
     }
 

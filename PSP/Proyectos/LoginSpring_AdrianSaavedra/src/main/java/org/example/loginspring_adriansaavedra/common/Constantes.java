@@ -25,7 +25,7 @@ public class Constantes {
     public static final String ACCESS_TOKEN = "access_token";
     public static final String REFRESH_TOKEN = "refresh_token";
     public static final String REFRESH_DIR = "/refresh";
-    public static final String USER_ID_S = "userId";
+    public static final String USER_S = "user";
     public static final String COMPULSORY_FILLED = "All fields must be filled";
     public static final String PLAYER_NOT_FOUND = "Player not found";
     public static final String USER_NOT_FOUND = "User not found";
@@ -37,4 +37,5 @@ public class Constantes {
     public static final String FAV_PLAYERS_TWO_DIR = "/{credentialId}/{playerId}";
     public static final String FAV_PLAYERS_ONE_DIR = "/{credentialId}";
 
+    public static final String SUCCESS_REGISTER = "Your account has been registered. Go to the mail.";
 }

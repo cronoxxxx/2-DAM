@@ -8,8 +8,8 @@ Content-Type: application/json
 
 
 ###
-@login = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk3MTkzMjAsImV4cCI6MTczOTcxOTM4MCwidXNlciI6ImEifQ.sGjYBbWfGtnFg0z10lwgaTAd57KD999MT3-7QAKS66HCrE1MsLy9q9DWFTP22iR_lpLRBFp-Xx9s3T8Bfms44A
-@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk3MTUyMjcsImV4cCI6MTczOTcxNjEyNywidXNlciI6ImEifQ.ll1cLqP2kP56SciVYNXMD-8P0xkRI94iu0fS2_Y68IEB-ZfFn3qlGqHCPKg52ejhWQqyCwqcf6dTk46ONSjMSA
+@login =eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk5MjQxOTgsImV4cCI6MTczOTkyNDMxOCwidXNlciI6ImEifQ.qV-aarJSKzrips64OxygqJ_rKEaOPTDA1LcvlOHUu7Qrbj2Wyf_wxiFTuHEH9hTPIsqud17NEz8EMKheGdp2sg
+@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk5MjI2ODksImV4cCI6MTc0MDUyNzQ4OSwidXNlciI6ImEifQ.uW3hes63PXMSZPrX-oTWnlVrSfOMo66YdijAwzcdh2-TmP7MC4lS2l382KIxd747uU5iE2iU_o24g7lv6DejNg
 
 
 ### Register
@@ -19,7 +19,7 @@ Content-Type: application/json
 {
   "username": "a",
   "password": "a",
-  "email": "inserte correo"
+  "email": "saavedra.mateo.walter@gmail.com"
 }
 
 
@@ -39,13 +39,26 @@ Content-Type: application/json
 GET http://localhost:8080/players
 Authorization: Bearer {{login}}
 
-### Get Player by ID
-GET http://localhost:8080/players/1
-Authorization: Bearer{{login}}
+
 
 ### Get Favorite Players
 GET http://localhost:8080/favorites/1
 Authorization: Bearer {{login}}
+
+### Get Player by ID
+GET http://localhost:8080/players/4
+Authorization: Bearer {{login}}
+
+### Add Player
+POST http://localhost:8080/players
+Content-Type: application/json
+Authorization: Bearer {{login}}
+
+{
+  "name": "Lionel Pessi",
+  "team": "Inter Miami",
+  "country": "Argentina"
+}
 
 ### Get Favorite Player
 GET http://localhost:8080/favorites/1/1

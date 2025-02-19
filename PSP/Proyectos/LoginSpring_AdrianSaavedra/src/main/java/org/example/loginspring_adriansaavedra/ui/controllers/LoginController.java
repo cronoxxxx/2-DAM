@@ -1,8 +1,9 @@
 package org.example.loginspring_adriansaavedra.ui.controllers;
 
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.loginspring_adriansaavedra.common.Constantes;
-import org.example.loginspring_adriansaavedra.domain.model.Credential;
+import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
 import org.example.loginspring_adriansaavedra.domain.model.Login;
 import org.example.loginspring_adriansaavedra.domain.model.Register;
 import org.example.loginspring_adriansaavedra.domain.service.GestionCredenciales;
@@ -25,9 +26,9 @@ public class LoginController {
 
     @PostMapping(Constantes.LOGIN_DIR)
     public ResponseEntity<AuthenticationResponse> login(@RequestBody Login login) {
-        Credential credential = gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword());
-        String accessToken = jwtTokenUtil.generateAccessToken(credential.getId());
-        String refreshToken = jwtTokenUtil.generateRefreshToken(credential.getId());
+       CredentialEntity c = gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword());
+        String accessToken = jwtTokenUtil.generateAccessToken(c.getUsername());
+        String refreshToken = jwtTokenUtil.generateRefreshToken(c.getUsername());
         AuthenticationResponse response = AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
@@ -36,16 +37,16 @@ public class LoginController {
     }
 
     @PostMapping(Constantes.REGISTER_DIR)
-    public ResponseEntity<Void> register(@RequestBody Register register) {
-        Credential credential = Credential.builder()
+    public ResponseEntity<String> register(@RequestBody Register register) {
+        CredentialEntity credentialEntity = CredentialEntity.builder()
                 .username(register.getUsername())
                 .password(register.getPassword())
                 .email(register.getEmail())
                 .build();
 
-        gestionCredenciales.registerUser(credential);
+        gestionCredenciales.registerUser(credentialEntity);
         return ResponseEntity.status(HttpServletResponse.SC_CREATED)
-                .build();
+                .body(Constantes.SUCCESS_REGISTER);
 
     }
 
@@ -59,15 +60,18 @@ public class LoginController {
 
     @PostMapping(Constantes.REFRESH_DIR)
     public ResponseEntity<AuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest request) {
-        String refreshToken = request.getRefreshToken();
-        jwtTokenUtil.validateToken(refreshToken);
-        int userId = jwtTokenUtil.getUserIdFromToken(refreshToken);
-        String newAccessToken = jwtTokenUtil.generateAccessToken(userId);
-        AuthenticationResponse response = AuthenticationResponse.builder()
-                .accessToken(newAccessToken)
-                .refreshToken(refreshToken)
-                .build();
-        return ResponseEntity.status(HttpServletResponse.SC_OK).body(response);
-
+        try {
+            String refreshToken = request.getRefreshToken();
+            jwtTokenUtil.validateToken(refreshToken);
+            String username = jwtTokenUtil.getUsernameFromToken(refreshToken);
+            String newAccessToken = jwtTokenUtil.generateAccessToken(username);
+            AuthenticationResponse response = AuthenticationResponse.builder()
+                    .accessToken(newAccessToken)
+                    .refreshToken(refreshToken)
+                    .build();
+            return ResponseEntity.status(HttpServletResponse.SC_OK).body(response);
+        } catch (JwtException e) {
+            return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED).build();
+        }
     }
 }

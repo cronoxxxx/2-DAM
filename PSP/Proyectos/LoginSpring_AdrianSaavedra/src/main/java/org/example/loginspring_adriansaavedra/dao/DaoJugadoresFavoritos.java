@@ -1,11 +1,13 @@
 package org.example.loginspring_adriansaavedra.dao;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerAlreadyExistsException;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerNotFoundException;
 import org.example.loginspring_adriansaavedra.common.errors.UserNotFoundException;
-import org.example.loginspring_adriansaavedra.domain.model.Credential;
-import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
+import org.example.loginspring_adriansaavedra.domain.model.PlayerEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -13,82 +15,59 @@ import java.util.List;
 
 @Repository
 public class DaoJugadoresFavoritos {
-    private final Database database;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    public DaoJugadoresFavoritos(Database database) {
-        this.database = database;
+    public List<PlayerEntity> getPlayersForCredential(int credentialId) {
+        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
+        if (credential == null) {
+            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
+        }
+        return new ArrayList<>(credential.getFavoritePlayerEntities());
     }
 
-    public List<Player> getPlayersForCredential(int credentialId) {
-
-        List<Player> lista = database.getCredentials().stream()
-                .filter(c -> c.getId() == credentialId)
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND))
-                .getJugadoresFavoritos();
-
-        if (lista == null) {
-            return new ArrayList<>();
+    public PlayerEntity getPlayerForCredential(int credentialId, int playerId) {
+        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
+        if (credential == null) {
+            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
         }
-        return new ArrayList<>(lista);
-
-    }
-
-    public Player getPlayerForCredential(int credentialId, int playerId) {
-        Credential found = database.getCredentials().stream()
-                .filter(c -> c.getId() == credentialId)
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND));
-
-        if (found.getJugadoresFavoritos() == null) {
-            found.setJugadoresFavoritos(new ArrayList<>());
-        }
-
-        return found.getJugadoresFavoritos().stream()
+        return credential.getFavoritePlayerEntities().stream()
                 .filter(p -> p.getId() == playerId)
                 .findFirst()
                 .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
-
     }
 
     public void addPlayerForCredential(int credentialId, String playerName) {
-        Credential found = database.getCredentials().stream()
-                .filter(c -> c.getId() == credentialId)
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND));
-
-        if (!found.isVerified()) {
+        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
+        if (credential == null) {
+            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
+        }
+        if (!credential.isVerified()) {
             throw new UserNotFoundException(Constantes.USER_NOT_VERIFIED);
         }
-        if (found.getJugadoresFavoritos() == null) {
-            found.setJugadoresFavoritos(new ArrayList<>());
+        PlayerEntity player = entityManager.createQuery("SELECT p FROM PlayerEntity p WHERE LOWER(p.name) = LOWER(:name)", PlayerEntity.class)
+                .setParameter("name", playerName)
+                .getSingleResult();
+        if (player == null) {
+            throw new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND);
         }
-
-        Player player = database.getPlayers().stream()
-                .filter(p -> p.getName().equalsIgnoreCase(playerName))
-                .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
-
-        if (found.getJugadoresFavoritos().stream().anyMatch(p -> p.getId() == player.getId())) {
+        if (credential.getFavoritePlayerEntities().contains(player)) {
             throw new PlayerAlreadyExistsException(Constantes.PLAYER_FAVORITE_ALREADY_EXISTS);
         }
-
-        found.getJugadoresFavoritos().add(player);
+        credential.getFavoritePlayerEntities().add(player);
+        entityManager.merge(credential);
     }
 
-
     public void deletePlayerForCredential(int credentialId, int playerId) {
-        Credential found = database.getCredentials().stream()
-                .filter(c -> c.getId() == credentialId)
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException(Constantes.USER_NOT_FOUND));
-        if (found.getJugadoresFavoritos() == null) {
-            found.setJugadoresFavoritos(new ArrayList<>());
+        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
+        if (credential == null) {
+            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
         }
-        Player player = found.getJugadoresFavoritos().stream()
-                .filter(p -> p.getId() == playerId)
-                .findFirst()
-                .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
-        found.getJugadoresFavoritos().removeIf(p -> p.getId() == player.getId());
+        PlayerEntity player = entityManager.find(PlayerEntity.class, playerId);
+        if (player == null) {
+            throw new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND);
+        }
+        credential.getFavoritePlayerEntities().remove(player);
+        entityManager.merge(credential);
     }
 }
