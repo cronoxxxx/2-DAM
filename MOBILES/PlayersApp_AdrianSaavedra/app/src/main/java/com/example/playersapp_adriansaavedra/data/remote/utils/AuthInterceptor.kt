@@ -1,0 +1,30 @@
+package com.example.playersapp_adriansaavedra.data.remote.utils
+
+import com.example.playersapp_adriansaavedra.data.PreferencesRepository
+import com.example.playersapp_adriansaavedra.ui.Constantes
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import okhttp3.Interceptor
+import okhttp3.Response
+import javax.inject.Inject
+
+class AuthInterceptor @Inject constructor(
+    private val preferencesRepository: PreferencesRepository
+) : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val originalRequest = chain.request()
+        val token = runBlocking { preferencesRepository.token.first() }
+        val requestWithToken = originalRequest.newBuilder()
+            .apply {
+                token?.let {
+                    header(
+                        Constantes.AUTHORIZATION,
+                        Constantes.BEARER_PREFIX + it
+                    )
+                }
+            }
+            .build()
+        return chain.proceed(requestWithToken)
+    }
+}
+

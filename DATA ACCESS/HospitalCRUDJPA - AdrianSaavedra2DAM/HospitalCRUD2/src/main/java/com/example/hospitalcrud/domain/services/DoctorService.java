@@ -33,9 +33,10 @@ public class DoctorService {
 
     public List<DoctorUI> getAll() {
         List<Doctor> doctors = doctorRepository.getAll();
-        return doctors.stream()
+        List<DoctorUI> doctorUIs = doctors.stream()
                 .map(this::convertToDoctorUI)
                 .collect(Collectors.toList());
+        return doctorUIs;
     }
 
     private DoctorUI convertToDoctorUI(Doctor doctor) {

@@ -38,7 +38,7 @@ Authorization: Bearer {{token}}
 
 
 ### Get Individual Player (by ID)
-GET http://localhost:8080/players/1
+GET http://localhost:8080/players/1000
 Authorization: Bearer {{token}}
 
 

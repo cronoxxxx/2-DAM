@@ -3,8 +3,10 @@ package com.example.hospitalcrud.domain.services;
 import com.example.hospitalcrud.dao.model.Credential;
 import com.example.hospitalcrud.dao.model.Patient;
 import com.example.hospitalcrud.dao.repositories.CredentialRepository;
+import com.example.hospitalcrud.dao.repositories.MedRecordRepository;
 import com.example.hospitalcrud.dao.repositories.PatientRepository;
 
+import com.example.hospitalcrud.domain.errors.PatientHasMedicalRecordsException;
 import com.example.hospitalcrud.domain.model.PatientUI;
 import jakarta.inject.Inject;
 import org.bson.types.ObjectId;
@@ -21,12 +23,14 @@ import java.util.stream.Collectors;
 public class PatientService {
     private final PatientRepository patientRepository;
     private final CredentialRepository credentialRepository;
+    private final MedRecordRepository medRecordRepository;
     private final Map<Integer, ObjectId> patientIdMap = new HashMap<>();
     private int patientIdCounter = 0;
 
-    public PatientService(PatientRepository patientRepository, CredentialRepository credentialRepository) {
+    public PatientService(PatientRepository patientRepository, CredentialRepository credentialRepository, MedRecordRepository medRecordRepository) {
         this.patientRepository = patientRepository;
         this.credentialRepository = credentialRepository;
+        this.medRecordRepository = medRecordRepository;
         initializePatientIdMap();
     }
 
@@ -78,6 +82,9 @@ public class PatientService {
     }
 
     public void delete(int id, boolean confirm) {
+        if (!confirm && !medRecordRepository.findByPatientId(patientIdMap.get(id)).isEmpty()) {
+            throw new PatientHasMedicalRecordsException("Patient has medical records, Are you sure you want to delete it?");
+        }
             ObjectId patientId = patientIdMap.get(id);
             if (patientId != null) {
                 patientRepository.delete(patientId);

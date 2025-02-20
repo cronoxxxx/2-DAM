@@ -2,14 +2,14 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "a",
-  "password": "a"
+  "username": "user",
+  "password": "user"
 }
 
 
 ###
-@login = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk1NzYxMTcsImV4cCI6MTczOTU3NzAxNywidXNlciI6ImEifQ.tpIqV9Ww5nSs_AfmTAt4oJS2_XLaUNyik5_TsBtLAuKaYlYc1m6Yry3o6LhpQSNGQwAGrepbIL4sWXCnhCBRvw
-@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk1NzYwNDEsImV4cCI6MTc0MDE4MDg0MSwidXNlciI6ImEifQ.mZHdVEQKs1SGvvna6U8ZPTX9CssTP1zy3j3kj-ZmItrC2GSffsT3TsucilTOlXxopcefjuaGpVcUZrBi8U0LNA
+@login =eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3NDAwMDk3MTcsImV4cCI6MTc0MDAxMDAxNywidXNlciI6InVzZXIiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.Jocc-DQ2fhP1690gvm9lKY-bw3oFqDK3rqqb1f-MC-RF04AA-l1bLfRxPKf62Qp3wt7JNED_aL8vcdpG_In8aQ
+@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6IlNlcnZpZG9yIiwiaWF0IjoxNzQwMDA1OTQzLCJleHAiOjE3NDA2MTA3NDMsInVzZXIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXX0.kU2A0Ov7mhVXKPpoptsC9HwxM924KgWn-4c2Hg-F0gLp67KgxufA-5TcKpwApwj_qC-ZnA4wQiE2XX3vxPhhSg
 
 
 ### Register
@@ -17,17 +17,14 @@ POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-  "username": "a",
-  "password": "a",
+  "username": "user",
+  "password": "user",
   "email": "saavedra.mateo.walter@gmail.com"
 }
 
 
-
-
-
 ### Refresh Token
-POST http://localhost:8080/refresh-token
+POST http://localhost:8080/refresh
 Content-Type: application/json
 
 {
@@ -39,48 +36,58 @@ Content-Type: application/json
 GET http://localhost:8080/players
 Authorization: Bearer {{login}}
 
+
+
+
+
 ### Get Player by ID
-GET http://localhost:8080/players/1
-Authorization: Bearer your_access_token_here
+GET http://localhost:8080/players/30
+Authorization: Bearer {{login}}
 
 ### Add Player
 POST http://localhost:8080/players
 Content-Type: application/json
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}
 
 {
-  "name": "New Player",
-  "position": "Forward",
-  "team": "Team A"
+  "name": "Lessi",
+  "team": "Inter Miami",
+  "country": "Argentina"
 }
 
-### Update Player
-PUT http://localhost:8080/players/1
+###
+DELETE http://localhost:8080/players/6
+Authorization: Bearer {{login}}
+
+###
+PUT http://localhost:8080/players/9
 Content-Type: application/json
-Authorization: Bearer your_access_token_here
+Authorization: Bearer {{login}}
 
 {
-  "name": "Updated Player",
-  "position": "Midfielder",
-  "team": "Team B"
+  "name": "Kaka",
+  "team": "",
+  "country": "Brazil"
 }
-
-### Delete Player
-DELETE http://localhost:8080/players/1
-Authorization: Bearer your_access_token_here
 
 ### Get Favorite Players
-GET http://localhost:8080/favorites/1
-Authorization: Bearer your_access_token_here
+GET http://localhost:8080/favorites/2
+Authorization: Bearer {{login}}
 
 ### Get Favorite Player
-GET http://localhost:8080/favorites/1/1
-Authorization: Bearer your_access_token_here
+GET http://localhost:8080/favorites/2/22
+Authorization: Bearer {{login}}
 
 ### Add Favorite Player
-POST http://localhost:8080/favorites/1/1
-Authorization: Bearer your_access_token_here
+POST http://localhost:8080/favorites/2
+Content-Type: application/json
+Authorization: Bearer {{login}}
+
+{
+"playerName": "Lionel Messi"
+}
+
 
 ### Delete Favorite Player
-DELETE http://localhost:8080/favorites/1/1
-Authorization: Bearer your_access_token_here
+DELETE http://localhost:8080/favorites/2/23
+Authorization: Bearer {{login}}

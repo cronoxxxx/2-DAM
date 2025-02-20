@@ -8,6 +8,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import jakarta.annotation.PreDestroy;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
@@ -110,6 +111,11 @@ public class MongoPatientRepository implements PatientRepository {
         }
 
         return patient;
+    }
+
+    @PreDestroy
+    public void cleanup() {
+        MongoUtil.closeConnection();
     }
 }
 

@@ -2,8 +2,9 @@ package org.example.loginspring_adriansaavedra.ui.controllers;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.loginspring_adriansaavedra.common.Constantes;
-import org.example.loginspring_adriansaavedra.domain.model.Player;
+import org.example.loginspring_adriansaavedra.domain.model.PlayerEntity;
 import org.example.loginspring_adriansaavedra.domain.service.GestionJugadoresFavoritos;
+import org.example.loginspring_adriansaavedra.ui.utils.PlayerNameRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,25 +20,25 @@ public class FavoritePlayersController {
         this.gestionJugadoresFavoritos = gestionJugadoresFavoritos;
     }
 
-    @GetMapping("/{credentialId}")
-    public ResponseEntity<List<Player>> getFavoritePlayers(@PathVariable int credentialId) {
-        List<Player> favoritePlayers = gestionJugadoresFavoritos.getPlayersForCredential(credentialId);
-        return ResponseEntity.status(HttpServletResponse.SC_OK).body(favoritePlayers);
+    @GetMapping(Constantes.FAV_PLAYERS_ONE_DIR)
+    public ResponseEntity<List<PlayerEntity>> getFavoritePlayers(@PathVariable int credentialId) {
+        List<PlayerEntity> favoritePlayerEntities = gestionJugadoresFavoritos.getPlayersForCredential(credentialId);
+        return ResponseEntity.status(HttpServletResponse.SC_OK).body(favoritePlayerEntities);
     }
 
-    @GetMapping("/{credentialId}/{playerId}")
-    public ResponseEntity<Player> getFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {
-        Player player = gestionJugadoresFavoritos.getPlayerForCredential(credentialId, playerId);
-        return ResponseEntity.status(HttpServletResponse.SC_OK).body(player);
+    @GetMapping(Constantes.FAV_PLAYERS_TWO_DIR)
+    public ResponseEntity<PlayerEntity> getFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {
+        PlayerEntity playerEntity = gestionJugadoresFavoritos.getPlayerForCredential(credentialId, playerId);
+        return ResponseEntity.status(HttpServletResponse.SC_OK).body(playerEntity);
     }
 
-    @PostMapping("/{credentialId}/{playerId}")
-    public ResponseEntity<Void> addFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {
-        gestionJugadoresFavoritos.addPlayerForCredential(credentialId, playerId);
-        return ResponseEntity.status(HttpServletResponse.SC_CREATED).build();
+    @PostMapping(Constantes.FAV_PLAYERS_ONE_DIR)
+    public ResponseEntity<PlayerEntity> addFavoritePlayer(@PathVariable int credentialId, @RequestBody PlayerNameRequest request) {
+        PlayerEntity addedPlayer = gestionJugadoresFavoritos.addPlayerForCredential(credentialId, request.getPlayerName());
+        return ResponseEntity.status(HttpServletResponse.SC_CREATED).body(addedPlayer);
     }
 
-    @DeleteMapping("/{credentialId}/{playerId}")
+    @DeleteMapping(Constantes.FAV_PLAYERS_TWO_DIR)
     public ResponseEntity<Void> deleteFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {
         gestionJugadoresFavoritos.deletePlayerForCredential(credentialId, playerId);
         return ResponseEntity.status(HttpServletResponse.SC_NO_CONTENT).build();

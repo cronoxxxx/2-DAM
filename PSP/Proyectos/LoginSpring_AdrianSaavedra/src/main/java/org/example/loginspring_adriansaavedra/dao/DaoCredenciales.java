@@ -1,62 +1,74 @@
 package org.example.loginspring_adriansaavedra.dao;
 
-import org.example.loginspring_adriansaavedra.common.errors.*;
-import org.example.loginspring_adriansaavedra.domain.model.Credential;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceContext;
+import org.example.loginspring_adriansaavedra.common.Constantes;
+import org.example.loginspring_adriansaavedra.common.errors.RoleNotFoundException;
+import org.example.loginspring_adriansaavedra.common.errors.UserAlreadyExistsException;
+import org.example.loginspring_adriansaavedra.common.errors.UserNotFoundException;
+import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
+import org.example.loginspring_adriansaavedra.domain.model.RoleEntity;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 @Repository
 public class DaoCredenciales {
-    private final Database credentials;
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    public DaoCredenciales(Database credentials) {
-        this.credentials = credentials;
+    public void verifyUserExists(CredentialEntity credentialEntity) {
+        Long count = entityManager.createQuery("SELECT COUNT(c) FROM CredentialEntity c WHERE c.username = :username OR c.email = :email", Long.class)
+                .setParameter("username", credentialEntity.getUsername())
+                .setParameter("email", credentialEntity.getEmail())
+                .getSingleResult();
+        if (count > 0) {
+            throw new UserAlreadyExistsException(Constantes.USER_ALREADY_EXISTS + credentialEntity.getUsername());
+        }
+        entityManager.persist(credentialEntity);
     }
 
-    public void verifyUserExists(Credential credential) {
-        Credential existingCredential = credentials.getCredentials().stream()
-                .filter(c -> c.getUsername().equals(credential.getUsername()))
-                .findFirst()
-                .orElse(null);
+    public void updateUserVerification(CredentialEntity credentialEntity) {
+        CredentialEntity existingCredential = entityManager.find(CredentialEntity.class, credentialEntity.getId());
         if (existingCredential != null) {
-
-            throw new UserAlreadyExistsException("El usuario " + credential.getUsername() + " ya existe");
-        } else {
-            int maxId = credentials.getCredentials().stream()
-                    .mapToInt(Credential::getId)
-                    .max()
-                    .orElse(0) + 1;
-            credential.setId(maxId);
-            credentials.getCredentials().add(credential);
-        }
-
-
-    }
-
-    public void updateUserVerification(Credential credential) {
-        Credential existingCredential = credentials.getCredentials().stream()
-                .filter(c -> c.getUsername().equals(credential.getUsername()))
-                .findFirst()
-                .orElse(null);
-        if (existingCredential != null) {
-            existingCredential.setVerified(credential.isVerified());
-            existingCredential.setVerificationCode(credential.getVerificationCode());
+            existingCredential.setVerified(credentialEntity.isVerified());
+            existingCredential.setVerificationCode(credentialEntity.getVerificationCode());
+            entityManager.merge(existingCredential);
         }
     }
 
-    public Credential findByVerificationCode(String verificationCode) {
-        return credentials.getCredentials().stream()
-                .filter(c -> verificationCode.equals(c.getVerificationCode()))
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("Código de verificación inválido"));
-    }
-    public void authenticateUser(String username, String password) {
-        Credential credential = credentials.getCredentials().stream()
-                .filter(c -> c.getUsername().equals(username))
-                .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado: " + username));
-        if (!credential.isVerified() || !credential.getPassword().equals(password)) {
-            throw new UserNotFoundException("Credenciales inválidas o usuario no verificado");
+    public CredentialEntity findByVerificationCode(String verificationCode) {
+        try {
+            return entityManager.createQuery("SELECT c FROM CredentialEntity c WHERE c.verificationCode = :code", CredentialEntity.class)
+                    .setParameter("code", verificationCode)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            throw new UserNotFoundException(Constantes.INVALID_VERIFICATION_CODE);
         }
     }
+
+    public RoleEntity findRoleByName(String roleName) {
+        try {
+            return entityManager.createQuery("SELECT r FROM RoleEntity r WHERE r.rol = :roleName", RoleEntity.class)
+                    .setParameter("roleName", roleName)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            throw new RoleNotFoundException("Role not found: " + roleName);
+        }
+    }
+    public Optional<CredentialEntity> findByUsername(String username) {
+        try {
+            CredentialEntity credential = entityManager.createQuery(
+                            "SELECT c FROM CredentialEntity c WHERE c.username = :username", CredentialEntity.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+            return Optional.of(credential);
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
+    }
+
+
 }

@@ -9,17 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="29">
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoJugadoresFavoritos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionJugadoresFavoritos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/FavoritePlayersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ConsolesApp_AdrianSaavedra/app/src/main/java/com/example/consolesapp_adriansaavedra/data/NetworkResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../ConsolesApp_AdrianSaavedra/app/src/main/java/com/example/consolesapp_adriansaavedra/data/NetworkResult.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/dao/DaoCredenciales.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/model/Credential.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/domain/service/GestionCredenciales.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../PSP/Proyectos/LoginSpring_AdrianSaavedra/src/main/java/org/example/loginspring_adriansaavedra/ui/controllers/PlayersController.java" afterDir="false" />
-    </list>
+    <list default="true" id="2c2696f5-ddc8-4bef-9a1c-1df250601079" name="Changes" comment="29" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +102,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "feature/third-test",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Adrian/Desktop/oscarnovillo dam2_2425 main moviles-ComposeApp"
   },
