@@ -1,13 +1,9 @@
-package com.example.hospitalcrud.dao.repositories.utils;
+package org.example.dao.repositories.utils;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 
 public class MongoUtil {
