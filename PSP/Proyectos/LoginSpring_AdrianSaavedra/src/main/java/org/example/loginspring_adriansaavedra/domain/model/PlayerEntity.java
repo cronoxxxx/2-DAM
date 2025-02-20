@@ -5,9 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.loginspring_adriansaavedra.common.Constantes;
 
 @Entity
-@Table(name = "players")
+@Table(name = Constantes.PLAYERS)
 @Data
 @Builder
 @AllArgsConstructor

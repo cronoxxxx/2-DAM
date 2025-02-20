@@ -1,6 +1,5 @@
 package org.example.loginspring_adriansaavedra.ui.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
@@ -35,6 +34,7 @@ public class SessionController {
 
     @PostMapping(Constantes.LOGIN_DIR)
     public ResponseEntity<AuthenticationResponse> login(@RequestBody Login login) {
+        gestionCredenciales.authenticate(login.getUsername());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())
         );
@@ -47,7 +47,8 @@ public class SessionController {
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(HttpServletResponse.SC_OK)
+                .body(response);
     }
 
     @PostMapping(Constantes.REGISTER_DIR)

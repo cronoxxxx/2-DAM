@@ -2,12 +2,13 @@ package org.example.loginspring_adriansaavedra.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.loginspring_adriansaavedra.common.Constantes;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "credentials")
+@Table(name = Constantes.CREDENTIALS)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,14 +33,14 @@ public class CredentialEntity {
     private String verificationCode;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name = Constantes.ROLE_ID, nullable = false)
     private RoleEntity role;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "user_favorite_players",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "player_id")
+            name = Constantes.USER_FAVORITE_PLAYERS,
+            joinColumns = @JoinColumn(name = Constantes.USER_ID),
+            inverseJoinColumns = @JoinColumn(name = Constantes.PLAYER_ID)
     )
     private Set<PlayerEntity> favoritePlayerEntities = new HashSet<>();
 }

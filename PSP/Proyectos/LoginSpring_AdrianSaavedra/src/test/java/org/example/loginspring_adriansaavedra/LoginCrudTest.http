@@ -1,93 +1,92 @@
-POST http://localhost:8080/login
+### Login : LOGIN CONTROLLER (user admin password admin para administrador)
+ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "user",
-  "password": "user"
+  "username": "admin",
+  "password": "admin"
 }
 
 
-###
-@login =eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3NDAwMDk3MTcsImV4cCI6MTc0MDAxMDAxNywidXNlciI6InVzZXIiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.Jocc-DQ2fhP1690gvm9lKY-bw3oFqDK3rqqb1f-MC-RF04AA-l1bLfRxPKf62Qp3wt7JNED_aL8vcdpG_In8aQ
-@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6IlNlcnZpZG9yIiwiaWF0IjoxNzQwMDA1OTQzLCJleHAiOjE3NDA2MTA3NDMsInVzZXIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXX0.kU2A0Ov7mhVXKPpoptsC9HwxM924KgWn-4c2Hg-F0gLp67KgxufA-5TcKpwApwj_qC-ZnA4wQiE2XX3vxPhhSg
-
+> {%
+client.global.set("accessToken", response.body.access_token);
+client.global.set("refreshToken", response.body.refresh_token);
+%}
 
 ### Register
 POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-  "username": "user",
-  "password": "user",
-  "email": "saavedra.mateo.walter@gmail.com"
+  "username": "juan",
+  "password": "juan",
+  "email": "correo@gmail.com"
 }
-
 
 ### Refresh Token
 POST http://localhost:8080/refresh
 Content-Type: application/json
 
 {
-  "refreshToken": "{{refresh}}"
+  "refreshToken": "{{refreshToken}}"
 }
 
+> {%
+    client.global.set("accessToken", response.body.access_token);
+    client.global.set("refreshToken", response.body.refresh_token);
+%}
 
-### Use Access Token
+### Get Players PLAYERS CONTROLLER
 GET http://localhost:8080/players
-Authorization: Bearer {{login}}
-
-
-
-
+Authorization: Bearer {{accessToken}}
 
 ### Get Player by ID
-GET http://localhost:8080/players/30
-Authorization: Bearer {{login}}
+GET http://localhost:8080/players/308
+Authorization: Bearer {{accessToken}}
 
 ### Add Player
 POST http://localhost:8080/players
 Content-Type: application/json
-Authorization: Bearer {{login}}
+Authorization: Bearer {{accessToken}}
 
 {
-  "name": "Lessi",
-  "team": "Inter Miami",
-  "country": "Argentina"
-}
-
-###
-DELETE http://localhost:8080/players/6
-Authorization: Bearer {{login}}
-
-###
-PUT http://localhost:8080/players/9
-Content-Type: application/json
-Authorization: Bearer {{login}}
-
-{
-  "name": "Kaka",
-  "team": "",
+  "name": "Raphinha",
+  "team": "FC Barcelona",
   "country": "Brazil"
 }
 
-### Get Favorite Players
-GET http://localhost:8080/favorites/2
-Authorization: Bearer {{login}}
+### Delete Player
+DELETE http://localhost:8080/players/306
+Authorization: Bearer {{accessToken}}
 
-### Get Favorite Player
-GET http://localhost:8080/favorites/2/22
-Authorization: Bearer {{login}}
-
-### Add Favorite Player
-POST http://localhost:8080/favorites/2
+### Update Player
+PUT http://localhost:8080/players/302
 Content-Type: application/json
-Authorization: Bearer {{login}}
+Authorization: Bearer {{accessToken}}
 
 {
-"playerName": "Lionel Messi"
+  "name": "Diego Costa",
+  "team": "",
+  "country": "Spain"
 }
 
+### Get Favorite Players : FAVORITES CONTROLLER
+GET http://localhost:8080/favorites
+Authorization: Bearer {{accessToken}}
+
+### Get Favorite Player
+GET http://localhost:8080/favorites/248
+Authorization: Bearer {{accessToken}}
+
+### Add Favorite Player
+POST http://localhost:8080/favorites
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "playerName": "Robert Lewandowski"
+}
 
 ### Delete Favorite Player
-DELETE http://localhost:8080/favorites/2/23
-Authorization: Bearer {{login}}
+DELETE http://localhost:8080/favorites/248
+Authorization: Bearer {{accessToken}}

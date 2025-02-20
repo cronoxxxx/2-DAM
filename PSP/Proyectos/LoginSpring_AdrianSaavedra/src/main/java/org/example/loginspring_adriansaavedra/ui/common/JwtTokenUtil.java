@@ -28,7 +28,7 @@ public class JwtTokenUtil {
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now().plusMinutes(5).atZone(ZoneId.systemDefault()).toInstant()))
                 .claim(Constantes.USER_S, userDetails.getUsername())
-                .claim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
+                .claim(Constantes.ROLES, userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .signWith(key)
                 .compact();
     }
@@ -38,9 +38,9 @@ public class JwtTokenUtil {
                 .setSubject(userDetails.getUsername())
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusDays(7).atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant()))
                 .claim(Constantes.USER_S, userDetails.getUsername())
-                .claim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
+                .claim(Constantes.ROLES, userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .signWith(key)
                 .compact();
     }

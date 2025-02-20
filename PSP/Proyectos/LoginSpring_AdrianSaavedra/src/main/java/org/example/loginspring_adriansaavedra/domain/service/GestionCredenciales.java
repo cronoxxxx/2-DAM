@@ -1,5 +1,6 @@
 package org.example.loginspring_adriansaavedra.domain.service;
 
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.dao.DaoCredenciales;
 import org.example.loginspring_adriansaavedra.domain.components.MailComponent;
 import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+@Transactional
 @Service
 public class GestionCredenciales {
     private final DaoCredenciales daoCredenciales;
@@ -27,32 +29,31 @@ public class GestionCredenciales {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Transactional
+
     public void registerUser(CredentialEntity credentialEntity) {
         if (credentialValidator.validateCredential(credentialEntity)) {
             SecureRandom sr = new SecureRandom();
             byte[] verificationCodeBytes = new byte[16];
             sr.nextBytes(verificationCodeBytes);
             String verificationCode = Base64.getUrlEncoder().encodeToString(verificationCodeBytes);
-
             credentialEntity.setVerificationCode(verificationCode);
             credentialEntity.setVerified(false);
             credentialEntity.setPassword(passwordEncoder.encode(credentialEntity.getPassword()));
 
-            RoleEntity userRole = daoCredenciales.findRoleByName("USER");
+            RoleEntity userRole = daoCredenciales.findRoleByName(Constantes.USER_UPPER);
             credentialEntity.setRole(userRole);
-
             daoCredenciales.verifyUserExists(credentialEntity);
+
             mailComponent.sendVerificationEmail(credentialEntity.getEmail(), verificationCode);
         }
     }
-    @Transactional
+
     public void verifyToLoginUser(String verificationCode) {
-        CredentialEntity credentialEntity = daoCredenciales.findByVerificationCode(verificationCode);
-        if (!credentialEntity.isVerified()) {
-            credentialEntity.setVerified(true);
-            credentialEntity.setVerificationCode(null);
-            daoCredenciales.updateUserVerification(credentialEntity);
-        }
+        daoCredenciales.verifyAndUpdateUser(verificationCode);
+    }
+
+
+    public void authenticate(String username) {
+        daoCredenciales.authenticateUser(username);
     }
 }

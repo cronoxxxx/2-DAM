@@ -1,6 +1,7 @@
 package org.example.loginspring_adriansaavedra.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerAlreadyExistsException;
@@ -18,39 +19,34 @@ public class DaoJugadoresFavoritos {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<PlayerEntity> getPlayersForCredential(int credentialId) {
-        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
-        if (credential == null) {
-            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
-        }
+    public List<PlayerEntity> getPlayersForUser(String username) {
+        CredentialEntity credential = getCredentialByUsername(username);
         return new ArrayList<>(credential.getFavoritePlayerEntities());
     }
 
-    public PlayerEntity getPlayerForCredential(int credentialId, int playerId) {
-        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
-        if (credential == null) {
-            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
-        }
+    public PlayerEntity getPlayerForUser(String username, int playerId) {
+        CredentialEntity credential = getCredentialByUsername(username);
         return credential.getFavoritePlayerEntities().stream()
                 .filter(p -> p.getId() == playerId)
                 .findFirst()
                 .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
     }
 
-    public PlayerEntity addPlayerForCredential(int credentialId, String playerName) {
-        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
-        if (credential == null) {
-            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
-        }
+    public PlayerEntity addPlayerForUser(String username, String playerName) {
+        CredentialEntity credential = getCredentialByUsername(username);
         if (!credential.isVerified()) {
             throw new UserNotFoundException(Constantes.USER_NOT_VERIFIED);
         }
-        PlayerEntity player = entityManager.createQuery("SELECT p FROM PlayerEntity p WHERE LOWER(p.name) = LOWER(:name)", PlayerEntity.class)
-                .setParameter("name", playerName)
-                .getSingleResult();
-        if (player == null) {
+
+        PlayerEntity player;
+        try {
+            player = entityManager.createQuery(Constantes.SQL_ADD_PLAYER_FOR_USER, PlayerEntity.class)
+                    .setParameter(Constantes.NAME_PARAM, playerName)
+                    .getSingleResult();
+        } catch (NoResultException e) {
             throw new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND);
         }
+
         if (credential.getFavoritePlayerEntities().contains(player)) {
             throw new PlayerAlreadyExistsException(Constantes.PLAYER_FAVORITE_ALREADY_EXISTS);
         }
@@ -59,16 +55,32 @@ public class DaoJugadoresFavoritos {
         return player;
     }
 
-    public void deletePlayerForCredential(int credentialId, int playerId) {
-        CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
-        if (credential == null) {
-            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
-        }
+
+
+    public void deletePlayerForUser(String username, int playerId) {
+        CredentialEntity credential = getCredentialByUsername(username);
         PlayerEntity player = entityManager.find(PlayerEntity.class, playerId);
+
         if (player == null) {
             throw new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND);
         }
-        credential.getFavoritePlayerEntities().remove(player);
+
+        if (!credential.getFavoritePlayerEntities().remove(player)) {
+            throw new PlayerNotFoundException(Constantes.PLAYER_NOT_IN_FAVORITES);
+        }
+
         entityManager.merge(credential);
+    }
+
+
+
+    private CredentialEntity getCredentialByUsername(String username) {
+        try {
+            return entityManager.createQuery(Constantes.SQL_GET_CREDENTIAL_BY_USERNAME, CredentialEntity.class)
+                    .setParameter(Constantes.USERNAME_PARAM, username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
+        }
     }
 }

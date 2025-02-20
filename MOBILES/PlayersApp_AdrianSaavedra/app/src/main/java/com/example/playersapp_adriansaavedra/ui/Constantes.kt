@@ -9,16 +9,11 @@ object Constantes {
     const val BEARER_PREFIX = "Bearer "
     const val AT_JSON = "access_token"
     const val RT_JSON = "refresh_token"
-
     const val PLAYERS = "/players"
     const val PLAYER_BY_ID = "/players/{id}"
-
-
     const val LOGIN = "/login"
     const val REGISTER = "/register"
     const val REFRESH = "/refresh"
-
-
     const val FAVORITES_BY_CREDENTIAL = "/favorites/{credentialId}"
     const val FAVORITE_PLAYER = "/favorites/{credentialId}/{playerId}"
     const val ID = "id"

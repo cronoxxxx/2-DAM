@@ -6,6 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerAlreadyExistsException;
 import org.example.loginspring_adriansaavedra.common.errors.PlayerNotFoundException;
+import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
 import org.example.loginspring_adriansaavedra.domain.model.PlayerEntity;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ public class DaoJugadores {
     private EntityManager entityManager;
 
     public List<PlayerEntity> getAllPlayers() {
-        return entityManager.createQuery("SELECT p FROM PlayerEntity p", PlayerEntity.class).getResultList();
+        return entityManager.createQuery(Constantes.SQL_GET_ALL_PLAYERS, PlayerEntity.class).getResultList();
     }
 
     public void addPlayer(PlayerEntity playerEntity) {
@@ -43,10 +44,10 @@ public class DaoJugadores {
 
     private boolean playerExistsExcludingCurrent(String name, int currentId) {
         Long count = entityManager.createQuery(
-                        "SELECT COUNT(p) FROM PlayerEntity p WHERE LOWER(p.name) = LOWER(:name) AND p.id != :currentId",
+                        Constantes.SQL_PLAYER_EXISTS_EXCLUDING_CURRENT,
                         Long.class)
-                .setParameter("name", name)
-                .setParameter("currentId", currentId)
+                .setParameter(Constantes.NAME_PARAM, name)
+                .setParameter(Constantes.CURRENT_ID_PARAM, currentId)
                 .getSingleResult();
         return count > 0;
     }
@@ -56,8 +57,20 @@ public class DaoJugadores {
         if (player == null) {
             throw new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND);
         }
+
+        List<CredentialEntity> credentials = entityManager.createQuery(
+                        Constantes.SQL_DELETE_PLAYER,
+                        CredentialEntity.class)
+                .setParameter(Constantes.PLAYER_PARAM, player)
+                .getResultList();
+
+        for (CredentialEntity credential : credentials) {
+            credential.getFavoritePlayerEntities().remove(player);
+            entityManager.merge(credential);
+        }
         entityManager.remove(player);
     }
+
 
     public PlayerEntity getPlayerById(int id) {
         PlayerEntity player = entityManager.find(PlayerEntity.class, id);
@@ -68,8 +81,8 @@ public class DaoJugadores {
     }
 
     private boolean playerExists(String name) {
-        Long count = entityManager.createQuery("SELECT COUNT(p) FROM PlayerEntity p WHERE LOWER(p.name) = LOWER(:name)", Long.class)
-                .setParameter("name", name)
+        Long count = entityManager.createQuery(Constantes.SQL_PLAYER_EXISTS, Long.class)
+                .setParameter(Constantes.NAME_PARAM, name)
                 .getSingleResult();
         return count > 0;
     }

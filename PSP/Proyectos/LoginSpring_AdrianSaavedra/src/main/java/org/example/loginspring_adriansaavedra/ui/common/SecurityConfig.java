@@ -1,5 +1,6 @@
 package org.example.loginspring_adriansaavedra.ui.common;
 
+import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.ui.filters.JwtTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,14 +33,13 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/verify", "/refresh").permitAll()
-                        .requestMatchers("/players/**", "/favorites/**").authenticated()
-                        .anyRequest().authenticated()
+                        .requestMatchers(Constantes.LOGIN_DIR, Constantes.REGISTER_DIR, Constantes.VERIFY_DIR, Constantes.REFRESH_DIR).permitAll().anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();

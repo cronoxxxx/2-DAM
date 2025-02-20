@@ -20,55 +20,68 @@ public class DaoCredenciales {
     private EntityManager entityManager;
 
     public void verifyUserExists(CredentialEntity credentialEntity) {
-        Long count = entityManager.createQuery("SELECT COUNT(c) FROM CredentialEntity c WHERE c.username = :username OR c.email = :email", Long.class)
-                .setParameter("username", credentialEntity.getUsername())
-                .setParameter("email", credentialEntity.getEmail())
+        Long count = entityManager.createQuery(Constantes.SQL_VERIFY_USER_EXISTS, Long.class)
+                .setParameter(Constantes.USERNAME_PARAM, credentialEntity.getUsername())
+                .setParameter(Constantes.EMAIL_PARAM, credentialEntity.getEmail())
                 .getSingleResult();
         if (count > 0) {
-            throw new UserAlreadyExistsException(Constantes.USER_ALREADY_EXISTS + credentialEntity.getUsername());
+            throw new UserAlreadyExistsException(Constantes.USER_ALREADY_EXISTS + Constantes.CHECK_IF_EMAIL_OR_USERNAME_IS_ALREADY_REGISTERED);
         }
         entityManager.persist(credentialEntity);
     }
 
-    public void updateUserVerification(CredentialEntity credentialEntity) {
-        CredentialEntity existingCredential = entityManager.find(CredentialEntity.class, credentialEntity.getId());
-        if (existingCredential != null) {
-            existingCredential.setVerified(credentialEntity.isVerified());
-            existingCredential.setVerificationCode(credentialEntity.getVerificationCode());
-            entityManager.merge(existingCredential);
+    public void verifyAndUpdateUser(String verificationCode) {
+        try {
+            CredentialEntity credential = entityManager.createQuery(Constantes.SQL_FIND_BY_VERIFICATION_CODE, CredentialEntity.class)
+                    .setParameter(Constantes.CODE_PARAM, verificationCode)
+                    .getSingleResult();
+
+            if (!credential.isVerified()) {
+                credential.setVerified(true);
+                credential.setVerificationCode(null);
+                entityManager.merge(credential);
+            }
+        } catch (NoResultException e) {
+            throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
         }
     }
 
-    public CredentialEntity findByVerificationCode(String verificationCode) {
-        try {
-            return entityManager.createQuery("SELECT c FROM CredentialEntity c WHERE c.verificationCode = :code", CredentialEntity.class)
-                    .setParameter("code", verificationCode)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            throw new UserNotFoundException(Constantes.INVALID_VERIFICATION_CODE);
-        }
-    }
 
     public RoleEntity findRoleByName(String roleName) {
         try {
-            return entityManager.createQuery("SELECT r FROM RoleEntity r WHERE r.rol = :roleName", RoleEntity.class)
-                    .setParameter("roleName", roleName)
+            return entityManager.createQuery(Constantes.SQL_FIND_ROLE_BY_NAME, RoleEntity.class)
+                    .setParameter(Constantes.ROLENAME_PARAM, roleName)
                     .getSingleResult();
         } catch (NoResultException e) {
-            throw new RoleNotFoundException("Role not found: " + roleName);
+            throw new RoleNotFoundException(Constantes.ROLE_NOT_FOUND + roleName);
         }
     }
+
     public Optional<CredentialEntity> findByUsername(String username) {
         try {
             CredentialEntity credential = entityManager.createQuery(
-                            "SELECT c FROM CredentialEntity c WHERE c.username = :username", CredentialEntity.class)
-                    .setParameter("username", username)
+                            Constantes.SQL_FIND_BY_USERNAME, CredentialEntity.class)
+                    .setParameter(Constantes.USERNAME_PARAM, username)
                     .getSingleResult();
             return Optional.of(credential);
         } catch (NoResultException e) {
             return Optional.empty();
         }
     }
+    public void authenticateUser(String username) {
+        try {
+            CredentialEntity credential = entityManager.createQuery(
+                            Constantes.SQL_FIND_BY_USERNAME, CredentialEntity.class)
+                    .setParameter(Constantes.USERNAME_PARAM, username)
+                    .getSingleResult();
+            if (!credential.isVerified()) {
+                throw new UserAlreadyExistsException(Constantes.THIS_ACCOUNT_HAS_NOT_BEEN_VERIFIED);
+            }
+        } catch (NoResultException e) {
+            throw new UserNotFoundException(Constantes.THE_ACCOUNT_DOES_NOT_EXIST);
+        }
+    }
+
 
 
 }

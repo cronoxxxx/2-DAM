@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Transactional
 @Service
 public class GestionJugadoresFavoritos {
     private final DaoJugadoresFavoritos daoJugadoresFavoritos;
@@ -15,19 +15,19 @@ public class GestionJugadoresFavoritos {
         this.daoJugadoresFavoritos = daoJugadoresFavoritos;
     }
 
-    public List<PlayerEntity> getPlayersForCredential(int credentialId) {
-        return daoJugadoresFavoritos.getPlayersForCredential(credentialId);
+    public List<PlayerEntity> getPlayersForUser(String username) {
+        return daoJugadoresFavoritos.getPlayersForUser(username);
     }
 
-    public PlayerEntity getPlayerForCredential(int credentialId, int playerId) {
-        return daoJugadoresFavoritos.getPlayerForCredential(credentialId, playerId);
+    public PlayerEntity getPlayerForUser(String username, int playerId) {
+        return daoJugadoresFavoritos.getPlayerForUser(username, playerId);
     }
-    @Transactional
-    public PlayerEntity addPlayerForCredential(int credentialId, String playerName) {
-        return daoJugadoresFavoritos.addPlayerForCredential(credentialId, playerName);
+
+    public PlayerEntity addPlayerForUser(String username, String playerName) {
+        return daoJugadoresFavoritos.addPlayerForUser(username, playerName);
     }
-    @Transactional
-    public void deletePlayerForCredential(int credentialId, int playerId) {
-        daoJugadoresFavoritos.deletePlayerForCredential(credentialId, playerId);
+
+    public void deletePlayerForUser(String username, int playerId) {
+        daoJugadoresFavoritos.deletePlayerForUser(username, playerId);
     }
 }

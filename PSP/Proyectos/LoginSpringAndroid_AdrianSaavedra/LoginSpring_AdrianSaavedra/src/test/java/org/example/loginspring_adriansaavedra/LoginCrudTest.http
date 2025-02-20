@@ -1,0 +1,66 @@
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "a",
+  "password": "a"
+}
+
+
+###
+@login = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk3MTkzMjAsImV4cCI6MTczOTcxOTM4MCwidXNlciI6ImEifQ.sGjYBbWfGtnFg0z10lwgaTAd57KD999MT3-7QAKS66HCrE1MsLy9q9DWFTP22iR_lpLRBFp-Xx9s3T8Bfms44A
+@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk3MTUyMjcsImV4cCI6MTczOTcxNjEyNywidXNlciI6ImEifQ.ll1cLqP2kP56SciVYNXMD-8P0xkRI94iu0fS2_Y68IEB-ZfFn3qlGqHCPKg52ejhWQqyCwqcf6dTk46ONSjMSA
+
+
+### Register
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "a",
+  "password": "a",
+  "email": "inserte correo"
+}
+
+
+
+
+
+### Refresh Token
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refresh}}"
+}
+
+
+### Use Access Token
+GET http://localhost:8080/players
+Authorization: Bearer {{login}}
+
+### Get Player by ID
+GET http://localhost:8080/players/1
+Authorization: Bearer{{login}}
+
+### Get Favorite Players
+GET http://localhost:8080/favorites/1
+Authorization: Bearer {{login}}
+
+### Get Favorite Player
+GET http://localhost:8080/favorites/1/1
+Authorization: Bearer {{login}}
+
+### Add Favorite Player
+POST http://localhost:8080/favorites/1
+Content-Type: application/json
+Authorization: Bearer {{login}}
+
+{
+"playerName": "Lionel Messi"
+}
+
+
+### Delete Favorite Player
+DELETE http://localhost:8080/favorites/1/1
+Authorization: Bearer {{login}}

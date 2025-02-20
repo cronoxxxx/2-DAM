@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Transactional
 @Service
 public class GestionJugadores {
     private final DaoJugadores daoJugadores;
@@ -23,21 +23,21 @@ public class GestionJugadores {
         return daoJugadores.getAllPlayers();
     }
 
-    @Transactional
+
     public void addPlayer(PlayerEntity playerEntity) {
         if (playerValidator.validatePlayer(playerEntity)) {
             daoJugadores.addPlayer(playerEntity);
         }
     }
 
-    @Transactional
+
     public void updatePlayer(PlayerEntity playerEntity) {
         if (playerValidator.validatePlayer(playerEntity)) {
             daoJugadores.updatePlayer(playerEntity);
         }
     }
 
-    @Transactional
+
     public void deletePlayer(String id) {
         daoJugadores.deletePlayer(Integer.parseInt(id));
     }
