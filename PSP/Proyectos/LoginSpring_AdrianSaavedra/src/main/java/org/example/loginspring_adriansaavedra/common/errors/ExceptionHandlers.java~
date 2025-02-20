@@ -19,18 +19,11 @@ public class ExceptionHandlers {
         return buildResponseEntity(new ApiError(message), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(RoleNotFoundException.class)
-    public ResponseEntity<ApiError> handleNotFoundException(RoleNotFoundException ex) {
-        String message = ex.getMessage();
-        return buildResponseEntity(new ApiError(message), HttpStatus.NOT_FOUND);
-    }
-
     @ExceptionHandler(PlayerAlreadyExistsException.class)
     public ResponseEntity<ApiError> handleAlreadyExistsException(PlayerAlreadyExistsException ex) {
         String message = ex.getMessage();
         return buildResponseEntity(new ApiError(message), HttpStatus.BAD_REQUEST);
     }
-
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ApiError> handleAlreadyExistsException(UserAlreadyExistsException ex) {

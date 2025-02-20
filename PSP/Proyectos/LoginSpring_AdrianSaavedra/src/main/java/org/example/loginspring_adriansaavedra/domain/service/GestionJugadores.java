@@ -14,7 +14,7 @@ public class GestionJugadores {
     private final DaoJugadores daoJugadores;
     private final PlayerValidator playerValidator;
 
-    public GestionJugadores(DaoJugadores daoJugadores,PlayerValidator playerValidator) {
+    public GestionJugadores(DaoJugadores daoJugadores, PlayerValidator playerValidator) {
         this.daoJugadores = daoJugadores;
         this.playerValidator = playerValidator;
     }
@@ -22,6 +22,7 @@ public class GestionJugadores {
     public List<PlayerEntity> getAllPlayers() {
         return daoJugadores.getAllPlayers();
     }
+
     @Transactional
     public void addPlayer(PlayerEntity playerEntity) {
         if (playerValidator.validatePlayer(playerEntity)) {
@@ -29,12 +30,14 @@ public class GestionJugadores {
         }
     }
 
+    @Transactional
     public void updatePlayer(PlayerEntity playerEntity) {
         if (playerValidator.validatePlayer(playerEntity)) {
             daoJugadores.updatePlayer(playerEntity);
         }
     }
 
+    @Transactional
     public void deletePlayer(String id) {
         daoJugadores.deletePlayer(Integer.parseInt(id));
     }

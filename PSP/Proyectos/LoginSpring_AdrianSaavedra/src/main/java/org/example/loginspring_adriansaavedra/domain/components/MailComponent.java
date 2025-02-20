@@ -1,6 +1,5 @@
 package org.example.loginspring_adriansaavedra.domain.components;
 
-import lombok.extern.log4j.Log4j2;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -8,7 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-@Log4j2
+
 @Component
 public class MailComponent {
 
@@ -32,7 +31,7 @@ public class MailComponent {
         try {
             javaMailSender.send(message);
         } catch (MailException e) {
-            log.error(e.getMessage(), e);
+            message.setText(Constantes.EXPIRED_CODE_MESSAGE);
         }
     }
 }

@@ -46,3 +46,69 @@ hacer que en las peticiones de datos de jugadores favoritos del credential, hace
 
 
 
+
+
+roles:
+
+SecurityConfig:
+
+4:10 - 6:10 explica el security config, empezando con csrf, y luego con authorizehttprequests para decir cuales están con permisos y cuales no, sesionmanagement con authenticationprovider, quitar el httpBasic pq ya vamos a tener un login pq este ya tiene un login x defecto en la cabecera (quitar el logout, ya que en esta practica no se usara el revoke token)
+
+CustomUserDetailsService:
+
+12:00 - 14:30  muestra la configuración y de como sacar los roles de un usuarios construyendo un userdetails con ello con roles, en este proyecto solo se usaran roles
+
+AuthController (sacado de su otro proyecto):
+
+15:15 - 17:00  muestra un authenticationmanager inyectado, en el login ya no hace falta comprobar las hashes de la contraseña ya que con el authenticationmanager pasándolo a un objeto llamado usernamepasswordauthenticationtoken de spring se ira a base de datos y comprobara todo para el securitycontextholder y ponerlo en el auth
+
+el securitycontextholder no vale ponerlo solo en el login ya que es para el resto de la llamada, si esto fuera un filtro, se podría poner ahí para llamar al resto de peticiones
+
+CustomUserDetailsService:
+17:00 17:30 especifica como llamar a la base de datos implementndo el userdetails en este service y carga en base de datos con el user builder ese user con la contraseña deshasheada 
+
+17:33 - 20:00
+muestra luego la implementación del aauthenticationProvider en SecurityConfig y este lo implementa como bean en una clase llamada configuración con el daoauthenticationprovider
+
+
+authcontroller -> authentication manager con usernamepasswordauthenticationtoken -> securityconfig con provider -> inyección de userdetails y password encoder en daoauthenticationprovider en configuración, asi accedera a la base de datos
+
+22:25 no poner nada de sessionfilter ni nada relativo a sesión en el securityconfig
+
+
+JwtAthenticationFilter
+25:00 - explica como en el filtro aparte de coger el token, como usar el securitycontext holder y como crear un objeto de autenticación, para decir a las llamadas quien esta pasando, para que me funcionen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

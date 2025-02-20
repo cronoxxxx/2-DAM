@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import org.example.loginspring_adriansaavedra.common.Constantes;
-import org.example.loginspring_adriansaavedra.common.errors.RoleNotFoundException;
 import org.example.loginspring_adriansaavedra.common.errors.UserAlreadyExistsException;
 import org.example.loginspring_adriansaavedra.common.errors.UserNotFoundException;
 import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
@@ -55,7 +54,7 @@ public class DaoCredenciales {
                     .setParameter("roleName", roleName)
                     .getSingleResult();
         } catch (NoResultException e) {
-            throw new RoleNotFoundException("Role not found: " + roleName);
+            throw new RuntimeException("Role not found: " + roleName);
         }
     }
     public Optional<CredentialEntity> findByUsername(String username) {

@@ -2,14 +2,14 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-  "username": "a",
-  "password": "a"
+  "username": "user",
+  "password": "user"
 }
 
 
 ###
-@login =eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk5MjQxOTgsImV4cCI6MTczOTkyNDMxOCwidXNlciI6ImEifQ.qV-aarJSKzrips64OxygqJ_rKEaOPTDA1LcvlOHUu7Qrbj2Wyf_wxiFTuHEH9hTPIsqud17NEz8EMKheGdp2sg
-@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3Mzk5MjI2ODksImV4cCI6MTc0MDUyNzQ4OSwidXNlciI6ImEifQ.uW3hes63PXMSZPrX-oTWnlVrSfOMo66YdijAwzcdh2-TmP7MC4lS2l382KIxd747uU5iE2iU_o24g7lv6DejNg
+@login =eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiaXNzIjoiU2Vydmlkb3IiLCJpYXQiOjE3NDAwMDk3MTcsImV4cCI6MTc0MDAxMDAxNywidXNlciI6InVzZXIiLCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.Jocc-DQ2fhP1690gvm9lKY-bw3oFqDK3rqqb1f-MC-RF04AA-l1bLfRxPKf62Qp3wt7JNED_aL8vcdpG_In8aQ
+@refresh = eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzcyI6IlNlcnZpZG9yIiwiaWF0IjoxNzQwMDA1OTQzLCJleHAiOjE3NDA2MTA3NDMsInVzZXIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXX0.kU2A0Ov7mhVXKPpoptsC9HwxM924KgWn-4c2Hg-F0gLp67KgxufA-5TcKpwApwj_qC-ZnA4wQiE2XX3vxPhhSg
 
 
 ### Register
@@ -17,13 +17,10 @@ POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-  "username": "a",
-  "password": "a",
+  "username": "user",
+  "password": "user",
   "email": "saavedra.mateo.walter@gmail.com"
 }
-
-
-
 
 
 ### Refresh Token
@@ -41,12 +38,10 @@ Authorization: Bearer {{login}}
 
 
 
-### Get Favorite Players
-GET http://localhost:8080/favorites/1
-Authorization: Bearer {{login}}
+
 
 ### Get Player by ID
-GET http://localhost:8080/players/4
+GET http://localhost:8080/players/30
 Authorization: Bearer {{login}}
 
 ### Add Player
@@ -55,17 +50,36 @@ Content-Type: application/json
 Authorization: Bearer {{login}}
 
 {
-  "name": "Lionel Pessi",
+  "name": "Lessi",
   "team": "Inter Miami",
   "country": "Argentina"
 }
 
+###
+DELETE http://localhost:8080/players/6
+Authorization: Bearer {{login}}
+
+###
+PUT http://localhost:8080/players/9
+Content-Type: application/json
+Authorization: Bearer {{login}}
+
+{
+  "name": "Kaka",
+  "team": "",
+  "country": "Brazil"
+}
+
+### Get Favorite Players
+GET http://localhost:8080/favorites/2
+Authorization: Bearer {{login}}
+
 ### Get Favorite Player
-GET http://localhost:8080/favorites/1/1
+GET http://localhost:8080/favorites/2/22
 Authorization: Bearer {{login}}
 
 ### Add Favorite Player
-POST http://localhost:8080/favorites/1
+POST http://localhost:8080/favorites/2
 Content-Type: application/json
 Authorization: Bearer {{login}}
 
@@ -75,5 +89,5 @@ Authorization: Bearer {{login}}
 
 
 ### Delete Favorite Player
-DELETE http://localhost:8080/favorites/1/1
+DELETE http://localhost:8080/favorites/2/23
 Authorization: Bearer {{login}}

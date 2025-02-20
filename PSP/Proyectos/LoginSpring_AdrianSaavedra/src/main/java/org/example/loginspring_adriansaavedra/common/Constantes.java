@@ -36,6 +36,6 @@ public class Constantes {
     public static final String INVALID_CRED_OR_NOT_VERIFIED = "Invalid credentials or user not verified";
     public static final String FAV_PLAYERS_TWO_DIR = "/{credentialId}/{playerId}";
     public static final String FAV_PLAYERS_ONE_DIR = "/{credentialId}";
-
+    public static final String PLAYER_ALREADY_EXISTS = "Player already exists: ";
     public static final String SUCCESS_REGISTER = "Your account has been registered. Go to the mail.";
 }

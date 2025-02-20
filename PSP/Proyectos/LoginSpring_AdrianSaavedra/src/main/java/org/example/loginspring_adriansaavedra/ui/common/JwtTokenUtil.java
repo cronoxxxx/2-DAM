@@ -3,12 +3,15 @@ package org.example.loginspring_adriansaavedra.ui.common;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.example.loginspring_adriansaavedra.common.Constantes;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+
 @Component
 public class JwtTokenUtil {
 
@@ -18,24 +21,26 @@ public class JwtTokenUtil {
         this.key = key;
     }
 
-    public String generateAccessToken(String username) {
+    public String generateAccessToken(UserDetails userDetails) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(userDetails.getUsername())
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(2).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim(Constantes.USER_S, username)
+                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(5).atZone(ZoneId.systemDefault()).toInstant()))
+                .claim(Constantes.USER_S, userDetails.getUsername())
+                .claim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .signWith(key)
                 .compact();
     }
 
-    public String generateRefreshToken(String username) {
+    public String generateRefreshToken(UserDetails userDetails) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(userDetails.getUsername())
                 .setIssuer(Constantes.SERVIDOR)
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now().plusDays(7).atZone(ZoneId.systemDefault()).toInstant()))
-                .claim(Constantes.USER_S, username)
+                .claim(Constantes.USER_S, userDetails.getUsername())
+                .claim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .signWith(key)
                 .compact();
     }

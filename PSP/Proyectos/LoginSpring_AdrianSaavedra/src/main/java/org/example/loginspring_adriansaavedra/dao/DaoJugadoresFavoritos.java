@@ -37,7 +37,7 @@ public class DaoJugadoresFavoritos {
                 .orElseThrow(() -> new PlayerNotFoundException(Constantes.PLAYER_NOT_FOUND));
     }
 
-    public void addPlayerForCredential(int credentialId, String playerName) {
+    public PlayerEntity addPlayerForCredential(int credentialId, String playerName) {
         CredentialEntity credential = entityManager.find(CredentialEntity.class, credentialId);
         if (credential == null) {
             throw new UserNotFoundException(Constantes.USER_NOT_FOUND);
@@ -56,6 +56,7 @@ public class DaoJugadoresFavoritos {
         }
         credential.getFavoritePlayerEntities().add(player);
         entityManager.merge(credential);
+        return player;
     }
 
     public void deletePlayerForCredential(int credentialId, int playerId) {

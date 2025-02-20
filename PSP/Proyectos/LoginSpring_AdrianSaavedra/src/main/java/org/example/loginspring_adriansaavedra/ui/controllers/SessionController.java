@@ -1,6 +1,6 @@
 package org.example.loginspring_adriansaavedra.ui.controllers;
 
-import io.jsonwebtoken.JwtException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.loginspring_adriansaavedra.common.Constantes;
 import org.example.loginspring_adriansaavedra.domain.model.CredentialEntity;
@@ -11,29 +11,43 @@ import org.example.loginspring_adriansaavedra.ui.common.JwtTokenUtil;
 import org.example.loginspring_adriansaavedra.ui.utils.AuthenticationResponse;
 import org.example.loginspring_adriansaavedra.ui.utils.RefreshTokenRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class LoginController {
+public class SessionController {
 
     private final GestionCredenciales gestionCredenciales;
     private final JwtTokenUtil jwtTokenUtil;
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userDetailsService;
 
-    public LoginController(GestionCredenciales gestionCredenciales, JwtTokenUtil jwtTokenUtil) {
+    public SessionController(GestionCredenciales gestionCredenciales, JwtTokenUtil jwtTokenUtil, AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
         this.gestionCredenciales = gestionCredenciales;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping(Constantes.LOGIN_DIR)
     public ResponseEntity<AuthenticationResponse> login(@RequestBody Login login) {
-       CredentialEntity c = gestionCredenciales.authenticateUser(login.getUsername(), login.getPassword());
-        String accessToken = jwtTokenUtil.generateAccessToken(c.getUsername());
-        String refreshToken = jwtTokenUtil.generateRefreshToken(c.getUsername());
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(login.getUsername(), login.getPassword())
+        );
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String accessToken = jwtTokenUtil.generateAccessToken(userDetails);
+        String refreshToken = jwtTokenUtil.generateRefreshToken(userDetails);
+
         AuthenticationResponse response = AuthenticationResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
-        return ResponseEntity.status(HttpServletResponse.SC_OK).body(response);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping(Constantes.REGISTER_DIR)
@@ -60,18 +74,17 @@ public class LoginController {
 
     @PostMapping(Constantes.REFRESH_DIR)
     public ResponseEntity<AuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest request) {
-        try {
-            String refreshToken = request.getRefreshToken();
-            jwtTokenUtil.validateToken(refreshToken);
-            String username = jwtTokenUtil.getUsernameFromToken(refreshToken);
-            String newAccessToken = jwtTokenUtil.generateAccessToken(username);
-            AuthenticationResponse response = AuthenticationResponse.builder()
-                    .accessToken(newAccessToken)
-                    .refreshToken(refreshToken)
-                    .build();
-            return ResponseEntity.status(HttpServletResponse.SC_OK).body(response);
-        } catch (JwtException e) {
-            return ResponseEntity.status(HttpServletResponse.SC_UNAUTHORIZED).build();
-        }
+        String refreshToken = request.getRefreshToken();
+        jwtTokenUtil.validateToken(refreshToken);
+        String username = jwtTokenUtil.getUsernameFromToken(refreshToken);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        String newAccessToken = jwtTokenUtil.generateAccessToken(userDetails);
+        AuthenticationResponse response = AuthenticationResponse.builder()
+                .accessToken(newAccessToken)
+                .refreshToken(refreshToken)
+                .build();
+        return ResponseEntity.status(HttpServletResponse.SC_OK).body(response);
     }
+
+
 }

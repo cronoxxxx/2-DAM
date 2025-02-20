@@ -33,11 +33,10 @@ public class FavoritePlayersController {
     }
 
     @PostMapping(Constantes.FAV_PLAYERS_ONE_DIR)
-    public ResponseEntity<Void> addFavoritePlayer(@PathVariable int credentialId, @RequestBody PlayerNameRequest request) {
-        gestionJugadoresFavoritos.addPlayerForCredential(credentialId, request.getPlayerName());
-        return ResponseEntity.status(HttpServletResponse.SC_CREATED).build();
+    public ResponseEntity<PlayerEntity> addFavoritePlayer(@PathVariable int credentialId, @RequestBody PlayerNameRequest request) {
+        PlayerEntity addedPlayer = gestionJugadoresFavoritos.addPlayerForCredential(credentialId, request.getPlayerName());
+        return ResponseEntity.status(HttpServletResponse.SC_CREATED).body(addedPlayer);
     }
-
 
     @DeleteMapping(Constantes.FAV_PLAYERS_TWO_DIR)
     public ResponseEntity<Void> deleteFavoritePlayer(@PathVariable int credentialId, @PathVariable int playerId) {

@@ -23,8 +23,8 @@ public class GestionJugadoresFavoritos {
         return daoJugadoresFavoritos.getPlayerForCredential(credentialId, playerId);
     }
     @Transactional
-    public PlayerEntity addPlayerForCredential(int credentialId, String playerName) {
-        return daoJugadoresFavoritos.addPlayerForCredential(credentialId, playerName);
+    public void addPlayerForCredential(int credentialId, String playerName) {
+        daoJugadoresFavoritos.addPlayerForCredential(credentialId, playerName);
     }
     @Transactional
     public void deletePlayerForCredential(int credentialId, int playerId) {
