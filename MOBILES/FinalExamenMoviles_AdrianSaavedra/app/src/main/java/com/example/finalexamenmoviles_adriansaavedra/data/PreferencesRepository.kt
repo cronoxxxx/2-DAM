@@ -15,44 +15,22 @@ import javax.inject.Singleton
 class PreferencesRepository @Inject constructor(private val dataStore: DataStore<Preferences>) {
     companion object {
         private val ACCESS_TOKEN_KEY = stringPreferencesKey("accessToken")
-        private val REFRESH_TOKEN_KEY = stringPreferencesKey("refreshToken")
-        private val USER_ID_KEY = intPreferencesKey("userId")
     }
 
     val token: Flow<String?> = dataStore.data.map { preferences ->
         preferences[ACCESS_TOKEN_KEY]
     }
 
-    val refreshToken: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[REFRESH_TOKEN_KEY]
-    }
-
-    val userId: Flow<Int?> = dataStore.data.map { preferences ->
-        preferences[USER_ID_KEY]
-    }
-
-    suspend fun saveTokens(accessToken: String, refreshToken: String) {
+    suspend fun saveTokens(accessToken: String) {
         dataStore.edit { preferences ->
             preferences[ACCESS_TOKEN_KEY] = accessToken
-            preferences[REFRESH_TOKEN_KEY] = refreshToken
-            JwtUtils.getUserIdFromToken(accessToken)?.takeIf { it > 0 }?.let { userId ->
-                preferences[USER_ID_KEY] = userId
-            }
+
         }
     }
 
     suspend fun clearTokens() {
         dataStore.edit { preferences ->
             preferences.remove(ACCESS_TOKEN_KEY)
-            preferences.remove(REFRESH_TOKEN_KEY)
-            preferences.remove(USER_ID_KEY)
         }
-    }
-}
-
-object JwtUtils {
-    fun getUserIdFromToken(token: String): Int? {
-        val jwt = JWT.decode(token)
-        return jwt.getClaim("userId").asInt()
     }
 }

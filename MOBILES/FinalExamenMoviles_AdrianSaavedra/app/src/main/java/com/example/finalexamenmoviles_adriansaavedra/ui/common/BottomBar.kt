@@ -10,6 +10,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.finalexamenmoviles_adriansaavedra.ui.navigation.HomeDestination
+import com.example.finalexamenmoviles_adriansaavedra.ui.navigation.RatDestination
 
 @Composable
 fun BottomBar(
@@ -27,25 +29,24 @@ fun BottomBar(
                 selected = currentDestination?.route == item.destination.toString(),
                 onClick = {
                     when (item.destination) {
-//                        is PlayersDestination -> navController.navigate(PlayersDestination) {
-//                            popUpTo(navController.graph.findStartDestination().id) {
-//                                saveState = true
-//                            }
-//
-//                            launchSingleTop = true
-//                            restoreState = true
-//                        }
-//
-//                        is FavoritePlayersDestination -> navController.navigate(
-//                            FavoritePlayersDestination
-//                        ) {
-//                            popUpTo(navController.graph.findStartDestination().id) {
-//                                saveState = true
-//                            }
-//
-//                            launchSingleTop = true
-//                            restoreState = true
-//                        }
+                        is HomeDestination -> navController.navigate(HomeDestination) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                        is RatDestination -> navController.navigate(RatDestination) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+
+
                     }
 
                 }

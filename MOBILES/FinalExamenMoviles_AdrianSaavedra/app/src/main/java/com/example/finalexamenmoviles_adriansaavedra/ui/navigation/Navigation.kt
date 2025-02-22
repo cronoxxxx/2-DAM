@@ -22,15 +22,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.finalexamenmoviles_adriansaavedra.R
 import com.example.finalexamenmoviles_adriansaavedra.ui.common.BottomBar
 import com.example.finalexamenmoviles_adriansaavedra.ui.common.TopBar
-
+import com.example.finalexamenmoviles_adriansaavedra.ui.pantallaAlumnos.AlumnosScreen
+import com.example.finalexamenmoviles_adriansaavedra.ui.pantallaDetalleAlumnos.DetailAlumnoScreen
+import com.example.finalexamenmoviles_adriansaavedra.ui.pantallaLogin.LoginScreen
+import com.example.finalexamenmoviles_adriansaavedra.ui.pantallaRatones.RatonScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -66,7 +67,7 @@ fun Navigation() {
                 enter = fadeIn() + slideInVertically(initialOffsetY = { it }),
                 exit = fadeOut() + slideOutVertically(targetOffsetY = { it })
             ) {
-               // BottomBar(navController = navController, items = rememberBottomNavItems())
+                BottomBar(navController = navController, items = rememberBottomNavItems())
             }
         },
         floatingActionButton = {
@@ -83,14 +84,53 @@ fun Navigation() {
     ) { innerPadding ->
         NavHost(
             navController = navController,
-           startDestination = LoginDestination,
+            startDestination = LoginDestination,
             modifier = Modifier.padding(innerPadding)
         ) {
+            composable<LoginDestination> {
+                topBarTitle = "login screen title"
+                showBackButton = false
+                isBottomBarVisible = false
+                isBottomFabVisible = false
+                LoginScreen(onLoginSuccess = {
+                    navController.navigate(
+                        HomeDestination
+                    )
+                })
+            }
+            composable<HomeDestination> {
+                topBarTitle = "pantalla jugadores"
+                showBackButton = false
+                isBottomBarVisible = true
+                isBottomFabVisible = false
+                AlumnosScreen(showSnackbar = showSnackbar, onNavigateToDetail = {
+                    navController.navigate(HomeDetails(it))
+                })
 
+            }
+            composable<RatDestination> {
+                topBarTitle = "ratas"
+                showBackButton = true
+                isBottomBarVisible = false
+                isBottomFabVisible = false
+                RatonScreen(showSnackbar)
+            }
 
+            composable<HomeDetails> { backStackEntry ->
+                val destination = backStackEntry.toRoute() as HomeDetails
+
+                topBarTitle = "jugador notas"
+                showBackButton = true
+                isBottomBarVisible = false
+                isBottomFabVisible = false
+
+                DetailAlumnoScreen(showSnackbar, destination.name)
+            }
         }
+
     }
 }
+
 
 
 

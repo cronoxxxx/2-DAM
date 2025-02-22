@@ -3,7 +3,9 @@ package com.example.playersapp_adriansaavedra.data.remote.di
 
 import com.example.finalexamenmoviles_adriansaavedra.BuildConfig
 import com.example.finalexamenmoviles_adriansaavedra.data.PreferencesRepository
+import com.example.finalexamenmoviles_adriansaavedra.data.remote.services.AlumnoService
 import com.example.finalexamenmoviles_adriansaavedra.data.remote.services.LoginService
+import com.example.finalexamenmoviles_adriansaavedra.data.remote.services.RatonService
 import com.example.finalexamenmoviles_adriansaavedra.data.remote.utils.AuthInterceptor
 import com.example.playersapp_adriansaavedra.data.remote.utils.*
 import dagger.Lazy
@@ -50,21 +52,22 @@ object NetworkModule {
             .build()
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideLoginService(retrofit: Retrofit): LoginService =
-//        retrofit.create(LoginService::class.java)
-//
-//    @Singleton
-//    @Provides
-//    fun providePlayerService(retrofit: Retrofit): PlayerService =
-//        retrofit.create(PlayerService::class.java)
-//
-//    @Singleton
-//    @Provides
-//    fun provideFavoritePlayerService(retrofit: Retrofit): FavoritePlayerService =
-//        retrofit.create(FavoritePlayerService::class.java)
-//
+
+    @Singleton
+    @Provides
+    fun provideRatService(retrofit: Retrofit): RatonService =
+        retrofit.create(RatonService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideAlumnoService(retrofit: Retrofit): AlumnoService =
+        retrofit.create(AlumnoService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideLoginService(retrofit: Retrofit): LoginService =
+        retrofit.create(LoginService::class.java)
     @Singleton
     @Provides
     fun provideAuthInterceptor(preferencesRepository: PreferencesRepository): AuthInterceptor =

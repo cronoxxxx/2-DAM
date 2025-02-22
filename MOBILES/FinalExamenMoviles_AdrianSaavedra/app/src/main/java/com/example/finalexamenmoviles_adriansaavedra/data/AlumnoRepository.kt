@@ -1,5 +1,6 @@
 package com.example.finalexamenmoviles_adriansaavedra.data
 
+import com.example.finalexamenmoviles_adriansaavedra.data.remote.NetworkResult
 import com.example.finalexamenmoviles_adriansaavedra.data.remote.datasource.BaseApiResponse
 import com.example.finalexamenmoviles_adriansaavedra.data.remote.services.AlumnoService
 import com.example.finalexamenmoviles_adriansaavedra.di.IoDispatcher
@@ -13,7 +14,14 @@ class AlumnoRepository @Inject constructor(
 
 ) : BaseApiResponse() {
     suspend fun getPlayers() = withContext(dispatcher) {
-        safeApiCall { alumnoService.getAlumnos() }
+        try {
+            safeApiCall { alumnoService.getAlumnos() }
+        } catch (e: Exception) {
+            NetworkResult.Error(e.message ?: e.toString())
+        }
+
 
     }
+
+
 }
