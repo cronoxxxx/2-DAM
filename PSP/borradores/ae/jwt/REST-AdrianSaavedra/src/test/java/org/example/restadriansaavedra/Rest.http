@@ -1,0 +1,73 @@
+### Register a new user
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "username": "a2",
+  "password": "a2",
+  "role": "NIVEL2"
+}
+
+### Login
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "a2",
+  "password": "a2"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+### Refresh token
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refresh_token}}"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+
+### Get all mice
+GET http://localhost:8080/api/mice
+Authorization: Bearer {{auth_token}}
+
+### Add a mouse (admin only)
+POST http://localhost:8080/api/mice
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Moe",
+  "age": 3
+}
+
+### Get reports (filtered by user role)
+GET http://localhost:8080/api/reports
+Authorization: Bearer {{auth_token}}
+
+### Get a specific report by ID
+GET http://localhost:8080/api/reports/3
+Authorization: Bearer {{auth_token}}
+
+### Add a report (admin only)
+POST http://localhost:8080/api/reports
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Reporte",
+  "date": "2026-05-20",
+  "securityLevel": "NIVEL1"
+}
+
+
+

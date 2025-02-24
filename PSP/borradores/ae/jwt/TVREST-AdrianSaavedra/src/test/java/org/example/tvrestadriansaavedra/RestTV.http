@@ -1,0 +1,105 @@
+### Register a new user
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "name": "e",
+  "password": "a",
+  "role": "NIVEL1"
+}
+
+### Login
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "name": "e",
+  "password": "a"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+### Refresh token
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refresh_token}}"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+### Get all series
+GET http://localhost:8080/api/series
+Authorization: Bearer {{auth_token}}
+
+### Get a specific series by ID
+GET http://localhost:8080/api/series/1
+Authorization: Bearer {{auth_token}}
+
+### Add a new series
+POST http://localhost:8080/api/series
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "New Series"
+}
+
+### Delete a series
+DELETE http://localhost:8080/api/series/1
+Authorization: Bearer {{auth_token}}
+
+### Add a chapter to a series
+POST http://localhost:8080/api/series/1/chapters
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "New Chapter",
+  "watched": false
+}
+
+### Update chapter watched status
+PUT http://localhost:8080/api/series/1/chapters/9?watched=true
+Authorization: Bearer {{auth_token}}
+
+### Delete a chapter
+DELETE http://localhost:8080/api/series/1/chapters/9
+Authorization: Bearer {{auth_token}}
+
+
+
+(7.5) Api rest cliente y servidor de objeto , equipos del mundial, y plantillas, habra rol de encargado, dt y futbolista (dt y futbolista tendran otro atributo donde
+al crearlo se le pasa el equipo al que pertenece, y si existe ese equipo se le asigna).
+a. Los equipos tienen un nombre, un entrenador y una lista de jugadores
+b. Los jugadores tienen un nombre, el nombre del equipo, y un id(puesto a mano)
+c.
+Los datos se guardan en una lista estatica en un componente database que pasara al dao con getters de las listas.
+d. El proyecto con cliente rest, seguridad, jwt con key, roles, e hasheo de contraseña, y handlers de excepcion
+e. (0,75) Ver todos los equipos del mundial, sin pedir los jugadores.
+f.
+Todas las siguiente llamdas con linea de comandos con un blockingsubscribe
+g. (0,5) Ver los equipos del mundial con jugadores. (todos)
+h. (0,75) Ver los jugadores de un solo equipo, devolverá 404 en
+caso de no encontrar el equipo. (todos)
+i.
+j.
+(0,5) Ver un solo equipo, linea de comandos devolverá 404 en caso de no encontrar
+el equipo.
+(1Pto) Añadir jugadores a un equipo (solo dt)
+k. (1Pto) Añadir un equipo (solo encargado)
+l.
+(1Pto) Actualizar un jugador, pasando el jugador y en un parametro el nuevo
+nombre.si no se encuentra al jugador devolver un 404 (encargado)
+m. (1Pto) Borrar un equipo, si tiene jugadores no se puede borrar y en cliente aparecerá
+un aviso  (el encargado puede borrarlo, y el dt si es su equipo, de otro modo, devolvera error)
+n. (1Pto) borrar un jugador, si no existe devolver 404 (encargado, y dt si el jugador pertenece a su equipo)
+
+haz todo desde 0 desde modelos hasta controladores

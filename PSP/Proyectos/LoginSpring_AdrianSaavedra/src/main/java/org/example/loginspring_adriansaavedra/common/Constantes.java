@@ -30,7 +30,6 @@ public class Constantes {
     public static final String CURRENT_ID_PARAM = "currentId";
     public static final String ACCESS_TOKEN = "access_token";
     public static final String REFRESH_TOKEN = "refresh_token";
-
     public static final String USER_S = "user";
     public static final String COMPULSORY_FILLED = "All fields must be filled";
     public static final String PLAYER_NOT_FOUND = "Player not found";

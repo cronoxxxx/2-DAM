@@ -1,0 +1,67 @@
+### Register a new user
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "nombre": "a",
+  "password": "a",
+  "rol": "PROFESOR"
+}
+
+### Login
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "nombre": "a",
+  "password": "a"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+### Refresh token
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refresh_token}}"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+### Alumnos
+
+###
+GET http://localhost:8080/alumnos
+Authorization: Bearer {{auth_token}}
+
+###
+GET http://localhost:8080/alumnos/nombres
+Authorization: Bearer {{auth_token}}
+
+###
+POST http://localhost:8080/alumnos
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+ "nombre": "Samuel",
+  "asignaturas": [
+    {
+      "nombre": "PSP",
+      "nota": 1
+    }
+  ]
+}
+
+
+###
+POST http://localhost:8080/alumnos/Samuel
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json

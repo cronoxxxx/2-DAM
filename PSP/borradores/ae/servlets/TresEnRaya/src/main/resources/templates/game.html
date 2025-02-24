@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Start Game</title>
+</head>
+<body>
+<h1>Start a New Game</h1>
+<p>Welcome, <span th:text="${user.username}"></span>! Your score: <span th:text="${user.score}"></span></p>
+<form action="/game" method="post">
+    <input type="text" name="player1" placeholder="Player 1 Username" required>
+    <input type="text" name="player2" placeholder="Player 2 Username" required>
+    <button type="submit">Start Game</button>
+</form>
+</body>
+</html>
+

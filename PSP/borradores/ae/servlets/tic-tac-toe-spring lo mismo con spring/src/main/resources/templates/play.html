@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tic-Tac-Toe</title>
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <p>Player 1 (X): <span th:text="${game.player1}"></span></p>
+    <p>Player 2 (O): <span th:text="${game.player2}"></span></p>
+    <p>Current Player: <span th:text="${game.currentPlayer}"></span></p>
+    
+    <div class="board">
+        <form th:each="i : ${#numbers.sequence(0, 8)}" th:action="@{/move}" method="post" style="display: inline;">
+            <input type="hidden" name="position" th:value="${i}">
+            <button class="cell" type="submit" th:disabled="${game.board[i] != null or game.gameOver}">
+                <span th:text="${game.board[i]}"></span>
+            </button>
+        </form>
+    </div>
+    
+    <form th:action="@{/random-move}" method="post" style="margin-top: 20px;">
+        <button type="submit" th:disabled="${game.gameOver}">Make Random Move</button>
+    </form>
+    
+    <p th:if="${game.gameOver and game.winner != null}">
+        Winner: <span th:text="${game.winner == 'X' ? game.player1 : game.player2}"></span>
+    </p>
+    <p th:if="${game.gameOver and game.winner == null}">It's a draw!</p>
+    
+    <form th:if="${game.gameOver}" action="/reset" method="post">
+        <button type="submit">Play Again</button>
+    </form>
+    
+    <a href="/game">Back to Game Selection</a>
+</body>
+</html>
+

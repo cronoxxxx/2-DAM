@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Selector</title>
+</head>
+<body>
+<div th:style="'background-color: ' + ${globalColor} + '; padding: 20px;'">
+    <h2>Global Color</h2>
+    <p>This is the global color shared by all users.</p>
+</div>
+<div th:style="'background-color: ' + ${userColor} + '; padding: 20px;'">
+    <h2>User Color</h2>
+    <p>This is your personal color for this session.</p>
+</div>
+<form th:action="@{/color}" method="get">
+    <label for="globalColor">Global Color:</label>
+    <input type="color" id="globalColor" name="globalColor" th:value="${globalColor}"><br>
+    <label for="userColor">User Color:</label>
+    <input type="color" id="userColor" name="userColor" th:value="${userColor}"><br>
+    <input type="submit" value="Update Colors">
+</form>
+</body>
+</html>

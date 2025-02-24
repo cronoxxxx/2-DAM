@@ -1,0 +1,54 @@
+package org.example.mundialrest.domain.service;
+
+
+import org.example.mundialrest.common.errors.PlayerNotFoundException;
+import org.example.mundialrest.common.errors.UnauthorizedOperationException;
+import org.example.mundialrest.dao.PlayerDao;
+import org.example.mundialrest.dao.TeamDao;
+import org.example.mundialrest.domain.model.Player;
+import org.example.mundialrest.domain.model.Team;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PlayerService {
+    private final PlayerDao playerDao;
+    private final TeamDao teamDao;
+
+    public PlayerService(PlayerDao playerDao, TeamDao teamDao) {
+        this.playerDao = playerDao;
+        this.teamDao = teamDao;
+    }
+
+    public void addPlayer(String teamName, Player player) {
+        Team team = teamDao.findByName(teamName)
+                .orElseThrow(() -> new PlayerNotFoundException("Team not found with name: " + teamName));
+        player.setTeamName(teamName);
+        playerDao.save(team, player);
+        teamDao.update(team);
+    }
+
+    public void updatePlayer(String teamName, Long playerId, String newName) {
+        Team team = teamDao.findByName(teamName)
+                .orElseThrow(() -> new PlayerNotFoundException("Team not found with name: " + teamName));
+        Player player = playerDao.findById(team, playerId)
+                .orElseThrow(() -> new PlayerNotFoundException("Player not found with id: " + playerId));
+        player.setName(newName);
+        playerDao.update(team, player);
+    }
+
+    public void deletePlayer(String teamName, Long playerId, String userRole) {
+        Team team = teamDao.findByName(teamName)
+                .orElseThrow(() -> new PlayerNotFoundException("Team not found with name: " + teamName));
+        Player player = playerDao.findById(team, playerId)
+                .orElseThrow(() -> new PlayerNotFoundException("Player not found with id: " + playerId));
+
+        if ("MANAGER".equals(userRole)) {
+            playerDao.delete(team, player);
+        } else if ("COACH".equals(userRole) && teamName.equals(player.getTeamName())) {
+            playerDao.delete(team, player);
+        } else {
+            throw new UnauthorizedOperationException("Unauthorized to delete player");
+        }
+    }
+}
+
