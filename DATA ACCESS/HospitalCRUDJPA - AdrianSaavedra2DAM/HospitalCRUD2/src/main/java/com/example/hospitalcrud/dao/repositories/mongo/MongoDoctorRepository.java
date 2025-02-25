@@ -34,7 +34,9 @@ public class MongoDoctorRepository implements DoctorRepository {
                 .doctor_id(doc.getObjectId("_id"))
                 .name(doc.getString("name"))
                 .build();
-    }@PreDestroy
+    }
+
+    @PreDestroy
     public void cleanup() {
         MongoUtil.closeConnection();
     }

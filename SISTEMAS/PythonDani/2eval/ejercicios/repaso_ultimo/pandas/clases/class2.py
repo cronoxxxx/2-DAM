@@ -19,9 +19,14 @@ df_filtrar = df[filtrar]
 print(df_filtrar)
 print("Primeras 10 columnas")
 print(df.head(10))
+print("Ultimas")
+print(df.tail(10))
 
-#df_excel = pd.read_excel('estudiantes.xlsx')
-#df_excel.to_csv('estudiantes.csv',index=None,header=True)
+"""Conversion de excel csv"""
+
+"""df_excel = pd.read_excel('estudiantes.xlsx')
+print(df_excel)
+df_excel.to_csv('estudiantes.csv',index=None,header=True)"""
 
 df_conv = pd.read_csv('estudiantes.csv')
 print(df_conv)

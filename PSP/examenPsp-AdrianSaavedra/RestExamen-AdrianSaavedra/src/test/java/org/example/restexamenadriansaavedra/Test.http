@@ -1,0 +1,96 @@
+### Register a new user
+POST http://localhost:8080/register
+Content-Type: application/json
+
+{
+  "name": "m",
+  "password": "m",
+  "role": "MEXICANO"
+}
+
+### Login
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "m",
+  "password": "m"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+### Refresh token
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refresh_token}}"
+}
+
+> {%
+    client.global.set("auth_token", response.body.access_token)
+    client.global.set("refresh_token", response.body.refresh_token)
+%}
+
+
+###ADMIN agregar
+POST http://localhost:8080/lands
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Z",
+  "latitude": "1",
+  "longitude": "2",
+  "squareMeters": 1.4,
+  "landCrops": [
+    { "crop": {
+      "name": "A",
+      "energyValue": 1,
+      "characteristics": "examen"
+    }
+    }
+  ]
+}
+
+###MEXICANO ADMIN
+GET http://localhost:8080/lands/1/crops
+Authorization: Bearer {{auth_token}}
+
+### mexicano admin
+GET http://localhost:8080/lands/without-crops
+Authorization: Bearer {{auth_token}}
+
+
+###COLOMBIANO agregar
+POST http://localhost:8080/crops
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "A",
+  "energyValue": 1,
+  "characteristics": "examen",
+  "landCrops": [
+    { "land": {
+      "name": "Z",
+      "latitude": "1",
+      "longitude": "2",
+      "squareMeters": 1.4
+    }
+    }
+  ]
+}
+
+### COLOMBIANO
+DELETE http://localhost:8080/crops/1
+Authorization: Bearer {{auth_token}}
+
+###MEXICANO Y ADMIN
+GET http://localhost:8080/crops/4/lands
+Authorization: Bearer {{auth_token}}
+
+

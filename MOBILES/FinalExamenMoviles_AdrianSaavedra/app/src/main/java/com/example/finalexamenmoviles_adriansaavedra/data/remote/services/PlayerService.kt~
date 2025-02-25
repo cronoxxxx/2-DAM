@@ -1,0 +1,9 @@
+package com.example.finalexamenmoviles_adriansaavedra.data.remote.services
+
+import com.example.finalexamenmoviles_adriansaavedra.data.remote.model.Alumno
+import retrofit2.http.GET
+
+interface PlayerService {
+    @GET("/alumnos")
+    suspend fun getAlumnos() : List<Alumno>
+}

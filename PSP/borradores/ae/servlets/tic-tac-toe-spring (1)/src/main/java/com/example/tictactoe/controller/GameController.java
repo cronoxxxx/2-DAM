@@ -46,14 +46,7 @@ public class GameController {
         return "redirect:/play";
     }
 
-    @PostMapping("/random-move")
-    public String makeRandomMove(HttpSession session) {
-        Game game = (Game) session.getAttribute("game");
-        if (game != null) {
-            gameService.makeRandomMove(game);
-        }
-        return "redirect:/play";
-    }
+   
 
     @PostMapping("/reset")
     public String resetGame(HttpSession session) {

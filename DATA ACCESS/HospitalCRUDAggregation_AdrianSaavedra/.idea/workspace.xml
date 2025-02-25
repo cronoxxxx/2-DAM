@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5fae5a70-f3a2-4228-a83c-e2c37d4b268e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/world-cup-teams/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/model/Address.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/model/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/model/Flavor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/model/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/model/Shop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/repositories/CustomerDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/repositories/FlavorDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/repositories/OrderDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/repositories/ShopDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/dao/repositories/utils/MongoUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/domain/service/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/domain/service/FlavorService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/domain/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/domain/service/ShopService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/ui/Query1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/ui/Query2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/ui/Query3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/ui/Query4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/java/org/example/ui/Query5.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../IceCreamCRUD_AdrianSaavedra/src/main/resources/META-INF/beans.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/java/com/example/tictactoe/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/java/com/example/tictactoe/controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/java/com/example/tictactoe/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/resources/templates/play.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/resources/templates/play.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/src/main/resources/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/com/example/tictactoe/controller/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/com/example/tictactoe/controller/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/com/example/tictactoe/dao/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/templates/play.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/templates/play.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (1)/target/classes/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/java/com/example/tictactoe/controller/GameController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/java/com/example/tictactoe/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/java/com/example/tictactoe/model/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/java/com/example/tictactoe/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/java/com/example/tictactoe/service/GameService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/resources/templates/game.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/resources/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/resources/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/resources/templates/play.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/borradores/ae/servlets/tic-tac-toe-spring (3) sin random/src/main/resources/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/RestExamenAdrianSaavedraApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/dao/DaoUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/dao/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/domain/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/domain/service/ServicioUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/common/AuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/common/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/common/RefreshTokenRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/common/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/common/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/controllers/SessionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/java/org/example/restexamenadriansaavedra/ui/filters/JwtTokenFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PSP/examen/RestExamen-AdrianSaavedra/src/test/java/org/example/restexamenadriansaavedra/RestExamenAdrianSaavedraApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SISTEMAS/PythonDani/2eval/ejercicios/repaso_ultimo/pandas/clases/class2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../SISTEMAS/PythonDani/2eval/ejercicios/repaso_ultimo/pandas/clases/class2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SISTEMAS/PythonDani/2eval/ejercicios/repaso_ultimo/pandas/clases/estudiantes.csv" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "cronoxxxx"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/cronoxxxx/2-DAM.git",
+    "accountId": "56c879e7-ba2b-430f-a921-b2c6b5cd53dc"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2tV1roKYvnsMJj40Fw6JbU7dX9F" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Query1.executor": "Run",
+    "Application.Query2.executor": "Run",
+    "Application.Query3.executor": "Run",
+    "Application.Query4.executor": "Run",
+    "Application.Query5.executor": "Run",
+    "Application.Query6.executor": "Run",
+    "Application.Query7.executor": "Run",
+    "Application.Query8.executor": "Run",
+    "Application.Query9.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "release/1.2v",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/main2dam/DATA ACCESS/HospitalCRUDAggregation_AdrianSaavedra/src/main/java/org/example/dao/repositories",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Adrian\Desktop\main2dam\DATA ACCESS\HospitalCRUDAggregation_AdrianSaavedra\src\main\java\org\example\dao\repositories" />
+      <recent name="C:\Users\Adrian\Desktop\main2dam\DATA ACCESS\HospitalCRUDAggregation_AdrianSaavedra\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Query9">
+    <configuration name="Query5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.ui.Query5" />
+      <module name="HospitalCRUDAggregation_AdrianSaavedra" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Query6" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.ui.Query6" />
+      <module name="HospitalCRUDAggregation_AdrianSaavedra" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Query7" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.ui.Query7" />
+      <module name="HospitalCRUDAggregation_AdrianSaavedra" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Query8" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.ui.Query8" />
+      <module name="HospitalCRUDAggregation_AdrianSaavedra" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Query9" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.ui.Query9" />
+      <module name="HospitalCRUDAggregation_AdrianSaavedra" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Query9" />
+        <item itemvalue="Application.Query8" />
+        <item itemvalue="Application.Query7" />
+        <item itemvalue="Application.Query6" />
+        <item itemvalue="Application.Query5" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5fae5a70-f3a2-4228-a83c-e2c37d4b268e" name="Changes" comment="" />
+      <created>1740422630230</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740422630230</updated>
+      <workItem from="1740422631905" duration="3845000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
