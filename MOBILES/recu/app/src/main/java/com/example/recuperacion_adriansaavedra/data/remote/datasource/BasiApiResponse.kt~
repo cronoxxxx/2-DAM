@@ -1,0 +1,4 @@
+package com.example.recuperacion_adriansaavedra.data.remote.datasource
+
+interface BasiApiResponse {
+}

@@ -1,0 +1,162 @@
+package com.example.finalexamenmoviles_adriansaavedra.ui.pantallaDetalleInformes
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.finalexamenmoviles_adriansaavedra.ui.common.UiEvent
+
+@Composable
+fun InformeDetailScreen(
+    showSnackbar: (String) -> Unit,
+    informeId: Int,
+    viewModel: InformeDetailViewModel = hiltViewModel()
+) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+    
+    LaunchedEffect(informeId) {
+        viewModel.handleEvent(InformeDetailEvent.GetInforme(informeId))
+    }
+    
+    LaunchedEffect(state.aviso) {
+        state.aviso?.let {
+            if (it is UiEvent.ShowSnackbar) {
+                showSnackbar(it.message)
+                viewModel.handleEvent(InformeDetailEvent.AvisoVisto)
+            }
+        }
+    }
+    
+    InformeDetailContent(
+        state = state,
+        onNivelChange = { nivel ->
+            viewModel.handleEvent(InformeDetailEvent.UpdateNivel(nivel))
+        }
+    )
+}
+
+@Composable
+fun InformeDetailContent(
+    state: InformeDetailState,
+    onNivelChange: (Int) -> Unit
+) {
+    val backgroundColor = when (state.informe.nivel) {
+        1 -> Color.Blue
+        2 -> Color(0xFF9C27B0)
+        3 -> Color.Red
+        else -> Color.Gray
+    }
+    
+    Surface {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            if (state.isLoading) {
+                CircularProgressIndicator()
+            } else {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                        colors = CardDefaults.cardColors(containerColor = backgroundColor)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(16.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = state.informe.nombre,
+                                style = MaterialTheme.typography.headlineMedium
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Nivel actual: ${state.informe.nivel}",
+                                style = MaterialTheme.typography.bodyLarge
+                            )
+                        }
+                    }
+                    
+                    Text(
+                        text = "Cambiar nivel",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                    
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        NivelButton(
+                            nivel = 1,
+                            selected = state.informe.nivel == 1,
+                            onClick = { onNivelChange(1) }
+                        )
+                        NivelButton(
+                            nivel = 2,
+                            selected = state.informe.nivel == 2,
+                            onClick = { onNivelChange(2) }
+                        )
+                        NivelButton(
+                            nivel = 3,
+                            selected = state.informe.nivel == 3,
+                            onClick = { onNivelChange(3) }
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun NivelButton(nivel: Int, selected: Boolean, onClick: () -> Unit) {
+    val backgroundColor = when (nivel) {
+        1 -> Color.Blue
+        2 -> Color(0xFF9C27B0)
+        3 -> Color.Red
+        else -> Color.Gray
+    }
+    
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (selected) backgroundColor else backgroundColor.copy(alpha = 0.5f)
+        ),
+        modifier = Modifier.size(80.dp)
+    ) {
+        Text(
+            text = nivel.toString(),
+            style = MaterialTheme.typography.headlineMedium
+        )
+    }
+}
+
